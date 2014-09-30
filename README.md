@@ -1,4 +1,0 @@
-Skea-iOS
-========
-
-Skea-iOS
