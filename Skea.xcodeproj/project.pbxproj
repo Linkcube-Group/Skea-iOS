@@ -10,6 +10,21 @@
 		0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886919E4352C0073C83B /* bleCentralManager.m */; };
 		0312886D19E4352C0073C83B /* blePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886B19E4352C0073C83B /* blePeripheral.m */; };
 		0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0312886E19E435360073C83B /* CoreBluetooth.framework */; };
+		0312887519E43A0B0073C83B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312887319E43A0B0073C83B /* LoginViewController.m */; };
+		0312887619E43A0B0073C83B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312887419E43A0B0073C83B /* LoginViewController.xib */; };
+		0312887A19E43A1D0073C83B /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312887819E43A1D0073C83B /* SignViewController.m */; };
+		0312887B19E43A1D0073C83B /* SignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312887919E43A1D0073C83B /* SignViewController.xib */; };
+		0312887F19E43A3F0073C83B /* TestingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312887D19E43A3F0073C83B /* TestingViewController.m */; };
+		0312888019E43A3F0073C83B /* TestingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312887E19E43A3F0073C83B /* TestingViewController.xib */; };
+		0312888419E43A940073C83B /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312888219E43A940073C83B /* PersonViewController.m */; };
+		0312888519E43A940073C83B /* PersonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312888319E43A940073C83B /* PersonViewController.xib */; };
+		0312888819E43B8B0073C83B /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312888719E43B8B0073C83B /* ViewController.xib */; };
+		0312888C19E43BE80073C83B /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312888A19E43BE80073C83B /* InfoViewController.m */; };
+		0312888D19E43BE80073C83B /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312888B19E43BE80073C83B /* InfoViewController.xib */; };
+		0312889119E43BFE0073C83B /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312888F19E43BFE0073C83B /* RecordViewController.m */; };
+		0312889219E43BFE0073C83B /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312889019E43BFE0073C83B /* RecordViewController.xib */; };
+		0312889619E43C120073C83B /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312889419E43C120073C83B /* GameViewController.m */; };
+		0312889719E43C120073C83B /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312889519E43C120073C83B /* GameViewController.xib */; };
 		039B926219DA7AC500292529 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 039B926119DA7AC500292529 /* main.m */; };
 		039B926519DA7AC500292529 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 039B926419DA7AC500292529 /* AppDelegate.m */; };
 		039B926819DA7AC500292529 /* Skea.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 039B926619DA7AC500292529 /* Skea.xcdatamodeld */; };
@@ -121,15 +136,37 @@
 		0312886A19E4352C0073C83B /* blePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blePeripheral.h; sourceTree = "<group>"; };
 		0312886B19E4352C0073C83B /* blePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = blePeripheral.m; sourceTree = "<group>"; };
 		0312886E19E435360073C83B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		0312887219E43A0B0073C83B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		0312887319E43A0B0073C83B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		0312887419E43A0B0073C83B /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		0312887719E43A1D0073C83B /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		0312887819E43A1D0073C83B /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
+		0312887919E43A1D0073C83B /* SignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignViewController.xib; sourceTree = "<group>"; };
+		0312887C19E43A3F0073C83B /* TestingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestingViewController.h; sourceTree = "<group>"; };
+		0312887D19E43A3F0073C83B /* TestingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestingViewController.m; sourceTree = "<group>"; };
+		0312887E19E43A3F0073C83B /* TestingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestingViewController.xib; sourceTree = "<group>"; };
+		0312888119E43A940073C83B /* PersonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonViewController.h; sourceTree = "<group>"; };
+		0312888219E43A940073C83B /* PersonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonViewController.m; sourceTree = "<group>"; };
+		0312888319E43A940073C83B /* PersonViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonViewController.xib; sourceTree = "<group>"; };
+		0312888719E43B8B0073C83B /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		0312888919E43BE80073C83B /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		0312888A19E43BE80073C83B /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		0312888B19E43BE80073C83B /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		0312888E19E43BFE0073C83B /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
+		0312888F19E43BFE0073C83B /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		0312889019E43BFE0073C83B /* RecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordViewController.xib; sourceTree = "<group>"; };
+		0312889319E43C120073C83B /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		0312889419E43C120073C83B /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		0312889519E43C120073C83B /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		039B925C19DA7AC500292529 /* Skea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		039B926019DA7AC500292529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		039B926119DA7AC500292529 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		039B926319DA7AC500292529 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Skea/AppDelegate.h; sourceTree = "<group>"; };
-		039B926419DA7AC500292529 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Skea/AppDelegate.m; sourceTree = "<group>"; };
+		039B926319DA7AC500292529 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		039B926419DA7AC500292529 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		039B926719DA7AC500292529 /* Skea.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Skea.xcdatamodel; sourceTree = "<group>"; };
-		039B926919DA7AC500292529 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Skea/ViewController.h; sourceTree = "<group>"; };
-		039B926A19DA7AC500292529 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Skea/ViewController.m; sourceTree = "<group>"; };
-		039B926F19DA7AC500292529 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Skea/Images.xcassets; sourceTree = "<group>"; };
+		039B926919DA7AC500292529 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		039B926A19DA7AC500292529 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		039B926F19DA7AC500292529 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		03E531BC19DA7D320064762E /* bg_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_title@2x.png"; sourceTree = "<group>"; };
 		03E531BD19DA7D320064762E /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		03E531C719DA7D320064762E /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -203,11 +240,11 @@
 		03E5323319DA7D470064762E /* AppConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConfig.h; sourceTree = "<group>"; };
 		03E5323419DA7D470064762E /* AppConfig.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppConfig.mm; sourceTree = "<group>"; };
 		03E5323519DA7D470064762E /* Models.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Models.h; sourceTree = "<group>"; };
-		03E5323A19DA7D470064762E /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationController.m; path = Skea/NavigationController.m; sourceTree = "<group>"; };
+		03E5323A19DA7D470064762E /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		03E5323B19DA7D470064762E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		03E5323C19DA7D470064762E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseViewController.m; path = Skea/BaseViewController.m; sourceTree = "<group>"; };
-		03E5323D19DA7D470064762E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseViewController.h; path = Skea/BaseViewController.h; sourceTree = "<group>"; };
-		03E5323E19DA7D470064762E /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationController.h; path = Skea/NavigationController.h; sourceTree = "<group>"; };
+		03E5323C19DA7D470064762E /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		03E5323D19DA7D470064762E /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		03E5323E19DA7D470064762E /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		03E5324019DA7D470064762E /* iosTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iosTools.h; sourceTree = "<group>"; };
 		03E5324219DA7D470064762E /* ModelBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelBase.h; sourceTree = "<group>"; };
 		03E5324319DA7D470064762E /* ModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelBase.m; sourceTree = "<group>"; };
@@ -319,7 +356,7 @@
 		03E532FB19DA7E010064762E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		03E532FD19DA7E070064762E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		03E5330019DA7F0E0064762E /* Skea-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Skea-Prefix.pch"; sourceTree = "<group>"; };
-		03E5330119DA7F250064762E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		03E5330119DA7F250064762E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,25 +391,52 @@
 			path = LE;
 			sourceTree = "<group>";
 		};
+		0312887019E439EE0073C83B /* GameController */ = {
+			isa = PBXGroup;
+			children = (
+				0312889319E43C120073C83B /* GameViewController.h */,
+				0312889419E43C120073C83B /* GameViewController.m */,
+				0312889519E43C120073C83B /* GameViewController.xib */,
+			);
+			path = GameController;
+			sourceTree = "<group>";
+		};
+		0312887119E439EE0073C83B /* PersonController */ = {
+			isa = PBXGroup;
+			children = (
+				0312888119E43A940073C83B /* PersonViewController.h */,
+				0312888219E43A940073C83B /* PersonViewController.m */,
+				0312888319E43A940073C83B /* PersonViewController.xib */,
+				0312887219E43A0B0073C83B /* LoginViewController.h */,
+				0312887319E43A0B0073C83B /* LoginViewController.m */,
+				0312887419E43A0B0073C83B /* LoginViewController.xib */,
+				0312887719E43A1D0073C83B /* SignViewController.h */,
+				0312887819E43A1D0073C83B /* SignViewController.m */,
+				0312887919E43A1D0073C83B /* SignViewController.xib */,
+				0312887C19E43A3F0073C83B /* TestingViewController.h */,
+				0312887D19E43A3F0073C83B /* TestingViewController.m */,
+				0312887E19E43A3F0073C83B /* TestingViewController.xib */,
+			);
+			path = PersonController;
+			sourceTree = "<group>";
+		};
+		0312888619E43B780073C83B /* RecordController */ = {
+			isa = PBXGroup;
+			children = (
+				0312888919E43BE80073C83B /* InfoViewController.h */,
+				0312888A19E43BE80073C83B /* InfoViewController.m */,
+				0312888B19E43BE80073C83B /* InfoViewController.xib */,
+				0312888E19E43BFE0073C83B /* RecordViewController.h */,
+				0312888F19E43BFE0073C83B /* RecordViewController.m */,
+				0312889019E43BFE0073C83B /* RecordViewController.xib */,
+			);
+			path = RecordController;
+			sourceTree = "<group>";
+		};
 		039B925319DA7AC500292529 = {
 			isa = PBXGroup;
 			children = (
 				039B925E19DA7AC500292529 /* Skea */,
-				039B926319DA7AC500292529 /* AppDelegate.h */,
-				039B926419DA7AC500292529 /* AppDelegate.m */,
-				039B926919DA7AC500292529 /* ViewController.h */,
-				039B926A19DA7AC500292529 /* ViewController.m */,
-				03E5323C19DA7D470064762E /* BaseViewController.m */,
-				03E5323D19DA7D470064762E /* BaseViewController.h */,
-				03E5323E19DA7D470064762E /* NavigationController.h */,
-				03E5323A19DA7D470064762E /* NavigationController.m */,
-				03E5322119DA7D470064762E /* Common */,
-				03E5323219DA7D470064762E /* Models */,
-				03E5323F19DA7D470064762E /* iosTools */,
-				039B926F19DA7AC500292529 /* Images.xcassets */,
-				03E5330119DA7F250064762E /* Default-568h@2x.png */,
-				039B926619DA7AC500292529 /* Skea.xcdatamodeld */,
-				039B925F19DA7AC500292529 /* Supporting Files */,
 				03E531BA19DA7D320064762E /* Resourse */,
 				03E531C519DA7D320064762E /* ThirdLibs */,
 				03E532FF19DA7E370064762E /* Framework */,
@@ -391,6 +455,25 @@
 		039B925E19DA7AC500292529 /* Skea */ = {
 			isa = PBXGroup;
 			children = (
+				0312888619E43B780073C83B /* RecordController */,
+				0312887019E439EE0073C83B /* GameController */,
+				0312887119E439EE0073C83B /* PersonController */,
+				03E5322119DA7D470064762E /* Common */,
+				039B926319DA7AC500292529 /* AppDelegate.h */,
+				039B926419DA7AC500292529 /* AppDelegate.m */,
+				039B926919DA7AC500292529 /* ViewController.h */,
+				039B926A19DA7AC500292529 /* ViewController.m */,
+				0312888719E43B8B0073C83B /* ViewController.xib */,
+				03E5323C19DA7D470064762E /* BaseViewController.m */,
+				03E5323D19DA7D470064762E /* BaseViewController.h */,
+				03E5323E19DA7D470064762E /* NavigationController.h */,
+				03E5323A19DA7D470064762E /* NavigationController.m */,
+				039B926F19DA7AC500292529 /* Images.xcassets */,
+				03E5330119DA7F250064762E /* Default-568h@2x.png */,
+				039B926619DA7AC500292529 /* Skea.xcdatamodeld */,
+				039B925F19DA7AC500292529 /* Supporting Files */,
+				03E5323219DA7D470064762E /* Models */,
+				03E5323F19DA7D470064762E /* iosTools */,
 			);
 			path = Skea;
 			sourceTree = "<group>";
@@ -404,7 +487,6 @@
 				039B926119DA7AC500292529 /* main.m */,
 			);
 			name = "Supporting Files";
-			path = Skea;
 			sourceTree = "<group>";
 		};
 		03E531BA19DA7D320064762E /* Resourse */ = {
@@ -535,8 +617,7 @@
 				03E5322E19DA7D470064762E /* Theam */,
 				03E5323119DA7D470064762E /* URL.h */,
 			);
-			name = Common;
-			path = Skea/Common;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		03E5322E19DA7D470064762E /* Theam */ = {
@@ -555,8 +636,7 @@
 				03E5323419DA7D470064762E /* AppConfig.mm */,
 				03E5323519DA7D470064762E /* Models.h */,
 			);
-			name = Models;
-			path = Skea/Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		03E5323F19DA7D470064762E /* iosTools */ = {
@@ -567,8 +647,7 @@
 				03E5324619DA7D470064762E /* Protocol */,
 				03E5326119DA7D470064762E /* UIHelper */,
 			);
-			name = iosTools;
-			path = Skea/iosTools;
+			path = iosTools;
 			sourceTree = "<group>";
 		};
 		03E5324119DA7D470064762E /* Model */ = {
@@ -822,14 +901,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0312889719E43C120073C83B /* GameViewController.xib in Resources */,
 				03E531FF19DA7D320064762E /* bg_title@2x.png in Resources */,
+				0312887B19E43A1D0073C83B /* SignViewController.xib in Resources */,
 				03E532D119DA7D470064762E /* README.txt in Resources */,
+				0312888519E43A940073C83B /* PersonViewController.xib in Resources */,
 				03E532DE19DA7D470064762E /* ic_common_droparrow2.png in Resources */,
+				0312888819E43B8B0073C83B /* ViewController.xib in Resources */,
 				03E5320019DA7D320064762E /* menu@2x.png in Resources */,
 				03E5330219DA7F250064762E /* Default-568h@2x.png in Resources */,
 				039B927019DA7AC500292529 /* Images.xcassets in Resources */,
 				03E532DD19DA7D470064762E /* ic_common_droparrow.png in Resources */,
 				03E5320719DA7D320064762E /* MJRefresh.bundle in Resources */,
+				0312889219E43BFE0073C83B /* RecordViewController.xib in Resources */,
+				0312887619E43A0B0073C83B /* LoginViewController.xib in Resources */,
+				0312888D19E43BE80073C83B /* InfoViewController.xib in Resources */,
+				0312888019E43A3F0073C83B /* TestingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +932,7 @@
 				03E532DF19DA7D470064762E /* PRTableView.m in Sources */,
 				03E532E219DA7D470064762E /* UIColor+Extension.m in Sources */,
 				03E532D219DA7D470064762E /* CTActionSheet.m in Sources */,
+				0312889119E43BFE0073C83B /* RecordViewController.m in Sources */,
 				03E532C119DA7D470064762E /* NSDate+RFC1123.m in Sources */,
 				03E532BB19DA7D470064762E /* BaseViewController.m in Sources */,
 				03E532E319DA7D470064762E /* UIDevice+Extension.m in Sources */,
@@ -859,6 +947,8 @@
 				03E532C519DA7D470064762E /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				03E532BA19DA7D470064762E /* NavigationController.m in Sources */,
 				03E5321C19DA7D320064762E /* UIImage+WebP.m in Sources */,
+				0312889619E43C120073C83B /* GameViewController.m in Sources */,
+				0312888419E43A940073C83B /* PersonViewController.m in Sources */,
 				039B926819DA7AC500292529 /* Skea.xcdatamodeld in Sources */,
 				03E532C619DA7D470064762E /* MKNetworkEngine.m in Sources */,
 				03E532BF19DA7D470064762E /* NSAlert+MKNetworkKitAdditions.m in Sources */,
@@ -871,6 +961,8 @@
 				03E5321619DA7D320064762E /* SDWebImageDownloaderOperation.m in Sources */,
 				03E532E119DA7D470064762E /* UIButton+Extension.m in Sources */,
 				03E5320B19DA7D320064762E /* MJRefreshHeaderView.m in Sources */,
+				0312888C19E43BE80073C83B /* InfoViewController.m in Sources */,
+				0312887A19E43A1D0073C83B /* SignViewController.m in Sources */,
 				03E5321219DA7D320064762E /* SDImageCache.m in Sources */,
 				03E532CF19DA7D470064762E /* ContextFilterLogFormatter.m in Sources */,
 				03E5321119DA7D320064762E /* NSData+ImageContentType.m in Sources */,
@@ -905,6 +997,7 @@
 				03E532CB19DA7D470064762E /* DDASLLogger.m in Sources */,
 				03E532B219DA7D470064762E /* CustomTabbar.m in Sources */,
 				03E5321819DA7D320064762E /* SDWebImagePrefetcher.m in Sources */,
+				0312887519E43A0B0073C83B /* LoginViewController.m in Sources */,
 				0312886D19E4352C0073C83B /* blePeripheral.m in Sources */,
 				03E5320F19DA7D320064762E /* OpenUDID.m in Sources */,
 				03E532DC19DA7D470064762E /* NSURL+Extension.m in Sources */,
@@ -920,6 +1013,7 @@
 				03E532BC19DA7D470064762E /* ModelBase.m in Sources */,
 				03E5321719DA7D320064762E /* SDWebImageManager.m in Sources */,
 				03E5320E19DA7D320064762E /* UIView+MJExtension.m in Sources */,
+				0312887F19E43A3F0073C83B /* TestingViewController.m in Sources */,
 				03E532C819DA7D470064762E /* Reachability.m in Sources */,
 				03E532EC19DA7D470064762E /* UITextField+Extension.m in Sources */,
 				03E5320A19DA7D320064762E /* MJRefreshFooterView.m in Sources */,
@@ -1074,8 +1168,7 @@
 				039B926719DA7AC500292529 /* Skea.xcdatamodel */,
 			);
 			currentVersion = 039B926719DA7AC500292529 /* Skea.xcdatamodel */;
-			name = Skea.xcdatamodeld;
-			path = Skea/Skea.xcdatamodeld;
+			path = Skea.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
