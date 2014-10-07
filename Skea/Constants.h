@@ -57,4 +57,11 @@ static NSString * const kMQTTServerHost = @"boss.kanzhun.org";
 
 static int const tabHeight = 49;
 
+
+///收到蓝牙的通知
+static NSString * const kNotificationBlueTooth = @"kNotificationBlueTooth";
+
+///连接蓝牙成功
+static NSString * const kNotificationConnected = @"kNotificationConnected";
+
 #endif

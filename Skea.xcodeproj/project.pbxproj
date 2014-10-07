@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886919E4352C0073C83B /* bleCentralManager.m */; };
+		0312886D19E4352C0073C83B /* blePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886B19E4352C0073C83B /* blePeripheral.m */; };
+		0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0312886E19E435360073C83B /* CoreBluetooth.framework */; };
 		039B926219DA7AC500292529 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 039B926119DA7AC500292529 /* main.m */; };
 		039B926519DA7AC500292529 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 039B926419DA7AC500292529 /* AppDelegate.m */; };
 		039B926819DA7AC500292529 /* Skea.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 039B926619DA7AC500292529 /* Skea.xcdatamodeld */; };
@@ -14,12 +17,6 @@
 		039B927019DA7AC500292529 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039B926F19DA7AC500292529 /* Images.xcassets */; };
 		03E531FF19DA7D320064762E /* bg_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531BC19DA7D320064762E /* bg_title@2x.png */; };
 		03E5320019DA7D320064762E /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531BD19DA7D320064762E /* menu@2x.png */; };
-		03E5320119DA7D320064762E /* tab_favor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531BF19DA7D320064762E /* tab_favor@2x.png */; };
-		03E5320219DA7D320064762E /* tab_favor_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C019DA7D320064762E /* tab_favor_s@2x.png */; };
-		03E5320319DA7D320064762E /* tab_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C119DA7D320064762E /* tab_search@2x.png */; };
-		03E5320419DA7D320064762E /* tab_search_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C219DA7D320064762E /* tab_search_s@2x.png */; };
-		03E5320519DA7D320064762E /* tab_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C319DA7D320064762E /* tab_setting@2x.png */; };
-		03E5320619DA7D320064762E /* tab_setting_s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C419DA7D320064762E /* tab_setting_s@2x.png */; };
 		03E5320719DA7D320064762E /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C719DA7D320064762E /* MJRefresh.bundle */; };
 		03E5320819DA7D320064762E /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E531CA19DA7D320064762E /* MJRefreshBaseView.m */; };
 		03E5320919DA7D320064762E /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E531CC19DA7D320064762E /* MJRefreshConst.m */; };
@@ -119,6 +116,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0312886819E4352C0073C83B /* bleCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bleCentralManager.h; sourceTree = "<group>"; };
+		0312886919E4352C0073C83B /* bleCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bleCentralManager.m; sourceTree = "<group>"; };
+		0312886A19E4352C0073C83B /* blePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blePeripheral.h; sourceTree = "<group>"; };
+		0312886B19E4352C0073C83B /* blePeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = blePeripheral.m; sourceTree = "<group>"; };
+		0312886E19E435360073C83B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		039B925C19DA7AC500292529 /* Skea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skea.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		039B926019DA7AC500292529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		039B926119DA7AC500292529 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,12 +132,6 @@
 		039B926F19DA7AC500292529 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Skea/Images.xcassets; sourceTree = "<group>"; };
 		03E531BC19DA7D320064762E /* bg_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_title@2x.png"; sourceTree = "<group>"; };
 		03E531BD19DA7D320064762E /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
-		03E531BF19DA7D320064762E /* tab_favor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_favor@2x.png"; sourceTree = "<group>"; };
-		03E531C019DA7D320064762E /* tab_favor_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_favor_s@2x.png"; sourceTree = "<group>"; };
-		03E531C119DA7D320064762E /* tab_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_search@2x.png"; sourceTree = "<group>"; };
-		03E531C219DA7D320064762E /* tab_search_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_search_s@2x.png"; sourceTree = "<group>"; };
-		03E531C319DA7D320064762E /* tab_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_setting@2x.png"; sourceTree = "<group>"; };
-		03E531C419DA7D320064762E /* tab_setting_s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_setting_s@2x.png"; sourceTree = "<group>"; };
 		03E531C719DA7D320064762E /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		03E531C819DA7D320064762E /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		03E531C919DA7D320064762E /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -331,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */,
 				03E532FE19DA7E070064762E /* CFNetwork.framework in Frameworks */,
 				03E532FC19DA7E010064762E /* libiconv.dylib in Frameworks */,
 				03E532FA19DA7DF60064762E /* ImageIO.framework in Frameworks */,
@@ -346,10 +343,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0312886719E4352C0073C83B /* LE */ = {
+			isa = PBXGroup;
+			children = (
+				0312886819E4352C0073C83B /* bleCentralManager.h */,
+				0312886919E4352C0073C83B /* bleCentralManager.m */,
+				0312886A19E4352C0073C83B /* blePeripheral.h */,
+				0312886B19E4352C0073C83B /* blePeripheral.m */,
+			);
+			path = LE;
+			sourceTree = "<group>";
+		};
 		039B925319DA7AC500292529 = {
 			isa = PBXGroup;
 			children = (
-				03E5330119DA7F250064762E /* Default-568h@2x.png */,
 				039B925E19DA7AC500292529 /* Skea */,
 				039B926319DA7AC500292529 /* AppDelegate.h */,
 				039B926419DA7AC500292529 /* AppDelegate.m */,
@@ -363,6 +370,7 @@
 				03E5323219DA7D470064762E /* Models */,
 				03E5323F19DA7D470064762E /* iosTools */,
 				039B926F19DA7AC500292529 /* Images.xcassets */,
+				03E5330119DA7F250064762E /* Default-568h@2x.png */,
 				039B926619DA7AC500292529 /* Skea.xcdatamodeld */,
 				039B925F19DA7AC500292529 /* Supporting Files */,
 				03E531BA19DA7D320064762E /* Resourse */,
@@ -412,22 +420,8 @@
 			children = (
 				03E531BC19DA7D320064762E /* bg_title@2x.png */,
 				03E531BD19DA7D320064762E /* menu@2x.png */,
-				03E531BE19DA7D320064762E /* tab_images */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		03E531BE19DA7D320064762E /* tab_images */ = {
-			isa = PBXGroup;
-			children = (
-				03E531BF19DA7D320064762E /* tab_favor@2x.png */,
-				03E531C019DA7D320064762E /* tab_favor_s@2x.png */,
-				03E531C119DA7D320064762E /* tab_search@2x.png */,
-				03E531C219DA7D320064762E /* tab_search_s@2x.png */,
-				03E531C319DA7D320064762E /* tab_setting@2x.png */,
-				03E531C419DA7D320064762E /* tab_setting_s@2x.png */,
-			);
-			path = tab_images;
 			sourceTree = "<group>";
 		};
 		03E531C519DA7D320064762E /* ThirdLibs */ = {
@@ -525,6 +519,7 @@
 		03E5322119DA7D470064762E /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				0312886719E4352C0073C83B /* LE */,
 				03E5322219DA7D470064762E /* CustomAlertView.h */,
 				03E5322319DA7D470064762E /* CustomAlertView.m */,
 				03E5322419DA7D470064762E /* CustomMenuSheet.h */,
@@ -757,6 +752,7 @@
 		03E532FF19DA7E370064762E /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				0312886E19E435360073C83B /* CoreBluetooth.framework */,
 				03E532FD19DA7E070064762E /* CFNetwork.framework */,
 				03E532FB19DA7E010064762E /* libiconv.dylib */,
 				03E532F919DA7DF60064762E /* ImageIO.framework */,
@@ -827,19 +823,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				03E531FF19DA7D320064762E /* bg_title@2x.png in Resources */,
-				03E5320119DA7D320064762E /* tab_favor@2x.png in Resources */,
 				03E532D119DA7D470064762E /* README.txt in Resources */,
 				03E532DE19DA7D470064762E /* ic_common_droparrow2.png in Resources */,
 				03E5320019DA7D320064762E /* menu@2x.png in Resources */,
 				03E5330219DA7F250064762E /* Default-568h@2x.png in Resources */,
-				03E5320519DA7D320064762E /* tab_setting@2x.png in Resources */,
-				03E5320419DA7D320064762E /* tab_search_s@2x.png in Resources */,
 				039B927019DA7AC500292529 /* Images.xcassets in Resources */,
-				03E5320619DA7D320064762E /* tab_setting_s@2x.png in Resources */,
-				03E5320319DA7D320064762E /* tab_search@2x.png in Resources */,
 				03E532DD19DA7D470064762E /* ic_common_droparrow.png in Resources */,
 				03E5320719DA7D320064762E /* MJRefresh.bundle in Resources */,
-				03E5320219DA7D320064762E /* tab_favor_s@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,6 +880,7 @@
 				03E532B519DA7D470064762E /* ProtolManager.m in Sources */,
 				039B926B19DA7AC500292529 /* ViewController.m in Sources */,
 				03E5321D19DA7D320064762E /* UIImageView+HighlightedWebCache.m in Sources */,
+				0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */,
 				03E532DA19DA7D470064762E /* NSObject+Extention.m in Sources */,
 				03E532E819DA7D470064762E /* UIExpandingTextViewInternal.m in Sources */,
 				03E5320819DA7D320064762E /* MJRefreshBaseView.m in Sources */,
@@ -914,6 +905,7 @@
 				03E532CB19DA7D470064762E /* DDASLLogger.m in Sources */,
 				03E532B219DA7D470064762E /* CustomTabbar.m in Sources */,
 				03E5321819DA7D320064762E /* SDWebImagePrefetcher.m in Sources */,
+				0312886D19E4352C0073C83B /* blePeripheral.m in Sources */,
 				03E5320F19DA7D320064762E /* OpenUDID.m in Sources */,
 				03E532DC19DA7D470064762E /* NSURL+Extension.m in Sources */,
 				03E532B619DA7D470064762E /* Theam.m in Sources */,
@@ -1025,6 +1017,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1041,6 +1034,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
