@@ -21,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Day 1"];
+    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -29,29 +31,43 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -
+#pragma mark Action
+- (void)connectAction:(id)sender
+{
+    
+}
+
 
 - (IBAction)infoAction:(id)sender
 {
     InfoViewController *ivc = [[InfoViewController alloc] init];
-    [self.navigationController pushViewController:ivc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ivc];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)gameAction:(id)sender
 {
     GameViewController *gvc = [[GameViewController alloc] init];
-    [self.navigationController pushViewController:gvc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:gvc];
+    [self presentViewController:nav animated:YES completion:nil];
+
 }
 
 - (IBAction)recordAction:(id)sender
 {
     RecordViewController *rvc = [[RecordViewController alloc] init];
-    [self.navigationController pushViewController:rvc animated:YES];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
+    [self presentViewController:nav animated:YES completion:nil];
+
 }
 
 - (IBAction)settingAction:(id)sender
 {
     LoginViewController *lvc = [[LoginViewController alloc] init];
-    [self presentViewController:lvc animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lvc];
+    [self presentViewController:nav animated:YES completion:nil];
+
 }
 
 @end

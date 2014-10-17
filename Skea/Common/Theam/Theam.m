@@ -49,13 +49,12 @@
 	//导航条背景
  
     if (isIOS7) {
-        [[UINavigationBar appearance] setBarTintColor:THEME_COLOR];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:@"#3b3c41"]];
     }else{
 		[[UINavigationBar appearance] setBackgroundImage:IMG(@"bg_title") forBarMetrics:UIBarMetricsDefault];
     }
     
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor],UITextAttributeFont:[UIFont boldSystemFontOfSize:20]}];
+
     
 }
 
@@ -108,7 +107,7 @@
 	[btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
 	[btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     if (image) {
-        btn.frame=CGRectMake(0, 0, 20, 20);
+        btn.frame=CGRectMake(0, 0, 24, 24);
     }else{
         if (title.length ==4) {
             btn.frame=CGRectMake(0, 0, 60, 44);

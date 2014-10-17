@@ -26,7 +26,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea Help"];
+    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin:)];
     // Do any additional setup after loading the view from its nib.
+    [self.view.layer setContents:(id)[IMG(@"game-background.png") CGImage]];
+}
+
+#pragma mark -
+#pragma mark Action
+- (void)backAction:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)pauseActoin:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

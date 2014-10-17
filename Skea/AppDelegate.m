@@ -17,13 +17,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    // Override point for customization after application launch.
+
+    [Theam currentTheam];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[ViewController alloc] init];
     UINavigationController *nav = [[NavigationController alloc] initWithRootViewController:self.viewController];
     
-    nav.navigationBarHidden = YES;
+    //nav.navigationBarHidden = YES;
     [self.window setRootViewController:nav];
     [self.window makeKeyAndVisible];
     //    [[ProtolManager shareProtolManager]deleteUserInServer:@"18701431941"];
