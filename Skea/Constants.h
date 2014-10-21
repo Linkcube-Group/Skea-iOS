@@ -31,6 +31,7 @@
 #define theApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define ScreenWidth [[UIScreen mainScreen] bounds].size.width
 
 
 #define KeyWindow       [[UIApplication sharedApplication] keyWindow]
