@@ -177,6 +177,7 @@
 		03E532FC19DA7E010064762E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E532FB19DA7E010064762E /* libiconv.dylib */; };
 		03E532FE19DA7E070064762E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E532FD19DA7E070064762E /* CFNetwork.framework */; };
 		03E5330219DA7F250064762E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E5330119DA7F250064762E /* Default-568h@2x.png */; };
+		2623502619F698FE008E8F3E /* SkeaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2623502519F698FE008E8F3E /* SkeaUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -455,6 +456,8 @@
 		03E532FD19DA7E070064762E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		03E5330019DA7F0E0064762E /* Skea-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Skea-Prefix.pch"; sourceTree = "<group>"; };
 		03E5330119DA7F250064762E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		2623502419F698FE008E8F3E /* SkeaUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeaUser.h; sourceTree = "<group>"; };
+		2623502519F698FE008E8F3E /* SkeaUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkeaUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -553,6 +556,7 @@
 		039B925E19DA7AC500292529 /* Skea */ = {
 			isa = PBXGroup;
 			children = (
+				2623502319F698BF008E8F3E /* Utils */,
 				0312888619E43B780073C83B /* RecordController */,
 				0312887019E439EE0073C83B /* GameController */,
 				0312887119E439EE0073C83B /* PersonController */,
@@ -991,6 +995,15 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		2623502319F698BF008E8F3E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2623502419F698FE008E8F3E /* SkeaUser.h */,
+				2623502519F698FE008E8F3E /* SkeaUser.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1131,6 +1144,7 @@
 				0312889119E43BFE0073C83B /* RecordViewController.m in Sources */,
 				03E532C119DA7D470064762E /* NSDate+RFC1123.m in Sources */,
 				03E532BB19DA7D470064762E /* BaseViewController.m in Sources */,
+				2623502619F698FE008E8F3E /* SkeaUser.m in Sources */,
 				03E532E319DA7D470064762E /* UIDevice+Extension.m in Sources */,
 				03E532DB19DA7D470064762E /* NSString+Extension.m in Sources */,
 				03E532ED19DA7D470064762E /* UIView+Extension.m in Sources */,
