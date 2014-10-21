@@ -38,6 +38,7 @@
     
 }
 
+#pragma mark - info按钮
 
 - (IBAction)infoAction:(id)sender
 {
@@ -45,6 +46,8 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ivc];
     [self presentViewController:nav animated:YES completion:nil];
 }
+
+#pragma mark - 游戏按钮
 
 - (IBAction)gameAction:(id)sender
 {
@@ -54,6 +57,8 @@
 
 }
 
+#pragma mark - record按钮
+
 - (IBAction)recordAction:(id)sender
 {
     RecordViewController *rvc = [[RecordViewController alloc] init];
@@ -61,6 +66,8 @@
     [self presentViewController:nav animated:YES completion:nil];
 
 }
+
+#pragma mark - 设置按钮
 
 - (IBAction)settingAction:(id)sender
 {
