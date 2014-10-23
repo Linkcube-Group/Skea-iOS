@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0303B61919F90B5200DC4D85 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0303B61819F90B5200DC4D85 /* GameInfo.m */; };
 		0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886919E4352C0073C83B /* bleCentralManager.m */; };
 		0312886D19E4352C0073C83B /* blePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886B19E4352C0073C83B /* blePeripheral.m */; };
 		0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0312886E19E435360073C83B /* CoreBluetooth.framework */; };
@@ -181,6 +182,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0303B61719F90B5200DC4D85 /* GameInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
+		0303B61819F90B5200DC4D85 /* GameInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameInfo.m; sourceTree = "<group>"; };
 		0312886819E4352C0073C83B /* bleCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bleCentralManager.h; sourceTree = "<group>"; };
 		0312886919E4352C0073C83B /* bleCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bleCentralManager.m; sourceTree = "<group>"; };
 		0312886A19E4352C0073C83B /* blePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blePeripheral.h; sourceTree = "<group>"; };
@@ -786,6 +789,8 @@
 				03E5323319DA7D470064762E /* AppConfig.h */,
 				03E5323419DA7D470064762E /* AppConfig.mm */,
 				03E5323519DA7D470064762E /* Models.h */,
+				0303B61719F90B5200DC4D85 /* GameInfo.h */,
+				0303B61819F90B5200DC4D85 /* GameInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1230,6 +1235,7 @@
 				03E532EB19DA7D470064762E /* UIResponder+Extension.m in Sources */,
 				03E532D019DA7D470064762E /* DispatchQueueLogFormatter.m in Sources */,
 				03E532B119DA7D470064762E /* CustomMenuSheet.m in Sources */,
+				0303B61919F90B5200DC4D85 /* GameInfo.m in Sources */,
 				03E532E019DA7D470064762E /* RegexKitLite.m in Sources */,
 				03E532C419DA7D470064762E /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
 			);

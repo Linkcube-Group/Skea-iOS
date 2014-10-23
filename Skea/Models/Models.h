@@ -12,4 +12,6 @@
 
 #import "AppConfig.h"
 
+#import "GameInfo.h"
+
 #endif
