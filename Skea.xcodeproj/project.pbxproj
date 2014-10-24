@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0303B61919F90B5200DC4D85 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0303B61819F90B5200DC4D85 /* GameInfo.m */; };
+		0312514E19F9CE4500245659 /* bar_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0312514C19F9CE4500245659 /* bar_7@2x.png */; };
+		0312514F19F9CE4500245659 /* bar_7s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0312514D19F9CE4500245659 /* bar_7s@2x.png */; };
 		0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886919E4352C0073C83B /* bleCentralManager.m */; };
 		0312886D19E4352C0073C83B /* blePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886B19E4352C0073C83B /* blePeripheral.m */; };
 		0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0312886E19E435360073C83B /* CoreBluetooth.framework */; };
@@ -30,8 +32,6 @@
 		0388859219F158B900372178 /* back-cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856119F158B900372178 /* back-cross@2x.png */; };
 		0388859319F158B900372178 /* bar_12s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856219F158B900372178 /* bar_12s@2x.png */; };
 		0388859419F158B900372178 /* bar_12@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856319F158B900372178 /* bar_12@2x.png */; };
-		0388859519F158B900372178 /* bar_5s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856419F158B900372178 /* bar_5s@2x.png */; };
-		0388859619F158B900372178 /* bar_5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856519F158B900372178 /* bar_5@2x.png */; };
 		0388859719F158B900372178 /* bar_2s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856619F158B900372178 /* bar_2s@2x.png */; };
 		0388859819F158B900372178 /* bar_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856719F158B900372178 /* bar_2@2x.png */; };
 		0388859919F158B900372178 /* bluetooth-connected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856819F158B900372178 /* bluetooth-connected@2x.png */; };
@@ -184,6 +184,8 @@
 /* Begin PBXFileReference section */
 		0303B61719F90B5200DC4D85 /* GameInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
 		0303B61819F90B5200DC4D85 /* GameInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameInfo.m; sourceTree = "<group>"; };
+		0312514C19F9CE4500245659 /* bar_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_7@2x.png"; sourceTree = "<group>"; };
+		0312514D19F9CE4500245659 /* bar_7s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_7s@2x.png"; sourceTree = "<group>"; };
 		0312886819E4352C0073C83B /* bleCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bleCentralManager.h; sourceTree = "<group>"; };
 		0312886919E4352C0073C83B /* bleCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = bleCentralManager.m; sourceTree = "<group>"; };
 		0312886A19E4352C0073C83B /* blePeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = blePeripheral.h; sourceTree = "<group>"; };
@@ -215,8 +217,6 @@
 		0388856119F158B900372178 /* back-cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-cross@2x.png"; sourceTree = "<group>"; };
 		0388856219F158B900372178 /* bar_12s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_12s@2x.png"; sourceTree = "<group>"; };
 		0388856319F158B900372178 /* bar_12@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_12@2x.png"; sourceTree = "<group>"; };
-		0388856419F158B900372178 /* bar_5s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_5s@2x.png"; sourceTree = "<group>"; };
-		0388856519F158B900372178 /* bar_5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_5@2x.png"; sourceTree = "<group>"; };
 		0388856619F158B900372178 /* bar_2s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_2s@2x.png"; sourceTree = "<group>"; };
 		0388856719F158B900372178 /* bar_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_2@2x.png"; sourceTree = "<group>"; };
 		0388856819F158B900372178 /* bluetooth-connected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluetooth-connected@2x.png"; sourceTree = "<group>"; };
@@ -605,12 +605,12 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0312514C19F9CE4500245659 /* bar_7@2x.png */,
+				0312514D19F9CE4500245659 /* bar_7s@2x.png */,
 				0388856019F158B900372178 /* arrow@2x.png */,
 				0388856119F158B900372178 /* back-cross@2x.png */,
 				0388856219F158B900372178 /* bar_12s@2x.png */,
 				0388856319F158B900372178 /* bar_12@2x.png */,
-				0388856419F158B900372178 /* bar_5s@2x.png */,
-				0388856519F158B900372178 /* bar_5@2x.png */,
 				0388856619F158B900372178 /* bar_2s@2x.png */,
 				0388856719F158B900372178 /* bar_2@2x.png */,
 				0388856819F158B900372178 /* bluetooth-connected@2x.png */,
@@ -1092,7 +1092,6 @@
 				038885A719F158B900372178 /* icon-email@2x.png in Resources */,
 				0388859C19F158B900372178 /* button-cyan@2x.png in Resources */,
 				0388859319F158B900372178 /* bar_12s@2x.png in Resources */,
-				0388859619F158B900372178 /* bar_5@2x.png in Resources */,
 				038885BD19F158B900372178 /* star@2x.png in Resources */,
 				0312888819E43B8B0073C83B /* ViewController.xib in Resources */,
 				038885B019F158B900372178 /* risk-factor-high@2x.png in Resources */,
@@ -1119,11 +1118,12 @@
 				0388859919F158B900372178 /* bluetooth-connected@2x.png in Resources */,
 				038885A119F158B900372178 /* button-start@2x.png in Resources */,
 				038885BA19F158B900372178 /* settings-configure-skea@2x.png in Resources */,
+				0312514E19F9CE4500245659 /* bar_7@2x.png in Resources */,
+				0312514F19F9CE4500245659 /* bar_7s@2x.png in Resources */,
 				0388859219F158B900372178 /* back-cross@2x.png in Resources */,
 				0388859A19F158B900372178 /* bluetooth-disconnected@2x.png in Resources */,
 				038885AB19F158B900372178 /* icon-score@2x.png in Resources */,
 				0312888D19E43BE80073C83B /* InfoViewController.xib in Resources */,
-				0388859519F158B900372178 /* bar_5s@2x.png in Resources */,
 				0388859119F158B900372178 /* arrow@2x.png in Resources */,
 				0312888019E43A3F0073C83B /* TestingViewController.xib in Resources */,
 				0388859819F158B900372178 /* bar_2@2x.png in Resources */,

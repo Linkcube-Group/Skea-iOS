@@ -12,12 +12,16 @@
 {
     int totalLength;
     BOOL isPlaying;
+    
+    int halfResponse;
+    
+    int currentIndex;
 }
 
 @property (nonatomic) int playTime;
 
 @property (nonatomic) int twoNum;
-@property (nonatomic) int fiveNum;
+@property (nonatomic) int sevenNum;
 @property (nonatomic) int twelfthNum;
 
 @property (strong,nonatomic) NSTimer *timerGame;
@@ -30,13 +34,18 @@
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollBg;
+
+@property (strong,nonatomic) NSMutableArray *aryGame;
 @end
 
 
-#define TwoHeight 116
-#define FiveHeight 316
-#define TwelfthHeight 516
-#define SepHeight 58
+#define TwoHeight 80
+#define SevenHeight 280
+#define TwelfthHeight 480
+#define SepHeight 40
+
+#define BlankTop 9
+#define BlankBottom 26
 
 @implementation GameViewController
 
@@ -52,12 +61,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    currentIndex = -1;
+    self.aryGame = [[NSMutableArray alloc] init];
     int level = 4;
-    
-    self.twoNum = [self getLevelNum:level];
-    self.fiveNum = [self getLevelNum:level];
-    self.twelfthNum = [self getLevelNum:level];
+    self.playTime = 0;
+    halfResponse = 0;
+    self.twoNum = 1; [self getLevelNum:level];
+    self.sevenNum = 1;[self getLevelNum:level];
+    self.twelfthNum = 1;[self getLevelNum:level];
     
     totalLength = 0;
     isPlaying = NO;
@@ -121,30 +132,52 @@
 }
 
 - (void)gameUpdate:(NSTimer *)timer
-{     if (self.scrollView.contentOffset.y<0) {
+{
+    if (self.scrollView.contentOffset.y<0) {
         [self stopGame];
         return;
     }
-    [self.scrollView setContentOffset:CGPointMake(0.0, self.scrollView.contentOffset.y-58/10.0) animated:YES];
-    [self.scrollBg setContentOffset:CGPointMake(0.0, self.scrollView.contentOffset.y-58/10.0) animated:YES];
+   
+    self.playTime +=1;
+    if (self.playTime%5==0) {
+        ///info.ary add object
+        if (currentIndex>=0) {
+            [[[self.aryGame objectAtIndex:currentIndex] halfScroes] addObject:@(halfResponse)];
+        }
+        halfResponse = 0;
+    }
+    
+    if (currentIndex+1<[self.aryGame count]) {
+        if (self.playTime%10==0 && (self.scrollView.contentSize.height-self.playTime/10*4) == [[self.aryGame objectAtIndex:currentIndex+1] beginPoint]) {
+            currentIndex = currentIndex +1;
+        }
+    }
+    
+    totalLength -= 4;
+    
+     DLog(@"-curent - index = %d,%d",self.playTime,totalLength);
+    
+    [self.scrollView setContentOffset:CGPointMake(0.0, totalLength) animated:YES];
+    [self.scrollBg setContentOffset:CGPointMake(0.0, totalLength) animated:YES];
+    
 }
 #pragma mark -
 #pragma mark Game Init
 - (void)setupGameView
 {
-    int bottom = 50;
-    int topleft = 400;
+    int bottom = 40; //3s
+    int topleft = ScreenHeight;
     
     int contentY = self.twoNum*(TwoHeight+SepHeight);
-    contentY += self.fiveNum*(FiveHeight+2*SepHeight);
+    contentY += self.sevenNum*(SevenHeight+2*SepHeight);
     contentY += self.twelfthNum*(TwelfthHeight+3*SepHeight);
     
     self.scrollView.contentSize = CGSizeMake(80, contentY+bottom+topleft);
     self.scrollBg.contentSize = CGSizeMake(80, contentY+bottom+topleft);
-  
     
+    totalLength = contentY+bottom;
     int gsecond = [self getGameSecond];
-    int top = topleft+contentY-[self imageLength:gsecond];
+    int top = self.scrollView.contentSize.height-[self imageLength:gsecond];
     while (gsecond>0) {
         int left = [self getSepLength:gsecond];
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, top, 80, [self imageLength:gsecond])];
@@ -155,37 +188,47 @@
         imgh.image = IMG(_S(@"bar_%ds.png",gsecond));
         [self.scrollBg addSubview:imgh];
         
+        ///add to ary
+        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-(BlankBottom) WithProgress:gsecond];
+        DLog(@"--beging:%d",info.beginPoint);
+        [self.aryGame addObject:info];
+        
         gsecond = [self getGameSecond];
         top = top-[self imageLength:gsecond]-left;
     }
     
-    [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height)];
-    [self.scrollBg setContentOffset:CGPointMake(0, self.scrollBg.contentSize.height)];
+    [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height-ScreenHeight)];
+    [self.scrollBg setContentOffset:CGPointMake(0, self.scrollBg.contentSize.height-ScreenHeight)];
 }
 
 - (int)getGameSecond
 {
     int i = arc4random() % 3;
-    if (i==0) {
-        if (self.twoNum>0) {
-            self.twoNum--;
-            return 2;
+    
+    while (self.twoNum+self.sevenNum+self.twelfthNum>0) {
+        if (i==0) {
+            if (self.twoNum>0) {
+                self.twoNum--;
+                return 2;
+            }
+            i++;
         }
-        i++;
-    }
-    if (i==1) {
-        if (self.fiveNum>0) {
-            self.fiveNum--;
-            return 5;
+        if (i==1) {
+            if (self.sevenNum>0) {
+                self.sevenNum--;
+                return 7;
+            }
+            i++;
         }
-        i++;
-    }
-    if (i==2) {
-        if (self.twelfthNum>0) {
-            self.twelfthNum--;
-            return 12;
+        if (i==2) {
+            if (self.twelfthNum>0) {
+                self.twelfthNum--;
+                return 12;
+            }
+            i = 0;
         }
     }
+    
     
     return 0;///over
 }
@@ -193,13 +236,13 @@
 - (int)imageLength:(int)second
 {
     if (second==2) {
-        return TwoHeight;
+        return TwoHeight+BlankTop+BlankBottom;
     }
-    else if (second==5){
-        return FiveHeight;
+    else if (second==7){
+        return SevenHeight+BlankTop+BlankBottom;
     }
     else if (second==12){
-        return TwelfthHeight;
+        return TwelfthHeight+BlankTop+BlankBottom;
     }
     return 0;
 }
@@ -207,13 +250,13 @@
 - (int)getSepLength:(int)second
 {
     if (second==2) {
-        return SepHeight;
+        return SepHeight-(BlankTop+BlankBottom);
     }
-    else if (second==5){
-        return 2*SepHeight;
+    else if (second==7){
+        return 2*SepHeight-(BlankTop+BlankBottom);
     }
     else if (second==12){
-        return 3*SepHeight;
+        return 3*SepHeight-(BlankTop+BlankBottom);
     }
     return 0;
 }
@@ -241,6 +284,15 @@
 - (void)backAction:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark -
+#pragma mark BlueTooth
+///从bl收到挤压事件进行+1
+- (void)didReceiveSkea
+{
+    halfResponse++;
 }
 
 
