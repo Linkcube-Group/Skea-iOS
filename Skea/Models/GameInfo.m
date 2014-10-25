@@ -13,8 +13,9 @@
 {
     if (self=[super init]) {
         self.beginPoint = point;
-        self.progress = length;
+        self.progressTime = length;
         self.halfScroes = [[NSMutableArray alloc] init];
+        self.isCaled = NO;
     }
     return self;
 }

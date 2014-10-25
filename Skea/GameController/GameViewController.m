@@ -16,6 +16,11 @@
     int halfResponse;
     
     int currentIndex;
+    
+    int lineTop;
+    
+    int score;//得分
+    BOOL getHighed; //已经拿到最高分
 }
 
 @property (nonatomic) int playTime;
@@ -61,6 +66,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    score = 0;
+    lineTop = self.imgLine.originY;
     currentIndex = -1;
     self.aryGame = [[NSMutableArray alloc] init];
     int level = 4;
@@ -135,27 +142,71 @@
 {
     if (self.scrollView.contentOffset.y<0) {
         [self stopGame];
+        if (currentIndex<self.aryGame.count && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
+            score += [self getGameScore:currentIndex];
+            [[self.aryGame objectAtIndex:currentIndex] setIsCaled:YES];
+            self.lbScore.text = _S(@"%d",score);
+        }
         return;
     }
    
-    self.playTime +=1;
-    if (self.playTime%5==0) {
-        ///info.ary add object
-        if (currentIndex>=0) {
-            [[[self.aryGame objectAtIndex:currentIndex] halfScroes] addObject:@(halfResponse)];
-        }
-        halfResponse = 0;
+    self.imgStatus.image = nil;
+    
+    if (currentIndex+1>=self.aryGame.count) {
+        return;
     }
     
-    if (currentIndex+1<[self.aryGame count]) {
-        if (self.playTime%10==0 && (self.scrollView.contentSize.height-self.playTime/10*4) == [[self.aryGame objectAtIndex:currentIndex+1] beginPoint]) {
-            currentIndex = currentIndex +1;
+    if (abs([[self.aryGame objectAtIndex:currentIndex+1] beginPoint]-totalLength-lineTop-20)<2) {
+        currentIndex = currentIndex +1;
+        self.playTime = 0;
+        getHighed = NO;
+        
+    }
+    
+    if (currentIndex>=1 && currentIndex<self.aryGame.count) {
+        self.playTime +=1;
+        if (self.playTime/10<=[[self.aryGame objectAtIndex:currentIndex] progressTime]) {
+            if (self.playTime%5==0) {
+                ///info.ary add object
+                if (currentIndex>=0) {
+                    [[[self.aryGame objectAtIndex:currentIndex] halfScroes] addObject:@(halfResponse)];
+                    
+                }
+                halfResponse = 0;
+            }
+            else if (self.playTime<5 && !getHighed) {
+                ///high
+                if (halfResponse>1) {
+                    getHighed = YES;
+                    self.imgStatus.image = IMG(@"text-perfect.png");
+                    if (self.playTime<3) {
+                        score += 50;
+                    }
+                    else{
+                        score += 20;
+                    }
+                    
+                    self.lbScore.text = _S(@"%d",score);
+                }
+                
+            }
+
+        }
+        else if (currentIndex>1 && [[self.aryGame objectAtIndex:currentIndex-1] isCaled]==NO){
+            score += [self getGameScore:currentIndex-1];
+            self.lbScore.text = _S(@"%d",score);
+            [[self.aryGame objectAtIndex:currentIndex-1] setIsCaled:YES];
         }
     }
+    
+    
+   
+   
     
     totalLength -= 4;
+   
     
-     DLog(@"-curent - index = %d,%d",self.playTime,totalLength);
+    
     
     [self.scrollView setContentOffset:CGPointMake(0.0, totalLength) animated:YES];
     [self.scrollBg setContentOffset:CGPointMake(0.0, totalLength) animated:YES];
@@ -165,19 +216,23 @@
 #pragma mark Game Init
 - (void)setupGameView
 {
-    int bottom = 40; //3s
+    int bottom = 40*3; //3s
     int topleft = ScreenHeight;
     
     int contentY = self.twoNum*(TwoHeight+SepHeight);
     contentY += self.sevenNum*(SevenHeight+2*SepHeight);
     contentY += self.twelfthNum*(TwelfthHeight+3*SepHeight);
+
+    totalLength = contentY+bottom+topleft;
+    totalLength = totalLength+(totalLength%4);
     
-    self.scrollView.contentSize = CGSizeMake(80, contentY+bottom+topleft);
-    self.scrollBg.contentSize = CGSizeMake(80, contentY+bottom+topleft);
+    self.scrollView.contentSize = CGSizeMake(80, totalLength);
+    self.scrollBg.contentSize = CGSizeMake(80, totalLength);
     
-    totalLength = contentY+bottom;
+
+    totalLength -= bottom;
     int gsecond = [self getGameSecond];
-    int top = self.scrollView.contentSize.height-[self imageLength:gsecond];
+    int top = totalLength-[self imageLength:gsecond];
     while (gsecond>0) {
         int left = [self getSepLength:gsecond];
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, top, 80, [self imageLength:gsecond])];
@@ -189,7 +244,7 @@
         [self.scrollBg addSubview:imgh];
         
         ///add to ary
-        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-(BlankBottom) WithProgress:gsecond];
+        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-BlankBottom WithProgress:gsecond];
         DLog(@"--beging:%d",info.beginPoint);
         [self.aryGame addObject:info];
         
@@ -197,8 +252,8 @@
         top = top-[self imageLength:gsecond]-left;
     }
     
-    [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height-ScreenHeight)];
-    [self.scrollBg setContentOffset:CGPointMake(0, self.scrollBg.contentSize.height-ScreenHeight)];
+    [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height-bottom)];
+    [self.scrollBg setContentOffset:CGPointMake(0, self.scrollBg.contentSize.height-bottom)];
 }
 
 - (int)getGameSecond
@@ -295,6 +350,14 @@
     halfResponse++;
 }
 
+
+- (int)getGameScore:(int)index
+{
+    GameInfo *info = [self.aryGame objectAtIndex:index];
+    
+    
+    return 0;
+}
 
 - (void)didReceiveMemoryWarning
 {
