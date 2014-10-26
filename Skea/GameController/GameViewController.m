@@ -21,6 +21,9 @@
     
     int score;//得分
     BOOL getHighed; //已经拿到最高分
+    
+    int  totalTime;
+    int  passTime;
 }
 
 @property (nonatomic) int playTime;
@@ -73,9 +76,9 @@
     int level = 4;
     self.playTime = 0;
     halfResponse = 0;
-    self.twoNum = 1; [self getLevelNum:level];
-    self.sevenNum = 1;[self getLevelNum:level];
-    self.twelfthNum = 1;[self getLevelNum:level];
+    self.twoNum = [self getLevelNum:level];
+    self.sevenNum = [self getLevelNum:level];
+    self.twelfthNum = [self getLevelNum:level];
     
     totalLength = 0;
     isPlaying = NO;
@@ -140,7 +143,8 @@
 
 - (void)gameUpdate:(NSTimer *)timer
 {
-    if (self.scrollView.contentOffset.y<0) {
+    if (totalTime-passTime/10<0) {
+        self.lbTime.text = @"0";
         [self stopGame];
         if (currentIndex<self.aryGame.count && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
             score += [self getGameScore:currentIndex];
@@ -149,14 +153,20 @@
         }
         return;
     }
+    
+    passTime++;
+    
+    
+    self.lbTime.text = [self getGameTime:totalTime-passTime/10];
    
     self.imgStatus.image = nil;
     
-    if (currentIndex+1>=self.aryGame.count) {
+    if ((int)[self.aryGame count]<=currentIndex) {
         return;
     }
+    DLog(@"-%d===%d",totalLength+lineTop,currentIndex);
     
-    if (abs([[self.aryGame objectAtIndex:currentIndex+1] beginPoint]-totalLength-lineTop-20)<2) {
+    if (currentIndex+1<self.aryGame.count && abs([[self.aryGame objectAtIndex:currentIndex+1] beginPoint]-totalLength-lineTop-20)<2) {
         currentIndex = currentIndex +1;
         self.playTime = 0;
         getHighed = NO;
@@ -219,12 +229,21 @@
     int bottom = 40*3; //3s
     int topleft = ScreenHeight;
     
+
+    
     int contentY = self.twoNum*(TwoHeight+SepHeight);
     contentY += self.sevenNum*(SevenHeight+2*SepHeight);
     contentY += self.twelfthNum*(TwelfthHeight+3*SepHeight);
+    
+   
 
     totalLength = contentY+bottom+topleft;
     totalLength = totalLength+(totalLength%4);
+    
+    totalTime = totalLength/40;
+    passTime = 0;
+    
+    self.lbTime.text = [self getGameTime:totalTime];
     
     self.scrollView.contentSize = CGSizeMake(80, totalLength);
     self.scrollBg.contentSize = CGSizeMake(80, totalLength);
@@ -357,6 +376,13 @@
     
     
     return 0;
+}
+
+- (NSString *)getGameTime:(int)length
+{
+    int minute = length/60;
+    int second = length%60;
+    return _S(@"%d:%d",minute,second);
 }
 
 - (void)didReceiveMemoryWarning

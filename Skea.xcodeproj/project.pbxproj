@@ -1325,6 +1325,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: MAOSHENG YANG (6WU5UQCBXN)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
@@ -1335,6 +1336,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMAnalytics_Sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "90083cb7-3321-4af1-a6f6-c8476292c884";
 			};
 			name = Debug;
 		};
@@ -1343,6 +1345,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: MAOSHENG YANG (6WU5UQCBXN)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
@@ -1353,6 +1356,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMAnalytics_Sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "90083cb7-3321-4af1-a6f6-c8476292c884";
 			};
 			name = Release;
 		};
