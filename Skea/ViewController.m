@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "PersonViewController.h"
 #import "RecordViewController.h"
+#import "SkeaUser.h"
 
 @interface ViewController ()
 
