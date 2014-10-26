@@ -178,7 +178,21 @@
 		03E532FC19DA7E010064762E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E532FB19DA7E010064762E /* libiconv.dylib */; };
 		03E532FE19DA7E070064762E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E532FD19DA7E070064762E /* CFNetwork.framework */; };
 		03E5330219DA7F250064762E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E5330119DA7F250064762E /* Default-568h@2x.png */; };
+		261639A819FCB7EF007496BF /* SKRefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A119FCB7EF007496BF /* SKRefreshTableFooterView.m */; };
+		261639A919FCB7EF007496BF /* SKTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A319FCB7EF007496BF /* SKTableViewCell.m */; };
+		261639AA19FCB7EF007496BF /* SKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A519FCB7EF007496BF /* SKTableViewController.m */; };
+		261639AB19FCB7EF007496BF /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A719FCB7EF007496BF /* SKViewController.m */; };
+		261639AE19FCB82E007496BF /* UIImage+SKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639AD19FCB82E007496BF /* UIImage+SKCategory.m */; };
 		2623502619F698FE008E8F3E /* SkeaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2623502519F698FE008E8F3E /* SkeaUser.m */; };
+		2677CEB119FB738F0068454F /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEA719FB738F0068454F /* blackArrow.png */; };
+		2677CEB219FB738F0068454F /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEA819FB738F0068454F /* blackArrow@2x.png */; };
+		2677CEB319FB738F0068454F /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEA919FB738F0068454F /* blueArrow.png */; };
+		2677CEB419FB738F0068454F /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAA19FB738F0068454F /* blueArrow@2x.png */; };
+		2677CEB519FB738F0068454F /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2677CEAC19FB738F0068454F /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2677CEB619FB738F0068454F /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAD19FB738F0068454F /* grayArrow.png */; };
+		2677CEB719FB738F0068454F /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAE19FB738F0068454F /* grayArrow@2x.png */; };
+		2677CEB819FB738F0068454F /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAF19FB738F0068454F /* whiteArrow.png */; };
+		2677CEB919FB738F0068454F /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEB019FB738F0068454F /* whiteArrow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -459,8 +473,28 @@
 		03E532FD19DA7E070064762E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		03E5330019DA7F0E0064762E /* Skea-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Skea-Prefix.pch"; sourceTree = "<group>"; };
 		03E5330119DA7F250064762E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		261639A019FCB7EF007496BF /* SKRefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKRefreshTableFooterView.h; sourceTree = "<group>"; };
+		261639A119FCB7EF007496BF /* SKRefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKRefreshTableFooterView.m; sourceTree = "<group>"; };
+		261639A219FCB7EF007496BF /* SKTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTableViewCell.h; sourceTree = "<group>"; };
+		261639A319FCB7EF007496BF /* SKTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewCell.m; sourceTree = "<group>"; };
+		261639A419FCB7EF007496BF /* SKTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTableViewController.h; sourceTree = "<group>"; };
+		261639A519FCB7EF007496BF /* SKTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTableViewController.m; sourceTree = "<group>"; };
+		261639A619FCB7EF007496BF /* SKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKViewController.h; sourceTree = "<group>"; };
+		261639A719FCB7EF007496BF /* SKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKViewController.m; sourceTree = "<group>"; };
+		261639AC19FCB82E007496BF /* UIImage+SKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SKCategory.h"; sourceTree = "<group>"; };
+		261639AD19FCB82E007496BF /* UIImage+SKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SKCategory.m"; sourceTree = "<group>"; };
 		2623502419F698FE008E8F3E /* SkeaUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeaUser.h; sourceTree = "<group>"; };
 		2623502519F698FE008E8F3E /* SkeaUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkeaUser.m; sourceTree = "<group>"; };
+		2677CEA719FB738F0068454F /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		2677CEA819FB738F0068454F /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		2677CEA919FB738F0068454F /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		2677CEAA19FB738F0068454F /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		2677CEAB19FB738F0068454F /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		2677CEAC19FB738F0068454F /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		2677CEAD19FB738F0068454F /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		2677CEAE19FB738F0068454F /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		2677CEAF19FB738F0068454F /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		2677CEB019FB738F0068454F /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -559,6 +593,7 @@
 		039B925E19DA7AC500292529 /* Skea */ = {
 			isa = PBXGroup;
 			children = (
+				2616399F19FCB7EF007496BF /* SKViewController */,
 				2623502319F698BF008E8F3E /* Utils */,
 				0312888619E43B780073C83B /* RecordController */,
 				0312887019E439EE0073C83B /* GameController */,
@@ -663,6 +698,7 @@
 		03E531C519DA7D320064762E /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				2677CEA619FB738F0068454F /* EGORefreshTableHeaderView */,
 				03E531C619DA7D320064762E /* MJRefresh */,
 				03E531D719DA7D320064762E /* OpenUDID */,
 				03E531DA19DA7D320064762E /* SDWebImage */,
@@ -1000,6 +1036,23 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		2616399F19FCB7EF007496BF /* SKViewController */ = {
+			isa = PBXGroup;
+			children = (
+				261639AC19FCB82E007496BF /* UIImage+SKCategory.h */,
+				261639AD19FCB82E007496BF /* UIImage+SKCategory.m */,
+				261639A019FCB7EF007496BF /* SKRefreshTableFooterView.h */,
+				261639A119FCB7EF007496BF /* SKRefreshTableFooterView.m */,
+				261639A219FCB7EF007496BF /* SKTableViewCell.h */,
+				261639A319FCB7EF007496BF /* SKTableViewCell.m */,
+				261639A419FCB7EF007496BF /* SKTableViewController.h */,
+				261639A519FCB7EF007496BF /* SKTableViewController.m */,
+				261639A619FCB7EF007496BF /* SKViewController.h */,
+				261639A719FCB7EF007496BF /* SKViewController.m */,
+			);
+			path = SKViewController;
+			sourceTree = "<group>";
+		};
 		2623502319F698BF008E8F3E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1007,6 +1060,23 @@
 				2623502519F698FE008E8F3E /* SkeaUser.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		2677CEA619FB738F0068454F /* EGORefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				2677CEA719FB738F0068454F /* blackArrow.png */,
+				2677CEA819FB738F0068454F /* blackArrow@2x.png */,
+				2677CEA919FB738F0068454F /* blueArrow.png */,
+				2677CEAA19FB738F0068454F /* blueArrow@2x.png */,
+				2677CEAB19FB738F0068454F /* EGORefreshTableHeaderView.h */,
+				2677CEAC19FB738F0068454F /* EGORefreshTableHeaderView.m */,
+				2677CEAD19FB738F0068454F /* grayArrow.png */,
+				2677CEAE19FB738F0068454F /* grayArrow@2x.png */,
+				2677CEAF19FB738F0068454F /* whiteArrow.png */,
+				2677CEB019FB738F0068454F /* whiteArrow@2x.png */,
+			);
+			path = EGORefreshTableHeaderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1067,6 +1137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0312889719E43C120073C83B /* GameViewController.xib in Resources */,
+				2677CEB119FB738F0068454F /* blackArrow.png in Resources */,
 				038885A219F158B900372178 /* correct-rate-circle@2x.png in Resources */,
 				038885A019F158B900372178 /* button-start-shadow@2x.png in Resources */,
 				038885BF19F158B900372178 /* text-perfect@2x.png in Resources */,
@@ -1077,6 +1148,7 @@
 				038885BB19F158B900372178 /* settings-evaluate-risk@2x.png in Resources */,
 				038885AF19F158B900372178 /* logo@2x.png in Resources */,
 				038885B919F158B900372178 /* settings-buy-skea@2x.png in Resources */,
+				2677CEB619FB738F0068454F /* grayArrow.png in Resources */,
 				038885A919F158B900372178 /* icon-password@2x.png in Resources */,
 				038885B519F158B900372178 /* selection-checked-small@2x.png in Resources */,
 				038885B119F158B900372178 /* risk-factor-low@2x.png in Resources */,
@@ -1088,6 +1160,7 @@
 				038885B219F158B900372178 /* risk-factor-medium@2x.png in Resources */,
 				0388859B19F158B900372178 /* bookmark@2x.png in Resources */,
 				038885AD19F158B900372178 /* laser-active@2x.png in Resources */,
+				2677CEB319FB738F0068454F /* blueArrow.png in Resources */,
 				03E532DE19DA7D470064762E /* ic_common_droparrow2.png in Resources */,
 				038885A719F158B900372178 /* icon-email@2x.png in Resources */,
 				0388859C19F158B900372178 /* button-cyan@2x.png in Resources */,
@@ -1109,6 +1182,7 @@
 				038885C119F158B900372178 /* user-portrait@2x.png in Resources */,
 				038885B819F158B900372178 /* selection-unchecked@2x.png in Resources */,
 				038885A419F158B900372178 /* game-background@2x.png in Resources */,
+				2677CEB419FB738F0068454F /* blueArrow@2x.png in Resources */,
 				038885AC19F158B900372178 /* icon-settings@2x.png in Resources */,
 				038885B419F158B900372178 /* scroll-bar@2x.png in Resources */,
 				0388859419F158B900372178 /* bar_12@2x.png in Resources */,
@@ -1117,12 +1191,16 @@
 				0388859719F158B900372178 /* bar_2s@2x.png in Resources */,
 				0388859919F158B900372178 /* bluetooth-connected@2x.png in Resources */,
 				038885A119F158B900372178 /* button-start@2x.png in Resources */,
+				2677CEB219FB738F0068454F /* blackArrow@2x.png in Resources */,
 				038885BA19F158B900372178 /* settings-configure-skea@2x.png in Resources */,
+				2677CEB919FB738F0068454F /* whiteArrow@2x.png in Resources */,
 				0312514E19F9CE4500245659 /* bar_7@2x.png in Resources */,
 				0312514F19F9CE4500245659 /* bar_7s@2x.png in Resources */,
 				0388859219F158B900372178 /* back-cross@2x.png in Resources */,
 				0388859A19F158B900372178 /* bluetooth-disconnected@2x.png in Resources */,
+				2677CEB819FB738F0068454F /* whiteArrow.png in Resources */,
 				038885AB19F158B900372178 /* icon-score@2x.png in Resources */,
+				2677CEB719FB738F0068454F /* grayArrow@2x.png in Resources */,
 				0312888D19E43BE80073C83B /* InfoViewController.xib in Resources */,
 				0388859119F158B900372178 /* arrow@2x.png in Resources */,
 				0312888019E43A3F0073C83B /* TestingViewController.xib in Resources */,
@@ -1159,10 +1237,12 @@
 				03E5320C19DA7D320064762E /* UIScrollView+MJExtension.m in Sources */,
 				03E532E519DA7D470064762E /* UIGestureRecognizer+Extension.m in Sources */,
 				039B926519DA7AC500292529 /* AppDelegate.m in Sources */,
+				2677CEB519FB738F0068454F /* EGORefreshTableHeaderView.m in Sources */,
 				03E532C519DA7D470064762E /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				03E532BA19DA7D470064762E /* NavigationController.m in Sources */,
 				03E5321C19DA7D320064762E /* UIImage+WebP.m in Sources */,
 				0312889619E43C120073C83B /* GameViewController.m in Sources */,
+				261639AA19FCB7EF007496BF /* SKTableViewController.m in Sources */,
 				0312888419E43A940073C83B /* PersonViewController.m in Sources */,
 				039B926819DA7AC500292529 /* Skea.xcdatamodeld in Sources */,
 				03E532C619DA7D470064762E /* MKNetworkEngine.m in Sources */,
@@ -1183,6 +1263,7 @@
 				03E5321119DA7D320064762E /* NSData+ImageContentType.m in Sources */,
 				03E5320919DA7D320064762E /* MJRefreshConst.m in Sources */,
 				03E5321419DA7D320064762E /* SDWebImageDecoder.m in Sources */,
+				261639AB19FCB7EF007496BF /* SKViewController.m in Sources */,
 				03E532EE19DA7D470064762E /* UIViewController+Extension.m in Sources */,
 				03E532B519DA7D470064762E /* ProtolManager.m in Sources */,
 				039B926B19DA7AC500292529 /* ViewController.m in Sources */,
@@ -1201,6 +1282,7 @@
 				03E532C319DA7D470064762E /* NSString+MKNetworkKitAdditions.m in Sources */,
 				03E532D319DA7D470064762E /* CTAlertView.m in Sources */,
 				039B926219DA7AC500292529 /* main.m in Sources */,
+				261639AE19FCB82E007496BF /* UIImage+SKCategory.m in Sources */,
 				03E532D819DA7D470064762E /* NSDictionary+Extension.m in Sources */,
 				03E532C919DA7D470064762E /* CLLocation+Extension.m in Sources */,
 				03E532E919DA7D470064762E /* UIInputToolbar.m in Sources */,
@@ -1228,6 +1310,7 @@
 				03E532BC19DA7D470064762E /* ModelBase.m in Sources */,
 				03E5321719DA7D320064762E /* SDWebImageManager.m in Sources */,
 				03E5320E19DA7D320064762E /* UIView+MJExtension.m in Sources */,
+				261639A919FCB7EF007496BF /* SKTableViewCell.m in Sources */,
 				0312887F19E43A3F0073C83B /* TestingViewController.m in Sources */,
 				03E532C819DA7D470064762E /* Reachability.m in Sources */,
 				03E532EC19DA7D470064762E /* UITextField+Extension.m in Sources */,
@@ -1235,6 +1318,7 @@
 				03E532EB19DA7D470064762E /* UIResponder+Extension.m in Sources */,
 				03E532D019DA7D470064762E /* DispatchQueueLogFormatter.m in Sources */,
 				03E532B119DA7D470064762E /* CustomMenuSheet.m in Sources */,
+				261639A819FCB7EF007496BF /* SKRefreshTableFooterView.m in Sources */,
 				0303B61919F90B5200DC4D85 /* GameInfo.m in Sources */,
 				03E532E019DA7D470064762E /* RegexKitLite.m in Sources */,
 				03E532C419DA7D470064762E /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
