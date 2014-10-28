@@ -372,12 +372,25 @@
 
 - (int)getGameScore:(int)index
 {
+    int tempScore = 0;
     GameInfo *info = [self.aryGame objectAtIndex:index];
+    float serial = 0.0;
     for (int i=0; i<info.halfScroes.count; i++) {
-        
+        if ([[info.halfScroes objectAtIndex:i] intValue]>=15) {
+            serial += 0.5;
+        }
+        else{
+            if (serial>0) {
+                tempScore += 2*serial*serial+12*serial-8;
+            }
+            serial = 0.0;
+        }
+    }
+    if (serial>0) {
+        tempScore += 2*serial*serial+12*serial-8;
     }
     
-    return 0;
+    return tempScore;
 }
 
 - (NSString *)getGameTime:(int)length
