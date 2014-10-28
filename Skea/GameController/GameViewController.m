@@ -83,13 +83,13 @@
     totalLength = 0;
     isPlaying = NO;
     
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea Help"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Game"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin)];
     // Do any additional setup after loading the view from its nib.
     [self.view.layer setContents:(id)[IMG(@"game-background.png") CGImage]];
-    
-    
+    nCBUpdataShowStringBuffer
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDisConnectBL:) name:kNotificationDisConnected object:nil];
     [self setupGameView];
     [self beginGame];
 }
@@ -373,7 +373,9 @@
 - (int)getGameScore:(int)index
 {
     GameInfo *info = [self.aryGame objectAtIndex:index];
-    
+    for (int i=0; i<info.halfScroes.count; i++) {
+        
+    }
     
     return 0;
 }
@@ -383,6 +385,34 @@
     int minute = length/60;
     int second = length%60;
     return _S(@"%d:%d",minute,second);
+}
+
+#pragma mark -
+#pragma mark BL
+
+- (void)didDisConnectBL:(NSNotification *)notify
+{
+    [self stopGame];
+    IMP_BLOCK_SELF(GameViewController)
+    CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"蓝牙已断开,无法继续游戏" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+       
+        [block_self btBack_DisModal:nil];
+       
+    } cancelButtonTitle:@"退出游戏" otherButtonTitles:nil];
+    
+    [alert show];
+}
+
+-(void)CBUpdataShowStringBuffer:(NSNotification *)notify
+{
+    // 未在编辑模式下更新显示
+    if (notify) {
+        NSDictionary *dict = [notify userInfo];
+        NSString *value = [dict objectForKey:@"data"];
+        if (StringNotNullAndEmpty(value)) {
+            halfResponse++;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

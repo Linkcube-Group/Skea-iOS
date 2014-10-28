@@ -24,7 +24,7 @@
 #import "AppConfig.h"
 #import "Theam.h"
 #import "ProtolManager.h"
-
-
+#import "bleCentralManager.h"
+#import "BleCommand.h"
 
 #endif

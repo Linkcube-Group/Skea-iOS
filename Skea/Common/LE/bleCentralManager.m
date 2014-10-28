@@ -10,6 +10,8 @@
 
 @implementation bleCentralManager
 
+#define SKEA_NAME @"skea"
+
 #pragma mark -
 #pragma mark Init
 /******************************************************/
@@ -23,6 +25,17 @@
         [self initProperty];
     }
     return self;
+}
+
++(bleCentralManager *)shareManager
+{
+    static bleCentralManager *manager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [[bleCentralManager alloc] init];
+    });
+    
+    return manager;
 }
 
 -(void)initProperty{
@@ -205,6 +218,7 @@
         
         // 更新状态
         _currentCentralManagerState = bleCentralDelegateStateConnectPeripheral;
+        self.connectedBLE = bp;
         [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationConnected object:nil userInfo:@{@"bl":peripheral}];
     }
 }
@@ -216,7 +230,9 @@
     // 更新状态
     NSLog(@"domain:%@\nuserInfo:%@",error.domain, error.userInfo);
     _currentCentralManagerState = bleCentralDelegateStateDisconnectPeripheral;
-    nCentralStateChange
+//    nCentralStateChange
+    self.connectedBLE = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDisConnected object:nil userInfo:nil];
     
 }
 
@@ -229,7 +245,7 @@
     if (_blePeripheralArray.count > 0) {
         for (NSUInteger idx=0; idx<_blePeripheralArray.count; idx++) {
             blePeripheral *bp = [_blePeripheralArray objectAtIndex:idx];
-            if ([peripheral isEqual:bp.activePeripheral]) {
+            if ([peripheral isEqual:bp.activePeripheral] || [peripheral.name isEqualToString:SKEA_NAME]) {
                 checkout = YES;
                 break;
             }
@@ -261,8 +277,11 @@
 #pragma mark SendAction
 - (void)sendCommand:(NSString *)command WithPeripheral:(CBPeripheral *)peripheral
 {
-    blePeripheral *bp = [self getBlePeripheralFromBlePeripheralArray:peripheral];
-    
-    [bp setSendData:[command dataUsingEncoding:NSASCIIStringEncoding]];
+    if (peripheral) {
+        blePeripheral *bp = [self getBlePeripheralFromBlePeripheralArray:peripheral];
+        
+        [bp setSendData:[command dataUsingEncoding:NSASCIIStringEncoding]];
+    }
+   
 }
 @end

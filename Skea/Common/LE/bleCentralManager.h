@@ -50,7 +50,9 @@ typedef NSInteger bleCentralDelegateState;
 // Property
 @property(readonly)             NSUInteger              currentCentralManagerState;
 //======================================================
-
+//已连接好的
+@property (strong,nonatomic)    blePeripheral           *connectedBLE;
++(bleCentralManager *)shareManager;
 // method
 -(void)startScanning;
 -(void)stopScanning;

@@ -64,5 +64,7 @@ static NSString * const kNotificationBlueTooth = @"kNotificationBlueTooth";
 
 ///连接蓝牙成功
 static NSString * const kNotificationConnected = @"kNotificationConnected";
+//断开
+static NSString * const kNotificationDisConnected = @"kNotificationDisConnected";
 
 #endif

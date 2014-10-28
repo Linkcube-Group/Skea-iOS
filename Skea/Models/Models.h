@@ -14,4 +14,6 @@
 
 #import "GameInfo.h"
 
+#import "SkeaUser.h"
+
 #endif
