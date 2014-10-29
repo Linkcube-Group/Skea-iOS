@@ -82,6 +82,11 @@
 		039B926819DA7AC500292529 /* Skea.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 039B926619DA7AC500292529 /* Skea.xcdatamodeld */; };
 		039B926B19DA7AC500292529 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039B926A19DA7AC500292529 /* ViewController.m */; };
 		039B927019DA7AC500292529 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039B926F19DA7AC500292529 /* Images.xcassets */; };
+		03E064391A00D0B60070DF48 /* MPBarsGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064301A00D0B60070DF48 /* MPBarsGraphView.m */; };
+		03E0643A1A00D0B60070DF48 /* MPGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064321A00D0B60070DF48 /* MPGraphView.m */; };
+		03E0643B1A00D0B60070DF48 /* MPPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064341A00D0B60070DF48 /* MPPlot.m */; };
+		03E0643C1A00D0B60070DF48 /* UIBezierPath+curved.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064361A00D0B60070DF48 /* UIBezierPath+curved.m */; };
+		03E0643D1A00D0B60070DF48 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064381A00D0B60070DF48 /* UIView+Frame.m */; };
 		03E531FF19DA7D320064762E /* bg_title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531BC19DA7D320064762E /* bg_title@2x.png */; };
 		03E5320019DA7D320064762E /* menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03E531BD19DA7D320064762E /* menu@2x.png */; };
 		03E5320719DA7D320064762E /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 03E531C719DA7D320064762E /* MJRefresh.bundle */; };
@@ -289,6 +294,16 @@
 		039B926919DA7AC500292529 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		039B926A19DA7AC500292529 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		039B926F19DA7AC500292529 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		03E0642F1A00D0B60070DF48 /* MPBarsGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBarsGraphView.h; sourceTree = "<group>"; };
+		03E064301A00D0B60070DF48 /* MPBarsGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBarsGraphView.m; sourceTree = "<group>"; };
+		03E064311A00D0B60070DF48 /* MPGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGraphView.h; sourceTree = "<group>"; };
+		03E064321A00D0B60070DF48 /* MPGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPGraphView.m; sourceTree = "<group>"; };
+		03E064331A00D0B60070DF48 /* MPPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPPlot.h; sourceTree = "<group>"; };
+		03E064341A00D0B60070DF48 /* MPPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPPlot.m; sourceTree = "<group>"; };
+		03E064351A00D0B60070DF48 /* UIBezierPath+curved.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+curved.h"; sourceTree = "<group>"; };
+		03E064361A00D0B60070DF48 /* UIBezierPath+curved.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+curved.m"; sourceTree = "<group>"; };
+		03E064371A00D0B60070DF48 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		03E064381A00D0B60070DF48 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		03E531BC19DA7D320064762E /* bg_title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_title@2x.png"; sourceTree = "<group>"; };
 		03E531BD19DA7D320064762E /* menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu@2x.png"; sourceTree = "<group>"; };
 		03E531C719DA7D320064762E /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
@@ -643,6 +658,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		03E0642E1A00D0B60070DF48 /* MPPlot */ = {
+			isa = PBXGroup;
+			children = (
+				03E0642F1A00D0B60070DF48 /* MPBarsGraphView.h */,
+				03E064301A00D0B60070DF48 /* MPBarsGraphView.m */,
+				03E064311A00D0B60070DF48 /* MPGraphView.h */,
+				03E064321A00D0B60070DF48 /* MPGraphView.m */,
+				03E064331A00D0B60070DF48 /* MPPlot.h */,
+				03E064341A00D0B60070DF48 /* MPPlot.m */,
+				03E064351A00D0B60070DF48 /* UIBezierPath+curved.h */,
+				03E064361A00D0B60070DF48 /* UIBezierPath+curved.m */,
+				03E064371A00D0B60070DF48 /* UIView+Frame.h */,
+				03E064381A00D0B60070DF48 /* UIView+Frame.m */,
+			);
+			path = MPPlot;
+			sourceTree = "<group>";
+		};
 		03E531BA19DA7D320064762E /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,6 +744,7 @@
 		03E531C519DA7D320064762E /* ThirdLibs */ = {
 			isa = PBXGroup;
 			children = (
+				03E0642E1A00D0B60070DF48 /* MPPlot */,
 				2677CEA619FB738F0068454F /* EGORefreshTableHeaderView */,
 				03E531C619DA7D320064762E /* MJRefresh */,
 				03E531D719DA7D320064762E /* OpenUDID */,
@@ -1234,6 +1267,7 @@
 				0312889119E43BFE0073C83B /* RecordViewController.m in Sources */,
 				03E532C119DA7D470064762E /* NSDate+RFC1123.m in Sources */,
 				03E532BB19DA7D470064762E /* BaseViewController.m in Sources */,
+				03E0643B1A00D0B60070DF48 /* MPPlot.m in Sources */,
 				03E532E319DA7D470064762E /* UIDevice+Extension.m in Sources */,
 				03E532DB19DA7D470064762E /* NSString+Extension.m in Sources */,
 				03E532ED19DA7D470064762E /* UIView+Extension.m in Sources */,
@@ -1254,6 +1288,7 @@
 				03E532C619DA7D470064762E /* MKNetworkEngine.m in Sources */,
 				03E532BF19DA7D470064762E /* NSAlert+MKNetworkKitAdditions.m in Sources */,
 				03E532C219DA7D470064762E /* NSDictionary+RequestEncoding.m in Sources */,
+				03E0643D1A00D0B60070DF48 /* UIView+Frame.m in Sources */,
 				03E5321919DA7D320064762E /* UIButton+WebCache.m in Sources */,
 				03E532CA19DA7D470064762E /* DDAbstractDatabaseLogger.m in Sources */,
 				03E532B319DA7D470064762E /* ELUtils.m in Sources */,
@@ -1270,6 +1305,7 @@
 				03E5321119DA7D320064762E /* NSData+ImageContentType.m in Sources */,
 				03E5320919DA7D320064762E /* MJRefreshConst.m in Sources */,
 				03E5321419DA7D320064762E /* SDWebImageDecoder.m in Sources */,
+				03E0643A1A00D0B60070DF48 /* MPGraphView.m in Sources */,
 				261639AB19FCB7EF007496BF /* SKViewController.m in Sources */,
 				03E532EE19DA7D470064762E /* UIViewController+Extension.m in Sources */,
 				03E532B519DA7D470064762E /* ProtolManager.m in Sources */,
@@ -1280,6 +1316,7 @@
 				03E532E819DA7D470064762E /* UIExpandingTextViewInternal.m in Sources */,
 				03E5320819DA7D320064762E /* MJRefreshBaseView.m in Sources */,
 				03E5321519DA7D320064762E /* SDWebImageDownloader.m in Sources */,
+				03E0643C1A00D0B60070DF48 /* UIBezierPath+curved.m in Sources */,
 				03E532E719DA7D470064762E /* UIExpandingTextView.m in Sources */,
 				03E532B419DA7D470064762E /* MenuView.m in Sources */,
 				03E532B719DA7D470064762E /* AppConfig.mm in Sources */,
@@ -1317,6 +1354,7 @@
 				03E5321F19DA7D320064762E /* UIView+WebCacheOperation.m in Sources */,
 				03E532BC19DA7D470064762E /* ModelBase.m in Sources */,
 				03E5321719DA7D320064762E /* SDWebImageManager.m in Sources */,
+				03E064391A00D0B60070DF48 /* MPBarsGraphView.m in Sources */,
 				03E5320E19DA7D320064762E /* UIView+MJExtension.m in Sources */,
 				261639A919FCB7EF007496BF /* SKTableViewCell.m in Sources */,
 				0312887F19E43A3F0073C83B /* TestingViewController.m in Sources */,
