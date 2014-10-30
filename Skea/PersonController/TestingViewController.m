@@ -7,6 +7,7 @@
 //
 
 #import "TestingViewController.h"
+#import "PersonLoginedViewController.h"
 
 @interface TestingViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -43,7 +44,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 9;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -52,9 +53,13 @@
         return 60.f;
     if(indexPath.row == 1)
         return 60.f;
-    if(indexPath.row == 2)
+    if(indexPath.row == 2 || indexPath.row == 6)
         return 40.f;
-    return 400.f;
+    if(indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5)
+        return 40.f;
+    if(indexPath.row == 7)
+        return 100.f;
+    return 60.f;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,15 +125,67 @@
     {
         [cell.contentView addSubview:[self getTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40) title:@"基础数据"]];
     }
-    else if (indexPath.row == 3)
+    else if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5)
     {
+        UILabel * label = [[UILabel alloc] init];
+        label.frame = CGRectMake(20, 5, 60, 30);
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont systemFontOfSize:14.f];
         
+        UITextField * textField = [[UITextField alloc] init];
+        textField.frame = CGRectMake(80, 5, self.view.frame.size.width - 80 - 20, 30);
+        textField.font = [UIFont systemFontOfSize:14.f];
+        textField.textAlignment=NSTextAlignmentRight;
+        textField.delegate = self;
+        textField.returnKeyType = UIReturnKeyDone;
+        
+        if(indexPath.row == 3)
+        {
+            label.text = NSLocalizedString(@"出生日期", nil);
+            textField.text = NSLocalizedString(@"1980年1月1日", nil);
+        }
+        else if (indexPath.row == 4)
+        {
+            label.text = NSLocalizedString(@"身高", nil);
+            textField.text = NSLocalizedString(@"155cm", nil);
+        }
+        else if (indexPath.row == 5)
+        {
+            label.text = NSLocalizedString(@"体重", nil);
+            textField.text = NSLocalizedString(@"55kg", nil);
+        }
+        [cell.contentView addSubview:label];
+        [cell.contentView addSubview:textField];
+    }
+    else if (indexPath.row == 6)
+    {
+        [cell.contentView addSubview:[self getTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40) title:@"私密信息部分"]];
+    }
+    else if (indexPath.row ==7)
+    {
+        [cell.contentView addSubview:[self getSelectViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100) title:NSLocalizedString(@"生育经历", nil) titleArray:[NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@">5", nil] tag:indexPath.row]];
     }
     else
     {
-        
+        UIButton * submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        submitButton.frame = CGRectMake(50,10,self.view.frame.size.width - 100,40);
+        submitButton.layer.borderWidth = 0.5f;
+        submitButton.layer.borderColor = [UIColor blackColor].CGColor;
+        submitButton.layer.cornerRadius = 20.f;
+        [submitButton setTitle:NSLocalizedString(@"提交", nil) forState:UIControlStateNormal];
+        [submitButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [submitButton addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:submitButton];
     }
     return cell;
+}
+
+-(void)submit
+{
+//    [self btBack_DisModal:nil];
+    PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
+    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 -(UIView *)getTitleViewWithFrame:(CGRect)frame title:(NSString *)title
@@ -150,6 +207,45 @@
     return view;
 }
 
+-(UIView *)getSelectViewWithFrame:(CGRect)frame title:(NSString *)title titleArray:(NSArray *)titleArray tag:(NSInteger)tag
+{
+    UIView * view = [[UIView alloc] init];
+    view.frame = frame;
+    view.backgroundColor = [UIColor whiteColor];
+    UILabel * titleLabel = [[UILabel alloc] init];
+    titleLabel.frame = CGRectMake(20, 5, 60, 30);
+    titleLabel.font = [UIFont systemFontOfSize:14.f];
+    titleLabel.text = title.length?title:@"";
+    [view addSubview:titleLabel];
+    NSInteger count = titleArray.count;
+    if(count)
+    {
+        UIView * lineView = [[UIView alloc] init];
+        lineView.frame = CGRectMake(20, 60, view.frame.size.width - 40, 0.5f);
+        lineView.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.f];
+        [view addSubview:lineView];
+        
+        CGFloat x = lineView.frame.size.width/(count-1);
+        for(int i=0;i<count;i++)
+        {
+            UIImageView * imageView = [[UIImageView alloc] init];
+            imageView.frame = CGRectMake(x*i, -4.75, 10, 10);
+            imageView.image = [UIImage imageNamed:@"selection-unchecked.png"];
+            [lineView addSubview:imageView];
+            if(i == 0)
+                imageView.image = [UIImage imageNamed:@"scroll-bar-selection.png"];
+            
+            UILabel * label = [[UILabel alloc] init];
+            label.frame = CGRectMake(imageView.frame.origin.x , imageView.frame.origin.y + imageView.frame.size.height + 8, x, 20);
+            label.font = [UIFont systemFontOfSize:12.f];
+            label.backgroundColor = [UIColor clearColor];
+            label.text = [titleArray objectAtIndex:i];
+            [lineView addSubview:label];
+        }
+    }
+    return view;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -157,6 +253,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [textField resignFirstResponder];
     return YES;
 }
 

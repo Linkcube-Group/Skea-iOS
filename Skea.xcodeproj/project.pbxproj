@@ -191,6 +191,10 @@
 		261639AA19FCB7EF007496BF /* SKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A519FCB7EF007496BF /* SKTableViewController.m */; };
 		261639AB19FCB7EF007496BF /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A719FCB7EF007496BF /* SKViewController.m */; };
 		261639AE19FCB82E007496BF /* UIImage+SKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639AD19FCB82E007496BF /* UIImage+SKCategory.m */; };
+		2671F5871A0220C300E0B780 /* PersonLoginedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2671F5861A0220C300E0B780 /* PersonLoginedViewController.m */; };
+		2671F58A1A02278600E0B780 /* PersonSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2671F5891A02278600E0B780 /* PersonSetViewController.m */; };
+		2671F58D1A0227D900E0B780 /* HealthTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2671F58C1A0227D900E0B780 /* HealthTestViewController.m */; };
+		2671F5901A02324700E0B780 /* ParameterSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2671F58F1A02324700E0B780 /* ParameterSetViewController.m */; };
 		2677CEB119FB738F0068454F /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEA719FB738F0068454F /* blackArrow.png */; };
 		2677CEB219FB738F0068454F /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEA819FB738F0068454F /* blackArrow@2x.png */; };
 		2677CEB319FB738F0068454F /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEA919FB738F0068454F /* blueArrow.png */; };
@@ -507,6 +511,14 @@
 		261639A719FCB7EF007496BF /* SKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKViewController.m; sourceTree = "<group>"; };
 		261639AC19FCB82E007496BF /* UIImage+SKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SKCategory.h"; sourceTree = "<group>"; };
 		261639AD19FCB82E007496BF /* UIImage+SKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SKCategory.m"; sourceTree = "<group>"; };
+		2671F5851A0220C300E0B780 /* PersonLoginedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonLoginedViewController.h; sourceTree = "<group>"; };
+		2671F5861A0220C300E0B780 /* PersonLoginedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonLoginedViewController.m; sourceTree = "<group>"; };
+		2671F5881A02278600E0B780 /* PersonSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSetViewController.h; sourceTree = "<group>"; };
+		2671F5891A02278600E0B780 /* PersonSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSetViewController.m; sourceTree = "<group>"; };
+		2671F58B1A0227D900E0B780 /* HealthTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthTestViewController.h; sourceTree = "<group>"; };
+		2671F58C1A0227D900E0B780 /* HealthTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthTestViewController.m; sourceTree = "<group>"; };
+		2671F58E1A02324700E0B780 /* ParameterSetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterSetViewController.h; sourceTree = "<group>"; };
+		2671F58F1A02324700E0B780 /* ParameterSetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterSetViewController.m; sourceTree = "<group>"; };
 		2677CEA719FB738F0068454F /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
 		2677CEA819FB738F0068454F /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
 		2677CEA919FB738F0068454F /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
@@ -577,6 +589,14 @@
 				0312887C19E43A3F0073C83B /* TestingViewController.h */,
 				0312887D19E43A3F0073C83B /* TestingViewController.m */,
 				0312887E19E43A3F0073C83B /* TestingViewController.xib */,
+				2671F5851A0220C300E0B780 /* PersonLoginedViewController.h */,
+				2671F5861A0220C300E0B780 /* PersonLoginedViewController.m */,
+				2671F5881A02278600E0B780 /* PersonSetViewController.h */,
+				2671F5891A02278600E0B780 /* PersonSetViewController.m */,
+				2671F58B1A0227D900E0B780 /* HealthTestViewController.h */,
+				2671F58C1A0227D900E0B780 /* HealthTestViewController.m */,
+				2671F58E1A02324700E0B780 /* ParameterSetViewController.h */,
+				2671F58F1A02324700E0B780 /* ParameterSetViewController.m */,
 			);
 			path = PersonController;
 			sourceTree = "<group>";
@@ -1279,6 +1299,7 @@
 				03E532D719DA7D470064762E /* NSDate+Extension.m in Sources */,
 				03E532C019DA7D470064762E /* NSData+MKBase64.m in Sources */,
 				03E532CC19DA7D470064762E /* DDFileLogger.m in Sources */,
+				2671F58D1A0227D900E0B780 /* HealthTestViewController.m in Sources */,
 				03E5320C19DA7D320064762E /* UIScrollView+MJExtension.m in Sources */,
 				03E532E519DA7D470064762E /* UIGestureRecognizer+Extension.m in Sources */,
 				039B926519DA7AC500292529 /* AppDelegate.m in Sources */,
@@ -1334,6 +1355,7 @@
 				261639AE19FCB82E007496BF /* UIImage+SKCategory.m in Sources */,
 				03E532D819DA7D470064762E /* NSDictionary+Extension.m in Sources */,
 				03E532C919DA7D470064762E /* CLLocation+Extension.m in Sources */,
+				2671F58A1A02278600E0B780 /* PersonSetViewController.m in Sources */,
 				03E532E919DA7D470064762E /* UIInputToolbar.m in Sources */,
 				03E5321A19DA7D320064762E /* UIImage+GIF.m in Sources */,
 				03E5321B19DA7D320064762E /* UIImage+MultiFormat.m in Sources */,
@@ -1347,6 +1369,7 @@
 				0312886D19E4352C0073C83B /* blePeripheral.m in Sources */,
 				03E5320F19DA7D320064762E /* OpenUDID.m in Sources */,
 				034F64C019FF269C00054B16 /* CalendarView.m in Sources */,
+				2671F5871A0220C300E0B780 /* PersonLoginedViewController.m in Sources */,
 				03E532DC19DA7D470064762E /* NSURL+Extension.m in Sources */,
 				03E532B619DA7D470064762E /* Theam.m in Sources */,
 				03E532E419DA7D470064762E /* UIFont+Extension.m in Sources */,
@@ -1354,6 +1377,7 @@
 				03E5321019DA7D320064762E /* MKAnnotationView+WebCache.m in Sources */,
 				03E532CD19DA7D470064762E /* DDLog.m in Sources */,
 				03E5321E19DA7D320064762E /* UIImageView+WebCache.m in Sources */,
+				2671F5901A02324700E0B780 /* ParameterSetViewController.m in Sources */,
 				03E532EA19DA7D470064762E /* UILabel+Extension.m in Sources */,
 				03E532D419DA7D470064762E /* NSArray+Extension.m in Sources */,
 				03E5321F19DA7D320064762E /* UIView+WebCacheOperation.m in Sources */,
