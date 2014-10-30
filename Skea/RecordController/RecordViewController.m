@@ -18,7 +18,17 @@
     
     MPGraphView *graph1;
     MPBarsGraphView *graph2;
+   
 }
+@property (strong,nonatomic)  GameDetail *gameDetail;
+
+@property (strong,nonatomic) IBOutlet UILabel *lbDate;
+@property (strong,nonatomic) IBOutlet UILabel *lbTotalStatus;
+@property (strong,nonatomic) IBOutlet UILabel *lbforceStatus;
+@property (strong,nonatomic) IBOutlet UILabel *lbPersistStatus;
+@property (strong,nonatomic) IBOutlet UILabel *lbScore;
+@property (strong,nonatomic) IBOutlet UILabel *lbTime;
+
 @end
 
 @implementation RecordViewController
@@ -40,20 +50,17 @@
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-date.png") Title:nil Target:self Selector:@selector(dateActoin)];
     
-    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320), 320, 320)];
-    _sampleView.delegate = self;
-    [_sampleView setBackgroundColor:[UIColor whiteColor]];
-    _sampleView.calendarDate = [NSDate date];
-    [self.view addSubview:_sampleView];
-    _sampleView.hidden = YES;
+    
+    
+    
+    NSString *today = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
+    
+    self.gameDetail = [AppConfig getGameDetail:today];
     
     ////////////////////////////////////////////////////////////////////
     graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(0, 300, 320, 150)];
     graph1.waitToUpdate=YES;
-    
-    [graph1 setAlgorithm:^CGFloat(CGFloat x) {
-        return rand() % 100;
-    } numberOfPoints:20];
+
     
     graph1.curved=YES;
     
@@ -63,20 +70,27 @@
     graph2=[MPPlot plotWithType:MPPlotTypeBars frame:graph1.frame];
     graph2.waitToUpdate=YES;
     graph2.detailView=(UIView <MPDetailView> *)[self customDetailView];
-    [graph2 setAlgorithm:^CGFloat(CGFloat x) {
-        return rand() % 100;
-    } numberOfPoints:20];
     graph2.graphColor=[UIColor blueColor];
     [self.view addSubview:graph2];
     
     [self.view addSubview:graph1];
+    
+    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320), 320, 320)];
+    _sampleView.delegate = self;
+    [_sampleView setBackgroundColor:[UIColor whiteColor]];
+    _sampleView.calendarDate = [NSDate date];
+    [self.view addSubview:_sampleView];
+    _sampleView.hidden = YES;
+    
+    
+    [self updateDateView];
     // Do any additional setup after loading the view from its nib.
 }
 - (void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
     
-    [self performSelector:@selector(animate) withObject:nil afterDelay:0.3];
+//    [self performSelector:@selector(animate) withObject:nil afterDelay:0.3];
     
 }
 
@@ -87,6 +101,12 @@
     
 }
 
+- (NSString *)getGameTime:(int)length
+{
+    int minute = length/60;
+    int second = length%60;
+    return _S(@"%d:%d",minute,second);
+}
 - (void)dateActoin
 {
     _sampleView.hidden = NO;
@@ -94,8 +114,46 @@
 
 -(void)tappedOnDate:(NSDate *)selectedDate
 {
-    _sampleView.hidden = YES;
     NSLog(@"tappedOnDate %@(GMT)",selectedDate);
+    NSString *day = _S(@"%.0f",[selectedDate timeIntervalSince1970]/(24*60*60));
+    
+    self.gameDetail = [AppConfig getGameDetail:day];
+    if (self.gameDetail==nil) {
+        showCustomAlertMessage(@"当前日期没有训练记录");
+        return;
+    }
+    
+    _sampleView.hidden = YES;
+    
+    [self updateDateView];
+  
+}
+
+
+- (void)updateDateView
+{
+    self.lbDate.text = _S(@"%@ %d",self.gameDetail.date,self.gameDetail.level);
+    self.lbTotalStatus.text = [self.gameDetail getStandard];
+    self.lbforceStatus.text = [self.gameDetail getExplosive];
+    self.lbPersistStatus.text = [self.gameDetail getEndurance];
+    self.lbScore.text = _S(@"%d",self.gameDetail.factScore);
+    self.lbTime.text = [self getGameTime:self.gameDetail.gameTime];
+    
+    IMP_BLOCK_SELF(RecordViewController)
+    
+    [graph1 setAlgorithm:^CGFloat(CGFloat x) {
+
+       return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate];
+        
+    } numberOfPoints:self.gameDetail.aryGameInfo.count];
+    [graph2 setAlgorithm:^CGFloat(CGFloat x) {
+        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0;
+    } numberOfPoints:self.gameDetail.aryGameInfo.count];
+    
+    [graph1 animate];
+    [graph2 animate];
+    
+    
 }
 
 #pragma mark -

@@ -44,6 +44,8 @@
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollBg;
 
 @property (strong,nonatomic) NSMutableArray *aryGame;
+
+@property (strong,nonatomic) GameDetail *gameDetail;
 @end
 
 
@@ -51,6 +53,10 @@
 #define SevenHeight 280
 #define TwelfthHeight 480
 #define SepHeight 40
+
+#define TwelfthTotal 474
+#define SevenTotal 224
+#define TwoTotal 74
 
 #define BlankTop 9
 #define BlankBottom 26
@@ -69,16 +75,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.gameDetail = [[GameDetail alloc] init];
     score = 0;
     lineTop = self.imgLine.originY;
     currentIndex = -1;
     self.aryGame = [[NSMutableArray alloc] init];
     int level = 4;
+    
+    ///mark
+    self.gameDetail.level = level;
+    self.gameDetail.date = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
+    
+    
     self.playTime = 0;
     halfResponse = 0;
     self.twoNum = [self getLevelNum:level];
     self.sevenNum = [self getLevelNum:level];
     self.twelfthNum = [self getLevelNum:level];
+    
+    ///mark
+    self.gameDetail.totalScore = self.twoNum*TwoTotal+self.sevenNum*SevenTotal+self.twelfthNum*TwelfthTotal;
     
     totalLength = 0;
     isPlaying = NO;
@@ -147,10 +163,19 @@
         self.lbTime.text = @"0";
         [self stopGame];
         if (currentIndex<self.aryGame.count && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
-            score += [self getGameScore:currentIndex];
+
+            int tempScore = [self getGameScore:currentIndex];
+            score += tempScore;
+            [[self.aryGame objectAtIndex:currentIndex] setScoreRate:[self getGameScoreRate:currentIndex WithScore:tempScore]];
+            
+            self.gameDetail.factScore = score;
             [[self.aryGame objectAtIndex:currentIndex] setIsCaled:YES];
             self.lbScore.text = _S(@"%d",score);
         }
+        
+        self.gameDetail.aryGameInfo = self.aryGame;
+        
+        [AppConfig saveGameDetail:self.gameDetail];
         return;
     }
     
@@ -203,7 +228,12 @@
 
         }
         else if (currentIndex>1 && [[self.aryGame objectAtIndex:currentIndex-1] isCaled]==NO){
-            score += [self getGameScore:currentIndex-1];
+
+            int tempScore = [self getGameScore:currentIndex-1];
+            score += tempScore;
+            [[self.aryGame objectAtIndex:currentIndex-1] setScoreRate:[self getGameScoreRate:currentIndex-1 WithScore:tempScore]];
+            
+            
             self.lbScore.text = _S(@"%d",score);
             [[self.aryGame objectAtIndex:currentIndex-1] setIsCaled:YES];
         }
@@ -242,6 +272,9 @@
     
     totalTime = totalLength/40;
     passTime = 0;
+    
+    ///add time
+    self.gameDetail.gameTime = totalTime;
     
     self.lbTime.text = [self getGameTime:totalTime];
     
@@ -393,12 +426,30 @@
     return tempScore;
 }
 
+- (float)getGameScoreRate:(int)index WithScore:(int)tempScore
+{
+     GameInfo *info = [self.aryGame objectAtIndex:index];
+    
+    if (info.progressTime==2) {
+        return 1.0*tempScore/TwoHeight;
+    }
+    else if (info.progressTime==7){
+        return 1.0*tempScore/SevenHeight;
+    }
+    else if(info.progressTime==12){
+        return 1.0*tempScore/TwelfthHeight;
+    }
+    return 0;
+}
+
 - (NSString *)getGameTime:(int)length
 {
     int minute = length/60;
     int second = length%60;
     return _S(@"%d:%d",minute,second);
 }
+
+
 
 #pragma mark -
 #pragma mark BL

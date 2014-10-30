@@ -16,6 +16,7 @@
         self.progressTime = length;
         self.halfScroes = [[NSMutableArray alloc] init];
         self.isCaled = NO;
+        self.scoreRate = 0;
     }
     return self;
 }

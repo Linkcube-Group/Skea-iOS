@@ -13,4 +13,7 @@
 + (NSString *)getSinaAccessToken;
 + (void)setSinaAccessToken:(NSString *)token;
 
+
++ (void)saveGameDetail:(GameDetail *)detail;
++ (GameDetail *)getGameDetail:(NSString *)date;
 @end

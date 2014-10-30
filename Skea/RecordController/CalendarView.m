@@ -107,8 +107,8 @@
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i+1;
-        button.titleLabel.text = [NSString stringWithFormat:@"%d",i+1];
-        [button setTitle:[NSString stringWithFormat:@"%d",i+1] forState:UIControlStateNormal];
+        button.titleLabel.text = [NSString stringWithFormat:@"%d",(int)i+1];
+        [button setTitle:[NSString stringWithFormat:@"%d",(int)i+1] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
         [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0f]];
         [button addTarget:self action:@selector(tappedDate:) forControlEvents:UIControlEventTouchUpInside];
@@ -166,8 +166,8 @@
     
     for (int i=0; i<weekday; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.titleLabel.text = [NSString stringWithFormat:@"%d",maxDate+i+1];
-        [button setTitle:[NSString stringWithFormat:@"%d",maxDate+i+1] forState:UIControlStateNormal];
+        button.titleLabel.text = [NSString stringWithFormat:@"%d",(int)maxDate+i+1];
+        [button setTitle:[NSString stringWithFormat:@"%d",(int)maxDate+i+1] forState:UIControlStateNormal];
         NSInteger offsetX = (width*(i%columns));
         NSInteger offsetY = (width *(i/columns));
         [button setFrame:CGRectMake(originX+offsetX, originY+40+offsetY, width, width)];
@@ -193,10 +193,10 @@
     
     NSInteger remainingDays = (monthLength + weekday) % columns;
     if(remainingDays >0){
-        for (int i=remainingDays; i<columns; i++) {
+        for (int i=(int)remainingDays; i<columns; i++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-            button.titleLabel.text = [NSString stringWithFormat:@"%d",(i+1)-remainingDays];
-            [button setTitle:[NSString stringWithFormat:@"%d",(i+1)-remainingDays] forState:UIControlStateNormal];
+            button.titleLabel.text = [NSString stringWithFormat:@"%d",(i+1)-(int)remainingDays];
+            [button setTitle:[NSString stringWithFormat:@"%d",(i+1)-(int)remainingDays] forState:UIControlStateNormal];
             NSInteger offsetX = (width*((i) %columns));
             NSInteger offsetY = (width *((monthLength+weekday)/columns));
             [button setFrame:CGRectMake(originX+offsetX, originY+40+offsetY, width, width)];

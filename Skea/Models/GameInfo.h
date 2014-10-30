@@ -14,6 +14,8 @@
 @property (nonatomic) int progressTime;// 7
 @property (nonatomic,strong) NSMutableArray *halfScroes; //[23,23,23,34]
 
+@property (nonatomic) float scoreRate;
+
 @property (nonatomic) BOOL isCaled;//是否被计算过
 
 - (id)initGameInfo:(int)point WithProgress:(int)length;

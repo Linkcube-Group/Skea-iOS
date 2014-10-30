@@ -21,4 +21,20 @@
     [[NSUserDefaults standardUserDefaults] setObject:token forKey:kName];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
++ (void)saveGameDetail:(GameDetail *)detail
+{
+    [[NSUserDefaults standardUserDefaults] setObject:[detail JSONString] forKey:_S(@"game_%@",detail.date)];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++ (GameDetail *)getGameDetail:(NSString *)date
+{
+    NSString *gameStr = [[NSUserDefaults standardUserDefaults] objectForKey:_S(@"game_%@",date)];
+    if (gameStr) {
+        GameDetail *detail = [[GameDetail alloc] initWithJson:gameStr];
+        return detail;
+    }
+    
+    return nil;
+}
 @end

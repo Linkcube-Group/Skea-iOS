@@ -6,6 +6,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
             <connections>
+                <outlet property="lbDate" destination="FMY-yf-8on" id="gtw-gF-FI0"/>
+                <outlet property="lbPersistStatus" destination="TJm-px-aGY" id="xIW-oP-JVE"/>
+                <outlet property="lbScore" destination="5RB-D2-CZH" id="lMf-IM-oaq"/>
+                <outlet property="lbTime" destination="2RL-tH-XdM" id="BtT-yv-Gz1"/>
+                <outlet property="lbTotalStatus" destination="UDp-tY-O88" id="pik-7p-IES"/>
+                <outlet property="lbforceStatus" destination="o5J-yI-PkU" id="4Wz-K4-qHq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
