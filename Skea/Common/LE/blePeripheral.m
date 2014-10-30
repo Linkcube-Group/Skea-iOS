@@ -11,14 +11,14 @@
 
 //================== TransmitMoudel =====================
 // TransmitMoudel Receive Data Service UUID
-NSString *kReceiveDataServiceUUID                       = @"FFE0";
+NSString *kReceiveDataServiceUUID                       = @"180A";
 // TransmitMoudel characteristics UUID
-NSString *kReceive20BytesDataCharateristicUUID          = @"FFE4";
+NSString *kReceive20BytesDataCharateristicUUID          = @"49535343-8841-43F4-A8D4-ECBE34729BB3";
 
 // TransmitMoudel Send Data Service UUID
-NSString *kSendDataServiceUUID                          = @"FFE5";
+NSString *kSendDataServiceUUID                          = @"49535343-FE7D-4AE5-8FA9-9FAFD205E455";
 // TransmitMoudel characteristics UUID
-NSString *kSend20BytesDataCharateristicUUID             = @"FFE9";
+NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A8D4-ECBE34729BB3";
 
 @implementation blePeripheral{
     NSTimer         *autoSendDataTimer;
