@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
             <connections>
+                <outlet property="imgChartBg" destination="l5s-eF-i0C" id="MZ7-eL-gh4"/>
                 <outlet property="lbDate" destination="FMY-yf-8on" id="gtw-gF-FI0"/>
                 <outlet property="lbPersistStatus" destination="TJm-px-aGY" id="xIW-oP-JVE"/>
                 <outlet property="lbScore" destination="5RB-D2-CZH" id="lMf-IM-oaq"/>
@@ -118,15 +119,21 @@
                             <color key="textColor" red="0.4039215686" green="0.78823529410000004" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chart.png" id="l5s-eF-i0C">
+                            <rect key="frame" x="0.0" y="239" width="320" height="220"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
     <resources>
+        <image name="chart.png" width="320" height="220"/>
         <image name="icon-duration.png" width="22" height="22"/>
         <image name="icon-score.png" width="22" height="22"/>
         <image name="risk-factor-high.png" width="110" height="110"/>

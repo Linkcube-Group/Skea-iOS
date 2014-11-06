@@ -28,7 +28,7 @@
 @property (strong,nonatomic) IBOutlet UILabel *lbPersistStatus;
 @property (strong,nonatomic) IBOutlet UILabel *lbScore;
 @property (strong,nonatomic) IBOutlet UILabel *lbTime;
-
+@property (strong,nonatomic) IBOutlet UIImageView *imgChartBg;
 @end
 
 @implementation RecordViewController
@@ -58,22 +58,22 @@
     self.gameDetail = [AppConfig getGameDetail:today];
     
     ////////////////////////////////////////////////////////////////////
-    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(0, 300, 320, 150)];
+    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(35, 10, 243, 178)];
     graph1.waitToUpdate=YES;
 
     
     graph1.curved=YES;
     
-    graph1.graphColor=[UIColor colorWithRed:0.500 green:0.158 blue:1.000 alpha:1.000];
-    graph1.detailBackgroundColor=[UIColor colorWithRed:0.444 green:0.842 blue:1.000 alpha:1.000];
+    graph1.graphColor=[UIColor orangeColor];
+    graph1.detailBackgroundColor=[UIColor orangeColor];
     
     graph2=[MPPlot plotWithType:MPPlotTypeBars frame:graph1.frame];
     graph2.waitToUpdate=YES;
     graph2.detailView=(UIView <MPDetailView> *)[self customDetailView];
-    graph2.graphColor=[UIColor blueColor];
-    [self.view addSubview:graph2];
+    graph2.graphColor=[UIColor colorWithRed:106/255.0 green:201/255.0 blue:223/255.0 alpha:1];
+    [self.imgChartBg addSubview:graph2];
     
-    [self.view addSubview:graph1];
+    [self.imgChartBg addSubview:graph1];
     
     _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320), 320, 320)];
     _sampleView.delegate = self;
@@ -142,12 +142,13 @@
     IMP_BLOCK_SELF(RecordViewController)
     
     [graph1 setAlgorithm:^CGFloat(CGFloat x) {
-
-       return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate];
+//        return rand()%100;
+        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100;
         
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     [graph2 setAlgorithm:^CGFloat(CGFloat x) {
-        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0;
+        //return rand()%100;
+        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100;
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     
     [graph1 animate];

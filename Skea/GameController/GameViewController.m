@@ -196,6 +196,7 @@
         self.playTime = 0;
         getHighed = NO;
         
+        [self showAnimationStar];
     }
     
     if (currentIndex>=1 && currentIndex<self.aryGame.count) {
@@ -476,6 +477,28 @@
         if (StringNotNullAndEmpty(value)) {
             halfResponse++;
         }
+    }
+}
+
+- (void)showAnimationStar
+{
+    for (int i=0; i<5; i++) {
+        int x = arc4random()%80;
+        int y = arc4random()%40;
+        
+        UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(x,y, 0, 0)];
+        img.alpha = 1;
+        img.image = IMG(@"star.png");
+        
+        [self.viewBottom addSubview:img];
+        [UIView animateKeyframesWithDuration:1.5 delay:arc4random()%2 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+            img.frame = CGRectMake(x-15, y-30, 46, 48);
+            img.alpha = 0.2;
+        } completion:^(BOOL finished) {
+             [img removeFromSuperview];
+        }];
+ 
+       
     }
 }
 
