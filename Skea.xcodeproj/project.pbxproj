@@ -1500,7 +1500,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMAnalytics_Sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "90083cb7-3321-4af1-a6f6-c8476292c884";
+				PROVISIONING_PROFILE = "12901e70-ae0a-4765-9401-7d62b5147a45";
 			};
 			name = Debug;
 		};
@@ -1520,7 +1520,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMAnalytics_Sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "90083cb7-3321-4af1-a6f6-c8476292c884";
+				PROVISIONING_PROFILE = "12901e70-ae0a-4765-9401-7d62b5147a45";
 			};
 			name = Release;
 		};

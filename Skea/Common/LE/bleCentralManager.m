@@ -275,13 +275,8 @@
 
 #pragma mark -
 #pragma mark SendAction
-- (void)sendCommand:(NSString *)command WithPeripheral:(CBPeripheral *)peripheral
+- (void)sendCommand:(NSString *)command
 {
-    if (peripheral) {
-        blePeripheral *bp = [self getBlePeripheralFromBlePeripheralArray:peripheral];
-        
-        [bp setSendData:[command dataUsingEncoding:NSASCIIStringEncoding]];
-    }
-   
+    [self.connectedBLE setSendData:[command dataUsingEncoding:NSASCIIStringEncoding]];  
 }
 @end

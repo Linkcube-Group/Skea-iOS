@@ -454,6 +454,10 @@
 
 #pragma mark -
 #pragma mark BL
+- (void)sendBeginToBL
+{
+    [[bleCentralManager shareManager] sendCommand:];
+}
 
 - (void)didDisConnectBL:(NSNotification *)notify
 {
@@ -482,23 +486,24 @@
 
 - (void)showAnimationStar
 {
-    for (int i=0; i<5; i++) {
-        int x = arc4random()%80;
-        int y = arc4random()%40;
+    int left = 1;
+    for (int i=0; i<6; i++) {
+        int x = arc4random()%60+self.viewBottom.originX;
+        int y = arc4random()%20+20+self.viewBottom.originY;
         
         UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(x,y, 0, 0)];
         img.alpha = 1;
         img.image = IMG(@"star.png");
         
-        [self.viewBottom addSubview:img];
-        [UIView animateKeyframesWithDuration:1.5 delay:arc4random()%2 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
-            img.frame = CGRectMake(x-15, y-30, 46, 48);
+        [self.view addSubview:img];
+        [UIView animateKeyframesWithDuration:1.5 delay:arc4random()%10/10.0 options:UIViewKeyframeAnimationOptionLayoutSubviews animations:^{
+            img.frame = CGRectMake(x-(40*left), y-30, 46, 48);
             img.alpha = 0.2;
         } completion:^(BOOL finished) {
              [img removeFromSuperview];
         }];
  
-       
+        left = -left;
     }
 }
 

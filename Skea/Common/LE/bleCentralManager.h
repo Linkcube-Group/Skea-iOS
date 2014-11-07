@@ -62,7 +62,9 @@ typedef NSInteger bleCentralDelegateState;
 -(void)disconnectPeripheral:(CBPeripheral*)peripheral;
 
 
-- (void)sendCommand:(NSString *)command WithPeripheral:(CBPeripheral *)peripheral;
+- (void)sendCommand:(NSString *)command;
+
+
 @end
 
 
