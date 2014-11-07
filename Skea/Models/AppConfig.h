@@ -16,4 +16,7 @@
 
 + (void)saveGameDetail:(GameDetail *)detail;
 + (GameDetail *)getGameDetail:(NSString *)date;
+
++ (NSArray *)getGameRecodeDates;
++ (void)setGameRecordDate:(double)timer;
 @end

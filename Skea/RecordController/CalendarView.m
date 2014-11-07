@@ -10,6 +10,8 @@
     NSInteger _selectedYear;
 }
 
+@property (strong,nonatomic) NSArray *aryRecords;
+
 @end
 @implementation CalendarView
 
@@ -17,6 +19,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.aryRecords = [AppConfig getGameRecodeDates];
         UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
         swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
         [self addGestureRecognizer:swipeleft];
@@ -24,7 +28,7 @@
         swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
         [self addGestureRecognizer:swipeRight];
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.size.height-100, self.bounds.size.width, 44)];
-        [label setBackgroundColor:[UIColor brownColor]];
+        [label setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
         [label setTextColor:[UIColor whiteColor]];
         [label setText:@"swipe to change months"];
         label.textAlignment = NSTextAlignmentCenter;
@@ -38,9 +42,9 @@
         [btnCancel setTitle:@"Cancel" forState:UIControlStateNormal];
         btnCancel.frame = CGRectMake(10,10,70,45);
         btnCancel.titleLabel.font = [UIFont systemFontOfSize:15];
-        btnCancel.titleLabel.textColor = [UIColor brownColor];
-        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateHighlighted];
-        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateSelected];
+        btnCancel.titleLabel.textColor = [UIColor colorWithHexString:@"#6CC9DF"];
+//        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateHighlighted];
+//        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateSelected];
         [btnCancel addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnCancel];
 
@@ -88,7 +92,7 @@
     NSString *dateString = [[format stringFromDate:self.calendarDate] uppercaseString];
     [titleText setText:dateString];
     [titleText setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0f]];
-    [titleText setTextColor:[UIColor brownColor]];
+    [titleText setTextColor:[UIColor colorWithHexString:@"#6CC9DF"]];
     [self addSubview:titleText];
     
     for (int i =0; i<_weekNames.count; i++) {
@@ -96,7 +100,7 @@
         weekNameLabel.titleLabel.text = [_weekNames objectAtIndex:i];
         [weekNameLabel setTitle:[_weekNames objectAtIndex:i] forState:UIControlStateNormal];
         [weekNameLabel setFrame:CGRectMake(originX+(width*(i%columns)), originY, width, width)];
-        [weekNameLabel setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
+        [weekNameLabel setTitleColor:[UIColor colorWithHexString:@"#6CC9DF"] forState:UIControlStateNormal];
         [weekNameLabel.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0f]];
         weekNameLabel.userInteractionEnabled = NO;
         [self addSubview:weekNameLabel];
@@ -109,16 +113,17 @@
         button.tag = i+1;
         button.titleLabel.text = [NSString stringWithFormat:@"%d",(int)i+1];
         [button setTitle:[NSString stringWithFormat:@"%d",(int)i+1] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithHexString:@"#6CC9DF"] forState:UIControlStateHighlighted];
         [button.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15.0f]];
         [button addTarget:self action:@selector(tappedDate:) forControlEvents:UIControlEventTouchUpInside];
         NSInteger offsetX = (width*((i+weekday)%columns));
         NSInteger offsetY = (width *((i+weekday)/columns));
         [button setFrame:CGRectMake(originX+offsetX, originY+40+offsetY, width, width)];
-        [button.layer setBorderColor:[[UIColor brownColor] CGColor]];
+        [button.layer setBorderColor:[[UIColor colorWithHexString:@"#6CC9DF"] CGColor]];
         [button.layer setBorderWidth:2.0];
         UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = [UIColor brownColor];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"#6CC9DF"];
         if(((i+weekday)/columns)==0)
         {
             [lineView setFrame:CGRectMake(0, 0, button.frame.size.width, 4)];
@@ -131,27 +136,27 @@
             [button addSubview:lineView];
         }
         
-        UIView *columnView = [[UIView alloc]init];
-        [columnView setBackgroundColor:[UIColor brownColor]];
-        if((i+weekday)%7==0)
-        {
-            [columnView setFrame:CGRectMake(0, 0, 4, button.frame.size.width)];
-            [button addSubview:columnView];
+//        UIView *columnView = [[UIView alloc]init];
+//        [columnView setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
+//        if((i+weekday)%7==0)
+//        {
+//            [columnView setFrame:CGRectMake(0, 0, 4, button.frame.size.width)];
+//            [button addSubview:columnView];
+//        }
+//        else if((i+weekday)%7==6)
+//        {
+//            [columnView setFrame:CGRectMake(button.frame.size.width-4, 0, 4, button.frame.size.width)];
+//            [button addSubview:columnView];
+//        }
+        if ([self hasRecordDay:(int)i+1 :(int)components.month :(int)components.year]) {
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         }
-        else if((i+weekday)%7==6)
-        {
-            [columnView setFrame:CGRectMake(button.frame.size.width-4, 0, 4, button.frame.size.width)];
-            [button addSubview:columnView];
-        }
-        if(i+1 ==_selectedDate && components.month == _selectedMonth && components.year == _selectedYear)
-        {
-            [button setBackgroundColor:[UIColor brownColor]];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            
-        }
+//        if(i+1 ==_selectedDate && components.month == _selectedMonth && components.year == _selectedYear)
+//        {
+//            
+//            
+//        }
         
-        
-            
         [self addSubview:button];
     }
     
@@ -172,9 +177,9 @@
         NSInteger offsetY = (width *(i/columns));
         [button setFrame:CGRectMake(originX+offsetX, originY+40+offsetY, width, width)];
         [button.layer setBorderWidth:2.0];
-        [button.layer setBorderColor:[[UIColor brownColor] CGColor]];
+        [button.layer setBorderColor:[[UIColor colorWithHexString:@"#6CC9DF"] CGColor]];
         UIView *columnView = [[UIView alloc]init];
-        [columnView setBackgroundColor:[UIColor brownColor]];
+        [columnView setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
         if(i==0)
         {
             [columnView setFrame:CGRectMake(0, 0, 4, button.frame.size.width)];
@@ -182,7 +187,7 @@
         }
 
         UIView *lineView = [[UIView alloc]init];
-        [lineView setBackgroundColor:[UIColor brownColor]];
+        [lineView setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
         [lineView setFrame:CGRectMake(0, 0, button.frame.size.width, 4)];
         [button addSubview:lineView];
         [button setTitleColor:[UIColor colorWithRed:229.0/255.0 green:231.0/255.0 blue:233.0/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -201,16 +206,16 @@
             NSInteger offsetY = (width *((monthLength+weekday)/columns));
             [button setFrame:CGRectMake(originX+offsetX, originY+40+offsetY, width, width)];
             [button.layer setBorderWidth:2.0];
-            [button.layer setBorderColor:[[UIColor brownColor] CGColor]];
+            [button.layer setBorderColor:[[UIColor colorWithHexString:@"#6CC9DF"] CGColor]];
             UIView *columnView = [[UIView alloc]init];
-            [columnView setBackgroundColor:[UIColor brownColor]];
+            [columnView setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
             if(i==columns - 1)
             {
                 [columnView setFrame:CGRectMake(button.frame.size.width-4, 0, 4, button.frame.size.width)];
                 [button addSubview:columnView];
             }
             UIView *lineView = [[UIView alloc]init];
-            [lineView setBackgroundColor:[UIColor brownColor]];
+            [lineView setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
             [lineView setFrame:CGRectMake(0, button.frame.size.width-4, button.frame.size.width, 4)];
             [button addSubview:lineView];
             [button setTitleColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -228,16 +233,16 @@
     NSDateComponents *components = [gregorian components:(NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self.calendarDate];
     if(!(_selectedDate == sender.tag && _selectedMonth == [components month] && _selectedYear == [components year]))
     {
-        if(_selectedDate != -1)
-        {
-            UIButton *previousSelected =(UIButton *) [self viewWithTag:_selectedDate];
-            [previousSelected setBackgroundColor:[UIColor clearColor]];
-            [previousSelected setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
-            
-        }
-        
-        [sender setBackgroundColor:[UIColor brownColor]];
-        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        if(_selectedDate != -1)
+//        {
+//            UIButton *previousSelected =(UIButton *) [self viewWithTag:_selectedDate];
+//            [previousSelected setBackgroundColor:[UIColor clearColor]];
+//            [previousSelected setTitleColor:[UIColor colorWithHexString:@"#6CC9DF"] forState:UIControlStateNormal];
+//            
+//        }
+//        
+//        [sender setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
+//        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _selectedDate = sender.tag;
         NSDateComponents *components = [gregorian components:(NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:self.calendarDate];
         components.day = _selectedDate;
@@ -290,5 +295,26 @@
         _selectedYear = components.year;
     }
 }
+
+- (BOOL)hasRecordDay:(int)day :(int)month :(int)year
+{
+    __block BOOL flag = NO;
+    
+    if (self.aryRecords && [self.aryRecords count]>0) {
+        NSDate *drayDay = [NSDate dateWithString:_S(@"%d%02d%02d",year,month,day) Format:@"yyyyMMdd"];
+        
+        [self.aryRecords enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+           
+            if (abs((int)[drayDay timeIntervalSince1970]/(24*60*60)-[obj intValue])<1) {
+                flag = YES;
+                *stop = YES;
+            }
+        }];
+        
+    }
+  
+    return flag;
+}
+
 
 @end

@@ -84,7 +84,7 @@
     
     ///mark
     self.gameDetail.level = level;
-    self.gameDetail.date = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
+    
     
     
     self.playTime = 0;
@@ -174,8 +174,10 @@
         }
         
         self.gameDetail.aryGameInfo = self.aryGame;
+        self.gameDetail.date = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
         
         [AppConfig saveGameDetail:self.gameDetail];
+        [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
         return;
     }
     
@@ -456,7 +458,7 @@
 #pragma mark BL
 - (void)sendBeginToBL
 {
-    [[bleCentralManager shareManager] sendCommand:];
+    [[bleCentralManager shareManager] sendCommand:@""];
 }
 
 - (void)didDisConnectBL:(NSNotification *)notify

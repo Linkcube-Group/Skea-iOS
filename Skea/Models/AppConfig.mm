@@ -37,4 +37,22 @@
     
     return nil;
 }
+
++ (NSArray *)getGameRecodeDates
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"gameRecordList"];
+}
++ (void)setGameRecordDate:(double)timer
+{
+    NSArray *ary = [[NSUserDefaults standardUserDefaults] objectForKey:@"gameRecordList"];
+    if (ary && [ary count]>0) {
+        if (fabs([[ary lastObject] doubleValue]-timer/(24*60*60))<1) {
+            return;
+        }
+    }
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:ary];
+    [temp addObject:[NSNumber numberWithInt:timer/(24*60*60)]];
+    [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"gameRecordList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 @end

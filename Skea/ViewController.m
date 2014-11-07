@@ -39,6 +39,8 @@
 #pragma mark Action
 - (void)connectAction:(id)sender
 {
+    [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
+    
     int count = (int)[bleCentralManager shareManager].blePeripheralArray.count;
     if (count>0) {
         CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:@"选择玩具" cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
