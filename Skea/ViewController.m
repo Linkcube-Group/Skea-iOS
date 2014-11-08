@@ -69,6 +69,9 @@
 
 - (IBAction)infoAction:(id)sender
 {
+
+//    [[bleCentralManager shareManager] sendCommand:cAppCommandRate2];
+    
     InfoViewController *ivc = [[InfoViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ivc];
     [self presentViewController:nav animated:YES completion:nil];

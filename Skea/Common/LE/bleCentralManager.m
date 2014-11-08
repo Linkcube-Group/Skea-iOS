@@ -49,10 +49,10 @@
 /****************************************************************************/
 // 按UUID进行扫描
 -(void)startScanning{
-	NSArray *uuidArray = [NSArray arrayWithObjects:[CBUUID UUIDWithString:kConnectedServiceUUID], nil];
-    // CBCentralManagerScanOptionAllowDuplicatesKey | CBConnectPeripheralOptionNotifyOnConnectionKey | CBConnectPeripheralOptionNotifyOnDisconnectionKey | CBConnectPeripheralOptionNotifyOnNotificationKey
-	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
-	[_activeCentralManager scanForPeripheralsWithServices:uuidArray options:options];
+//	NSArray *uuidArray = [NSArray arrayWithObjects:[CBUUID UUIDWithString:kConnectedServiceUUID], nil];
+  
+	NSDictionary *options = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:CBCentralManagerScanOptionAllowDuplicatesKey];
+	[_activeCentralManager scanForPeripheralsWithServices:nil options:options];
 }
 
 // 停止扫描
@@ -74,15 +74,17 @@
 // 开始连接
 -(void)connectPeripheral:(CBPeripheral*)peripheral
 {
-	if (![peripheral isConnected]){
+	if (![peripheral state] == CBPeripheralStateConnected){
         // 连接设备
-        [_activeCentralManager connectPeripheral:peripheral options:nil];
+//        [_activeCentralManager connectPeripheral:peripheral options:nil];
+        [_activeCentralManager cancelPeripheralConnection:peripheral];
+        [_activeCentralManager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey:@(YES)}];
 	}
     else{
         // 检测已连接Peripherals
         float version = [[[UIDevice currentDevice] systemVersion] floatValue];
         if (version >= 6.0){
-            [_activeCentralManager retrieveConnectedPeripherals];
+            [_activeCentralManager retrieveConnectedPeripheralsWithServices:nil];
         }
     }
 }

@@ -303,7 +303,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 -(void)setSendData:(NSData *)data{
     Byte dataLength = data.length;
     
-    if (dataLength == TRANSMIT_20BYTES_DATA_LENGHT) {
+//    if (dataLength == TRANSMIT_20BYTES_DATA_LENGHT) {
         // 发送计数加1
         _txCounter++;
         
@@ -318,7 +318,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
         [self addSendASCIIStringToShowStringBuffer:dataASCII];
         _staticString = [[NSString alloc]initWithFormat:@"Send:%@",dataASCII];
         nUpdataShowStringBuffer
-    }
+//    }
 }
 
 -(void)addSendASCIIStringToShowStringBuffer:(NSString *)aString{
