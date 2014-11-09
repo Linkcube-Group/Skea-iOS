@@ -80,7 +80,7 @@
     lineTop = self.imgLine.originY;
     currentIndex = -1;
     self.aryGame = [[NSMutableArray alloc] init];
-    int level = 4;
+    int level = 1;
     
     ///mark
     self.gameDetail.level = level;
@@ -191,7 +191,7 @@
     if ((int)[self.aryGame count]<=currentIndex) {
         return;
     }
-    DLog(@"-%d===%d",totalLength+lineTop,currentIndex);
+//    DLog(@"-%d===%d",totalLength+lineTop,currentIndex);
     
     if (currentIndex+1<self.aryGame.count && abs([[self.aryGame objectAtIndex:currentIndex+1] beginPoint]-totalLength-lineTop-20)<2) {
         currentIndex = currentIndex +1;

@@ -24,14 +24,14 @@
 
 + (void)saveGameDetail:(GameDetail *)detail
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[detail JSONString] forKey:_S(@"game_%@",detail.date)];
+    [[NSUserDefaults standardUserDefaults] setObject:[detail dictionary] forKey:_S(@"game_%@",detail.date)];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 + (GameDetail *)getGameDetail:(NSString *)date
 {
-    NSString *gameStr = [[NSUserDefaults standardUserDefaults] objectForKey:_S(@"game_%@",date)];
+    NSDictionary *gameStr = [[NSUserDefaults standardUserDefaults] objectForKey:_S(@"game_%@",date)];
     if (gameStr) {
-        GameDetail *detail = [[GameDetail alloc] initWithJson:gameStr];
+        GameDetail *detail = [[GameDetail alloc] initWithDictionary:gameStr];
         return detail;
     }
     

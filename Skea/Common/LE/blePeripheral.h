@@ -15,7 +15,7 @@
 // 透传模块包含服务
 extern NSString *kReceiveDataServiceUUID;
 extern NSString *kSendDataServiceUUID;
-
+extern NSString *kReceive20BytesDataCharateristicUUID;
 // 指定扫描广播UUID
 #define kConnectedServiceUUID                   @"FFF0"
 
@@ -83,4 +83,6 @@ typedef NSInteger blePeripheralDelegateState;
 -(void)disconnectPeripheral:(CBPeripheral *)peripheral;
 -(void)initPeripheralWithSeviceAndCharacteristic;
 -(void)initPropert;
+
+- (void)sendHexCommand:(NSString *)hexString;
 @end

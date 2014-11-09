@@ -70,7 +70,8 @@
 - (IBAction)infoAction:(id)sender
 {
 
-//    [[bleCentralManager shareManager] sendCommand:cAppCommandRate2];
+    [[bleCentralManager shareManager] sendCommand:@"250100000700002d"];
+    return;
     
     InfoViewController *ivc = [[InfoViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ivc];

@@ -74,19 +74,28 @@
 // 开始连接
 -(void)connectPeripheral:(CBPeripheral*)peripheral
 {
-	if (![peripheral state] == CBPeripheralStateConnected){
+//	if (![peripheral state] == CBPeripheralStateConnected){
         // 连接设备
 //        [_activeCentralManager connectPeripheral:peripheral options:nil];
         [_activeCentralManager cancelPeripheralConnection:peripheral];
         [_activeCentralManager connectPeripheral:peripheral options:@{CBConnectPeripheralOptionNotifyOnConnectionKey:@(YES)}];
-	}
-    else{
-        // 检测已连接Peripherals
-        float version = [[[UIDevice currentDevice] systemVersion] floatValue];
-        if (version >= 6.0){
-            [_activeCentralManager retrieveConnectedPeripheralsWithServices:nil];
-        }
-    }
+//	}
+//    else{
+//        // 检测已连接Peripherals
+//        float version = [[[UIDevice currentDevice] systemVersion] floatValue];
+//        if (version >= 6.0){
+//             NSMutableArray * services = [ NSMutableArray array ];
+////            for (CBService *service in peripheral.services) {
+////                
+////                [services addObject:service.UUID];
+////                
+////            }
+//            [services addObject:[CBUUID UUIDWithString:kReceiveDataServiceUUID]];
+//        [services addObject:[CBUUID UUIDWithString:kSendDataServiceUUID]];
+//        [services addObject:[CBUUID UUIDWithString:kReceive20BytesDataCharateristicUUID]];
+//            [_activeCentralManager retrieveConnectedPeripheralsWithServices:services];
+//        }
+//    }
 }
 
 // 断开连接
@@ -212,10 +221,8 @@
         if (bp != nil) {
             bp.activePeripheral = peripheral;
             // 如果当前设备是已连接设备开始扫描服务
-            CBUUID	*RecSerUUID     = [CBUUID UUIDWithString:kReceiveDataServiceUUID];
-            CBUUID  *SenSerUUID     = [CBUUID UUIDWithString:kSendDataServiceUUID];
-            NSArray	*serviceArray	= [NSArray arrayWithObjects:RecSerUUID, SenSerUUID, nil];
-            [bp startPeripheral:peripheral DiscoverServices:serviceArray];
+             NSMutableArray *uuids = [[NSMutableArray alloc] initWithObjects:[CBUUID UUIDWithString:kSendDataServiceUUID], [CBUUID UUIDWithString:kReceiveDataServiceUUID],[CBUUID UUIDWithString:@"00001101-0000-1000-8000-00805F9B34FB"], nil];
+            [bp startPeripheral:peripheral DiscoverServices:uuids];
         }
         
         // 更新状态
@@ -279,6 +286,6 @@
 #pragma mark SendAction
 - (void)sendCommand:(NSString *)command
 {
-    [self.connectedBLE setSendData:[command dataUsingEncoding:NSASCIIStringEncoding]];  
+    [self.connectedBLE sendHexCommand:command];
 }
 @end

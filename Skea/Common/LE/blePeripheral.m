@@ -95,7 +95,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 /****************************************************************************/
 // 按UUID进行扫描
 -(void)startPeripheral:(CBPeripheral *)peripheral DiscoverServices:(NSArray *)services{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected]){
+    if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected){
         _activePeripheral = peripheral;
         [_activePeripheral setDelegate:(id<CBPeripheralDelegate>)self];
         [_activePeripheral discoverServices:services];
@@ -173,6 +173,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
                 for (characteristic in characteristics)
                 {
                     NSLog(@"发现特值UUID: %@\n", [characteristic UUID]);
+                    
                     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kReceive20BytesDataCharateristicUUID]])
                     {
                         _Receive20BytesDataCharateristic = characteristic;
@@ -198,6 +199,18 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
             //======================== END =========================
         }
     }
+}
+
+
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
+    
+     NSLog(@"发现特值UUID: %@\n ERROR=%@", [characteristic UUID],error);
+    
+    if (error==nil) {
+        //调用下面的方法后 会调用到代理的- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+        [peripheral readValueForCharacteristic:characteristic];
+    }
+    
 }
 
 // 更新特征值
@@ -228,7 +241,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 /******************************************************/
 // 写数据到特征值
 -(void) writeValue:(CBPeripheral *)peripheral characteristic:(CBCharacteristic *)characteristic data:(NSData *)data{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected])
+    if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
             NSLog(@"成功写数据到特征值: %@ 数据:%@\n", characteristic.UUID, data);
@@ -239,7 +252,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 
 // 从特征值读取数据
 -(void) readValue:(CBPeripheral *)peripheral characteristicUUID:(CBCharacteristic *)characteristic{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected])
+    if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
             NSLog(@"成功从特征值:%@ 读数据\n", characteristic);
@@ -250,7 +263,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 
 // 发通知到特征值
 -(void) notification:(CBPeripheral *)peripheral characteristicUUID:(CBCharacteristic *)characteristic state:(BOOL)state{
-    if ([peripheral isEqual:_activePeripheral] && [peripheral isConnected])
+    if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
             NSLog(@"成功发通知到特征值: %@\n", characteristic);
@@ -300,71 +313,113 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     _ShowStringBuffer = [_ShowStringBuffer stringByAppendingString:rxASCII];
 }
 
--(void)setSendData:(NSData *)data{
-    Byte dataLength = data.length;
+- (void)sendHexCommand:(NSString *)hexString
+{
+    if (hexString==nil || [hexString length]!=16) {
+        return;
+    }
+    int j=0;
+    Byte bytes[8];  ///3ds key的Byte 数组， 128位
+    for(int i=0;i<[hexString length];i++)
+    {
+        int int_ch;  /// 两位16进制数转化后的10进制数
+        
+        unichar hex_char1 = [hexString characterAtIndex:i]; ////两位16进制数中的第一位(高位*16)
+        int int_ch1;
+        if(hex_char1 >= '0' && hex_char1 <='9')
+            int_ch1 = (hex_char1-48)*16;   //// 0 的Ascll - 48
+        else if(hex_char1 >= 'A' && hex_char1 <='F')
+            int_ch1 = (hex_char1-55)*16; //// A 的Ascll - 65
+        else
+            int_ch1 = (hex_char1-87)*16; //// a 的Ascll - 97
+        i++;
+        
+        unichar hex_char2 = [hexString characterAtIndex:i]; ///两位16进制数中的第二位(低位)
+        int int_ch2;
+        if(hex_char2 >= '0' && hex_char2 <='9')
+            int_ch2 = (hex_char2-48); //// 0 的Ascll - 48
+        else if(hex_char1 >= 'A' && hex_char1 <='F')
+            int_ch2 = hex_char2-55; //// A 的Ascll - 65
+        else
+            int_ch2 = hex_char2-87; //// a 的Ascll - 97
+        
+        int_ch = int_ch1+int_ch2;
+        
+        bytes[j] = int_ch;  ///将转化后的数放入Byte数组里
+        j++;
+    }
+    NSData *newData = [[NSData alloc] initWithBytes:bytes length:8];
     
-//    if (dataLength == TRANSMIT_20BYTES_DATA_LENGHT) {
-        // 发送计数加1
-        _txCounter++;
-        
-        Byte data2Byte[dataLength];
-        [data getBytes:&data2Byte length:dataLength];
-        NSString *dataASCII = [[NSString alloc]initWithBytes:data2Byte length:dataLength encoding:NSASCIIStringEncoding];
-        DLog(@"dataASCII:%@",dataASCII);
-        NSString *dataHex = [[NSString alloc]initWithFormat:@" %@",data];
-        dataASCII = [dataASCII stringByAppendingString:dataHex];
-        DLog(@"dataASCII:%@",dataASCII);
-        [self writeValue:_activePeripheral characteristic:_Send20BytesDataCharateristic data:data];
-        [self addSendASCIIStringToShowStringBuffer:dataASCII];
-        _staticString = [[NSString alloc]initWithFormat:@"Send:%@",dataASCII];
-        nUpdataShowStringBuffer
+    
+     [self writeValue:_activePeripheral characteristic:_Send20BytesDataCharateristic data:newData];
+}
+
+
+//-(void)setSendData:(NSData *)data{
+//    Byte dataLength = data.length;
+//    
+////    if (dataLength == TRANSMIT_20BYTES_DATA_LENGHT) {
+//        // 发送计数加1
+//        _txCounter++;
+//        
+//        Byte data2Byte[dataLength];
+//        [data getBytes:&data2Byte length:dataLength];
+//        NSString *dataASCII = [[NSString alloc]initWithBytes:data2Byte length:dataLength encoding:NSASCIIStringEncoding];
+//        DLog(@"dataASCII:%@",dataASCII);
+//        NSString *dataHex = [[NSString alloc]initWithFormat:@" %@",data];
+//        dataASCII = [dataASCII stringByAppendingString:dataHex];
+//        DLog(@"dataASCII:%@",dataASCII);
+//        [self writeValue:_activePeripheral characteristic:_Send20BytesDataCharateristic data:data];
+//        [self addSendASCIIStringToShowStringBuffer:dataASCII];
+//        _staticString = [[NSString alloc]initWithFormat:@"Send:%@",dataASCII];
+//        nUpdataShowStringBuffer
+////    }
+//}
+//
+//-(void)addSendASCIIStringToShowStringBuffer:(NSString *)aString{
+//    // 在发送的数据前面叠加"IP:"后面加入换行后添加到显示缓存
+//    NSString *txASCII = [[NSString alloc]initWithFormat:@"IP:"];
+//    txASCII = [txASCII stringByAppendingString:aString];
+//    txASCII = [txASCII stringByAppendingString:@"\n"];
+//    _ShowStringBuffer = [_ShowStringBuffer stringByAppendingString:txASCII];
+//}
+
+//-(void)setAutoSendData:(BOOL)AutoSendData{
+//    if (AutoSendData == YES) {
+//        // 自动发送测试数据
+//        if (autoSendDataTimer != nil) {
+//            [autoSendDataTimer invalidate];
+//        }
+//        autoSendDataTimer = [NSTimer scheduledTimerWithTimeInterval:kAutoSendTestDataTimer target:self selector:@selector(AutoSendDataEvent) userInfo:nil repeats:YES];
 //    }
-}
+//    else{
+//        [autoSendDataTimer invalidate];
+//        autoSendDataTimer = nil;
+//        testSendCount = 0;
+//    }
+//}
 
--(void)addSendASCIIStringToShowStringBuffer:(NSString *)aString{
-    // 在发送的数据前面叠加"IP:"后面加入换行后添加到显示缓存
-    NSString *txASCII = [[NSString alloc]initWithFormat:@"IP:"];
-    txASCII = [txASCII stringByAppendingString:aString];
-    txASCII = [txASCII stringByAppendingString:@"\n"];
-    _ShowStringBuffer = [_ShowStringBuffer stringByAppendingString:txASCII];
-}
-
--(void)setAutoSendData:(BOOL)AutoSendData{
-    if (AutoSendData == YES) {
-        // 自动发送测试数据
-        if (autoSendDataTimer != nil) {
-            [autoSendDataTimer invalidate];
-        }
-        autoSendDataTimer = [NSTimer scheduledTimerWithTimeInterval:kAutoSendTestDataTimer target:self selector:@selector(AutoSendDataEvent) userInfo:nil repeats:YES];
-    }
-    else{
-        [autoSendDataTimer invalidate];
-        autoSendDataTimer = nil;
-        testSendCount = 0;
-    }
-}
-
--(void)AutoSendDataEvent{
-    // 发送数据自动加1
-    if (_activePeripheral.isConnected == YES) {
-        testSendCount++;
-        NSString *txAccString = [[NSString alloc]initWithFormat:@"%05d", testSendCount];
-        NSString *test20ByteASCII = [[NSString alloc]initWithFormat:@"ABCDEFGHIJKLMNO"];
-        test20ByteASCII = [test20ByteASCII stringByAppendingString:txAccString];
-        [self setSendData:[test20ByteASCII dataUsingEncoding:NSASCIIStringEncoding]];
-    }
-    else{
-        [autoSendDataTimer invalidate];
-        autoSendDataTimer = nil;
-        testSendCount = 0;
-        
-        _connectedFinish = kDisconnected;
-        _AutoSendData = NO;
-        
-        _staticString = @"Disconnect";
-        _currentPeripheralState = blePeripheralDelegateStateInit;
-        nPeripheralStateChange
-    }
-}
+//-(void)AutoSendDataEvent{
+//    // 发送数据自动加1
+//    if ([_activePeripheral state]==CBPeripheralStateConnected) {
+//        testSendCount++;
+//        NSString *txAccString = [[NSString alloc]initWithFormat:@"%05d", testSendCount];
+//        NSString *test20ByteASCII = [[NSString alloc]initWithFormat:@"ABCDEFGHIJKLMNO"];
+//        test20ByteASCII = [test20ByteASCII stringByAppendingString:txAccString];
+//        [self setSendData:[test20ByteASCII dataUsingEncoding:NSASCIIStringEncoding]];
+//    }
+//    else{
+//        [autoSendDataTimer invalidate];
+//        autoSendDataTimer = nil;
+//        testSendCount = 0;
+//        
+//        _connectedFinish = kDisconnected;
+//        _AutoSendData = NO;
+//        
+//        _staticString = @"Disconnect";
+//        _currentPeripheralState = blePeripheralDelegateStateInit;
+//        nPeripheralStateChange
+//    }
+//}
 
 @end
