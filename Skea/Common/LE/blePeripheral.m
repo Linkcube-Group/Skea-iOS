@@ -13,7 +13,7 @@
 // TransmitMoudel Receive Data Service UUID
 NSString *kReceiveDataServiceUUID                       = @"180A";
 // TransmitMoudel characteristics UUID
-NSString *kReceive20BytesDataCharateristicUUID          = @"49535343-8841-43F4-A8D4-ECBE34729BB3";
+NSString *kReceive20BytesDataCharateristicUUID          = @"49535343-1E4D-4BD9-BA61-23C647249616";
 
 // TransmitMoudel Send Data Service UUID
 NSString *kSendDataServiceUUID                          = @"49535343-FE7D-4AE5-8FA9-9FAFD205E455";
@@ -168,21 +168,22 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
             NSArray *characteristics = [service characteristics];
             CBCharacteristic *characteristic;
             //================== TransmitMoudel =====================// FFE1 FFE2 FFE3 FFE4
-            if ([[service UUID] isEqual:[CBUUID UUIDWithString:kReceiveDataServiceUUID]])
-            {
-                for (characteristic in characteristics)
-                {
-                    NSLog(@"发现特值UUID: %@\n", [characteristic UUID]);
-                    
-                    if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kReceive20BytesDataCharateristicUUID]])
-                    {
-                        _Receive20BytesDataCharateristic = characteristic;
-                        [peripheral setNotifyValue:YES forCharacteristic:characteristic];
-                    }
-                }
-            }
+//            if ([[service UUID] isEqual:[CBUUID UUIDWithString:kReceiveDataServiceUUID]])
+//            {
+//                for (characteristic in characteristics)
+//                {
+//                    NSLog(@"发现特值UUID: %@\n", [characteristic UUID]);
+//                     [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+//                    
+//                    if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kReceive20BytesDataCharateristicUUID]])
+//                    {
+//                        _Receive20BytesDataCharateristic = characteristic;
+//                        [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+//                    }
+//                }
+//            }
             //================== TransmitMoudel =====================// FFE6 FFE7 FFE8 FFE9
-            else if ([[service UUID] isEqual:[CBUUID UUIDWithString:kSendDataServiceUUID]])
+             if ([[service UUID] isEqual:[CBUUID UUIDWithString:kSendDataServiceUUID]])
             {
                 for (characteristic in characteristics)
                 {
@@ -193,6 +194,10 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
                         
                         // 完成连接
                         [self FinishConnected];
+                    }
+                    else if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kReceive20BytesDataCharateristicUUID]]){
+                         _Receive20BytesDataCharateristic = characteristic;
+                         [peripheral setNotifyValue:YES forCharacteristic:characteristic];
                     }
                 }
             }
@@ -291,17 +296,18 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     // 接收计数加1
     _rxCounter++;
     
-    Byte data2Byte[dataLength];
-    [data getBytes:&data2Byte length:dataLength];
-    NSString *dataASCII = [[NSString alloc]initWithBytes:data2Byte length:dataLength encoding:NSASCIIStringEncoding];
-    NSLog(@"dataASCII:%@",dataASCII);
-    NSString *dataHex = [[NSString alloc]initWithFormat:@" %@",data];
-    dataASCII = [dataASCII stringByAppendingString:dataHex];
-    NSLog(@"dataASCII:%@",dataASCII);
-    [self addReceiveASCIIStringToShowStringBuffer:dataASCII];
-    _staticString = dataASCII;// [[NSString alloc]initWithFormat:@"Receive:%@",dataASCII];
-//    nUpdataShowStringBuffer
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CBUpdataShowStringBuffer" object:nil userInfo:@{@"data":_staticString,@"uuid":self.uuidString}];
+    NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    Byte data2Byte[dataLength];
+//    [data getBytes:&data2Byte length:dataLength];
+//    NSString *dataASCII = [[NSString alloc]initWithBytes:data2Byte length:dataLength encoding:NSUTF8StringEncoding];
+//    NSLog(@"dataASCII:%@",dataASCII);
+//    NSString *dataHex = [[NSString alloc]initWithFormat:@" %@",data];
+//    dataASCII = [dataASCII stringByAppendingString:dataHex];
+//    NSLog(@"dataASCII:%@",dataASCII);
+//    [self addReceiveASCIIStringToShowStringBuffer:dataASCII];
+//    _staticString = dataASCII;// [[NSString alloc]initWithFormat:@"Receive:%@",dataASCII];
+////    nUpdataShowStringBuffer
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CBUpdataShowStringBuffer" object:nil userInfo:@{@"data":result,@"uuid":self.uuidString}];
     
 }
 
