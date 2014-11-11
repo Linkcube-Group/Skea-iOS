@@ -103,8 +103,8 @@
 - (IBAction)settingAction:(id)sender
 {
     LoginViewController *lvc = [[LoginViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lvc];
-    [self presentViewController:nav animated:YES completion:nil];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lvc];
+    [self presentViewController:lvc animated:YES completion:nil];
 
 }
 
