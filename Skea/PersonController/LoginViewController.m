@@ -196,8 +196,8 @@
 {
     NSLog(@"注册");
     SignViewController * svc = [[SignViewController alloc] init];
-    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:svc];
-    [self presentViewController:nvc animated:YES completion:nil];
+//    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:svc];
+    [self presentViewController:svc animated:YES completion:nil];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

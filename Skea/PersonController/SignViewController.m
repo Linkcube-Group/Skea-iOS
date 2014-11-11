@@ -32,8 +32,34 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
-    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+//    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
+//    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    
+    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundImage:IMG(@"back-cross.png") forState:UIControlStateNormal];
+    btn.tag = 200;
+    [btn addTarget:self action:@selector(btBack_DisModal:) forControlEvents:UIControlEventTouchUpInside];
+    btn.titleLabel.font=[Theam currentTheam].navigationBarItemFont;
+    [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
+    [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    btn.frame=CGRectMake(10, 34, 30, 30);
+    
+    //让图片在最右侧对齐
+    CGSize imagesize=IMG(@"back-cross.png").size;
+    imagesize.width=imagesize.width/2;
+    imagesize.height=imagesize.height/2;
+    CGSize btnsize=btn.size;
+    
+    //iOS7下面导航按钮会默认有10px间距
+    UIEdgeInsets insets=UIEdgeInsetsMake((btnsize.height-imagesize.height)/2, btnsize.width-imagesize.width, (btnsize.height-imagesize.height)/2, 0);
+    [btn setImageEdgeInsets:insets];
+    btn.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    
+    if (DeviceSystemSmallerThan(7.0)) {
+        [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    }
+    [self.view addSubview:btn];
     
     _emailTextField  = [[UITextField alloc] init];
     _passwordTextField = [[UITextField alloc] init];
@@ -41,9 +67,10 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, self.view.frame.size.height - 64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:tableView];
 }
 
@@ -73,6 +100,7 @@
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     if(indexPath.row == 0)
     {
@@ -153,9 +181,10 @@
         
         UIButton * regButton = [UIButton buttonWithType:UIButtonTypeCustom];
         regButton.frame = CGRectMake(40, 50, self.view.frame.size.width - 80, 30);
+        regButton.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
         //        [loginButtn setImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
         regButton.layer.borderWidth = 0.5;
-        regButton.layer.borderColor = [UIColor blackColor].CGColor;
+        regButton.layer.borderColor = [UIColor colorWithRed:103/255.f green:201/255 blue:224/255.f alpha:1.f].CGColor;
         regButton.layer.cornerRadius = 15.f;
         [regButton setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
         [regButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
