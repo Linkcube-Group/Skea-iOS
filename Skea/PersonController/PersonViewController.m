@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"填写资料", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -39,6 +39,7 @@
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:tableView];
 
     
@@ -70,6 +71,7 @@
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     if(indexPath.row == 0)
     {
@@ -80,7 +82,7 @@
         
         UILabel * roundLabel = [[UILabel alloc] init];
         roundLabel.frame = CGRectMake(40, -7.5, 15, 15);
-        roundLabel.backgroundColor = [UIColor blueColor];
+        roundLabel.backgroundColor = [UIColor colorWithRed:103/255.f green:201/255.f blue:224/255.f alpha:1.f];
         roundLabel.text = @"1";
         roundLabel.font = [UIFont systemFontOfSize:13];
         roundLabel.layer.cornerRadius = 7.5;
@@ -103,7 +105,7 @@
         UILabel * label = [[UILabel alloc] init];
         label.frame = CGRectMake(30, lineView.frame.origin.y + lineView.frame.size.height + 8, 60, 20);
         label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor blueColor];
+        label.textColor = [UIColor colorWithRed:103/255.f green:201/255.f blue:224/255.f alpha:1.f];
         label.font = [UIFont systemFontOfSize:13];
         label.text = NSLocalizedString(@"填写资料", nil);
         [cell.contentView addSubview:label];
