@@ -113,7 +113,7 @@
     else if (indexPath.row == 1)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 5, 30, 30);
+        imageView.frame = CGRectMake(40, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-email.png"];
         [cell.contentView addSubview:imageView];
         
@@ -132,7 +132,7 @@
     else if (indexPath.row == 2)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 5, 30, 30);
+        imageView.frame = CGRectMake(40, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-password.png"];
         [cell.contentView addSubview:imageView];
         
@@ -164,8 +164,9 @@
         loginButtn.frame = CGRectMake(40, 50, self.view.frame.size.width - 80, 30);
         loginButtn.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
 //        [loginButtn setImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
-        loginButtn.layer.borderWidth = 0.5;
-        loginButtn.layer.borderColor = [UIColor colorWithRed:103/255.f green:201/255 blue:224/255.f alpha:1.f].CGColor;
+        [loginButtn setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+//        loginButtn.layer.borderWidth = 0.5;
+//        loginButtn.layer.borderColor = [UIColor colorWithRed:103/255.f green:201/255 blue:224/255.f alpha:1.f].CGColor;
         loginButtn.layer.cornerRadius = 15.f;
         [loginButtn setTitle:NSLocalizedString(@"登陆", nil) forState:UIControlStateNormal];
         [loginButtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

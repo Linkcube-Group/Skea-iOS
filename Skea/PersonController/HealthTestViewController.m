@@ -7,6 +7,7 @@
 //
 
 #import "HealthTestViewController.h"
+#import "SelectLevelViewController.h"
 
 @interface HealthTestViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -20,10 +21,22 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor whiteColor];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 424) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 360) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.scrollEnabled = NO;
     [self.view addSubview:tableView];
+    
+    UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    AgainButton.frame = CGRectMake(10,430,self.view.frame.size.width - 20,40);
+//    AgainButton.layer.borderWidth = 0.5f;
+//    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
+    [AgainButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+    AgainButton.layer.cornerRadius = 20.f;
+    [AgainButton setTitle:NSLocalizedString(@"Re-evaluate", nil) forState:UIControlStateNormal];
+    [AgainButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [AgainButton addTarget:self action:@selector(again) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:AgainButton];
 
 }
 
@@ -41,10 +54,10 @@
 {
     if(indexPath.row == 0)
         return 100;
-    if(indexPath.row == 1)
-        return 80.f;
-    if(indexPath.row == 2 || indexPath.row == 3)
+    if(indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4)
         return 40.f;
+    if(indexPath.row == 2)
+        return 80.f;
     return 100.f;
 }
 
@@ -55,6 +68,7 @@
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -71,101 +85,39 @@
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
         [cell.contentView addSubview:label];
         
-        UIView * view = [[UIView alloc] init];
-        view.frame = CGRectMake(self.view.frame.size.width - 80 - 10, 10, 80, 80);
-        view.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];;
-        view.layer.cornerRadius = 40.f;
-        view.layer.borderColor = [UIColor whiteColor].CGColor;
-        view.layer.borderWidth = 0.5f;
-        [cell.contentView addSubview:view];
+        UIImageView * imageView = [[UIImageView alloc] init];
+        imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10, 10, 80, 80);
+        imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
+        [cell.contentView addSubview:imageView];
         
-        UILabel * textlabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-        textlabel.backgroundColor = [UIColor clearColor];
-        textlabel.text = @"Low";
-        textlabel.textColor = [UIColor blueColor];
-        textlabel.textAlignment = NSTextAlignmentCenter;
-        textlabel.font = [UIFont boldSystemFontOfSize:28.f];
-        [view addSubview:textlabel];
     }
     
     if(indexPath.row == 1)
     {
-        UILabel * sugLabel = [[UILabel alloc] init];
-        sugLabel.frame = CGRectMake(20, 0, 50, 30);
-        sugLabel.text = @"Sug.";
-        sugLabel.textColor = [UIColor blueColor];
-        sugLabel.font = [UIFont boldSystemFontOfSize:20.f];
-        [cell.contentView addSubview:sugLabel];
-        
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:NSLocalizedString(@"建议", nil)]];
+    }
+    if(indexPath.row == 3)
+    {
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:NSLocalizedString(@"强度", nil)]];
+    }
+    if(indexPath.row == 4)
+    {
+        cell.textLabel.text = NSLocalizedString(@"Level 4", nil);
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    if(indexPath.row == 2)
+    {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(80, 0, self.view.frame.size.width - 80 - 20, 80);
+        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 80);
         label.text = @"UILabel * textlabel = [[UILabel allocinitWithFrame:CGRectMake(0, 0, 80, 80)];textlabel.backgroundColor = [UIColor clearColor];textlabel.text = ;textlabel.textColor = [UIColor blueColor];textlabel.textAlignment = NSTextAlignmentCenter;textlabel.font = [UIFont boldSystemFontOfSize:28.f];[view addSubview:textlabel];";
         label.font = [UIFont systemFontOfSize:12.f];
         label.numberOfLines = 10;
         [cell.contentView addSubview:label];
         
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.f];
-    }
-    if(indexPath.row == 2)
-    {
-        UILabel * sportLabel = [[UILabel alloc] init];
-        sportLabel.frame = CGRectMake(20, 0, 70, 30);
-        sportLabel.text = @"Sport";
-        sportLabel.textColor = [UIColor blueColor];
-        sportLabel.font = [UIFont boldSystemFontOfSize:20.f];
-        [cell.contentView addSubview:sportLabel];
-        
-        
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(100, 5, 120, 30);
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont systemFontOfSize:12.f];
-        
-        UITextField * textField = [[UITextField alloc] init];
-        textField.frame = CGRectMake(220, 5, self.view.frame.size.width - 220 - 20 - 20, 30);
-        textField.font = [UIFont systemFontOfSize:12.f];
-        textField.textAlignment=NSTextAlignmentRight;
-        textField.delegate = self;
-        textField.returnKeyType = UIReturnKeyDone;
-        
-        label.text = NSLocalizedString(@"Recommended Exercise", nil);
-        textField.text = @"Level 4";
-        [cell.contentView addSubview:label];
-        [cell.contentView addSubview:textField];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
-    }
-    if(indexPath.row == 3)
-    {
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(100, 5, 120, 30);
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont systemFontOfSize:12.f];
-        
-        UITextField * textField = [[UITextField alloc] init];
-        textField.frame = CGRectMake(220, 5, self.view.frame.size.width - 220 - 20 - 20, 30);
-        textField.font = [UIFont systemFontOfSize:12.f];
-        textField.textAlignment=NSTextAlignmentRight;
-        textField.delegate = self;
-        textField.returnKeyType = UIReturnKeyDone;
-        
-        label.text = NSLocalizedString(@"Exercise Cycle", nil);
-        textField.text = @"30 Days";
-        [cell.contentView addSubview:label];
-        [cell.contentView addSubview:textField];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else if(indexPath.row == 4)
-    {
-        UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        AgainButton.frame = CGRectMake(50,50,self.view.frame.size.width - 100,40);
-        AgainButton.layer.borderWidth = 0.5f;
-        AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
-        AgainButton.layer.cornerRadius = 20.f;
-        [AgainButton setTitle:NSLocalizedString(@"Test Again", nil) forState:UIControlStateNormal];
-        [AgainButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [AgainButton addTarget:self action:@selector(again) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:AgainButton];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
     return cell;
 }
@@ -176,15 +128,29 @@
     [alert show];
 }
 
+-(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title
+{
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:rect];
+    imageView.image = [UIImage imageNamed:@"title-background.png"];
+    UILabel * label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor clearColor];
+    label.frame = CGRectMake(20, 0, imageView.frame.size.width - 20, imageView.frame.size.height);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.text = title.length?title:@"";
+    [imageView addSubview:label];
+    return imageView;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    [textField resignFirstResponder];
-    return YES;
+    if(indexPath.row == 4)
+    {
+        SelectLevelViewController * hvc = [[SelectLevelViewController alloc] init];
+        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:hvc];
+        [self presentViewController:nvc animated:YES completion:nil];
+    }
 }
 
 

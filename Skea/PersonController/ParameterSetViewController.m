@@ -8,7 +8,7 @@
 
 #import "ParameterSetViewController.h"
 
-@interface ParameterSetViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ParameterSetViewController ()
 
 @end
 
@@ -20,63 +20,62 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea参数设置"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor whiteColor];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 224) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    
+    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
+    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 114, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil)]];
+    
+    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 194, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)]];
+    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 244, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil)]];
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+-(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title
 {
-    return 1;
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:rect];
+    imageView.image = [UIImage imageNamed:@"title-background.png"];
+    UILabel * label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor clearColor];
+    label.frame = CGRectMake(20, 0, imageView.frame.size.width - 20, imageView.frame.size.height);
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.text = title.length?title:@"";
+    [imageView addSubview:label];
+    return imageView;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(UIView *)createSlidreWithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right
 {
-    return 4;
+    UIView * view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
+    
+    UISlider *slider=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
+    slider.backgroundColor = [UIColor clearColor];
+    
+    [slider setThumbImage:thumbImage forState:UIControlStateHighlighted];
+    [slider setThumbImage:thumbImage forState:UIControlStateNormal];
+    
+//    [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:slider];
+    
+    [view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];
+    
+    return view;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+-(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title textAlignment:(NSTextAlignment)textAlignment
 {
-    return 40.f;
+    UILabel * label = [[UILabel alloc] init];
+    label.frame  = rect;
+    label.backgroundColor = [UIColor clearColor];
+    label.text = title.length?title:@"";
+    label.textAlignment = textAlignment;
+    label.textColor = [UIColor grayColor];
+    return label;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString * cellIdentifier = [NSString stringWithFormat:@"cell_%ld",(long)indexPath.row];
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    if(indexPath.row == 0)
-    {
-        cell.textLabel.text = NSLocalizedString(@"压力敏感度", nil);
-        cell.textLabel.textColor = [UIColor blueColor];
-        cell.textLabel.font = [UIFont systemFontOfSize:14.f];
-    }
-    else if(indexPath.row == 2)
-    {
-        cell.textLabel.text = NSLocalizedString(@"反馈震动强度", nil);
-        cell.textLabel.textColor = [UIColor blueColor];
-        cell.textLabel.font = [UIFont systemFontOfSize:14.f];
-    }
-    else
-    {
-        UISlider * slider = [[UISlider alloc] init];
-        slider.frame = CGRectMake(20, 5, self.view.frame.size.width - 40, 30);
-        [cell.contentView addSubview:slider];
-    }
-    return cell;
-}
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

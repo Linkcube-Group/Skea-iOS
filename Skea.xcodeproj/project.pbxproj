@@ -205,6 +205,9 @@
 		2677CEB719FB738F0068454F /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAE19FB738F0068454F /* grayArrow@2x.png */; };
 		2677CEB819FB738F0068454F /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAF19FB738F0068454F /* whiteArrow.png */; };
 		2677CEB919FB738F0068454F /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEB019FB738F0068454F /* whiteArrow@2x.png */; };
+		26A6F9401A13B06E00712594 /* icon-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26A6F93F1A13B06E00712594 /* icon-me@2x.png */; };
+		26A6F9431A13BE8D00712594 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9421A13BE8D00712594 /* BuyViewController.m */; };
+		26A6F9461A13DB4000712594 /* SelectLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9451A13DB4000712594 /* SelectLevelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -531,6 +534,11 @@
 		2677CEAE19FB738F0068454F /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		2677CEAF19FB738F0068454F /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		2677CEB019FB738F0068454F /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		26A6F93F1A13B06E00712594 /* icon-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-me@2x.png"; sourceTree = "<group>"; };
+		26A6F9411A13BE8D00712594 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyViewController.h; sourceTree = "<group>"; };
+		26A6F9421A13BE8D00712594 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
+		26A6F9441A13DB4000712594 /* SelectLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLevelViewController.h; sourceTree = "<group>"; };
+		26A6F9451A13DB4000712594 /* SelectLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLevelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -593,10 +601,14 @@
 				0312887E19E43A3F0073C83B /* TestingViewController.xib */,
 				2671F5851A0220C300E0B780 /* PersonLoginedViewController.h */,
 				2671F5861A0220C300E0B780 /* PersonLoginedViewController.m */,
+				26A6F9411A13BE8D00712594 /* BuyViewController.h */,
+				26A6F9421A13BE8D00712594 /* BuyViewController.m */,
 				2671F5881A02278600E0B780 /* PersonSetViewController.h */,
 				2671F5891A02278600E0B780 /* PersonSetViewController.m */,
 				2671F58B1A0227D900E0B780 /* HealthTestViewController.h */,
 				2671F58C1A0227D900E0B780 /* HealthTestViewController.m */,
+				26A6F9441A13DB4000712594 /* SelectLevelViewController.h */,
+				26A6F9451A13DB4000712594 /* SelectLevelViewController.m */,
 				2671F58E1A02324700E0B780 /* ParameterSetViewController.h */,
 				2671F58F1A02324700E0B780 /* ParameterSetViewController.m */,
 			);
@@ -711,6 +723,7 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				26A6F93F1A13B06E00712594 /* icon-me@2x.png */,
 				033EAC5F1A09FEFD007807A0 /* chart@2x.png */,
 				0312514C19F9CE4500245659 /* bar_7@2x.png */,
 				0312514D19F9CE4500245659 /* bar_7s@2x.png */,
@@ -1254,6 +1267,7 @@
 				2677CEB419FB738F0068454F /* blueArrow@2x.png in Resources */,
 				038885AC19F158B900372178 /* icon-settings@2x.png in Resources */,
 				038885B419F158B900372178 /* scroll-bar@2x.png in Resources */,
+				26A6F9401A13B06E00712594 /* icon-me@2x.png in Resources */,
 				0388859419F158B900372178 /* bar_12@2x.png in Resources */,
 				0312887619E43A0B0073C83B /* LoginViewController.xib in Resources */,
 				038885BC19F158B900372178 /* settings-settings@2x.png in Resources */,
@@ -1397,11 +1411,13 @@
 				03E5320A19DA7D320064762E /* MJRefreshFooterView.m in Sources */,
 				03E532EB19DA7D470064762E /* UIResponder+Extension.m in Sources */,
 				03E532D019DA7D470064762E /* DispatchQueueLogFormatter.m in Sources */,
+				26A6F9461A13DB4000712594 /* SelectLevelViewController.m in Sources */,
 				03E532B119DA7D470064762E /* CustomMenuSheet.m in Sources */,
 				261639A819FCB7EF007496BF /* SKRefreshTableFooterView.m in Sources */,
 				0303B61919F90B5200DC4D85 /* GameInfo.m in Sources */,
 				03E532E019DA7D470064762E /* RegexKitLite.m in Sources */,
 				03E532C419DA7D470064762E /* UIAlertView+MKNetworkKitAdditions.m in Sources */,
+				26A6F9431A13BE8D00712594 /* BuyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,7 +14,12 @@
 @end
 
 @implementation TestingViewController
-
+{
+    UIImageView * _bluePoint1;
+    UIImageView * _bluePoint2;
+    UIImageView * _bluePoint3;
+    UIImageView * _bluePoint4;
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -27,8 +32,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _bluePoint1 = [[UIImageView alloc] init];
+    _bluePoint2 = [[UIImageView alloc] init];
+    _bluePoint3 = [[UIImageView alloc] init];
+    _bluePoint4 = [[UIImageView alloc] init];
+    _bluePoint1.image = [UIImage imageNamed:@"scroll-bar-selection.png"];
+    _bluePoint2.image = [UIImage imageNamed:@"scroll-bar-selection.png"];
+    _bluePoint3.image = [UIImage imageNamed:@"scroll-bar-selection.png"];
+    _bluePoint4.image = [UIImage imageNamed:@"scroll-bar-selection.png"];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Risk Evaluation"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height) style:UITableViewStylePlain];
@@ -44,22 +57,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 9;
+    return 11;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0)
         return 60.f;
-    if(indexPath.row == 1)
-        return 60.f;
-    if(indexPath.row == 2 || indexPath.row == 6)
+    if(indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5)
         return 40.f;
-    if(indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5)
-        return 40.f;
-    if(indexPath.row == 7)
-        return 100.f;
-    return 60.f;
+    if(indexPath.row == 6 || indexPath.row == 9)
+        return 70.f;
+    if(indexPath.row == 7 || indexPath.row == 8)
+        return 110;
+    return 40.f;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -69,115 +80,219 @@
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.contentView.backgroundColor = [UIColor whiteColor];
     if(indexPath.row == 0)
     {
-        UIView * lineView = [[UIView alloc] init];
-        lineView.frame = CGRectMake(0, 20, self.view.frame.size.width, 3);
-        lineView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.f];
-        [cell.contentView addSubview:lineView];
-        
-        UILabel * roundLabel = [[UILabel alloc] init];
-        roundLabel.frame = CGRectMake(40, -7.5, 15, 15);
-        roundLabel.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1.f];
-        roundLabel.text = @"1";
-        roundLabel.font = [UIFont systemFontOfSize:13];
-        roundLabel.layer.cornerRadius = 7.5;
-        roundLabel.layer.masksToBounds = YES;
-        roundLabel.textColor = [UIColor whiteColor];
-        roundLabel.textAlignment = NSTextAlignmentCenter;
-        [lineView addSubview:roundLabel];
-        
-        UILabel * roundLabel2 = [[UILabel alloc] init];
-        roundLabel2.frame = CGRectMake(self.view.frame.size.width - 43, -7.5, 15, 15);
-        roundLabel2.backgroundColor = [UIColor blueColor];
-        roundLabel2.text = @"2";
-        roundLabel2.font = [UIFont systemFontOfSize:13];
-        roundLabel2.layer.cornerRadius = 7.5;
-        roundLabel2.layer.masksToBounds = YES;
-        roundLabel2.textColor = [UIColor whiteColor];
-        roundLabel2.textAlignment = NSTextAlignmentCenter;
-        [lineView addSubview:roundLabel2];
-        
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(self.view.frame.size.width - 80, lineView.frame.origin.y + lineView.frame.size.height + 8, 70, 20);
-        label.backgroundColor = [UIColor clearColor];
-        label.textColor = [UIColor blueColor];
-        label.font = [UIFont systemFontOfSize:13];
-        label.text = NSLocalizedString(@"盆底肌测试", nil);
-        [cell.contentView addSubview:label];
-
+        cell.textLabel.text = @"Please fill in the questionnaire in order that we can evaluate the health risk of your pelvic floor muscle.";
+        [cell.textLabel setTextColor:[UIColor colorWithRed:139/255.f green:220/255.f blue:222/255.f alpha:1.f]];
+        cell.textLabel.numberOfLines = 4;
+        cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     }
-    else if (indexPath.row == 1)
+    if(indexPath.row == 1)
     {
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 40, 60.f);
-        label.backgroundColor = [UIColor clearColor];
-        label.text = NSLocalizedString(@"请填写如下信息，有助于我们帮主您评估盆底肌健康状况", nil);
-        label.textColor = [UIColor blueColor];
-        label.numberOfLines = 2;
-        label.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:label];
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:@"Basic information"]];
     }
-    else if (indexPath.row == 2)
+    if(indexPath.row == 2)
     {
-        [cell.contentView addSubview:[self getTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40) title:@"基础数据"]];
+        cell.textLabel.text = @"Birthday";
+        UITextField * field = [[UITextField alloc] init];
+        field.frame = CGRectMake(100, 0, self.view.frame.size.width - 110, 40.f);
+        field.text = @"1980-01-01";
+        field.delegate = self;
+        field.textAlignment = NSTextAlignmentRight;
+        [cell.contentView addSubview:field];
     }
-    else if (indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5)
+    if(indexPath.row == 3)
     {
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 5, 60, 30);
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont systemFontOfSize:14.f];
-        
-        UITextField * textField = [[UITextField alloc] init];
-        textField.frame = CGRectMake(80, 5, self.view.frame.size.width - 80 - 20, 30);
-        textField.font = [UIFont systemFontOfSize:14.f];
-        textField.textAlignment=NSTextAlignmentRight;
-        textField.delegate = self;
-        textField.returnKeyType = UIReturnKeyDone;
-        
-        if(indexPath.row == 3)
-        {
-            label.text = NSLocalizedString(@"出生日期", nil);
-            textField.text = NSLocalizedString(@"1980年1月1日", nil);
-        }
-        else if (indexPath.row == 4)
-        {
-            label.text = NSLocalizedString(@"身高", nil);
-            textField.text = NSLocalizedString(@"155cm", nil);
-        }
-        else if (indexPath.row == 5)
-        {
-            label.text = NSLocalizedString(@"体重", nil);
-            textField.text = NSLocalizedString(@"55kg", nil);
-        }
-        [cell.contentView addSubview:label];
-        [cell.contentView addSubview:textField];
+        cell.textLabel.text = @"Height";
+        UITextField * field = [[UITextField alloc] init];
+        field.frame = CGRectMake(100, 0, self.view.frame.size.width - 110, 40.f);
+        field.text = @"5'9\"";
+        field.delegate = self;
+        field.textAlignment = NSTextAlignmentRight;
+        [cell.contentView addSubview:field];
     }
-    else if (indexPath.row == 6)
+    if(indexPath.row == 4)
     {
-        [cell.contentView addSubview:[self getTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40) title:@"私密信息部分"]];
+        cell.textLabel.text = @"Weight";
+        UITextField * field = [[UITextField alloc] init];
+        field.frame = CGRectMake(100, 0, self.view.frame.size.width - 110, 40.f);
+        field.text = @"134lb";
+        field.delegate = self;
+        field.textAlignment = NSTextAlignmentRight;
+        [cell.contentView addSubview:field];
     }
-    else if (indexPath.row ==7)
+    if(indexPath.row == 5)
     {
-        [cell.contentView addSubview:[self getSelectViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100) title:NSLocalizedString(@"生育经历", nil) titleArray:[NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@">5", nil] tag:indexPath.row]];
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:@"Health information"]];
     }
-    else
+    if(indexPath.row == 6)
     {
-        UIButton * submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        submitButton.frame = CGRectMake(50,10,self.view.frame.size.width - 100,40);
-        submitButton.layer.borderWidth = 0.5f;
-        submitButton.layer.borderColor = [UIColor blackColor].CGColor;
-        submitButton.layer.cornerRadius = 20.f;
-        [submitButton setTitle:NSLocalizedString(@"提交", nil) forState:UIControlStateNormal];
-        [submitButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [submitButton addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:submitButton];
+        [cell.contentView addSubview:[self createDTViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70.f) title:@"Reproductive History" titleArray:[NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@">3", nil] tag:indexPath.row]];
+        [self setBluePointAtIndexPath:indexPath inView:cell.contentView];
+    }
+    if(indexPath.row == 7)
+    {
+        [cell.contentView addSubview:[self createDTViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70.f) title:@"Sexual Activity" titleArray:[NSArray arrayWithObjects:@"Almost Never",@"Rare (>4 yearly)",@"Ocassional (>1 monthly)",@"Active (>1 weekly)",@"Pretty Active (>3 weekly)", nil] tag:indexPath.row]];
+        [self setBluePointAtIndexPath:indexPath inView:cell.contentView];
+        [cell.contentView addSubview:[self createContentViewWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 40) content:@"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction."]];
+    }
+    if(indexPath.row == 8)
+    {
+        [cell.contentView addSubview:[self createDTViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70.f) title:@"Urinary Incontinence" titleArray:[NSArray arrayWithObjects:@"Never",@"Rare (>4 yearly)",@"Ocassional (>1 monthly)",@"Often (>1 weekly)",@"Pretty Often (>3 weekly)", nil] tag:indexPath.row]];
+        [self setBluePointAtIndexPath:indexPath inView:cell.contentView];
+        [cell.contentView addSubview:[self createContentViewWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 40) content:@"Urinary incontinence is the measure of a risk factor of pelvic floor muscle dysfunction."]];
+    }
+    if(indexPath.row == 9)
+    {
+        [cell.contentView addSubview:[self createDTViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 70.f) title:@"Mental Status" titleArray:[NSArray arrayWithObjects:@"Very Restful",@"Restful",@"Normal",@"Stressful",@"Very Stressful", nil] tag:indexPath.row]];
+        [self setBluePointAtIndexPath:indexPath inView:cell.contentView];
+    }
+    if(indexPath.row == 10)
+    {
+        UIButton * submitButtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        submitButtn.frame = CGRectMake(10, 5, self.view.frame.size.width - 20, 30);
+        submitButtn.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
+        [submitButtn setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+        submitButtn.layer.cornerRadius = 15.f;
+        [submitButtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+        [submitButtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [submitButtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:submitButtn];
     }
     return cell;
+}
+
+-(UIView *)createDTViewWithFrame:(CGRect)rect title:(NSString *)title titleArray:(NSArray *)titleArray tag:(NSInteger)tag
+{
+    UIView * view = [[UIView alloc] init];
+    view.frame = rect;
+    view.backgroundColor = [UIColor whiteColor];
+    //30
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = CGRectMake(10, 0, view.frame.size.width - 20, 30);
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.text = title.length?title:@"";
+    [view addSubview:label];
+    //10
+    UIImageView * imageView = [[UIImageView alloc] init];
+    imageView.frame = CGRectMake(10, 30, view.frame.size.width - 20, 10);
+    imageView.image = [UIImage imageNamed:@"scroll-bar.png"];
+    [view addSubview:imageView];
+    //30
+    CGFloat width = imageView.frame.size.width;
+    CGFloat width_4 = width/4.f;
+    [view addSubview:[self createLabelWithFrame:CGRectMake(10 + width_4/2.f * 0, 40, width_4/2.f, 30) Title:[titleArray objectAtIndex:0] alignment:NSTextAlignmentLeft]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(10 + width_4/2.f * 1, 40, width_4, 30) Title:[titleArray objectAtIndex:1] alignment:NSTextAlignmentCenter]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(10 + width_4/2.f * 3, 40, width_4, 30) Title:[titleArray objectAtIndex:2] alignment:NSTextAlignmentCenter]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(10 + width_4/2.f * 5, 40, width_4, 30) Title:[titleArray objectAtIndex:3] alignment:NSTextAlignmentCenter]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(10 + width_4/2.f * 7, 40, width_4/2.f, 30) Title:[titleArray objectAtIndex:4] alignment:NSTextAlignmentRight]];
+    //打点
+    [view addSubview:[self createButtonWithFrame:CGRectMake(10 + width_4/2.f * 0, 30, width_4/2.f, 40) tag:tag * 10 + 0]];
+    [view addSubview:[self createButtonWithFrame:CGRectMake(10 + width_4/2.f * 1, 30, width_4, 40) tag:tag * 10 + 1]];
+    [view addSubview:[self createButtonWithFrame:CGRectMake(10 + width_4/2.f * 3, 30, width_4, 40) tag:tag * 10 + 2]];
+    [view addSubview:[self createButtonWithFrame:CGRectMake(10 + width_4/2.f * 5, 30, width_4, 40) tag:tag * 10 + 3]];
+    [view addSubview:[self createButtonWithFrame:CGRectMake(10 + width_4/2.f * 7, 30, width_4/2.f, 40) tag:tag * 10 + 4]];
+    return view;
+}
+
+-(void)setBluePointAtIndexPath:(NSIndexPath *)indexPath inView:(UIView *)view
+{
+    if(indexPath.row == 6)
+    {
+        _bluePoint1.frame = CGRectMake(10 - 2, 30 - 2, 14, 14);
+        [view insertSubview:_bluePoint1 atIndex:1];
+    }
+    if(indexPath.row == 7)
+    {
+        _bluePoint2.frame = CGRectMake(10 - 2, 30 - 2, 14, 14);
+        [view insertSubview:_bluePoint2 atIndex:1];
+    }
+    if(indexPath.row == 8)
+    {
+        _bluePoint3.frame = CGRectMake(10 - 2, 30 - 2, 14, 14);
+        [view insertSubview:_bluePoint3 atIndex:1];
+    }
+    if(indexPath.row == 9)
+    {
+        _bluePoint4.frame = CGRectMake(10 - 2, 30 - 2, 14, 14);
+        [view insertSubview:_bluePoint4 atIndex:1];
+    }
+}
+
+-(UIButton *)createButtonWithFrame:(CGRect)rect tag:(NSInteger)tag
+{
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = rect;
+    btn.tag = tag;
+    [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
+
+-(void)btnClick:(UIButton *)btn
+{
+    NSLog(@"btn%ld",btn.tag);
+    if(btn.tag/10 == 6)
+    {
+        [UIView animateWithDuration:0.8 animations:^{
+            _bluePoint1.frame = CGRectMake(10 - 2 - 2 * (btn.tag%10) + (self.view.frame.size.width - 20)/4.f * (btn.tag%10), 30 - 2, 14, 14);
+        }];
+    }
+    if(btn.tag/10 == 7)
+    {
+        [UIView animateWithDuration:0.8 animations:^{
+            _bluePoint2.frame = CGRectMake(10 - 2 - 2 * (btn.tag%10) + (self.view.frame.size.width - 20)/4.f * (btn.tag%10), 30 - 2, 14, 14);
+        }];
+    }
+    if(btn.tag/10 == 8)
+    {
+        [UIView animateWithDuration:0.8 animations:^{
+            _bluePoint3.frame = CGRectMake(10 - 2 - 2 * (btn.tag%10) + (self.view.frame.size.width - 20)/4.f * (btn.tag%10), 30 - 2, 14, 14);
+        }];
+    }
+    if(btn.tag/10 == 9)
+    {
+        [UIView animateWithDuration:0.8 animations:^{
+            _bluePoint4.frame = CGRectMake(10 - 2 - 2 * (btn.tag%10) + (self.view.frame.size.width - 20)/4.f * (btn.tag%10), 30 - 2, 14, 14);
+        }];
+    }
+}
+
+-(UILabel *)createLabelWithFrame:(CGRect)rect Title:(NSString *)title alignment:(NSTextAlignment)alignment
+{
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = rect;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:9.f];
+    label.numberOfLines = 2;
+    label.textAlignment = alignment;
+    label.text = title;
+    return label;
+}
+
+//40
+-(UIView *)createContentViewWithFrame:(CGRect)rect content:(NSString *)content
+{
+    UIView * view = [[UIView alloc] init];
+    view.frame = rect;
+    view.backgroundColor = [UIColor whiteColor];
+    UIImageView * imageView = [[UIImageView alloc] init];
+    imageView.frame = CGRectMake(10, 5, 30, 30);
+    imageView.image = [UIImage imageNamed:@"bookmark.png"];
+    [view addSubview:imageView];
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = CGRectMake(50, 5, view.frame.size.width - 50 - 10, 30);
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines = 2;
+    label.text = content;
+    label.textColor = [UIColor colorWithRed:138/255.f green:199/255.f blue:222/255.f alpha:1.f];
+    label.font = [UIFont systemFontOfSize:12.f];
+    [view addSubview:label];
+    return view;
 }
 
 -(void)submit
@@ -188,62 +303,17 @@
     [self presentViewController:nvc animated:YES completion:nil];
 }
 
--(UIView *)getTitleViewWithFrame:(CGRect)frame title:(NSString *)title
+-(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title
 {
-    UIView * view = [[UIView alloc] init];
-    view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-    view.backgroundColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1.f];
-    UIView * line = [[UIView alloc] init];
-    line.frame = CGRectMake(0, 0, 6, frame.size.height);
-    line.backgroundColor = [UIColor blueColor];
-    [view addSubview:line];
-    UILabel * label = [[UILabel alloc]init];
-    label.frame = CGRectMake(20, 0, view.frame.size.width - 20, frame.size.height);
+    UIImageView * imageView = [[UIImageView alloc] initWithFrame:rect];
+    imageView.image = [UIImage imageNamed:@"title-background.png"];
+    UILabel * label = [[UILabel alloc] init];
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont systemFontOfSize:15];
-    label.textColor = [UIColor blueColor];
+    label.frame = CGRectMake(20, 0, imageView.frame.size.width - 20, imageView.frame.size.height);
+    label.textColor = [UIColor blackColor];
     label.text = title.length?title:@"";
-    [view addSubview:label];
-    return view;
-}
-
--(UIView *)getSelectViewWithFrame:(CGRect)frame title:(NSString *)title titleArray:(NSArray *)titleArray tag:(NSInteger)tag
-{
-    UIView * view = [[UIView alloc] init];
-    view.frame = frame;
-    view.backgroundColor = [UIColor whiteColor];
-    UILabel * titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(20, 5, 60, 30);
-    titleLabel.font = [UIFont systemFontOfSize:14.f];
-    titleLabel.text = title.length?title:@"";
-    [view addSubview:titleLabel];
-    NSInteger count = titleArray.count;
-    if(count)
-    {
-        UIView * lineView = [[UIView alloc] init];
-        lineView.frame = CGRectMake(20, 60, view.frame.size.width - 40, 0.5f);
-        lineView.backgroundColor = [UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.f];
-        [view addSubview:lineView];
-        
-        CGFloat x = lineView.frame.size.width/(count-1);
-        for(int i=0;i<count;i++)
-        {
-            UIImageView * imageView = [[UIImageView alloc] init];
-            imageView.frame = CGRectMake(x*i, -4.75, 10, 10);
-            imageView.image = [UIImage imageNamed:@"selection-unchecked.png"];
-            [lineView addSubview:imageView];
-            if(i == 0)
-                imageView.image = [UIImage imageNamed:@"scroll-bar-selection.png"];
-            
-            UILabel * label = [[UILabel alloc] init];
-            label.frame = CGRectMake(imageView.frame.origin.x , imageView.frame.origin.y + imageView.frame.size.height + 8, x, 20);
-            label.font = [UIFont systemFontOfSize:12.f];
-            label.backgroundColor = [UIColor clearColor];
-            label.text = [titleArray objectAtIndex:i];
-            [lineView addSubview:label];
-        }
-    }
-    return view;
+    [imageView addSubview:label];
+    return imageView;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -112,7 +112,7 @@
     else if (indexPath.row == 1)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 5, 30, 30);
+        imageView.frame = CGRectMake(40, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-email.png"];
         [cell.contentView addSubview:imageView];
         
@@ -131,7 +131,7 @@
     else if (indexPath.row == 2)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 5, 30, 30);
+        imageView.frame = CGRectMake(40, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-password.png"];
         [cell.contentView addSubview:imageView];
         
@@ -151,7 +151,7 @@
     else if (indexPath.row == 3)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 5, 30, 30);
+        imageView.frame = CGRectMake(40, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-password.png"];
         [cell.contentView addSubview:imageView];
         
@@ -170,9 +170,10 @@
     }
     else
     {
-        CGFloat buttonWidth = 100.f;
+        CGFloat buttonWidth = 130.f;
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(40, 5, buttonWidth, 30);
+        [button setImage:[UIImage imageNamed:@"selection-checked.png"] forState:UIControlStateNormal];
         [button setTitle:NSLocalizedString(@"Skea用户协议", nil) forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button addTarget:self action:@selector(forgetPassword) forControlEvents:UIControlEventTouchUpInside];
@@ -183,8 +184,9 @@
         regButton.frame = CGRectMake(40, 50, self.view.frame.size.width - 80, 30);
         regButton.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
         //        [loginButtn setImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
-        regButton.layer.borderWidth = 0.5;
-        regButton.layer.borderColor = [UIColor colorWithRed:103/255.f green:201/255 blue:224/255.f alpha:1.f].CGColor;
+        [regButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+//        regButton.layer.borderWidth = 0.5;
+//        regButton.layer.borderColor = [UIColor colorWithRed:103/255.f green:201/255 blue:224/255.f alpha:1.f].CGColor;
         regButton.layer.cornerRadius = 15.f;
         [regButton setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
         [regButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
