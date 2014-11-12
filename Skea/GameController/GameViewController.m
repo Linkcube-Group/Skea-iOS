@@ -107,6 +107,7 @@
     nCBUpdataShowStringBuffer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDisConnectBL:) name:kNotificationDisConnected object:nil];
     [self setupGameView];
+    self.imgStatus.image = nil;
     [self beginGame];
 }
 
@@ -186,7 +187,7 @@
     
     self.lbTime.text = [self getGameTime:totalTime-passTime/10];
     
-    self.imgStatus.image = nil;
+
     
     if ((int)[self.aryGame count]<=currentIndex) {
         return;
@@ -220,7 +221,7 @@
                     self.imgStatus.image = IMG(@"text-perfect.png");
                     self.imgStatus.alpha = 1;
                     IMP_BLOCK_SELF(GameViewController)
-                    [UIView animateWithDuration:1 animations:^{
+                    [UIView animateWithDuration:2 animations:^{
                         block_self.imgStatus.alpha =0;
                     }];
                     if (self.playTime<3) {
