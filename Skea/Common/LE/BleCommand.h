@@ -20,5 +20,7 @@ static NSString * const cAppCommandLevel8 = @"2503080000000030";
 
 ///4.2 APP控制电机转动速度和时长
 static NSString * const cAppCommandRate1 = @"2502000000000027"; //忽略，不做任何处理
-static NSString * const cAppCommandRate2 = @"250201020000002a";// //电机以2档转速转动1s
-static NSString * const cAppCommandRate3 = @"2502040600000032"; //电机以6档转速转动4s
+
+static NSString * const cAppCommandRate2 = @"250202020000002a";// //电机以2档转速转动2s
+static NSString * const cAppCommandRate3 = @"250207020000002a";// //电机以2档转速转动7s
+static NSString * const cAppCommandRate4 = @"25020f020000002a";// //电机以2档转速转动15s

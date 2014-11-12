@@ -163,7 +163,7 @@
         self.lbTime.text = @"0";
         [self stopGame];
         if (currentIndex<self.aryGame.count && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
-
+            
             int tempScore = [self getGameScore:currentIndex];
             score += tempScore;
             [[self.aryGame objectAtIndex:currentIndex] setScoreRate:[self getGameScoreRate:currentIndex WithScore:tempScore]];
@@ -185,23 +185,24 @@
     
     
     self.lbTime.text = [self getGameTime:totalTime-passTime/10];
-   
+    
     self.imgStatus.image = nil;
     
     if ((int)[self.aryGame count]<=currentIndex) {
         return;
     }
-//    DLog(@"-%d===%d",totalLength+lineTop,currentIndex);
+    //    DLog(@"-%d===%d",totalLength+lineTop,currentIndex);
     
     if (currentIndex+1<self.aryGame.count && abs([[self.aryGame objectAtIndex:currentIndex+1] beginPoint]-totalLength-lineTop-20)<2) {
         currentIndex = currentIndex +1;
         self.playTime = 0;
         getHighed = NO;
-        
+        [self sendBeginToBL:[[self.aryGame objectAtIndex:currentIndex+1] progressTime]];
         [self showAnimationStar];
     }
     
-    if (currentIndex>=1 && currentIndex<self.aryGame.count) {
+    DLog(@"----%d",halfResponse);
+    if (currentIndex>=0 && currentIndex<self.aryGame.count) {
         self.playTime +=1;
         if (self.playTime/10<=[[self.aryGame objectAtIndex:currentIndex] progressTime]) {
             if (self.playTime%5==0) {
@@ -217,6 +218,11 @@
                 if (halfResponse>1) {
                     getHighed = YES;
                     self.imgStatus.image = IMG(@"text-perfect.png");
+                    self.imgStatus.alpha = 1;
+                    IMP_BLOCK_SELF(GameViewController)
+                    [UIView animateWithDuration:1 animations:^{
+                        block_self.imgStatus.alpha =0;
+                    }];
                     if (self.playTime<3) {
                         score += 50;
                     }
@@ -228,10 +234,10 @@
                 }
                 
             }
-
+            
         }
         else if (currentIndex>1 && [[self.aryGame objectAtIndex:currentIndex-1] isCaled]==NO){
-
+            
             int tempScore = [self getGameScore:currentIndex-1];
             score += tempScore;
             [[self.aryGame objectAtIndex:currentIndex-1] setScoreRate:[self getGameScoreRate:currentIndex-1 WithScore:tempScore]];
@@ -241,13 +247,16 @@
             [[self.aryGame objectAtIndex:currentIndex-1] setIsCaled:YES];
         }
     }
+    else{
+        halfResponse = 0;
+    }
     
     
-   
-   
+    
+    
     
     totalLength -= 4;
-   
+    
     
     
     
@@ -262,14 +271,14 @@
     int bottom = 40*3; //3s
     int topleft = ScreenHeight;
     
-
+    
     
     int contentY = self.twoNum*(TwoHeight+SepHeight);
     contentY += self.sevenNum*(SevenHeight+2*SepHeight);
     contentY += self.twelfthNum*(TwelfthHeight+3*SepHeight);
     
-   
-
+    
+    
     totalLength = contentY+bottom+topleft;
     totalLength = totalLength+(totalLength%4);
     
@@ -284,7 +293,7 @@
     self.scrollView.contentSize = CGSizeMake(80, totalLength);
     self.scrollBg.contentSize = CGSizeMake(80, totalLength);
     
-
+    
     totalLength -= bottom;
     int gsecond = [self getGameSecond];
     int top = totalLength-[self imageLength:gsecond];
@@ -431,7 +440,7 @@
 
 - (float)getGameScoreRate:(int)index WithScore:(int)tempScore
 {
-     GameInfo *info = [self.aryGame objectAtIndex:index];
+    GameInfo *info = [self.aryGame objectAtIndex:index];
     
     if (info.progressTime==2) {
         return 1.0*tempScore/TwoHeight;
@@ -456,9 +465,22 @@
 
 #pragma mark -
 #pragma mark BL
-- (void)sendBeginToBL
+- (void)sendBeginToBL:(int)length
 {
-    [[bleCentralManager shareManager] sendCommand:@""];
+    switch (length) {
+        case 2:
+            [[bleCentralManager shareManager] sendCommand:cAppCommandRate2];
+            break;
+        case 7:
+            [[bleCentralManager shareManager] sendCommand:cAppCommandRate3];
+            break;
+        case 12:
+            [[bleCentralManager shareManager] sendCommand:cAppCommandRate4];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)didDisConnectBL:(NSNotification *)notify
@@ -466,9 +488,9 @@
     [self stopGame];
     IMP_BLOCK_SELF(GameViewController)
     CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"蓝牙已断开,无法继续游戏" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
-       
+        
         [block_self btBack_DisModal:nil];
-       
+        
     } cancelButtonTitle:@"退出游戏" otherButtonTitles:nil];
     
     [alert show];
@@ -502,9 +524,9 @@
             img.frame = CGRectMake(x-(40*left), y-30, 46, 48);
             img.alpha = 0.2;
         } completion:^(BOOL finished) {
-             [img removeFromSuperview];
+            [img removeFromSuperview];
         }];
- 
+        
         left = -left;
     }
 }
