@@ -36,6 +36,8 @@
 //    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
 //    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
+    self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+    
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundImage:IMG(@"back-cross.png") forState:UIControlStateNormal];
     btn.tag = 200;
@@ -44,7 +46,7 @@
     [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
     [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    btn.frame=CGRectMake(10, 34, 30, 30);
+    btn.frame=CGRectMake(10, 34, 24, 24);
     
     //让图片在最右侧对齐
     CGSize imagesize=IMG(@"back-cross.png").size;
@@ -65,12 +67,14 @@
     _emailTextField  = [[UITextField alloc] init];
     _passwordTextField = [[UITextField alloc] init];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, self.view.frame.size.height - 64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.showsVerticalScrollIndicator = NO;
+    tableView.scrollEnabled = NO;
+    tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
 }
 
@@ -87,7 +91,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0)
-        return 126.f;
+        return 80.f;
     if(indexPath.row == 1 || indexPath.row == 2)
         return 40.f;
     return 400.f;
@@ -102,52 +106,59 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        cell.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     }
     if(indexPath.row == 0)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake((self.view.frame.size.width - 258/2)/2.f, 63 - 30, 258/2, 126/2);
+        imageView.frame = CGRectMake((self.view.frame.size.width - 258/2)/2.f, 0, 258/2, 63);
         imageView.image = [UIImage imageNamed:@"logo.png"];
         [cell.contentView addSubview:imageView];
+        [cell.contentView addSubview:[self lineViewWithFrame:CGRectMake(0, 79.5, self.view.frame.size.width, 0.5)]];
     }
     else if (indexPath.row == 1)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 10, 20, 20);
+        imageView.frame = CGRectMake(25, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-email.png"];
         [cell.contentView addSubview:imageView];
         
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + 10, 5, 50, 30);
-        label.backgroundColor = [UIColor clearColor];
-        label.text = NSLocalizedString(@"邮箱", nil);
-        [cell.contentView addSubview:label];
+//        UILabel * label = [[UILabel alloc] init];
+//        label.frame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + 10, 5, 50, 30);
+//        label.backgroundColor = [UIColor clearColor];
+//        label.text = NSLocalizedString(@"邮箱", nil);
+//        [cell.contentView addSubview:label];
         
-        _emailTextField.frame = CGRectMake(label.frame.origin.x + label.frame.size.width, 5, self.view.frame.size.width - label.frame.origin.x - label.frame.size.width, 30);
+        _emailTextField.frame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + 10, 5, self.view.frame.size.width - imageView.frame.origin.x - imageView.frame.size.width, 30);
         _emailTextField.placeholder = NSLocalizedString(@"请输入邮箱", nil);
         _emailTextField.returnKeyType = UIReturnKeyDone;
         _emailTextField.delegate = self;
+        _emailTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_emailTextField];
+        [cell.contentView addSubview:[self lineViewWithFrame:CGRectMake(20, 39.5, self.view.frame.size.width - 20, 0.5)]];
     }
     else if (indexPath.row == 2)
     {
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(40, 10, 20, 20);
+        imageView.frame = CGRectMake(25, 10, 20, 20);
         imageView.image = [UIImage imageNamed:@"icon-password.png"];
         [cell.contentView addSubview:imageView];
         
-        UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + 10, 5, 50, 30);
-        label.backgroundColor = [UIColor clearColor];
-        label.text = NSLocalizedString(@"密码", nil);
-        [cell.contentView addSubview:label];
+//        UILabel * label = [[UILabel alloc] init];
+//        label.frame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + 10, 5, 50, 30);
+//        label.backgroundColor = [UIColor clearColor];
+//        label.text = NSLocalizedString(@"密码", nil);
+//        [cell.contentView addSubview:label];
         
-        _passwordTextField.frame = CGRectMake(label.frame.origin.x + label.frame.size.width, 5, self.view.frame.size.width - label.frame.origin.x - label.frame.size.width, 30);
+        _passwordTextField.frame = CGRectMake(imageView.frame.origin.x + imageView.frame.size.width + 10, 5, self.view.frame.size.width - imageView.frame.origin.x - imageView.frame.size.width, 30);
         _passwordTextField.placeholder = NSLocalizedString(@"请输入密码", nil);
         _passwordTextField.secureTextEntry = YES;
         _passwordTextField.returnKeyType = UIReturnKeyDone;
         _passwordTextField.delegate = self;
+        _passwordTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_passwordTextField];
+        [cell.contentView addSubview:[self lineViewWithFrame:CGRectMake(0, 39.5, self.view.frame.size.width, 0.5)]];
     }
     else
     {
@@ -161,8 +172,8 @@
         [cell.contentView addSubview:button];
         
         UIButton * loginButtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        loginButtn.frame = CGRectMake(40, 50, self.view.frame.size.width - 80, 30);
-        loginButtn.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
+        loginButtn.frame = CGRectMake(8, 50, self.view.frame.size.width - 16, 44);
+//        loginButtn.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
 //        [loginButtn setImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
         [loginButtn setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
 //        loginButtn.layer.borderWidth = 0.5;
@@ -174,10 +185,11 @@
         [cell.contentView addSubview:loginButtn];
         
         UIButton * regButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        regButton.frame = CGRectMake(loginButtn.frame.origin.x, loginButtn.frame.origin.y + loginButtn.frame.size.height + 10, loginButtn.frame.size.width, loginButtn.frame.size.height);
-        regButton.layer.borderWidth = 0.5f;
-        regButton.layer.borderColor = [UIColor blackColor].CGColor;
-        regButton.layer.cornerRadius = 15.f;
+        regButton.frame = CGRectMake(loginButtn.frame.origin.x, self.view.frame.size.height - 64 - 44 - 20 - 160, loginButtn.frame.size.width, loginButtn.frame.size.height);
+//        regButton.layer.borderWidth = 0.5f;
+//        regButton.layer.borderColor = [UIColor blackColor].CGColor;
+//        regButton.layer.cornerRadius = 22.f;
+        [regButton setBackgroundImage:[UIImage imageNamed:@"button-gray.png"] forState:UIControlStateNormal];
         [regButton setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
         [regButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [regButton addTarget:self action:@selector(registerButtonClick) forControlEvents:UIControlEventTouchUpInside];
@@ -185,6 +197,14 @@
         
     }
     return cell;
+}
+
+-(UIView *)lineViewWithFrame:(CGRect)rect
+{
+    UIView * view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor colorWithRed:156/255.f green:157/255.f blue:159/255.f alpha:1.f];
+    view.frame = rect;
+    return view;
 }
 
 -(void)login
