@@ -11,36 +11,41 @@
 #import "HealthTestViewController.h"
 #import "ParameterSetViewController.h"
 #import "BuyViewController.h"
+#import "InputViewController.h"
 
-@interface PersonLoginedViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface PersonLoginedViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,inputDelegate>
 
 @end
 
 @implementation PersonLoginedViewController
 {
     UIImageView * photoImageView;
+    NSString * nickname;
+    UITableView * _mainTableView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    nickname = ((NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"]).length?[[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"]:@"Skea";
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
-    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-    self.view.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
+    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     photoImageView = [[UIImageView alloc] init];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 170) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
+    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 206) style:UITableViewStylePlain];
+    _mainTableView.delegate = self;
+    _mainTableView.dataSource = self;
+    _mainTableView.scrollEnabled = NO;
 //    tableView.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:tableView];
+    [self.view addSubview:_mainTableView];
     
     UIButton * LogoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    LogoutButton.frame = CGRectMake(10,self.view.frame.size.height - 80,self.view.frame.size.width - 20,40);
+    LogoutButton.frame = CGRectMake(10,self.view.frame.size.height - 80,self.view.frame.size.width - 20,44);
     LogoutButton.backgroundColor = [UIColor whiteColor];
 //    LogoutButton.layer.borderWidth = 0.5f;
 //    LogoutButton.layer.borderColor = [UIColor blackColor].CGColor;
     LogoutButton.layer.cornerRadius = 20.f;
     [LogoutButton setTitle:NSLocalizedString(@"退出登录", nil) forState:UIControlStateNormal];
-    [LogoutButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [LogoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [LogoutButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
     [LogoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:LogoutButton];
@@ -75,92 +80,11 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0 && indexPath.section == 0)
-        return 80.f;
+        return 40.f;
     if(indexPath.section == 4)
         return 150.f;
     return 40.f;
 }
-#if 0
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString * cellIdentifier = [NSString stringWithFormat:@"cell_%ld",(long)indexPath.row];
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    if(indexPath.row == 0)
-    {
-        photoImageView.frame = CGRectMake(80 + 40, 20, 80, 80);
-        photoImageView.layer.cornerRadius = 40.f;
-        photoImageView.layer.masksToBounds = YES;
-        photoImageView.image = [UIImage imageNamed:@"icon-info.png"];
-        photoImageView.userInteractionEnabled = YES;
-        [cell.contentView addSubview:photoImageView];
-        
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(0, 0, 80, 80);
-        btn.layer.cornerRadius = 40.f;
-        [btn addTarget:self action:@selector(photoSelect) forControlEvents:UIControlEventTouchUpInside];
-        [photoImageView addSubview:btn];
-        
-        UILabel * notiLabel = [[UILabel alloc] init];
-        notiLabel.backgroundColor = [UIColor clearColor];
-        notiLabel.frame = CGRectMake(photoImageView.frame.origin.x, photoImageView.frame.origin.y + photoImageView.frame.size.height + 8, photoImageView.frame.size.width, 20);
-        notiLabel.font = [UIFont systemFontOfSize:13.f];
-        notiLabel.text = NSLocalizedString(@"MarryMe", nil);
-        notiLabel.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:notiLabel];
-    }
-    if(indexPath.row == 1)
-    {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"settings-settings.png"];
-        cell.textLabel.text = NSLocalizedString(@"盆底肌健康测试", nil);
-    }
-    else if (indexPath.row == 2)
-    {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"settings-settings.png"];
-        cell.textLabel.text = NSLocalizedString(@"Skea参数设置", nil);
-    }
-    else if (indexPath.row == 3)
-    {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"settings-settings.png"];
-        cell.textLabel.text = NSLocalizedString(@"购买Skea产品", nil);
-    }
-    else if (indexPath.row == 4)
-    {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.imageView.image = nil;
-        cell.textLabel.text = @"";
-    }
-    else if (indexPath.row == 5)
-    {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageView.image = [UIImage imageNamed:@"settings-settings.png"];
-        cell.textLabel.text = NSLocalizedString(@"设置", nil);
-    }
-    else if (indexPath.row == 6)
-    {
-        UIButton * LogoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        LogoutButton.frame = CGRectMake(50,150,self.view.frame.size.width - 100,40);
-        LogoutButton.layer.borderWidth = 0.5f;
-        LogoutButton.layer.borderColor = [UIColor blackColor].CGColor;
-        LogoutButton.layer.cornerRadius = 20.f;
-        [LogoutButton setTitle:NSLocalizedString(@"退出登录", nil) forState:UIControlStateNormal];
-        [LogoutButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [LogoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:LogoutButton];
-    }
-    return cell;
-}
-
-#else
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -170,27 +94,27 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.backgroundColor = [UIColor whiteColor];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    cell.accessoryType = UITableViewCellAccessoryNone;
+//    cell.accessoryType = UITableViewCellAccessoryNone;
     if(indexPath.section == 0 && indexPath.row == 0)
     {
-        cell.imageView.image = [UIImage imageNamed:@"user-portrait.png"];
-        cell.textLabel.text = @"Nickname";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageView.image = [UIImage imageNamed:@"icon_me_small.png"];
+        cell.textLabel.text = nickname;
     }
     if(indexPath.section == 1)
     {
         cell.imageView.image = [UIImage imageNamed:@"settings-evaluate-risk.png"];
-        cell.textLabel.text = NSLocalizedString(@"健康测试", nil);
+        cell.textLabel.text = NSLocalizedString(@"盆底肌健康测试", nil);
     }
     if(indexPath.section == 2)
     {
         if(indexPath.row == 0)
         {
             cell.imageView.image = [UIImage imageNamed:@"settings-configure-skea.png"];
-            cell.textLabel.text = NSLocalizedString(@"参数设置", nil);
+            cell.textLabel.text = NSLocalizedString(@"Skea参数调节", nil);
         }
         if(indexPath.row == 1)
         {
@@ -205,8 +129,6 @@
     }
     return cell;
 }
-
-#endif
 
 -(void)logout
 {
@@ -270,13 +192,18 @@
     }
     if(indexPath.row == 0 && indexPath.section == 0)
     {
-        [self photoSelect];
+//        [self photoSelect];
+        InputViewController * ivc = [[InputViewController alloc] init];
+        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:ivc];
+        ivc.delegate = self;
+        ivc.nickName = nickname;
+        [self presentViewController:nvc animated:YES completion:nil];
     }
     if(indexPath.section == 2)
     {
         if(indexPath.row == 0)
         {
-            PersonSetViewController * hvc = [[PersonSetViewController alloc] init];
+            ParameterSetViewController * hvc = [[ParameterSetViewController alloc] init];
             UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:hvc];
             [self presentViewController:nvc animated:YES completion:nil];
         }
@@ -289,10 +216,19 @@
     }
     if(indexPath.section == 3)
     {
-        ParameterSetViewController * hvc = [[ParameterSetViewController alloc] init];
+        PersonSetViewController * hvc = [[PersonSetViewController alloc] init];
         UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:hvc];
         [self presentViewController:nvc animated:YES completion:nil];
     }
+}
+
+-(void)inputText:(NSString *)text
+{
+    if(text.length)
+    {
+        nickname = text;
+    }
+    [_mainTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
