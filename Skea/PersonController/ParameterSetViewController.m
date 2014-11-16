@@ -7,6 +7,42 @@
 //
 
 #import "ParameterSetViewController.h"
+#import "SCGIFImageView.h"
+
+@interface SKAlertView : UIView
+
+@property (nonatomic,strong) NSString * title;
+@property (nonatomic,strong) NSString * content;
+@property (nonatomic,strong) NSString * gifImageName;
+
+
+@end
+
+@implementation SKAlertView
+
+-(id)init
+{
+    if(self = [super init])
+    {
+        self.frame = CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200);
+        self.userInteractionEnabled = YES;
+        self.backgroundColor = [UIColor whiteColor];
+        
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:self.gifImageName ofType:nil];
+        SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath];
+        gifImageView.frame = CGRectMake(0, 0, self.frame.size.width, gifImageView.image.size.height);
+        gifImageView.center = self.center;
+        [self addSubview:gifImageView];
+        
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 160, [UIScreen mainScreen].bounds.size.width - 60, 40);
+        [button setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
+        [self addSubview:button];
+    }
+    return self;
+}
+
+@end
 
 @interface ParameterSetViewController ()
 
@@ -17,15 +53,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea参数设置"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea参数调节"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
-    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 114, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil)]];
+    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 114, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 194, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)]];
-    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 244, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil)]];
+    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 244, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(down)]];
+}
+
+-(void)up
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+-(void)down
+{
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 -(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title
@@ -36,16 +84,16 @@
     label.backgroundColor = [UIColor clearColor];
     label.frame = CGRectMake(20, 0, imageView.frame.size.width - 20, imageView.frame.size.height);
     label.textColor = [UIColor blackColor];
-    label.font = [UIFont boldSystemFontOfSize:20];
+    label.font = [UIFont boldSystemFontOfSize:17];
     label.text = title.length?title:@"";
     [imageView addSubview:label];
     return imageView;
 }
 
--(UIView *)createSlidreWithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right
+-(UIView *)createSlidreWithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right selector:(SEL)selector
 {
     UIView * view = [[UIView alloc] initWithFrame:rect];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
     UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
     
@@ -55,7 +103,7 @@
     [slider setThumbImage:thumbImage forState:UIControlStateHighlighted];
     [slider setThumbImage:thumbImage forState:UIControlStateNormal];
     
-//    [slider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
+    [slider addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:slider];
     
@@ -72,6 +120,7 @@
     label.backgroundColor = [UIColor clearColor];
     label.text = title.length?title:@"";
     label.textAlignment = textAlignment;
+    label.font = [UIFont systemFontOfSize:13];
     label.textColor = [UIColor grayColor];
     return label;
 }

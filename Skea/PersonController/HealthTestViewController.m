@@ -20,15 +20,15 @@
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-    self.view.backgroundColor = [UIColor whiteColor];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 360) style:UITableViewStylePlain];
+    self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 400) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
     [self.view addSubview:tableView];
     
     UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    AgainButton.frame = CGRectMake(10,430,self.view.frame.size.width - 20,40);
+    AgainButton.frame = CGRectMake(10,self.view.frame.size.height - 64 - 20,self.view.frame.size.width - 20,44);
 //    AgainButton.layer.borderWidth = 0.5f;
 //    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
     [AgainButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
@@ -53,7 +53,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.row == 0)
-        return 100;
+        return 140;
     if(indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4)
         return 40.f;
     if(indexPath.row == 2)
@@ -70,23 +70,35 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+    cell.contentView.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     cell.accessoryType = UITableViewCellAccessoryNone;
     if(indexPath.row == 0)
     {
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 30, 150, 60);
+        label.frame = CGRectMake(20, 50, 150, 20);
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:14.f];
-        label.text = @"Pelvic floor muscle Risk Factor";
+        label.text = @"Pelvic floor muscle";
         label.textColor = [UIColor whiteColor];
+        label.textAlignment = NSTextAlignmentCenter;
         label.numberOfLines = 2;
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
         [cell.contentView addSubview:label];
         
+        UILabel * label1 = [[UILabel alloc] init];
+        label1.frame = CGRectMake(20, label.frame.origin.y + label.frame.size.height, 150, 20);
+        label1.backgroundColor = [UIColor clearColor];
+        label1.font = [UIFont systemFontOfSize:14.f];
+        label1.text = @"Risk Factor";
+        label1.textColor = [UIColor whiteColor];
+        label1.textAlignment = NSTextAlignmentCenter;
+        label1.numberOfLines = 2;
+        cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
+        [cell.contentView addSubview:label1];
+        
         UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10, 10, 80, 80);
+        imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
         imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
         [cell.contentView addSubview:imageView];
         
@@ -102,6 +114,8 @@
     }
     if(indexPath.row == 4)
     {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
         cell.textLabel.text = NSLocalizedString(@"Level 4", nil);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -124,7 +138,8 @@
 
 -(void)again
 {
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"重新计算锻炼数据，还是把已有锻炼数据累加计算？", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"已有累加",nil) otherButtonTitles:NSLocalizedString(@"重新计算", nil), nil];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"\n是否重新测试？您之前的评估结果将不会被保留！", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消",nil) otherButtonTitles:NSLocalizedString(@"确定", nil), nil];
+#warning 点击确定到问卷界面
     [alert show];
 }
 
