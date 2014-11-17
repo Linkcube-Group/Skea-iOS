@@ -17,6 +17,11 @@
 + (void)saveGameDetail:(GameDetail *)detail;
 + (GameDetail *)getGameDetail:(NSString *)date;
 
++ (GameDetail *)getLastGameDetail;
+
 + (NSArray *)getGameRecodeDates;
 + (void)setGameRecordDate:(double)timer;
+
++ (int)getGameLevel;
++ (void)setGameLevel:(int)level;
 @end

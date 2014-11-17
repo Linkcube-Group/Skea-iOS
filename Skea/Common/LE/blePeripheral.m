@@ -307,7 +307,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 //    [self addReceiveASCIIStringToShowStringBuffer:dataASCII];
 //    _staticString = dataASCII;// [[NSString alloc]initWithFormat:@"Receive:%@",dataASCII];
 ////    nUpdataShowStringBuffer
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CBUpdataShowStringBuffer" object:nil userInfo:@{@"data":result,@"uuid":self.uuidString}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"CBUpdataShowStringBuffer" object:nil userInfo:@{@"uuid":self.uuidString}];
     
 }
 

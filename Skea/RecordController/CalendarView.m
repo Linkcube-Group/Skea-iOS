@@ -46,7 +46,7 @@
 //        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateHighlighted];
 //        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateSelected];
         [btnCancel addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btnCancel];
+//        [self addSubview:btnCancel];
 
     }
     return self;
@@ -82,10 +82,10 @@
     NSInteger columns = 7;
     NSInteger width = 40;
     NSInteger originX = 20;
-    NSInteger originY = 60;
+    NSInteger originY = 30;
     NSInteger monthLength = days.length;
     
-    UILabel *titleText = [[UILabel alloc]initWithFrame:CGRectMake(0,20, self.bounds.size.width, 40)];
+    UILabel *titleText = [[UILabel alloc]initWithFrame:CGRectMake(0,5, self.bounds.size.width, 40)];
     titleText.textAlignment = NSTextAlignmentCenter;
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"MMMM yyyy"];

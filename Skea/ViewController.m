@@ -16,13 +16,15 @@
 
 @interface ViewController ()
 
+@property (strong,nonatomic) IBOutlet UILabel *lbLevel;
+@property (strong,nonatomic) IBOutlet UILabel *lbResult;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Day 1"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"请连接Skea"];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didConnectBL:) name:kNotificationConnected object:nil];
@@ -35,6 +37,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.lbLevel.text = _S(@"Level %d",[AppConfig getGameLevel]);
+    GameDetail *detail = [AppConfig getLastGameDetail];
+    if (detail) {
+        self.lbResult.text = _S(@"Last Result:%d%%",(int)((detail.factScore*1.0/detail.totalScore)*100));
+    }
+    else{
+        self.lbResult.text = nil;
+    }
+    
+}
+
 #pragma mark -
 #pragma mark Action
 - (void)connectAction:(id)sender
@@ -42,7 +58,7 @@
     [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
     
     int count = (int)[bleCentralManager shareManager].blePeripheralArray.count;
-    if (count>0) {
+    if (count>1) {
         CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:@"选择玩具" cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
             if (btnIndex<count) {
                 blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:btnIndex];
@@ -59,8 +75,13 @@
         [sheet setDestructiveButtonIndex:count];
         [sheet showInView:self.view];
     }
+    else if (count==1){
+        blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:0];
+        [[bleCentralManager shareManager] connectPeripheral:blItem.activePeripheral];
+        
+    }
     else{
-        showCustomAlertMessage(@"没有找到玩具");
+        showCustomAlertMessage(@"请打开Skea");
     }
     
 }
@@ -69,10 +90,6 @@
 
 - (IBAction)infoAction:(id)sender
 {
-
-    [[bleCentralManager shareManager] sendCommand:@"250100000700002d"];
-    return;
-    
     InfoViewController *ivc = [[InfoViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ivc];
     [self presentViewController:nav animated:YES completion:nil];
@@ -117,11 +134,13 @@
     if (dict) {
         blePeripheral *cp = [dict objectForKey:@"bl"];
         self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-connected.png") Title:nil Target:self Selector:@selector(connectAction:)];
+        self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea"];
     }
 }
 
 - (void)didDisConnectBL:(NSNotification *)notify
 {
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"请连接Skea"];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
 }
 

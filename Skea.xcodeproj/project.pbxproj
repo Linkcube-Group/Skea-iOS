@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0303B61919F90B5200DC4D85 /* GameInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0303B61819F90B5200DC4D85 /* GameInfo.m */; };
+		03096A881A1A23D3009FFF88 /* level_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03096A861A1A23D3009FFF88 /* level_bg@2x.png */; };
+		03096A891A1A23D3009FFF88 /* lastresult_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03096A871A1A23D3009FFF88 /* lastresult_bg@2x.png */; };
+		03096A8B1A1A2A51009FFF88 /* record_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 03096A8A1A1A2A51009FFF88 /* record_icon@2x.png */; };
 		0312514E19F9CE4500245659 /* bar_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0312514C19F9CE4500245659 /* bar_7@2x.png */; };
 		0312514F19F9CE4500245659 /* bar_7s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0312514D19F9CE4500245659 /* bar_7s@2x.png */; };
 		0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886919E4352C0073C83B /* bleCentralManager.m */; };
@@ -227,6 +230,9 @@
 /* Begin PBXFileReference section */
 		0303B61719F90B5200DC4D85 /* GameInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameInfo.h; sourceTree = "<group>"; };
 		0303B61819F90B5200DC4D85 /* GameInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameInfo.m; sourceTree = "<group>"; };
+		03096A861A1A23D3009FFF88 /* level_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_bg@2x.png"; sourceTree = "<group>"; };
+		03096A871A1A23D3009FFF88 /* lastresult_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lastresult_bg@2x.png"; sourceTree = "<group>"; };
+		03096A8A1A1A2A51009FFF88 /* record_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_icon@2x.png"; sourceTree = "<group>"; };
 		0312514C19F9CE4500245659 /* bar_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_7@2x.png"; sourceTree = "<group>"; };
 		0312514D19F9CE4500245659 /* bar_7s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_7s@2x.png"; sourceTree = "<group>"; };
 		0312886819E4352C0073C83B /* bleCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bleCentralManager.h; sourceTree = "<group>"; };
@@ -767,6 +773,9 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				03096A8A1A1A2A51009FFF88 /* record_icon@2x.png */,
+				03096A861A1A23D3009FFF88 /* level_bg@2x.png */,
+				03096A871A1A23D3009FFF88 /* lastresult_bg@2x.png */,
 				264B5AB11A17543A00643DAD /* menu_action_back_white@2x.png */,
 				264B5AAF1A17517100643DAD /* icon_me_small@2x.png */,
 				264B5AAD1A17413900643DAD /* xiaoyuanquan@2x.png */,
@@ -1321,6 +1330,7 @@
 				0312888519E43A940073C83B /* PersonViewController.xib in Resources */,
 				038885A519F158B900372178 /* hexagon@2x.png in Resources */,
 				038885B219F158B900372178 /* risk-factor-medium@2x.png in Resources */,
+				03096A8B1A1A2A51009FFF88 /* record_icon@2x.png in Resources */,
 				0388859B19F158B900372178 /* bookmark@2x.png in Resources */,
 				033EAC601A09FEFD007807A0 /* chart@2x.png in Resources */,
 				038885AD19F158B900372178 /* laser-active@2x.png in Resources */,
@@ -1335,6 +1345,7 @@
 				03E5320019DA7D320064762E /* menu@2x.png in Resources */,
 				038885B619F158B900372178 /* selection-checked@2x.png in Resources */,
 				264B5AAE1A17413900643DAD /* xiaoyuanquan@2x.png in Resources */,
+				03096A881A1A23D3009FFF88 /* level_bg@2x.png in Resources */,
 				03E5330219DA7F250064762E /* Default-568h@2x.png in Resources */,
 				038885A619F158B900372178 /* icon-duration@2x.png in Resources */,
 				039B927019DA7AC500292529 /* Images.xcassets in Resources */,
@@ -1342,6 +1353,7 @@
 				03E532DD19DA7D470064762E /* ic_common_droparrow.png in Resources */,
 				038885B719F158B900372178 /* selection-unchecked-small@2x.png in Resources */,
 				03E5320719DA7D320064762E /* MJRefresh.bundle in Resources */,
+				03096A891A1A23D3009FFF88 /* lastresult_bg@2x.png in Resources */,
 				0312889219E43BFE0073C83B /* RecordViewController.xib in Resources */,
 				038885B319F158B900372178 /* scroll-bar-selection@2x.png in Resources */,
 				038885C119F158B900372178 /* user-portrait@2x.png in Resources */,
@@ -1601,8 +1613,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: MAOSHENG YANG (6WU5UQCBXN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MAOSHENG YANG (6WU5UQCBXN)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
@@ -1613,7 +1625,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMAnalytics_Sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BC033F9A-3146-4ADE-88CF-7FCFBD631097";
+				PROVISIONING_PROFILE = "5bb8b824-ff93-4659-81d8-63cc7878db28";
 			};
 			name = Debug;
 		};
@@ -1622,8 +1634,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: MAOSHENG YANG (6WU5UQCBXN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MAOSHENG YANG (6WU5UQCBXN)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
@@ -1634,7 +1646,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMAnalytics_Sdk",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "BC033F9A-3146-4ADE-88CF-7FCFBD631097";
+				PROVISIONING_PROFILE = "5bb8b824-ff93-4659-81d8-63cc7878db28";
 			};
 			name = Release;
 		};

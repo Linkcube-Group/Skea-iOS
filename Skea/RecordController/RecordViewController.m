@@ -18,6 +18,8 @@
     
     MPGraphView *graph1;
     MPBarsGraphView *graph2;
+    
+    UIView *viewFloat;
    
 }
 @property (strong,nonatomic)  GameDetail *gameDetail;
@@ -28,7 +30,8 @@
 @property (strong,nonatomic) IBOutlet UILabel *lbPersistStatus;
 @property (strong,nonatomic) IBOutlet UILabel *lbScore;
 @property (strong,nonatomic) IBOutlet UILabel *lbTime;
-@property (strong,nonatomic) IBOutlet UIImageView *imgChartBg;
+@property (strong,nonatomic) IBOutlet UIImageView *imgChartBg;\
+@property (strong,nonatomic) IBOutlet UIScrollView *scrollView;
 @end
 
 @implementation RecordViewController
@@ -52,13 +55,13 @@
     
     
     
-    
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight);
     NSString *today = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
     
     self.gameDetail = [AppConfig getGameDetail:today];
     
     ////////////////////////////////////////////////////////////////////
-    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(35, 10, 243, 178)];
+    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 5, 270, 207-15)];
     graph1.waitToUpdate=YES;
 
     
@@ -75,7 +78,15 @@
     
     [self.imgChartBg addSubview:graph1];
     
-    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320), 320, 320)];
+    
+    viewFloat = [[UIView alloc] initWithFrame:theApp.window.bounds];
+    viewFloat.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:viewFloat];
+    viewFloat.hidden = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCalendaer)];
+    [viewFloat addGestureRecognizer:tap];
+    
+    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320)/2, 320, 300)];
     _sampleView.delegate = self;
     [_sampleView setBackgroundColor:[UIColor whiteColor]];
     _sampleView.calendarDate = [NSDate date];
@@ -109,6 +120,11 @@
 }
 - (void)dateActoin
 {
+    viewFloat.alpha = 0;
+    viewFloat.hidden = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        viewFloat.alpha = 0.8;
+    }];
     _sampleView.hidden = NO;
 }
 
@@ -127,6 +143,12 @@
     
     [self updateDateView];
   
+}
+
+- (void)closeCalendaer
+{
+    viewFloat.hidden = YES;
+     _sampleView.hidden = YES;
 }
 
 

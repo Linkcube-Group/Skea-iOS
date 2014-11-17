@@ -38,6 +38,16 @@
     return nil;
 }
 
++ (GameDetail *)getLastGameDetail
+{
+    NSArray *ary = [self getGameRecodeDates];
+    if (ary && [ary count]>0) {
+        NSString *date = _S(@"%@",[ary lastObject]);
+        return [self getGameDetail:date];
+    }
+    return nil;
+}
+
 + (NSArray *)getGameRecodeDates
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"gameRecordList"];
@@ -53,6 +63,20 @@
     NSMutableArray *temp = [NSMutableArray arrayWithArray:ary];
     [temp addObject:[NSNumber numberWithInt:timer/(24*60*60)]];
     [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"gameRecordList"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (int)getGameLevel
+{
+    int level = [[[NSUserDefaults standardUserDefaults] objectForKey:@"gameLevel"] intValue];
+    if (level<1) {
+        level = 1;
+    }
+    return level;
+}
++ (void)setGameLevel:(int)level
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"gameLevel"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end

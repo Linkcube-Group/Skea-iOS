@@ -75,9 +75,9 @@
     UIView *navView = [[NavigationTitleLabel alloc] initWithFrame:CGRectMake(0, 0, 320-148-32, 44)];
 	UILabel *label=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320-148-32, 44)];
 	label.backgroundColor=[UIColor clearColor];
-	label.textColor=[UIColor whiteColor];
+	label.textColor=[UIColor lightGrayColor];
 	label.text=title;
-    label.font=[UIFont CustomFontGBKSize:20];
+    label.font=[UIFont CustomFontGBKSize:17];
     label.textAlignment=NSTextAlignmentCenter;
     [label SetCustomFontGBKSize:20];
     /* 多行换行的实现
