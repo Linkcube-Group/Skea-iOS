@@ -9,7 +9,7 @@
 #import "SignViewController.h"
 #import "PersonViewController.h"
 #import "CXAlertView.h"
-#import "TestingViewController.h"
+#import "TestingViewController1.h"
 
 @interface SignViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -277,7 +277,7 @@
 -(void)registerButtonClick
 {
     NSLog(@"注册");
-    TestingViewController * tvc = [[TestingViewController alloc] init];
+    TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
     UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
     [self presentViewController:nvc animated:YES completion:nil];
 }
