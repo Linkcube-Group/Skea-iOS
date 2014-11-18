@@ -10,6 +10,9 @@
 
 @protocol SkeaSliderButtonViewDelegate <NSObject>
 
+@required
+
+-(void)sliderClickWithTag:(NSInteger)tag index:(NSInteger)index;
 
 @end
 

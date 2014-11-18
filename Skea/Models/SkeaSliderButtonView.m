@@ -13,7 +13,7 @@
 //选项高度
 #define height1 20.f
 //选项提示语高度
-#define height2 20.f
+#define height2 30.f
 //notice高度
 #define height3 40.f
 //间距
@@ -22,6 +22,7 @@
 @implementation SkeaSliderButtonView
 {
     UIImageView * _bluePointImageView;
+    UIView * line;
 }
 -(id)init
 {
@@ -30,6 +31,7 @@
         //self.frame = CGRectMake(0, 0, 100, 100);
         //默认颜色
         self.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+//        self.backgroundColor = [UIColor redColor];
         self.userInteractionEnabled = YES;
         self.selectedIndex = 0;
         _bluePointImageView = [[UIImageView alloc] init];
@@ -43,9 +45,17 @@
 
 - (void)drawRect:(CGRect)rect
 {
-#warning 这个地方还没有搞定
     NSInteger count = self.selectedStringsArray.count;
-    if(count < 2)return;
+    if(count < 2)
+    {
+        NSLog(@"画不出来啊，亲！");
+        return;
+    }
+    if(self.selectedIndex < 0 || self.selectedIndex > count - 1)
+    {
+        NSLog(@"越界了，亲！");
+        return;
+    }
     
     UILabel * label = [[UILabel alloc] init];
     label.frame = CGRectMake(20, insert, ScreenWidth - 40, height0);
@@ -63,7 +73,7 @@
     CGFloat cycleR = cycleD/2.f;
     CGFloat lineWidth = (ScreenWidth - 40 - count * cycleD)/(count - 1);
     
-    UIView * line = [[UIView alloc] init];
+    line = [[UIView alloc] init];
     line.frame = CGRectMake(20, insert + height1/2.f - 0.25 + label.frame.origin.y + label.frame.size.height, ScreenWidth - 40, 0.5);
     line.backgroundColor = [UIColor colorWithRed:156/255.f green:157/255.f blue:159/255.f alpha:1.f];
     line.userInteractionEnabled = YES;
@@ -80,13 +90,6 @@
         [line addSubview:_bluePointImageView];
     }
     
-    UIButton * btn0 = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn0.backgroundColor = [UIColor redColor];
-    btn0.tag = 0;
-    [btn0 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn0.frame = CGRectMake(20 + cycleR - 10 ,insert +height0 + insert + height1/2 - 10, 20, 20);
-    [self addSubview:btn0];
-    
     UIImageView * rightPoint = [[UIImageView alloc] init];
     rightPoint.frame = CGRectMake(ScreenWidth - 40 - cycleD, 0.25 - cycleR, cycleD, cycleD);
     rightPoint.userInteractionEnabled = YES;
@@ -97,13 +100,6 @@
         _bluePointImageView.frame = CGRectMake(rightPoint.frame.origin.x -10 + cycleR, 0.25 - 10, 20, 20);
         [line addSubview:_bluePointImageView];
     }
-    
-    UIButton * btnn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnn.backgroundColor = [UIColor clearColor];
-    btnn.tag = count - 1;
-    [btnn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btnn.frame = _bluePointImageView.frame;
-    [line addSubview:btnn];
     
     for(int i=0;i< count - 2;i++)
     {
@@ -123,18 +119,93 @@
             btn.backgroundColor = [UIColor clearColor];
             btn.tag = i+1;
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-            btn.frame = _bluePointImageView.frame;
-            [line addSubview:btn];
+            btn.frame = CGRectMake(imageView.frame.origin.x + 10 + cycleR, insert +height0 + insert + height1/2 - 10, 20, 20);
+            [self addSubview:btn];
         }
     }
     
-    // insert+height0+insert+height1
+    UIButton * btn0 = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn0.backgroundColor = [UIColor clearColor];
+    btn0.tag = 0;
+    [btn0 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    btn0.frame = CGRectMake(20 + cycleR - 10 ,insert +height0 + insert + height1/2 - 10, 20, 20);
+    [self addSubview:btn0];
     
+    UIButton * btnn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnn.backgroundColor = [UIColor clearColor];
+    btnn.tag = count - 1;
+    [btnn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    btnn.frame = CGRectMake(self.frame.size.width - 20 - cycleR - 10, insert +height0 + insert + height1/2 - 10, 20, 20);
+    [self addSubview:btnn];
+    
+    // insert+height0+insert+height1
+    [self addSubview:[self createLabelWithFrame:CGRectMake(0, insert + height0 +insert + height1 + insert, 20 + cycleD + 20, height2) title:[self.selectedStringsArray objectAtIndex:0]]];
+    
+    [self addSubview:[self createLabelWithFrame:CGRectMake(ScreenWidth - 40 - cycleD, insert + height0 +insert + height1 + insert, 20 + cycleD + 20, height2) title:[self.selectedStringsArray lastObject]]];
+    
+    for(int i=0;i< count - 2;i++)
+    {
+        [self addSubview:[self createLabelWithFrame:CGRectMake((cycleD + lineWidth) * (i + 1), insert + height0 +insert + height1 + insert, 20 + cycleD + 20, height2) title:[self.selectedStringsArray objectAtIndex:i+1]]];
+    }
+    
+    //insert+height0+insert+height1+insert+height2
+    UIImageView * noticeImageView = [[UIImageView alloc] init];
+    noticeImageView.frame = CGRectMake(20, insert + height0 + insert + height1 + insert + height2 + 5, 30, 30);
+    noticeImageView.image = [UIImage imageNamed:@"bookmark.png"];
+    [self addSubview:noticeImageView];
+    
+    UILabel * noticeLabel = [[UILabel alloc] init];
+    noticeLabel.frame = CGRectMake(20 + 30 + 5, insert + height0 + insert + height1 + insert + height2, ScreenWidth - 20 - 30 - 5 - 20, height3);
+    noticeLabel.backgroundColor = [UIColor clearColor];
+    noticeLabel.textColor = [UIColor colorWithRed:138/255.f green:199/255.f blue:222/255.f alpha:1.f];
+    noticeLabel.text = self.notice.length?self.notice:@"";
+    noticeLabel.font = [UIFont systemFontOfSize:11.f];
+    noticeLabel.numberOfLines = 2;
+    [self addSubview:noticeLabel];
+    
+}
+
+-(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title
+{
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = rect;
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:9.f];
+    label.numberOfLines = 2;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.text = title.length?title:@"";
+    return label;
 }
 
 -(void)btnClick:(UIButton *)btn
 {
     NSLog(@"%ld",btn.tag);
+    //圆圈直径
+    CGFloat cycleD = 14.f;
+    //圆圈半径
+    CGFloat cycleR = cycleD/2.f;
+    NSInteger count = self.selectedStringsArray.count;
+    CGFloat lineWidth = (ScreenWidth - 40 - count * cycleD)/(count - 1);
+    if(btn.tag == 0)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            _bluePointImageView.frame = CGRectMake(-10 + cycleR + 0.25, 0.25 - 10, 20, 20);
+        }];
+    }
+    else if(btn.tag == self.selectedStringsArray.count - 1)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            _bluePointImageView.frame = CGRectMake(ScreenWidth - 40 - cycleD -10 + cycleR, 0.25 - 10, 20, 20);
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            _bluePointImageView.frame = CGRectMake((cycleD + lineWidth) * (btn.tag) -10 + cycleR, 0.25 - 10, 20, 20);
+            [line bringSubviewToFront:_bluePointImageView];
+        }];
+    }
+    [_delegate sliderClickWithTag:self.tager index:btn.tag];
 }
 
 
