@@ -9,7 +9,7 @@
 #import "TestingViewController1.h"
 #import "SkeaSliderButtonView.h"
 
-@interface TestingViewController1 ()<UITableViewDelegate,UITableViewDataSource>
+@interface TestingViewController1 ()<UITableViewDelegate,UITableViewDataSource,SkeaSliderButtonViewDelegate>
 
 @end
 
@@ -42,7 +42,7 @@
     if(indexPath.row == 0)
         return 60.f;
     if(indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5)
-        return 40.f;
+        return 60.f;
     if(indexPath.row == 6 || indexPath.row == 9)
         return 70.f;
     if(indexPath.row == 7 || indexPath.row == 8)
@@ -65,13 +65,30 @@
     {
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
-        sview.tag = indexPath.row;
+        sview.tager = indexPath.row;
         sview.title = @"title";
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4", nil];
-        sview.selectedIndex = 3;
+        sview.selectedIndex = 1;
+        sview.delegate = self;
+        [cell.contentView addSubview:sview];
+    }
+    if(indexPath.row == 1)
+    {
+        SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
+        sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 60);
+        sview.tager = indexPath.row;
+        sview.title = @"title";
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4", nil];
+        sview.selectedIndex = 1;
+        sview.delegate = self;
         [cell.contentView addSubview:sview];
     }
     return cell;
+}
+
+-(void)sliderClickWithTag:(NSInteger)tag index:(NSInteger)index
+{
+    NSLog(@"第%ld行，第%ld个按钮",tag,index);
 }
 
 - (void)didReceiveMemoryWarning {
