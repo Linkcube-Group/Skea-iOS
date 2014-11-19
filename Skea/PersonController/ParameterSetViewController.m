@@ -11,35 +11,57 @@
 
 @interface SKAlertView : UIView
 
-@property (nonatomic,strong) NSString * title;
-@property (nonatomic,strong) NSString * content;
-@property (nonatomic,strong) NSString * gifImageName;
-
+-(id)initWithFrame:(CGRect)rect content:(NSString *)content gifImageName:(NSString *)gifImageName;
 
 @end
 
 @implementation SKAlertView
 
--(id)init
+-(id)initWithFrame:(CGRect)rect content:(NSString *)content gifImageName:(NSString *)gifImageName
 {
     if(self = [super init])
     {
-        self.frame = CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200);
+        self.frame = rect;
+        self.layer.cornerRadius = 10.f;
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.shadowOffset = CGSizeMake(0, 2);
+        self.layer.shadowOpacity = 0.80;
         
-        NSString* filePath = [[NSBundle mainBundle] pathForResource:self.gifImageName ofType:nil];
+        NSString* filePath = [[NSBundle mainBundle] pathForResource:gifImageName ofType:nil];
         SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath];
-        gifImageView.frame = CGRectMake(0, 0, self.frame.size.width, gifImageView.image.size.height);
-        gifImageView.center = self.center;
+        gifImageView.backgroundColor = [UIColor clearColor];
+        gifImageView.frame = CGRectMake((self.frame.size.width - 80)/2.f, 0 , 80, 80);
         [self addSubview:gifImageView];
+        
+        UILabel * label = [[UILabel alloc] init];
+        label.frame = CGRectMake(10, 80, self.frame.size.width - 20, 80);
+        label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 10;
+        label.text = content;
+        label.font = [UIFont systemFontOfSize:12.f];
+        [self addSubview:label];
+        
+        UIView * line = [[UIView alloc] init];
+        line.frame = CGRectMake(0, 159.5, self.frame.size.width, 0.5);
+        line.backgroundColor = [UIColor colorWithWhite:0.32 alpha:1.f];
+        [self addSubview:line];
         
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(0, 160, [UIScreen mainScreen].bounds.size.width - 60, 40);
         [button setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
+        button.backgroundColor = [UIColor whiteColor];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        button.layer.cornerRadius = 10.f;
+        [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
     }
     return self;
+}
+
+-(void)dismiss
+{
+    [self removeFromSuperview];
 }
 
 @end
@@ -66,14 +88,15 @@
 
 -(void)up
 {
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:nil, nil];
-    [alert show];
+    
+    SKAlertView * alertView  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200) content:@"[slider set Thum bIma ge: t hu mb Im age for S t a t e : U I C o n t r o  l S t a t e H i g h l i  g h t e d ] ; [  s l i d er    s e t T h u m b I m  a ge :  th  u m b I m a g e   f o r S t a t  e : U I C o n t r o lS tateNormal];[slider addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];[view addSubview:slider];[view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];[view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];" gifImageName:@"1.gif"];
+    [self.view addSubview:alertView];
 }
 
 -(void)down
 {
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"" message:@"" delegate:self cancelButtonTitle:@"" otherButtonTitles:nil, nil];
-    [alert show];
+    SKAlertView * alertView  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200) content:@"[slider set Thum bIma ge: t hu mb Im age for S t a t e : U I C o n t r o  l S t a t e H i g h l i  g h t e d ] ; [  s l i d er    s e t T h u m b I m  a ge :  th  u m b I m a g e   f o r S t a t  e : U I C o n t r o lS tateNormal];[slider addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];[view addSubview:slider];[view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];[view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];" gifImageName:@"1.gif"];
+    [self.view addSubview:alertView];
 }
 
 -(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title
