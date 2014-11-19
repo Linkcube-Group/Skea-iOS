@@ -226,6 +226,7 @@
 		26A6F9431A13BE8D00712594 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9421A13BE8D00712594 /* BuyViewController.m */; };
 		26A6F9461A13DB4000712594 /* SelectLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9451A13DB4000712594 /* SelectLevelViewController.m */; };
 		26F35D771A1D07920074D56D /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F35D761A1D07920074D56D /* LanguageViewController.m */; };
+		26F35D7A1A1D10E50074D56D /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26F35D781A1D10E50074D56D /* 1.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -588,6 +589,7 @@
 		26A6F9451A13DB4000712594 /* SelectLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLevelViewController.m; sourceTree = "<group>"; };
 		26F35D751A1D07920074D56D /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
 		26F35D761A1D07920074D56D /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
+		26F35D781A1D10E50074D56D /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -666,6 +668,7 @@
 				26A6F9451A13DB4000712594 /* SelectLevelViewController.m */,
 				2671F58E1A02324700E0B780 /* ParameterSetViewController.h */,
 				2671F58F1A02324700E0B780 /* ParameterSetViewController.m */,
+				26F35D781A1D10E50074D56D /* 1.gif */,
 			);
 			path = PersonController;
 			sourceTree = "<group>";
@@ -1325,6 +1328,7 @@
 				038885BB19F158B900372178 /* settings-evaluate-risk@2x.png in Resources */,
 				038885AF19F158B900372178 /* logo@2x.png in Resources */,
 				038885B919F158B900372178 /* settings-buy-skea@2x.png in Resources */,
+				26F35D7A1A1D10E50074D56D /* 1.gif in Resources */,
 				2677CEB619FB738F0068454F /* grayArrow.png in Resources */,
 				038885A919F158B900372178 /* icon-password@2x.png in Resources */,
 				038885B519F158B900372178 /* selection-checked-small@2x.png in Resources */,
