@@ -50,7 +50,7 @@
  
     if (isIOS7) {
 //        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:@"#3b3c41"]];
-        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f]];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithWhite:0.2 alpha:1.f]];
     }else{
 		[[UINavigationBar appearance] setBackgroundImage:IMG(@"bg_title") forBarMetrics:UIBarMetricsDefault];
     }
