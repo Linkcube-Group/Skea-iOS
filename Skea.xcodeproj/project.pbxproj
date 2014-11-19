@@ -225,6 +225,7 @@
 		26A6F9401A13B06E00712594 /* icon-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26A6F93F1A13B06E00712594 /* icon-me@2x.png */; };
 		26A6F9431A13BE8D00712594 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9421A13BE8D00712594 /* BuyViewController.m */; };
 		26A6F9461A13DB4000712594 /* SelectLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9451A13DB4000712594 /* SelectLevelViewController.m */; };
+		26F35D771A1D07920074D56D /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F35D761A1D07920074D56D /* LanguageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -585,6 +586,8 @@
 		26A6F9421A13BE8D00712594 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
 		26A6F9441A13DB4000712594 /* SelectLevelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLevelViewController.h; sourceTree = "<group>"; };
 		26A6F9451A13DB4000712594 /* SelectLevelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLevelViewController.m; sourceTree = "<group>"; };
+		26F35D751A1D07920074D56D /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
+		26F35D761A1D07920074D56D /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -655,6 +658,8 @@
 				26A6F9421A13BE8D00712594 /* BuyViewController.m */,
 				2671F5881A02278600E0B780 /* PersonSetViewController.h */,
 				2671F5891A02278600E0B780 /* PersonSetViewController.m */,
+				26F35D751A1D07920074D56D /* LanguageViewController.h */,
+				26F35D761A1D07920074D56D /* LanguageViewController.m */,
 				2671F58B1A0227D900E0B780 /* HealthTestViewController.h */,
 				2671F58C1A0227D900E0B780 /* HealthTestViewController.m */,
 				26A6F9441A13DB4000712594 /* SelectLevelViewController.h */,
@@ -1421,6 +1426,7 @@
 				03E532E519DA7D470064762E /* UIGestureRecognizer+Extension.m in Sources */,
 				039B926519DA7AC500292529 /* AppDelegate.m in Sources */,
 				2677CEB519FB738F0068454F /* EGORefreshTableHeaderView.m in Sources */,
+				26F35D771A1D07920074D56D /* LanguageViewController.m in Sources */,
 				03E532C519DA7D470064762E /* UIImageView+MKNetworkKitAdditions.m in Sources */,
 				03E532BA19DA7D470064762E /* NavigationController.m in Sources */,
 				03E5321C19DA7D320064762E /* UIImage+WebP.m in Sources */,
