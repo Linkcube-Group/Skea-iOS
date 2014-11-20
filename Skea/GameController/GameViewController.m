@@ -30,6 +30,8 @@
     int  passTime;
 }
 
+@property (nonatomic) BOOL isFinish;
+
 @property (nonatomic) int playTime;
 
 @property (nonatomic) int twoNum;
@@ -48,7 +50,7 @@
 
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollBg;
 
-@property (strong,nonatomic) NSMutableArray *aryGame;
+@property (strong,nonatomic) GameInfoList *aryGame;
 
 @property (strong,nonatomic) GameDetail *gameDetail;
 @end
@@ -85,7 +87,7 @@
     oldResponse = 0;
     lineTop = self.imgLine.originY;
     currentIndex = -1;
-    self.aryGame = [[NSMutableArray alloc] init];
+    self.aryGame = [[GameInfoList alloc] init];
     int level = [AppConfig getGameLevel];
     
     ///mark
@@ -107,7 +109,7 @@
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Game"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin)];
-//    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin)];
+    //    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin)];
     // Do any additional setup after loading the view from its nib.
     [self.view.layer setContents:(id)[IMG(@"game-background.png") CGImage]];
     nCBUpdataShowStringBuffer
@@ -115,6 +117,14 @@
     [self setupGameView];
     self.imgStatus.image = nil;
     [self beginGame];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.isFinish) {
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 
 - (void)pauseActoin
@@ -187,14 +197,20 @@
         [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
         
         IMP_BLOCK_SELF(GameViewController)
-        CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"您的锻炼已结束，查看结果" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+        CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"本次锻炼结束，可查看锻炼结果" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+            if (index==0) {
+                [block_self backAction:nil];
+            }
+            else{
+                block_self.isFinish = YES;
+                RecordViewController *rvc = [[RecordViewController alloc] init];
+                UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
+                [block_self presentViewController:nav animated:YES completion:nil];
+            }
             
-            RecordViewController *rvc = [[RecordViewController alloc] init];
-            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
-            [block_self presentViewController:nav animated:YES completion:nil];
-
             
-        } cancelButtonTitle:@"好" otherButtonTitles:nil];
+        } cancelButtonTitle:@"取消" otherButtonTitles:@"确定"];
+        [alert show];
         return;
     }
     
@@ -203,15 +219,12 @@
     
     self.lbTime.text = [self getGameTime:totalTime-passTime/10];
     
-
+    
     
     if ((int)[self.aryGame count]<=currentIndex) {
         return;
     }
-    //    DLog(@"-%d===%d",totalLength+lineTop,currentIndex);
     
-    
-//    DLog(@"old = %d,new = %d",oldResponse,halfResponse);
     if (currentIndex+1<self.aryGame.count && abs([[self.aryGame objectAtIndex:currentIndex+1] beginPoint]-totalLength-lineTop-20)<2) {
         currentIndex = currentIndex +1;
         self.playTime = 0;
@@ -220,11 +233,12 @@
         }
         
         [self sendBeginToBL:[[self.aryGame objectAtIndex:currentIndex] progressTime]];
-        [self showAnimationStar];
+        
     }
     oldResponse = halfResponse;
     DLog(@"----%d",halfResponse);
     if (halfResponse>0) {
+        [self showAnimationStar];
         self.imgLine.image = IMG(@"laser-active.png");
     }
     else{
@@ -253,7 +267,7 @@
                     else{
                         getHighed = YES;
                         score += 20;
-                        self.imgStatus.image = IMG(@"text-miss.png");
+                        self.imgStatus.image = IMG(@"text-cool.png");
                     }
                     
                     self.imgStatus.alpha = 1;
@@ -416,7 +430,7 @@
 {
     switch (level) {
         case 1:
-            return 15;
+            return 1;//15
         case 2:
             return 20;
         case 3:
@@ -440,13 +454,6 @@
 
 #pragma mark -
 #pragma mark BlueTooth
-///从bl收到挤压事件进行+1
-- (void)didReceiveSkea
-{
-    halfResponse++;
-}
-
-
 - (int)getGameScore:(int)index
 {
     int tempScore = 0;
@@ -532,18 +539,18 @@
 {
     // 未在编辑模式下更新显示
     if (notify) {
-//        NSDictionary *dict = [notify userInfo];
-//        NSString *value = [dict objectForKey:@"data"];
-//        if (StringNotNullAndEmpty(value)) {
-            halfResponse++;
-//        }
+        //        NSDictionary *dict = [notify userInfo];
+        //        NSString *value = [dict objectForKey:@"data"];
+        //        if (StringNotNullAndEmpty(value)) {
+        halfResponse++;
+        //        }
     }
 }
 
 - (void)showAnimationStar
 {
     int left = 1;
-    for (int i=0; i<6; i++) {
+    for (int i=0; i<2; i++) {
         int x = arc4random()%60+self.viewBottom.originX;
         int y = arc4random()%20+20+self.viewBottom.originY;
         

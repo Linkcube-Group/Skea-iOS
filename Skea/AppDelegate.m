@@ -18,6 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     ///初始化bl
     [bleCentralManager shareManager];
     

@@ -30,7 +30,7 @@
 {
     __block int num = 0;
     __block float rate = 0.0;
-    [self.aryGameInfo enumerateObjectsUsingBlock:^(GameInfo *obj, NSUInteger idx, BOOL *stop) {
+    [self.aryGameInfo.array enumerateObjectsUsingBlock:^(GameInfo *obj, NSUInteger idx, BOOL *stop) {
         if (obj.progressTime==2) {
             num++;
             rate+=obj.scoreRate;
@@ -56,7 +56,7 @@
 {
     __block int num = 0;
     __block float rate = 0.0;
-    [self.aryGameInfo enumerateObjectsUsingBlock:^(GameInfo *obj, NSUInteger idx, BOOL *stop) {
+    [self.aryGameInfo.array enumerateObjectsUsingBlock:^(GameInfo *obj, NSUInteger idx, BOOL *stop) {
         if (obj.progressTime==12) {
             num++;
             rate+=obj.scoreRate;

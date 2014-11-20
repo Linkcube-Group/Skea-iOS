@@ -7,6 +7,7 @@
 //
 
 #import "ModelBase.h"
+#import "ModelList.h"
 
 @interface GameInfo : ModelBase
 
@@ -19,4 +20,9 @@
 @property (nonatomic) BOOL isCaled;//是否被计算过
 
 - (id)initGameInfo:(int)point WithProgress:(int)length;
+@end
+
+
+@interface GameInfoList : ModelList
+
 @end

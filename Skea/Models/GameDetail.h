@@ -7,10 +7,11 @@
 //
 
 #import "ModelBase.h"
+#import "GameInfo.h"
 
 @interface GameDetail : ModelBase
 
-@property (strong,nonatomic) NSMutableArray *aryGameInfo;
+@property (strong,nonatomic) GameInfoList *aryGameInfo;
 @property (nonatomic) int totalScore;
 @property (nonatomic) int factScore;
 @property (nonatomic) int gameTime;

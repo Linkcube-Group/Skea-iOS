@@ -21,3 +21,12 @@
     return self;
 }
 @end
+
+@implementation GameInfoList
+
++(Class)elementClass
+{
+    return [GameInfo class];
+}
+
+@end

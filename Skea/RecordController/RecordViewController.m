@@ -61,7 +61,7 @@
     self.gameDetail = [AppConfig getGameDetail:today];
     
     ////////////////////////////////////////////////////////////////////
-    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 5, 270, 207-15)];
+    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 20, 270, 207-15)];
     graph1.waitToUpdate=YES;
 
     
@@ -165,11 +165,13 @@
     
     [graph1 setAlgorithm:^CGFloat(CGFloat x) {
 //        return rand()%100;
+//        DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100);
         return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100;
         
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     [graph2 setAlgorithm:^CGFloat(CGFloat x) {
         //return rand()%100;
+         DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100);
         return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100;
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     
