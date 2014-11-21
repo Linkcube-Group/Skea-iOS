@@ -49,9 +49,7 @@
 	//导航条背景
  
     if (isIOS7) {
-//        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:@"#3b3c41"]];
-        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithWhite:0.2 alpha:1.f]];
-#warning 改这里
+        [[UINavigationBar appearance] setBackgroundImage:IMG(@"bg_title2") forBarMetrics:UIBarMetricsDefault];   
     }else{
 		[[UINavigationBar appearance] setBackgroundImage:IMG(@"bg_title") forBarMetrics:UIBarMetricsDefault];
     }

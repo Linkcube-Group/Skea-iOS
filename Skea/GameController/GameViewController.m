@@ -255,11 +255,11 @@
                 }
                 halfResponse = 0;
             }
-            else if (self.playTime<5 && !getHighed) {
+            else if (self.playTime<=5 && !getHighed) {
                 ///high
                 if (halfResponse>1) {
                     
-                    if (self.playTime<3) {
+                    if (self.playTime<2) {
                         score += 50;
                         getHighed = YES;
                         self.imgStatus.image = IMG(@"text-perfect.png");

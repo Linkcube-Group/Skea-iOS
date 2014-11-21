@@ -7,6 +7,7 @@
 //
 
 #import "RecordViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "CalendarView.h"
 #import "MPGraphView.h"
 #import "MPPlot.h"
@@ -30,8 +31,12 @@
 @property (strong,nonatomic) IBOutlet UILabel *lbPersistStatus;
 @property (strong,nonatomic) IBOutlet UILabel *lbScore;
 @property (strong,nonatomic) IBOutlet UILabel *lbTime;
-@property (strong,nonatomic) IBOutlet UIImageView *imgChartBg;\
+@property (strong,nonatomic) IBOutlet UIImageView *imgChartBg;
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (strong,nonatomic) IBOutlet UIView *viewScoreBg;
+@property (strong,nonatomic) IBOutlet UIView *viewDraw;
+@property (strong,nonatomic) IBOutlet UILabel *lbRate;
 @end
 
 @implementation RecordViewController
@@ -48,6 +53,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    self.viewScoreBg.layer.cornerRadius = 55;
+    self.viewScoreBg.layer.borderColor = [[UIColor whiteColor] CGColor];
+    self.viewScoreBg.layer.borderWidth = 1;
+    self.viewScoreBg.layer.masksToBounds = YES;
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Results"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
@@ -154,7 +165,37 @@
 
 - (void)updateDateView
 {
-    self.lbDate.text = _S(@"%@ %d",self.gameDetail.date,self.gameDetail.level);
+    if (self.gameDetail==nil) {
+        return;
+    }
+    float rate = self.gameDetail.factScore*1.0/self.gameDetail.totalScore;
+    
+    int height = 110*rate;
+    
+    self.viewDraw.height = height;
+    self.viewDraw.originY = 110-height;
+    
+    int rateInt = rate*100;
+    
+    NSString *rateStr = _S(@"%d%%",rateInt);
+    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:rateStr];
+    
+    [attrStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange([rateStr length]-1,1)];
+    self.lbRate.attributedText = attrStr;
+    
+    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.viewDraw.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[UIColor colorWithHexString:@"#67C9D8"].CGColor,
+                       (id)[UIColor clearColor].CGColor,nil];
+    [self.viewDraw.layer insertSublayer:gradient atIndex:0];
+    
+    
+    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[self.gameDetail.date intValue]*(24*60*60)];
+    NSString *dayStr = [day stringDateWithFormat:@"MM/dd"];
+    
+    self.lbDate.text = _S(@"%@ %d",dayStr,self.gameDetail.level);
     self.lbTotalStatus.text = [self.gameDetail getStandard];
     self.lbforceStatus.text = [self.gameDetail getExplosive];
     self.lbPersistStatus.text = [self.gameDetail getEndurance];

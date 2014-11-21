@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
@@ -10,12 +9,15 @@
                 <outlet property="imgChartBg" destination="l5s-eF-i0C" id="MZ7-eL-gh4"/>
                 <outlet property="lbDate" destination="FMY-yf-8on" id="gtw-gF-FI0"/>
                 <outlet property="lbPersistStatus" destination="TJm-px-aGY" id="xIW-oP-JVE"/>
+                <outlet property="lbRate" destination="9D5-Mv-7DK" id="mX8-rt-L6W"/>
                 <outlet property="lbScore" destination="5RB-D2-CZH" id="lMf-IM-oaq"/>
                 <outlet property="lbTime" destination="2RL-tH-XdM" id="BtT-yv-Gz1"/>
                 <outlet property="lbTotalStatus" destination="UDp-tY-O88" id="pik-7p-IES"/>
                 <outlet property="lbforceStatus" destination="o5J-yI-PkU" id="4Wz-K4-qHq"/>
                 <outlet property="scrollView" destination="YHe-xG-XdB" id="LHt-Ws-uYX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewDraw" destination="FP5-Zg-XMT" id="VS1-7b-CMc"/>
+                <outlet property="viewScoreBg" destination="OuQ-oG-bqR" id="jQD-So-Ype"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -73,10 +75,6 @@
                                     <color key="textColor" red="0.4039215686" green="0.78823529410000004" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="risk-factor-high.png" id="1vb-47-1qI">
-                                    <rect key="frame" x="188" y="38" width="110" height="110"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct Rate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zh2-by-QUl">
                                     <rect key="frame" x="195" y="157" width="96" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -84,6 +82,25 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="OuQ-oG-bqR">
+                                    <rect key="frame" x="188" y="38" width="110" height="110"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" id="FP5-Zg-XMT">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9D5-Mv-7DK">
+                                            <rect key="frame" x="15" y="28" width="80" height="55"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
+                                            <color key="textColor" red="0.32549019610000002" green="0.79215686269999996" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" red="0.23137254901960785" green="0.23529411764705882" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
@@ -166,11 +183,5 @@
         <image name="icon-duration.png" width="22" height="22"/>
         <image name="icon-score.png" width="22" height="22"/>
         <image name="record_icon.png" width="26" height="12"/>
-        <image name="risk-factor-high.png" width="110" height="110"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
