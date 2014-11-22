@@ -37,6 +37,8 @@
 @property (strong,nonatomic) IBOutlet UIView *viewScoreBg;
 @property (strong,nonatomic) IBOutlet UIView *viewDraw;
 @property (strong,nonatomic) IBOutlet UILabel *lbRate;
+
+@property (strong,nonatomic) IBOutlet UIView *viewHeader;
 @end
 
 @implementation RecordViewController
@@ -54,15 +56,20 @@
 {
     [super viewDidLoad];
     
+    if (isIOS7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    self.navigationController.navigationBar.hidden = YES;
+    
     
     self.viewScoreBg.layer.cornerRadius = 55;
     self.viewScoreBg.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.viewScoreBg.layer.borderWidth = 1;
     self.viewScoreBg.layer.masksToBounds = YES;
     
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Results"];
-    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-date.png") Title:nil Target:self Selector:@selector(dateActoin)];
+//    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Results"];
+//    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+//    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-date.png") Title:nil Target:self Selector:@selector(dateActoin)];
     
     
     
@@ -115,6 +122,11 @@
 //    [self performSelector:@selector(animate) withObject:nil afterDelay:0.3];
     
 }
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
 - (void)animate{
     
@@ -129,7 +141,7 @@
     int second = length%60;
     return _S(@"%d:%d",minute,second);
 }
-- (void)dateActoin
+- (IBAction)dateActoin:(id)sender
 {
     viewFloat.alpha = 0;
     viewFloat.hidden = NO;
@@ -166,8 +178,11 @@
 - (void)updateDateView
 {
     if (self.gameDetail==nil) {
+        self.viewHeader.hidden = NO;
         return;
     }
+    self.viewHeader.hidden = YES;
+    
     float rate = self.gameDetail.factScore*1.0/self.gameDetail.totalScore;
     
     int height = 110*rate;
@@ -195,7 +210,7 @@
     NSDate *day = [NSDate dateWithTimeIntervalSince1970:[self.gameDetail.date intValue]*(24*60*60)];
     NSString *dayStr = [day stringDateWithFormat:@"MM/dd"];
     
-    self.lbDate.text = _S(@"%@ %d",dayStr,self.gameDetail.level);
+    self.lbDate.text = _S(@"%@  Level %d",dayStr,self.gameDetail.level);
     self.lbTotalStatus.text = [self.gameDetail getStandard];
     self.lbforceStatus.text = [self.gameDetail getExplosive];
     self.lbPersistStatus.text = [self.gameDetail getEndurance];

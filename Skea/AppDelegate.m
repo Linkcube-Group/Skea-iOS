@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "NavigationController.h"
 
+#ifdef DEBUG_REVEL
+#import <dlfcn.h>
+#endif
+
 @interface AppDelegate ()
 
 @end
@@ -18,6 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [self loadReveal];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     ///初始化bl
     [bleCentralManager shareManager];
@@ -39,6 +44,20 @@
     return YES;
     
     return YES;
+}
+
+- (void)loadReveal
+{
+#ifdef DEBUG_REVEL
+    void *revealLib = dlopen("/Applications/Reveal.app/Contents/SharedSupport/iOS-Libraries/libReveal.dylib", 2);
+    if (revealLib) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"IBARevealRequestStart" object:0];
+    }
+    else{
+        char *error = dlerror();
+        NSLog(@"Reveal dlopen error: %s", error);
+    }
+#endif
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

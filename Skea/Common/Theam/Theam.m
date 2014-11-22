@@ -54,6 +54,7 @@
 		[[UINavigationBar appearance] setBackgroundImage:IMG(@"bg_title") forBarMetrics:UIBarMetricsDefault];
     }
     
+   
 
     
 }
