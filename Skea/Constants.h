@@ -52,9 +52,7 @@ static NSString * const kSinaAppKey  = @"1054079396";
 static NSString * const kSinaAppSecret = @"c894fa362e62dbd4cf7063951830adf9";
 
 ///服务器地址-测试环境
-static NSString * const kServerDomain = @"boss.kanzhun.org:8099";
-/// MQTT配置-测试环境
-static NSString * const kMQTTServerHost = @"boss.kanzhun.org";
+static NSString * const kServerDomain = @"112.124.22.252:8002";
 
 static int const tabHeight = 49;
 

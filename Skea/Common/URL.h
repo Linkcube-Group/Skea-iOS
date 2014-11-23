@@ -6,17 +6,34 @@
 
 
 
-///需要sig   1需要 0不需要
-///用户重置密码设置 0
-//#define HP_USER_PWDSET                  @"api/client/login"
+///注册
+#define SK_SIGN                     @"register"
 
-///上传图片
-#define HP_IMAGE_UPLOAD                 @"api/chat/photoupload"
+///登录
+#define SK_LOGIN                    @"login"
 
-/**
- *  重置密码 0
- */
-#define HP_RESET_PWD                    @"api/user/resetPassword"
+///编辑名字
+#define SK_EDITNAME                 @"editNickname"
+
+///获取信息
+#define SK_GETINFO                  @"getInfo"
+
+///获取问答结果
+#define SK_LAST_QUS                 @"getLastQuestionResult"
+
+///保存问答结果
+#define SK_SAVE_QUS                 @"saveQuestionResult"
+
+///获取记录
+#define SK_GET_RECORD               @"getRecords"
+
+///保存记录
+#define SK_SAVE_RECORD              @"saveRecord"
+
+
+
+
+
 
 
 

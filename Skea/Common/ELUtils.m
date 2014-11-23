@@ -96,27 +96,18 @@ void showIndicator(BOOL flag,NSString * title)
             label.backgroundColor = [UIColor clearColor];
             [activityView addSubview:label];
             
-
+            UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            activityIndicator.frame = CGRectMake(9, 3, 20, 20); //26 = 32-3x2
+            [activityView addSubview:activityIndicator];
+            activityIndicator.tag = 794232;
+            
+            activityIndicator.center = CGPointMake(50,40);
+            [activityIndicator startAnimating];
             
             
-            UIImageView * imgv = [[UIImageView alloc]init];
-            imgv.animationImages = @[IMG(@"01.png"),
-                                     IMG(@"02.png"),
-                                     IMG(@"03.png"),
-                                     IMG(@"04.png"),
-                                     IMG(@"05.png"),
-                                     IMG(@"06.png"),
-                                     IMG(@"07.png"),
-                                     IMG(@"08.png")];
-            imgv.frame = CGRectMake(40, 30, 20, 20);
-            imgv.animationDuration = 1;
-            imgv.animationRepeatCount = 0;
-            [activityView addSubview:imgv];
-            imgv.tag = 794232;
-            [imgv startAnimating];
             activityView.center = theApp.window.center;
             [theApp.window addSubview:activityView];
-
+            
         }
         
     }
@@ -131,7 +122,6 @@ void showIndicator(BOOL flag,NSString * title)
     }
     
 }
-
 
 
 

@@ -31,7 +31,7 @@ NSString * const kProtocolHelperLocalizedDescription = @"网络连接错误";
     if(self=[super init]){
         
         self = [[BaseEngine alloc] initWithHostName:kServerDomain customHeaderFields:nil];
-        self.httpMethod = @"GET";
+        self.httpMethod = @"POST";
         self.useCached = NO;
         self.postDict = [[NSMutableDictionary alloc] init];
         self.postFileDict = [[NSMutableDictionary alloc] init];
@@ -66,11 +66,12 @@ NSString * const kProtocolHelperLocalizedDescription = @"网络连接错误";
         
         id reDict = [response objectFromJSONString];
         DLog(@"MKNET RESPONSE=%@",reDict);
+        int statusCode = -1;
+        
         if (reDict) {
-            int errCode = [[reDict valueForKey:@"errcode"] intValue];
-            int statusCode = [[reDict valueForKey:@"code"] intValue]; ///0-normal or none
+            statusCode = [[reDict valueForKey:@"status"] intValue]; ///0-normal or none
             
-            if (errCode==0 && (statusCode==0 || statusCode==200)){
+            if (statusCode==100){
                 completionBlock(reDict);
                 reDict = nil;
             }
@@ -79,6 +80,8 @@ NSString * const kProtocolHelperLocalizedDescription = @"网络连接错误";
         else{
             reDict = @{@"code":@"400",@"msg":@"服务器请求错误"};
         }
+        
+       
         
         finishBlock(reDict);
     } errorHandler:^(MKNetworkOperation *completedOperation, NSError *error) {
@@ -89,7 +92,7 @@ NSString * const kProtocolHelperLocalizedDescription = @"网络连接错误";
     
     [self enqueueOperation:op];
     ///完成上传后把请求体清空
-    self.httpMethod = @"GET";
+//    self.httpMethod = @"GET";
     
     
     return op;
