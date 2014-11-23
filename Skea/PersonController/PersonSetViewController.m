@@ -32,6 +32,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorColor  = [UIColor clearColor];
+    tableView.scrollEnabled = NO;
     [self.view addSubview:tableView];
 
 }
