@@ -10,4 +10,6 @@
 
 @interface TestingViewController1 : UIViewController
 
+@property(nonatomic) BOOL _isRegisterPush;
+
 @end

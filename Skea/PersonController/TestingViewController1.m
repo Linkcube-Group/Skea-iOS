@@ -130,7 +130,7 @@
         _ageTextField.textAlignment = NSTextAlignmentRight;
         _ageTextField.inputView = _ageDatePicker;
         _ageTextField.delegate = self;
-        _ageTextField.text = @"1980-01-01";
+        _ageTextField.text = [SkeaUser defaultUser].birthday.length?[SkeaUser defaultUser].birthday:@"1980-01-01";
         _ageTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_ageTextField];
     }
@@ -146,7 +146,7 @@
         _heightTextField.textAlignment = NSTextAlignmentRight;
         _heightTextField.inputView = _heightPicker;
         _heightTextField.delegate = self;
-        _heightTextField.text = @"180";
+        _heightTextField.text = [SkeaUser defaultUser].height.length?[SkeaUser defaultUser].height:@"180";
         _heightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_heightTextField];
     }
@@ -162,7 +162,7 @@
         _weightTextField.textAlignment = NSTextAlignmentRight;
         _weightTextField.inputView = _weightPicker;
         _weightTextField.delegate = self;
-        _weightTextField.text = @"60";
+        _weightTextField.text = [SkeaUser defaultUser].weight.length?[SkeaUser defaultUser].weight:@"60";
         _weightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_weightTextField];
     }
@@ -301,12 +301,18 @@
         ///请求成功
         showCustomAlertMessage(@"提交成功");
         
-        PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
-        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
-        [self presentViewController:nvc animated:YES completion:nil];
+        if(self._isRegisterPush)
+        {
+            PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
+            UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
+            [block_self presentViewController:nvc animated:YES completion:nil];
+        }
+        else
+        {
+            [block_self btBack_DisModal:nil];
+        }
         
         showIndicator(NO, nil);
-        [block_self btBack_DisModal:nil];
         
     } errorHandler:^(NSError *error) {
         ///网络失败

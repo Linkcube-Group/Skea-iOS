@@ -12,6 +12,7 @@
 #import "ParameterSetViewController.h"
 #import "BuyViewController.h"
 #import "InputViewController.h"
+#import "SkeaUser.h"
 
 @interface PersonLoginedViewController ()<UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,inputDelegate>
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    nickname = ((NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"]).length?[[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"]:@"Skea";
+    nickname = [SkeaUser defaultUser].nickName.length?[SkeaUser defaultUser].nickName:@"Skea";
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"设置", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
@@ -49,6 +50,12 @@
     [LogoutButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
     [LogoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:LogoutButton];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_mainTableView reloadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -102,7 +109,7 @@
     if(indexPath.section == 0 && indexPath.row == 0)
     {
         cell.imageView.image = [UIImage imageNamed:@"icon_me_small.png"];
-        cell.textLabel.text = nickname;
+        cell.textLabel.text = [SkeaUser defaultUser].nickName.length?[SkeaUser defaultUser].nickName:@"Skea";
     }
     if(indexPath.section == 1)
     {
@@ -132,6 +139,7 @@
 
 -(void)logout
 {
+    [SkeaUser defaultUser].isLogin = NO;
     [self btBack_DisModal:nil];
 }
 

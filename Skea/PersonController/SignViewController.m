@@ -10,6 +10,7 @@
 #import "PersonViewController.h"
 #import "CXAlertView.h"
 #import "TestingViewController1.h"
+#import "SkeaUser.h"
 
 @interface SignViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -304,11 +305,18 @@
     ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
     [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"password":pwd,@"nickname":@"skea"} mutableCopy] path:SK_SIGN completionHandler:^(id responseObject) {
         ///请求成功
-        showCustomAlertMessage(@"注册成功");
+        showCustomAlertMessage(@"恭喜您注册成功");
         showIndicator(NO, nil);
+        
+        [SkeaUser defaultUser].email = email;
+        [SkeaUser defaultUser].password = pwd;
+        [SkeaUser defaultUser].isLogin = YES;
+        [SkeaUser defaultUser].userId = @"";
+        [SkeaUser defaultUser].saveUser = YES;
         
 //        [block_self btBack_DisModal:nil];
         TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
+        tvc._isRegisterPush = YES;
         UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
         [block_self presentViewController:nvc animated:YES completion:nil];
         

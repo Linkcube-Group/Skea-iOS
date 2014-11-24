@@ -138,6 +138,10 @@
         _emailTextField.returnKeyType = UIReturnKeyDone;
         _emailTextField.delegate = self;
         _emailTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        if([SkeaUser defaultUser].saveUser)
+        {
+            _emailTextField.text = [SkeaUser defaultUser].email;
+        }
         [cell.contentView addSubview:_emailTextField];
         [cell.contentView addSubview:[self lineViewWithFrame:CGRectMake(20, 39.5, self.view.frame.size.width - 20, 0.5)]];
     }
@@ -160,11 +164,43 @@
         _passwordTextField.returnKeyType = UIReturnKeyDone;
         _passwordTextField.delegate = self;
         _passwordTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        if([SkeaUser defaultUser].saveUser)
+        {
+            _passwordTextField.text = [SkeaUser defaultUser].password;
+        }
         [cell.contentView addSubview:_passwordTextField];
         [cell.contentView addSubview:[self lineViewWithFrame:CGRectMake(0, 39.5, self.view.frame.size.width, 0.5)]];
     }
     else
     {
+        NSString * str0 = NSLocalizedString(@"记住用户名和密码", nil);
+        CGSize size0 = [str0 sizeWithFont:[UIFont systemFontOfSize:13.f]];
+        
+        UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(25, 10, 20, 20);
+        if(![SkeaUser defaultUser].saveUser)
+        {
+            [btn setImage:[UIImage imageNamed:@"selection-unchecked.png"] forState:UIControlStateNormal];
+        }
+        else
+        {
+            [btn setImage:[UIImage imageNamed:@"selection-checked.png"] forState:UIControlStateNormal];
+        }
+        [btn addTarget:self action:@selector(agree:) forControlEvents:UIControlEventTouchUpInside];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13.f];
+        [cell.contentView addSubview:btn];
+        
+        UILabel * label0 =[[UILabel alloc] init];
+        label0.frame = CGRectMake(55, 10, size0.width, 20);
+        label0.backgroundColor = [UIColor clearColor];
+        label0.textColor = [UIColor blackColor];
+        label0.text = str0;
+        label0.font = [UIFont systemFontOfSize:13.f];
+        [cell.contentView addSubview:label0];
+        
+        
+        
+        
         CGFloat buttonWidth = 100.f;
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(self.view.frame.size.width - buttonWidth, 5, buttonWidth, 30);
@@ -202,6 +238,20 @@
     return cell;
 }
 
+-(void)agree:(UIButton *)btn
+{
+    //selection-unchecked.png
+    if([SkeaUser defaultUser].saveUser)
+    {
+        [btn setImage:[UIImage imageNamed:@"selection-unchecked.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [btn setImage:[UIImage imageNamed:@"selection-checked.png"] forState:UIControlStateNormal];
+    }
+    [SkeaUser defaultUser].saveUser = ![SkeaUser defaultUser].saveUser;
+}
+
 -(UIView *)lineViewWithFrame:(CGRect)rect
 {
     UIView * view = [[UIView alloc] init];
@@ -237,6 +287,22 @@
         [SkeaUser defaultUser].email = _emailTextField.text;
         [SkeaUser defaultUser].password = _passwordTextField.text;
         [SkeaUser defaultUser].isLogin = YES;
+        [SkeaUser defaultUser].userId = @"";
+        
+        [[BaseEngine sharedEngine] RunRequest:[@{@"email":[SkeaUser defaultUser].email} mutableCopy] path:SK_GETINFO completionHandler:^(id responseObject) {
+            
+            responseObject = (NSDictionary *)responseObject;
+            [SkeaUser defaultUser].birthday = [[responseObject objectForKey:@"info"] objectForKey:@"birthday"];
+            [SkeaUser defaultUser].height = [[responseObject objectForKey:@"info"] objectForKey:@"height"];
+            [SkeaUser defaultUser].weight = [[responseObject objectForKey:@"info"] objectForKey:@"weight"];
+            [SkeaUser defaultUser].nickName = [[responseObject objectForKey:@"info"] objectForKey:@"nickname"];
+            
+            
+        } errorHandler:^(NSError *error) {
+        
+        } finishHandler:^(id responseObject) {
+            
+        }];
         
         showIndicator(NO, nil);
         [block_self btBack_DisModal:nil];
