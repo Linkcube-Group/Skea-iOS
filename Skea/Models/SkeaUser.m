@@ -29,6 +29,12 @@ static SkeaUser *DefaultManager = nil;
         self.password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
         self.userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
         self.isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
+        self.autoLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"autoLogin"];
+        self.saveUser = [[NSUserDefaults standardUserDefaults] boolForKey:@"saveUser"];
+        self.birthday = [[NSUserDefaults standardUserDefaults] objectForKey:@"birthday"];
+        self.height = [[NSUserDefaults standardUserDefaults] objectForKey:@"height"];
+        self.weight = [[NSUserDefaults standardUserDefaults] objectForKey:@"weight"];
+        self.nickName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
     }
     return self;
 }
@@ -55,6 +61,50 @@ static SkeaUser *DefaultManager = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
 }
 
+-(void)setBirthday:(NSString *)birthday
+{
+    [[NSUserDefaults standardUserDefaults] setObject:birthday forKey:@"birthday"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString *)birthday
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"birthday"];
+}
+
+-(void)setHeight:(NSString *)height
+{
+    [[NSUserDefaults standardUserDefaults] setObject:height forKey:@"height"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString *)height
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"height"];
+}
+
+-(void)setWeight:(NSString *)weight
+{
+    [[NSUserDefaults standardUserDefaults] setObject:weight forKey:@"weight"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString *)weight
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"weight"];
+}
+
+-(void)setNickName:(NSString *)nickName
+{
+    [[NSUserDefaults standardUserDefaults] setObject:nickName forKey:@"nickName"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSString *)nickName
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
+}
+
 -(void)setIsLogin:(BOOL)isLogin
 {
     [[NSUserDefaults standardUserDefaults] setBool:isLogin forKey:@"isLogin"];
@@ -64,6 +114,28 @@ static SkeaUser *DefaultManager = nil;
 -(BOOL)isLogin
 {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
+}
+
+-(void)setAutoLogin:(BOOL)autoLogin
+{
+    [[NSUserDefaults standardUserDefaults] setBool:autoLogin forKey:@"autoLogin"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(BOOL)autoLogin
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"autoLogin"];
+}
+
+-(void)setSaveUser:(BOOL)saveUser
+{
+    [[NSUserDefaults standardUserDefaults] setBool:saveUser forKey:@"saveUser"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(BOOL)saveUser
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"saveUser"];
 }
 
 -(void)setUserId:(NSString *)userId
@@ -88,6 +160,12 @@ static SkeaUser *DefaultManager = nil;
         self.password       = [aDecoder decodeObjectForKey:@"password"];
         self.userId         = [aDecoder decodeObjectForKey:@"userid"];
         self.isLogin        = [[aDecoder decodeObjectForKey:@"islogin"] boolValue];
+        self.autoLogin      = [[aDecoder decodeObjectForKey:@"autoLogin"] boolValue];
+        self.saveUser       = [[aDecoder decodeObjectForKey:@"saveUser"] boolValue];
+        self.birthday       = [aDecoder decodeObjectForKey:@"birthday"];
+        self.height         = [aDecoder decodeObjectForKey:@"height"];
+        self.weight         = [aDecoder decodeObjectForKey:@"weight"];
+        self.nickName       = [aDecoder decodeObjectForKey:@"nickName"];
     }
     return self;
 }
@@ -98,6 +176,12 @@ static SkeaUser *DefaultManager = nil;
     [aCoder encodeObject:self.password                          forKey:@"password"];
     [aCoder encodeObject:self.userId                            forKey:@"userid"];
     [aCoder encodeObject:[NSNumber numberWithBool:self.isLogin] forKey:@"islogin"];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.autoLogin] forKey:@"autoLogin"];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.saveUser] forKey:@"saveUser"];
+    [aCoder encodeObject:self.birthday forKey:@"birthday"];
+    [aCoder encodeObject:self.height forKey:@"height"];
+    [aCoder encodeObject:self.weight forKey:@"weight"];
+    [aCoder encodeObject:self.nickName forKey:@"nickName"];
 }
 
 @end
