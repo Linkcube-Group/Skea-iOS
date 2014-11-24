@@ -15,4 +15,6 @@
 @property(nonatomic,strong) NSString * userId;           //id
 @property(nonatomic)        BOOL       isLogin;          //是否登录状态
 
++(SkeaUser *)defaultUser;
+
 @end
