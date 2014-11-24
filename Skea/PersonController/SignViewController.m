@@ -279,7 +279,6 @@
 {
     NSLog(@"注册");
     
-    NSLog(@"登陆");
     //    [self btBack_DisModal:nil];
     NSString *email = _emailTextField.text;
     if (StringIsNullOrEmpty(email)) {
