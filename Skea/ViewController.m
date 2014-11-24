@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "PersonViewController.h"
 #import "RecordViewController.h"
+#import "PersonLoginedViewController.h"
 #import "SkeaUser.h"
 
 @interface ViewController ()
@@ -112,9 +113,17 @@
 
 - (IBAction)recordAction:(id)sender
 {
-    RecordViewController *rvc = [[RecordViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
-    [self presentViewController:nav animated:YES completion:nil];
+    if([SkeaUser defaultUser].isLogin)
+    {
+        RecordViewController *rvc = [[RecordViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    else
+    {
+        LoginViewController *lvc = [[LoginViewController alloc] init];
+        [self presentViewController:lvc animated:YES completion:nil];
+    }
 
 }
 
@@ -122,9 +131,17 @@
 
 - (IBAction)settingAction:(id)sender
 {
-    LoginViewController *lvc = [[LoginViewController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:lvc];
-    [self presentViewController:lvc animated:YES completion:nil];
+    if([SkeaUser defaultUser].isLogin)
+    {
+        PersonLoginedViewController *pvc = [[PersonLoginedViewController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pvc];
+        [self presentViewController:nav animated:YES completion:nil];
+    }
+    else
+    {
+        LoginViewController *lvc = [[LoginViewController alloc] init];
+        [self presentViewController:lvc animated:YES completion:nil];
+    }
 
 }
 

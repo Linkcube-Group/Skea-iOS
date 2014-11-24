@@ -8,8 +8,9 @@
 
 #import "HealthTestViewController.h"
 #import "SelectLevelViewController.h"
+#import "TestingViewController1.h"
 
-@interface HealthTestViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface HealthTestViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIAlertViewDelegate>
 
 @end
 
@@ -139,8 +140,18 @@
 -(void)again
 {
     UIAlertView * alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示", nil) message:NSLocalizedString(@"\n是否重新测试？您之前的评估结果将不会被保留！", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"取消",nil) otherButtonTitles:NSLocalizedString(@"确定", nil), nil];
-#warning 点击确定到问卷界面
     [alert show];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    {
+        TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
+        tvc._isRegisterPush = NO;
+        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+        [self presentViewController:nvc animated:YES completion:nil];
+    }
 }
 
 -(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title

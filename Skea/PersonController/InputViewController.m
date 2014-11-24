@@ -41,10 +41,55 @@
 
 -(void)Done
 {
-    [[NSUserDefaults standardUserDefaults] setObject:field.text.length?field.text:@"" forKey:@"nickName"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [_delegate inputText:field.text];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *nickName = field.text;
+    if (StringIsNullOrEmpty(nickName)) {
+        showAlertMessage(@"昵称不能为空");
+        return;
+    }
+    
+    IMP_BLOCK_SELF(InputViewController) //作为一个self的弱引用,在block里面调用
+    
+    showIndicator(YES, @"正在加载中");  ///弹一个正在加载的菊花
+    [[BaseEngine sharedEngine] RunRequest:[@{@"email":[SkeaUser defaultUser].email,@"nickname":nickName} mutableCopy] path:SK_EDITNAME completionHandler:^(id responseObject) {
+        ///请求成功
+        showCustomAlertMessage(@"修改成功");
+        showIndicator(NO, nil);
+        [SkeaUser defaultUser].nickName = nickName;
+        [block_self dismissViewControllerAnimated:YES completion:nil];
+        
+    } errorHandler:^(NSError *error) {
+        ///网络失败
+        showAlertMessage(@"网络不给力");
+        showIndicator(NO, nil);
+    } finishHandler:^(id responseObject) {
+        ///请求结束，如果请求返回的status不为100，判断如下
+        showIndicator(NO, nil);
+        if (responseObject!=nil) {
+            int statusCode = [[responseObject objectForKey:@"status"] intValue];
+            if (statusCode>100) {
+                NSString *errMsg = @"服务器错误";
+                switch (statusCode) {
+                    case 101:
+                        errMsg = @"参数错误";
+                        break;
+                    case 102:
+                        errMsg = @"该用户已被注册";
+                        break;
+                    case 103:
+                        errMsg = @"用户名或密码错误";
+                        break;
+                    case 104:
+                        errMsg = @"结果未找到";
+                        break;
+                    default:
+                        break;
+                }
+                showCustomAlertMessage(errMsg);
+            }
+        }
+        
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
