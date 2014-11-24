@@ -12,7 +12,7 @@
 
 - (NSString *)getStandard
 {
-    float rate = self.factScore*1.0/self.totalScore;
+    float rate = self.factScore*1.0/self.heighScore;
     if (rate>0.95) {
         return @"Brilliant!";
     }
@@ -25,8 +25,8 @@
     return @"Weak!";
     
 }
-///爆发力
-- (NSString *)getExplosive
+
+- (float)getExplosiveScore
 {
     __block int num = 0;
     __block float rate = 0.0;
@@ -39,6 +39,13 @@
     
     rate = rate/num;
     
+    return rate;
+}
+///爆发力
+- (NSString *)getExplosive
+{
+    
+    float rate = [self getExplosiveScore];
     if (rate>0.95) {
         return @"Brilliant!";
     }
@@ -51,8 +58,8 @@
     return @"Weak!";
 }
 
-///耐力
-- (NSString *)getEndurance
+
+- (float)getEnduranceScore
 {
     __block int num = 0;
     __block float rate = 0.0;
@@ -64,6 +71,12 @@
     }];
     
     rate = rate/num;
+    return rate;
+}
+///耐力
+- (NSString *)getEndurance
+{
+    float rate = [self getEnduranceScore];
     
     if (rate>0.95) {
         return @"Brilliant!";

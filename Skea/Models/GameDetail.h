@@ -12,14 +12,20 @@
 @interface GameDetail : ModelBase
 
 @property (strong,nonatomic) GameInfoList *aryGameInfo;
-@property (nonatomic) int totalScore;
+@property (nonatomic) int heighScore;
 @property (nonatomic) int factScore;
-@property (nonatomic) int gameTime;
+@property (nonatomic) int exerciseTime;
 @property (nonatomic) int level;
 @property (strong,nonatomic) NSString *date;
-
+///爆发力
+@property (nonatomic) float explosive;
+///耐力
+@property (nonatomic) float endurance;
 
 - (NSString *)getStandard;
 - (NSString *)getExplosive;
 - (NSString *)getEndurance;
+
+- (float)getExplosiveScore;
+- (float)getEnduranceScore;
 @end

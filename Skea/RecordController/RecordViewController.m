@@ -74,10 +74,10 @@
     
     
     self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight);
-    NSString *today = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
+//    NSString *today = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
     
-    self.gameDetail = [AppConfig getGameDetail:today];
-    
+//    self.gameDetail = [AppConfig getGameDetail:today];
+    self.gameDetail = [AppConfig getLastGameDetail];
     ////////////////////////////////////////////////////////////////////
     graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 20, 270, 207-15)];
     graph1.waitToUpdate=YES;
@@ -183,7 +183,7 @@
     }
     self.viewHeader.hidden = YES;
     
-    float rate = self.gameDetail.factScore*1.0/self.gameDetail.totalScore;
+    float rate = self.gameDetail.factScore*1.0/self.gameDetail.heighScore;
     
     int height = 110*rate;
     
@@ -192,7 +192,7 @@
     
     int rateInt = rate*100;
     
-    NSString *rateStr = _S(@"%d%%",rateInt);
+    NSString *rateStr = _S(@" %d%%",rateInt);
     
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:rateStr];
     
@@ -215,7 +215,7 @@
     self.lbforceStatus.text = [self.gameDetail getExplosive];
     self.lbPersistStatus.text = [self.gameDetail getEndurance];
     self.lbScore.text = _S(@"%d",self.gameDetail.factScore);
-    self.lbTime.text = [self getGameTime:self.gameDetail.gameTime];
+    self.lbTime.text = [self getGameTime:self.gameDetail.exerciseTime];
     
     IMP_BLOCK_SELF(RecordViewController)
     
@@ -227,7 +227,7 @@
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     [graph2 setAlgorithm:^CGFloat(CGFloat x) {
         //return rand()%100;
-         DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100);
+//         DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100);
         return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100;
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     

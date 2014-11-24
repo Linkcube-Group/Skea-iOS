@@ -79,4 +79,14 @@
     [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"gameLevel"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
++ (void)setUserEmail:(NSString *)email
+{
+    [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"userEmail"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++ (NSString *)getUserEmail
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userEmail"];
+}
 @end

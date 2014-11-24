@@ -43,7 +43,7 @@
     self.lbLevel.text = _S(@"Level %d",[AppConfig getGameLevel]);
     GameDetail *detail = [AppConfig getLastGameDetail];
     if (detail) {
-        self.lbResult.text = _S(@"Last Result:%d%%",(int)((detail.factScore*1.0/detail.totalScore)*100));
+        self.lbResult.text = _S(@"Last Result:%d%%",(int)((detail.factScore*1.0/detail.heighScore)*100));
     }
     else{
         self.lbResult.text = nil;

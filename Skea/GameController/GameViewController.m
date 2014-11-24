@@ -102,7 +102,7 @@
     self.twelfthNum = [self getLevelNum:level];
     
     ///mark
-    self.gameDetail.totalScore = self.twoNum*TwoTotal+self.sevenNum*SevenTotal+self.twelfthNum*TwelfthTotal;
+    self.gameDetail.heighScore = self.twoNum*TwoTotal+self.sevenNum*SevenTotal+self.twelfthNum*TwelfthTotal;
     
     totalLength = 0;
     isPlaying = NO;
@@ -117,6 +117,11 @@
     [self setupGameView];
     self.imgStatus.image = nil;
     [self beginGame];
+    
+    IMP_BLOCK_SELF(GameViewController)
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+        block_self.scrollView.hidden = NO;
+    });
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -332,7 +337,7 @@
     passTime = 0;
     
     ///add time
-    self.gameDetail.gameTime = totalTime;
+    self.gameDetail.exerciseTime = totalTime;
     
     self.lbTime.text = [self getGameTime:totalTime];
     
@@ -361,9 +366,11 @@
         gsecond = [self getGameSecond];
         top = top-[self imageLength:gsecond]-left;
     }
+    self.scrollView.hidden = YES;
     
     [self.scrollView setContentOffset:CGPointMake(0, self.scrollView.contentSize.height-bottom)];
     [self.scrollBg setContentOffset:CGPointMake(0, self.scrollBg.contentSize.height-bottom)];
+
 }
 
 - (int)getGameSecond
@@ -430,7 +437,7 @@
 {
     switch (level) {
         case 1:
-            return 1;//15
+            return 15;
         case 2:
             return 20;
         case 3:

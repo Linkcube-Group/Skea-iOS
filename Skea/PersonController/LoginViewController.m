@@ -229,6 +229,7 @@
     ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
     [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"password":pwd} mutableCopy] path:SK_LOGIN completionHandler:^(id responseObject) {
         ///请求成功
+        [AppConfig setUserEmail:email];
         showCustomAlertMessage(@"登录成功");
         showIndicator(NO, nil);
         [block_self btBack_DisModal:nil];

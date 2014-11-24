@@ -24,4 +24,7 @@
 
 + (int)getGameLevel;
 + (void)setGameLevel:(int)level;
+
++ (void)setUserEmail:(NSString *)email;
++ (NSString *)getUserEmail;
 @end

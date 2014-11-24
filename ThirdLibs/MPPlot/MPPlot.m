@@ -127,7 +127,10 @@
             [pointsArray addObject:@(val)];
         }
         
-    }else [pointsArray addObject:@(1)];
+    }
+    else{
+        [pointsArray addObject:@(1)];
+    }
     
     return pointsArray;
 }

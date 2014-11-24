@@ -14,6 +14,9 @@
 
 + (ProtolManager *)shareProtolManager;
 
-
+///发送游戏数据到服务器
+- (void)sendGameData:(GameDetail *)gdetail;
+///同步游戏数据
+- (void)updateGameData;
 
 @end

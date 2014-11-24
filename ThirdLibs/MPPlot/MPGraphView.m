@@ -67,8 +67,11 @@
         
         CGPoint point=[self pointAtIndex:i];
         
-        if(i==0)
-            [path moveToPoint:point];
+        if(i==0){
+
+            CGPoint temp = CGPointMake(point.x, point.y+3);
+            [path moveToPoint:temp];
+        }
         
         
         MPButton *button=[MPButton buttonWithType:UIButtonTypeCustom tappableAreaOffset:UIOffsetMake(25, 25)];
@@ -81,8 +84,10 @@
         [self addSubview:button];
         
         [buttons addObject:button];
-        
-        [path addLineToPoint:point];
+        if (i>0) {
+             [path addLineToPoint:point];
+        }
+       
         
         
         
