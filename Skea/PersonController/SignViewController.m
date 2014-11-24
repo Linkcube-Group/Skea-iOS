@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view from its nib.
 //    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
 //    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundImage:IMG(@"back-cross.png") forState:UIControlStateNormal];
     btn.tag = 200;
@@ -277,9 +278,72 @@
 -(void)registerButtonClick
 {
     NSLog(@"注册");
-    TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
-    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-    [self presentViewController:nvc animated:YES completion:nil];
+    
+    //    [self btBack_DisModal:nil];
+    NSString *email = _emailTextField.text;
+    if (StringIsNullOrEmpty(email)) {
+        showAlertMessage(@"邮箱不能为空");
+        return;
+    }
+    NSString *pwd = _passwordTextField.text;
+    if (StringIsNullOrEmpty(pwd)) {
+        showAlertMessage(@"密码不能为空");
+        return;
+    }
+    
+    if(![_passwordTextField.text isEqualToString:_rePasswordTextField.text])
+    {
+        showAlertMessage(@"密码和确认密码不一致");
+        return;
+    }
+    
+    IMP_BLOCK_SELF(SignViewController) //作为一个self的弱引用,在block里面调用
+    
+    showIndicator(YES, @"正在加载中");  ///弹一个正在加载的菊花
+    ///path 在URL.h里面找对就的宏
+    ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
+    [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"password":pwd,@"nickname":@"skea"} mutableCopy] path:SK_SIGN completionHandler:^(id responseObject) {
+        ///请求成功
+        showCustomAlertMessage(@"注册成功");
+        showIndicator(NO, nil);
+        
+//        [block_self btBack_DisModal:nil];
+        TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
+        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+        [block_self presentViewController:nvc animated:YES completion:nil];
+        
+    } errorHandler:^(NSError *error) {
+        ///网络失败
+        showAlertMessage(@"网络不给力");
+        showIndicator(NO, nil);
+    } finishHandler:^(id responseObject) {
+        ///请求结束，如果请求返回的status不为100，判断如下
+        showIndicator(NO, nil);
+        if (responseObject!=nil) {
+            int statusCode = [[responseObject objectForKey:@"status"] intValue];
+            if (statusCode>100) {
+                NSString *errMsg = @"服务器错误";
+                switch (statusCode) {
+                    case 101:
+                        errMsg = @"参数错误";
+                        break;
+                    case 102:
+                        errMsg = @"该用户已被注册";
+                        break;
+                    case 103:
+                        errMsg = @"用户名或密码错误";
+                        break;
+                    case 104:
+                        errMsg = @"结果未找到";
+                        break;
+                    default:
+                        break;
+                }
+                showCustomAlertMessage(errMsg);
+            }
+        }
+        
+    }];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

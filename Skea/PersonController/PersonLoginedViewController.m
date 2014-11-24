@@ -31,7 +31,7 @@
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     photoImageView = [[UIImageView alloc] init];
-    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 206) style:UITableViewStylePlain];
+    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 206 - 44 - 20) style:UITableViewStylePlain];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     _mainTableView.scrollEnabled = NO;
@@ -39,7 +39,7 @@
     [self.view addSubview:_mainTableView];
     
     UIButton * LogoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    LogoutButton.frame = CGRectMake(10,self.view.frame.size.height - 80,self.view.frame.size.width - 20,44);
+    LogoutButton.frame = CGRectMake(10,self.view.frame.size.height - 80 - 64,self.view.frame.size.width - 20,44);
     LogoutButton.backgroundColor = [UIColor whiteColor];
 //    LogoutButton.layer.borderWidth = 0.5f;
 //    LogoutButton.layer.borderColor = [UIColor blackColor].CGColor;

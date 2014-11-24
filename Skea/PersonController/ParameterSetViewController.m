@@ -31,11 +31,11 @@
         NSString* filePath = [[NSBundle mainBundle] pathForResource:gifImageName ofType:nil];
         SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath];
         gifImageView.backgroundColor = [UIColor clearColor];
-        gifImageView.frame = CGRectMake((self.frame.size.width - 80)/2.f, 0 , 80, 80);
+        gifImageView.frame = CGRectMake((self.frame.size.width - 100)/2.f, 0 , 100, 100);
         [self addSubview:gifImageView];
         
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(10, 80, self.frame.size.width - 20, 80);
+        label.frame = CGRectMake(10, 100, self.frame.size.width - 20, 60);
         label.backgroundColor = [UIColor clearColor];
         label.numberOfLines = 10;
         label.text = content;
@@ -79,23 +79,23 @@
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
-    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
-    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 114, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
+    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
+    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
     
-    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 194, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)]];
-    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 244, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(down)]];
+    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 130, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)]];
+    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 180, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(down)]];
 }
 
 -(void)up
 {
     
-    SKAlertView * alertView  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200) content:@"[slider set Thum bIma ge: t hu mb Im age for S t a t e : U I C o n t r o  l S t a t e H i g h l i  g h t e d ] ; [  s l i d er    s e t T h u m b I m  a ge :  th  u m b I m a g e   f o r S t a t  e : U I C o n t r o lS tateNormal];[slider addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];[view addSubview:slider];[view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];[view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];" gifImageName:@"1.gif"];
+    SKAlertView * alertView  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200) content:@"把Skea放入体内,用力积压,Skea会有反馈震动哦,如果觉得反馈震动太强,请降低震动强度,如果觉得用力太弱,请增加震动强度" gifImageName:@"1.gif"];
     [self.view addSubview:alertView];
 }
 
 -(void)down
 {
-    SKAlertView * alertView  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200) content:@"[slider set Thum bIma ge: t hu mb Im age for S t a t e : U I C o n t r o  l S t a t e H i g h l i  g h t e d ] ; [  s l i d er    s e t T h u m b I m  a ge :  th  u m b I m a g e   f o r S t a t  e : U I C o n t r o lS tateNormal];[slider addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];[view addSubview:slider];[view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];[view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];" gifImageName:@"1.gif"];
+    SKAlertView * alertView  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200) content:@"把Skea放入体内,用力积压,Skea会有反馈震动哦,如果觉得反馈震动太强,请降低震动强度,如果觉得用力太弱,请增加震动强度" gifImageName:@"1.gif"];
     [self.view addSubview:alertView];
 }
 

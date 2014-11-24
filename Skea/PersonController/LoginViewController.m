@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "SignViewController.h"
+#import "SkeaUser.h"
 
 @interface LoginViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -35,6 +36,8 @@
     
 //    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
 //    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    
+    NSLog(@"%@",[SkeaUser defaultUser].isLogin?@"登录了":@"未登录");
     
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
@@ -231,6 +234,10 @@
         ///请求成功
         [AppConfig setUserEmail:email];
         showCustomAlertMessage(@"登录成功");
+        [SkeaUser defaultUser].email = _emailTextField.text;
+        [SkeaUser defaultUser].password = _passwordTextField.text;
+        [SkeaUser defaultUser].isLogin = YES;
+        
         showIndicator(NO, nil);
         [block_self btBack_DisModal:nil];
         

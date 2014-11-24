@@ -26,6 +26,8 @@
     
     NSMutableArray * _heightArray;
     NSMutableArray * _weightArray;
+    NSString * _result;
+    NSMutableDictionary * _resultDict;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,6 +45,17 @@
     _weightPicker.delegate = self;
     _weightPicker.dataSource = self;
     
+    _resultDict = [[NSMutableDictionary alloc] init];
+    [_resultDict setObject:@"no" forKey:@"Seeing/Feeling Bulge"];
+    [_resultDict setObject:@"no" forKey:@"Menopausal Status"];
+    [_resultDict setObject:@"0" forKey:@"Children"];
+    [_resultDict setObject:@"no" forKey:@"Smoking"];
+    [_resultDict setObject:@"no" forKey:@"Pelvic Floor Surgery"];
+    [_resultDict setObject:@"no" forKey:@"Current Heavy Work"];
+    [_resultDict setObject:@"no" forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
+    [_resultDict setObject:@"no" forKey:@"Mother with POP or UI"];
+    _result = [_resultDict JSONString];
+    
     _heightArray = [[NSMutableArray alloc] init];
     for(int i=150;i<250;i++)
     {
@@ -58,7 +71,7 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Risk Evaluation"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 40) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
@@ -149,13 +162,13 @@
         _weightTextField.textAlignment = NSTextAlignmentRight;
         _weightTextField.inputView = _weightPicker;
         _weightTextField.delegate = self;
-        _weightTextField.text = @"120";
+        _weightTextField.text = @"60";
         _weightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_weightTextField];
     }
     if(indexPath.row == 5)
     {
-        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:@"BHealth information"]];
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:@"Health information"]];
     }
     if(indexPath.row == 6)
     {
@@ -269,9 +282,67 @@
 -(void)submit
 {
     //    [self btBack_DisModal:nil];
-    PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
-    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
-    [self presentViewController:nvc animated:YES completion:nil];
+    
+    NSString * email = [SkeaUser defaultUser].email;
+    NSString * birthday = _ageTextField.text;
+    NSString * height = _heightTextField.text;
+    NSString * weight = _weightTextField.text;
+    NSString * date = [self stringFromDate:[NSDate date]];
+    
+#if 1
+    
+    
+    IMP_BLOCK_SELF(TestingViewController1) //作为一个self的弱引用,在block里面调用
+    
+    showIndicator(YES, @"正在加载中");  ///弹一个正在加载的菊花
+    ///path 在URL.h里面找对就的宏
+    ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
+    [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"birthday":birthday,@"height":height,@"weight":weight,@"date":date,@"result":_result} mutableCopy] path:SK_SAVE_QUS completionHandler:^(id responseObject) {
+        ///请求成功
+        showCustomAlertMessage(@"提交成功");
+        
+        PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
+        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
+        [self presentViewController:nvc animated:YES completion:nil];
+        
+        showIndicator(NO, nil);
+        [block_self btBack_DisModal:nil];
+        
+    } errorHandler:^(NSError *error) {
+        ///网络失败
+        showAlertMessage(@"网络不给力");
+        showIndicator(NO, nil);
+    } finishHandler:^(id responseObject) {
+        ///请求结束，如果请求返回的status不为100，判断如下
+        showIndicator(NO, nil);
+        if (responseObject!=nil) {
+            int statusCode = [[responseObject objectForKey:@"status"] intValue];
+            if (statusCode>100) {
+                NSString *errMsg = @"服务器错误";
+                switch (statusCode) {
+                    case 101:
+                        errMsg = @"参数错误";
+                        break;
+                    case 102:
+                        errMsg = @"该用户已被注册";
+                        break;
+                    case 103:
+                        errMsg = @"用户名或密码错误";
+                        break;
+                    case 104:
+                        errMsg = @"结果未找到";
+                        break;
+                    default:
+                        break;
+                }
+                showCustomAlertMessage(errMsg);
+            }
+        }
+        
+    }];
+    
+#endif
+    
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
@@ -406,6 +477,48 @@
 -(void)sliderClickWithTag:(NSInteger)tag index:(NSInteger)index
 {
     NSLog(@"第%ld行，第%ld个按钮",tag,index);
+    if(tag == 6)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Seeing/Feeling Bulge"];
+    }
+    
+    if(tag == 7)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Menopausal Status"];
+    }
+    
+    if(tag == 8)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%ld",index] forKey:@"Children"];
+    }
+    
+    if(tag == 9)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Smoking"];
+    }
+    
+    if(tag == 10)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Pelvic Floor Surgery"];
+    }
+    
+    if(tag == 11)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Current Heavy Work"];
+    }
+    
+    if(tag == 12)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
+    }
+    
+    if(tag == 13)
+    {
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Mother with POP or UI"];
+    }
+    
+    _result = [_resultDict JSONString];
+    
 }
 
 - (void)didReceiveMemoryWarning {
