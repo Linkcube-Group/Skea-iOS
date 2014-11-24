@@ -9,11 +9,15 @@
 #import "ModelBase.h"
 #import "ModelList.h"
 
+@interface GameHalfList : ModelList
+//@property (strong,nonatomic) NSString *nobTime;
+@end
+
 @interface GameInfo : ModelBase
 
 @property (nonatomic) int beginPoint; //90
 @property (nonatomic) int progressTime;// 7
-@property (nonatomic,strong) NSMutableArray *halfScroes; //[23,23,23,34]
+@property (nonatomic,strong) GameHalfList *halfScroes; //[23,23,23,34]
 
 @property (nonatomic) float scoreRate;
 

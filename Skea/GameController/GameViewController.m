@@ -196,10 +196,15 @@
         }
         
         self.gameDetail.aryGameInfo = self.aryGame;
-        self.gameDetail.date = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
-        
+        self.gameDetail.dateInterval = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
+        self.gameDetail.explosive = [self.gameDetail getExplosiveScore];
+        self.gameDetail.endurance = [self.gameDetail getEnduranceScore];
         [AppConfig saveGameDetail:self.gameDetail];
         [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
+        
+        
+        ///上传游戏记录
+        [[ProtolManager shareProtolManager] sendGameData:self.gameDetail];
         
         IMP_BLOCK_SELF(GameViewController)
         CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"本次锻炼结束，可查看锻炼结果" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
@@ -242,6 +247,7 @@
     }
     oldResponse = halfResponse;
     DLog(@"----%d",halfResponse);
+
     if (halfResponse>0) {
         [self showAnimationStar];
         self.imgLine.image = IMG(@"laser-active.png");
@@ -255,7 +261,7 @@
             if (self.playTime%5==0) {
                 ///info.ary add object
                 if (currentIndex>=0) {
-                    [[[self.aryGame objectAtIndex:currentIndex] halfScroes] addObject:@(halfResponse)];
+                    [[[self.aryGame objectAtIndex:currentIndex] halfScroes] addObject:_S(@"%d",halfResponse)];
                     
                 }
                 halfResponse = 0;
@@ -437,7 +443,7 @@
 {
     switch (level) {
         case 1:
-            return 15;
+            return 1;//5;
         case 2:
             return 20;
         case 3:
@@ -557,7 +563,7 @@
 - (void)showAnimationStar
 {
     int left = 1;
-    for (int i=0; i<2; i++) {
+
         int x = arc4random()%60+self.viewBottom.originX;
         int y = arc4random()%20+20+self.viewBottom.originY;
         
@@ -574,7 +580,7 @@
         }];
         
         left = -left;
-    }
+    
 }
 
 

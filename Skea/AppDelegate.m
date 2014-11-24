@@ -29,6 +29,8 @@
     
     [Theam currentTheam];
     
+    [[ProtolManager shareProtolManager] updateGameData];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[ViewController alloc] init];
     UINavigationController *nav = [[NavigationController alloc] initWithRootViewController:self.viewController];

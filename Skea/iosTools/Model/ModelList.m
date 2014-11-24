@@ -110,6 +110,9 @@
             NSDictionary *dic=[obj dictionary];
             [array addObject:dic];
         }
+        else{
+            [array addObject:obj];
+        }
     }
     return array;
 }

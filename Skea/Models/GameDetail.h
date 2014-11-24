@@ -16,7 +16,7 @@
 @property (nonatomic) int factScore;
 @property (nonatomic) int exerciseTime;
 @property (nonatomic) int level;
-@property (strong,nonatomic) NSString *date;
+@property (strong,nonatomic) NSString *dateInterval;
 ///爆发力
 @property (nonatomic) float explosive;
 ///耐力

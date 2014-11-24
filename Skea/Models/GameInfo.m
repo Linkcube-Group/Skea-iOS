@@ -8,13 +8,22 @@
 
 #import "GameInfo.h"
 
+@implementation GameHalfList
+
++(Class)elementClass
+{
+    return [NSString class];
+}
+
+@end
+
 @implementation GameInfo
 - (id)initGameInfo:(int)point WithProgress:(int)length
 {
     if (self=[super init]) {
         self.beginPoint = point;
         self.progressTime = length;
-        self.halfScroes = [[NSMutableArray alloc] init];
+        self.halfScroes = [[GameHalfList alloc] init];
         self.isCaled = NO;
         self.scoreRate = 0;
     }

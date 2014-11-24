@@ -9,7 +9,10 @@
 #import "GameDetail.h"
 
 @implementation GameDetail
-
+- (NSDictionary*)dictionaryAlias
+{
+    return @{@"dateInterval":@[@"date"]};
+}
 - (NSString *)getStandard
 {
     float rate = self.factScore*1.0/self.heighScore;

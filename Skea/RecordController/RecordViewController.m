@@ -207,7 +207,7 @@
     [self.viewDraw.layer insertSublayer:gradient atIndex:0];
     
     
-    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[self.gameDetail.date intValue]*(24*60*60)];
+    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[self.gameDetail.dateInterval intValue]*(24*60*60)];
     NSString *dayStr = [day stringDateWithFormat:@"MM/dd"];
     
     self.lbDate.text = _S(@"%@  Level %d",dayStr,self.gameDetail.level);

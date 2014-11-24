@@ -24,7 +24,7 @@
 
 + (void)saveGameDetail:(GameDetail *)detail
 {
-    [[NSUserDefaults standardUserDefaults] setObject:[detail dictionary] forKey:_S(@"game_%@",detail.date)];
+    [[NSUserDefaults standardUserDefaults] setObject:[detail dictionary] forKey:_S(@"game_%@",detail.dateInterval)];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 + (GameDetail *)getGameDetail:(NSString *)date
