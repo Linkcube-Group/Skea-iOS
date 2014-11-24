@@ -300,7 +300,9 @@
     [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"birthday":birthday,@"height":height,@"weight":weight,@"date":date,@"result":_result} mutableCopy] path:SK_SAVE_QUS completionHandler:^(id responseObject) {
         ///请求成功
         showCustomAlertMessage(@"提交成功");
-        
+        [SkeaUser defaultUser].birthday = _ageTextField.text;
+        [SkeaUser defaultUser].weight = _weightTextField.text;
+        [SkeaUser defaultUser].height = _heightTextField.text;
         if(self._isRegisterPush)
         {
             PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
