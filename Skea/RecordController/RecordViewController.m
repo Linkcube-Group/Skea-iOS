@@ -104,7 +104,7 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCalendaer)];
     [viewFloat addGestureRecognizer:tap];
     
-    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320)/2, 320, 300)];
+    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320)/2, 320, 310)];
     _sampleView.delegate = self;
     [_sampleView setBackgroundColor:[UIColor whiteColor]];
     _sampleView.calendarDate = [NSDate date];
@@ -139,7 +139,7 @@
 {
     int minute = length/60;
     int second = length%60;
-    return _S(@"%d:%d",minute,second);
+    return _S(@"%02d:%02d",minute,second);
 }
 - (IBAction)dateActoin:(id)sender
 {
@@ -220,7 +220,7 @@
     IMP_BLOCK_SELF(RecordViewController)
     
     [graph1 setAlgorithm:^CGFloat(CGFloat x) {
-//        return rand()%100;
+//       return rand()%100;
 //        DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100);
         return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100;
         

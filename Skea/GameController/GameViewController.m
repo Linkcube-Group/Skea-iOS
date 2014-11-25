@@ -510,6 +510,9 @@
 {
     int minute = length/60;
     int second = length%60;
+    if (second<0) {
+        second = 0;
+    }
     return _S(@"%02d:%02d",minute,second);
 }
 

@@ -21,33 +21,25 @@
     if (self) {
         
         self.aryRecords = [AppConfig getGameRecodeDates];
-        UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
-        swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
-        [self addGestureRecognizer:swipeleft];
-        UISwipeGestureRecognizer * swipeRight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
-        swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
-        [self addGestureRecognizer:swipeRight];
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.size.height-100, self.bounds.size.width, 44)];
-        [label setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
-        [label setTextColor:[UIColor whiteColor]];
-        [label setText:@"swipe to change months"];
-        label.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:label];
-        [UILabel beginAnimations:NULL context:nil];
-        [UILabel setAnimationDuration:2.0];
-        [label setAlpha:0];
-        [UILabel commitAnimations];
+//        UISwipeGestureRecognizer * swipeleft=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swipeleft:)];
+//        swipeleft.direction=UISwipeGestureRecognizerDirectionLeft;
+//        [self addGestureRecognizer:swipeleft];
+//        UISwipeGestureRecognizer * swipeRight=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(swiperight:)];
+//        swipeRight.direction=UISwipeGestureRecognizerDirectionRight;
+//        [self addGestureRecognizer:swipeRight];
+//        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.size.height-100, self.bounds.size.width, 44)];
+//        [label setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
+//        [label setTextColor:[UIColor whiteColor]];
+//        [label setText:@"swipe to change months"];
+//        label.textAlignment = NSTextAlignmentCenter;
+//        [self addSubview:label];
+//        [UILabel beginAnimations:NULL context:nil];
+//        [UILabel setAnimationDuration:2.0];
+//        [label setAlpha:0];
+//        [UILabel commitAnimations];
         
-        UIButton *btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnCancel setTitle:@"Cancel" forState:UIControlStateNormal];
-        btnCancel.frame = CGRectMake(10,10,70,45);
-        btnCancel.titleLabel.font = [UIFont systemFontOfSize:15];
-        btnCancel.titleLabel.textColor = [UIColor colorWithHexString:@"#6CC9DF"];
-//        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateHighlighted];
-//        [btnCancel setTitleColor:[UIColor brownColor] forState:UIControlStateSelected];
-        [btnCancel addTarget:self action:@selector(cancelAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:btnCancel];
-
+        
+        
     }
     return self;
 }
@@ -59,6 +51,23 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    UIButton *leftCancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftCancel setTitle:@"<" forState:UIControlStateNormal];
+    leftCancel.frame = CGRectMake(7,0,70,45);
+    leftCancel.titleLabel.font = [UIFont systemFontOfSize:30];
+    leftCancel.titleLabel.textColor = [UIColor colorWithHexString:@"#6CC9DF"];
+    [leftCancel addTarget:self action:@selector(swiperight:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:leftCancel];
+    
+    
+    UIButton *rightCancel = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightCancel setTitle:@">" forState:UIControlStateNormal];
+    rightCancel.frame = CGRectMake(theApp.window.width-75,0,70,45);
+    rightCancel.titleLabel.font = [UIFont systemFontOfSize:30];
+    rightCancel.titleLabel.textColor = [UIColor colorWithHexString:@"#6CC9DF"];
+    [rightCancel addTarget:self action:@selector(swipeleft:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:rightCancel];
+    
     
     [self setCalendarParameters];
     _weekNames = @[@"Mo",@"Tu",@"We",@"Th",@"Fr",@"Sa",@"Su"];
@@ -149,13 +158,14 @@
 //            [button addSubview:columnView];
 //        }
         if ([self hasRecordDay:(int)i+1 :(int)components.month :(int)components.year]) {
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [button setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
+            if(i+1 ==_selectedDate && components.month == _selectedMonth && components.year == _selectedYear)
+            {
+                [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            }
         }
-//        if(i+1 ==_selectedDate && components.month == _selectedMonth && components.year == _selectedYear)
-//        {
-//            
-//            
-//        }
+        
         
         [self addSubview:button];
     }

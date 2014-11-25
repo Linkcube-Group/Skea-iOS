@@ -89,6 +89,7 @@
 		039B926819DA7AC500292529 /* Skea.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 039B926619DA7AC500292529 /* Skea.xcdatamodeld */; };
 		039B926B19DA7AC500292529 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 039B926A19DA7AC500292529 /* ViewController.m */; };
 		039B927019DA7AC500292529 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 039B926F19DA7AC500292529 /* Images.xcassets */; };
+		03CD51DC1A24210D00EDEF64 /* _MPWButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 03CD51DB1A24210D00EDEF64 /* _MPWButton.m */; };
 		03E064391A00D0B60070DF48 /* MPBarsGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064301A00D0B60070DF48 /* MPBarsGraphView.m */; };
 		03E0643A1A00D0B60070DF48 /* MPGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064321A00D0B60070DF48 /* MPGraphView.m */; };
 		03E0643B1A00D0B60070DF48 /* MPPlot.m in Sources */ = {isa = PBXBuildFile; fileRef = 03E064341A00D0B60070DF48 /* MPPlot.m */; };
@@ -332,6 +333,8 @@
 		039B926919DA7AC500292529 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		039B926A19DA7AC500292529 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		039B926F19DA7AC500292529 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		03CD51DA1A24210D00EDEF64 /* _MPWButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _MPWButton.h; sourceTree = "<group>"; };
+		03CD51DB1A24210D00EDEF64 /* _MPWButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _MPWButton.m; sourceTree = "<group>"; };
 		03E0642F1A00D0B60070DF48 /* MPBarsGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPBarsGraphView.h; sourceTree = "<group>"; };
 		03E064301A00D0B60070DF48 /* MPBarsGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPBarsGraphView.m; sourceTree = "<group>"; };
 		03E064311A00D0B60070DF48 /* MPGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPGraphView.h; sourceTree = "<group>"; };
@@ -760,6 +763,8 @@
 		03E0642E1A00D0B60070DF48 /* MPPlot */ = {
 			isa = PBXGroup;
 			children = (
+				03CD51DA1A24210D00EDEF64 /* _MPWButton.h */,
+				03CD51DB1A24210D00EDEF64 /* _MPWButton.m */,
 				03E0642F1A00D0B60070DF48 /* MPBarsGraphView.h */,
 				03E064301A00D0B60070DF48 /* MPBarsGraphView.m */,
 				03E064311A00D0B60070DF48 /* MPGraphView.h */,
@@ -1486,6 +1491,7 @@
 				03E532D919DA7D470064762E /* NSNotificationCenter+Extension.m in Sources */,
 				03E5321319DA7D320064762E /* SDWebImageCompat.m in Sources */,
 				03E532D519DA7D470064762E /* NSCache+Extension.m in Sources */,
+				03CD51DC1A24210D00EDEF64 /* _MPWButton.m in Sources */,
 				03E532C319DA7D470064762E /* NSString+MKNetworkKitAdditions.m in Sources */,
 				264B5AA61A17145200643DAD /* LFGlassView.m in Sources */,
 				03E532D319DA7D470064762E /* CTAlertView.m in Sources */,
