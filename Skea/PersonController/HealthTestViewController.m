@@ -26,6 +26,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
+    tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
     
     UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
