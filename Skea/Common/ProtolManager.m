@@ -47,7 +47,7 @@
     }
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setObject:email forKey:@"email"];
-    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[gameDetail.dateInterval intValue]*(24*60*60)];
+//    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[gameDetail.dateInterval intValue]*(24*60*60)];
     NSString *dayStr = gameDetail.dateInterval;// [day stringDateWithFormat:@"yyyy-MM-dd"];
     [dict setObject:dayStr forKey:@"date"];
     
@@ -134,4 +134,21 @@
     }];
 }
 
+
+///电机敏感度设置值对应16档次
+- (void)sendToolCompressLevel:(int)level
+{
+    if (level>=0 && level<16) {
+        NSString *cmd = [AppCompressLevels objectAtIndex:level];
+        [[bleCentralManager shareManager] sendCommand:cmd];
+    }
+}
+///电机转动速度对应32个档次
+- (void)sendToolRotateLevel:(int)level
+{
+    if (level>=0 && level<32) {
+        NSString *cmd = [AppRotaLevels objectAtIndex:level];
+        [[bleCentralManager shareManager] sendCommand:cmd];
+    }
+}
 @end

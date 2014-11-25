@@ -19,4 +19,9 @@
 ///同步游戏数据
 - (void)updateGameData;
 
+///电机敏感度设置值对应16档次
+- (void)sendToolCompressLevel:(int)level;
+///电机转动速度对应32个档次
+- (void)sendToolRotateLevel:(int)level;
+
 @end
