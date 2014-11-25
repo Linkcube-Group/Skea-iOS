@@ -525,13 +525,13 @@
 {
     switch (length) {
         case 2:
-            [[bleCentralManager shareManager] sendCommand:cAppCommandRate2];
+            [[bleCentralManager shareManager] sendCommand:[AppRotaLevels objectAtIndex:1]];
             break;
         case 7:
-            [[bleCentralManager shareManager] sendCommand:cAppCommandRate3];
+            [[bleCentralManager shareManager] sendCommand:[AppRotaLevels objectAtIndex:6]];
             break;
         case 12:
-            [[bleCentralManager shareManager] sendCommand:cAppCommandRate4];
+            [[bleCentralManager shareManager] sendCommand:[AppRotaLevels objectAtIndex:11]];
             break;
         default:
             break;
