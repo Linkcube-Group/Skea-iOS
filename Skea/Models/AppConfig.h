@@ -20,7 +20,7 @@
 + (GameDetail *)getLastGameDetail;
 
 + (NSArray *)getGameRecodeDates;
-+ (void)setGameRecordDate:(double)timer;
++ (void)setGameRecordDate:(NSString*)timer;
 
 + (int)getGameLevel;
 + (void)setGameLevel:(int)level;

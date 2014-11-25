@@ -59,7 +59,6 @@
 #pragma mark Action
 - (void)connectAction:(id)sender
 {
-    [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
     
     int count = (int)[bleCentralManager shareManager].blePeripheralArray.count;
     if (count>1) {
@@ -114,7 +113,7 @@
 - (IBAction)recordAction:(id)sender
 {
     if([SkeaUser defaultUser].isLogin)
-    {
+    {      
         RecordViewController *rvc = [[RecordViewController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:rvc];
         [self presentViewController:nav animated:YES completion:nil];

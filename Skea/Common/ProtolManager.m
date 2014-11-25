@@ -48,7 +48,7 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setObject:email forKey:@"email"];
     NSDate *day = [NSDate dateWithTimeIntervalSince1970:[gameDetail.dateInterval intValue]*(24*60*60)];
-    NSString *dayStr = [day stringDateWithFormat:@"yyyy-MM-dd"];
+    NSString *dayStr = gameDetail.dateInterval;// [day stringDateWithFormat:@"yyyy-MM-dd"];
     [dict setObject:dayStr forKey:@"date"];
     
     [dict setObject:_S(@"%d",gameDetail.heighScore) forKey:@"heighScore"];
@@ -100,8 +100,8 @@
     NSString *dayStr = @"2014-12-01"; //产品发布后开始
     GameDetail *detail = [AppConfig getLastGameDetail];
     if (detail !=nil) {
-        NSDate *day = [NSDate dateWithTimeIntervalSince1970:[detail.dateInterval intValue]*(24*60*60)];
-        dayStr = [day stringDateWithFormat:@"yyyy-MM-dd"];
+       // NSDate *day = [NSDate dateWithTimeIntervalSince1970:[detail.dateInterval intValue]*(24*60*60)];
+        dayStr = detail.dateInterval;/// [day stringDateWithFormat:@"yyyy-MM-dd"];
     }
 
    

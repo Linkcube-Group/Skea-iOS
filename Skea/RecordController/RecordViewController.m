@@ -207,8 +207,11 @@
     [self.viewDraw.layer insertSublayer:gradient atIndex:0];
     
     
-    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[self.gameDetail.dateInterval intValue]*(24*60*60)];
-    NSString *dayStr = [day stringDateWithFormat:@"MM/dd"];
+//    NSDate *day = [NSDate dateWithTimeIntervalSince1970:[self.gameDetail.dateInterval intValue]*(24*60*60)];
+    NSString *dayStr = @"Today";// [day stringDateWithFormat:@"MM/dd"];
+    if (self.gameDetail.dateInterval!=nil && [self.gameDetail.dateInterval length]>5) {
+        dayStr = [self.gameDetail.dateInterval substringFromIndex:[self.gameDetail.dateInterval length]-5];
+    }
     
     self.lbDate.text = _S(@"%@  Level %d",dayStr,self.gameDetail.level);
     self.lbTotalStatus.text = [self.gameDetail getStandard];

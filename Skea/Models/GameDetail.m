@@ -23,9 +23,9 @@
         return @"Good!";
     }
     else if (rate>0.4){
-        return @"Fair!";
+        return @"Fair";
     }
-    return @"Weak!";
+    return @"Weak";
     
 }
 
@@ -56,9 +56,9 @@
         return @"Good!";
     }
     else if (rate>0.4){
-        return @"Fair!";
+        return @"Fair";
     }
-    return @"Weak!";
+    return @"Weak";
 }
 
 
@@ -88,8 +88,8 @@
         return @"Good!";
     }
     else if (rate>0.4){
-        return @"Fair!";
+        return @"Fair";
     }
-    return @"Weak!";
+    return @"Weak";
 }
 @end

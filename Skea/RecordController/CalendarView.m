@@ -51,22 +51,22 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    UIButton *leftCancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftCancel setTitle:@"<" forState:UIControlStateNormal];
-    leftCancel.frame = CGRectMake(7,0,70,45);
-    leftCancel.titleLabel.font = [UIFont systemFontOfSize:30];
-    leftCancel.titleLabel.textColor = [UIColor colorWithHexString:@"#6CC9DF"];
-    [leftCancel addTarget:self action:@selector(swiperight:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:leftCancel];
+    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftBtn setTitle:@"<" forState:UIControlStateNormal];
+    [leftBtn setTitleColor:[UIColor colorWithHexString:@"#6CC9DF"] forState:UIControlStateNormal];
+    leftBtn.frame = CGRectMake(7,0,70,45);
+    leftBtn.titleLabel.font = [UIFont systemFontOfSize:30];
+    [leftBtn addTarget:self action:@selector(swiperight:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:leftBtn];
     
     
-    UIButton *rightCancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightCancel setTitle:@">" forState:UIControlStateNormal];
-    rightCancel.frame = CGRectMake(theApp.window.width-75,0,70,45);
-    rightCancel.titleLabel.font = [UIFont systemFontOfSize:30];
-    rightCancel.titleLabel.textColor = [UIColor colorWithHexString:@"#6CC9DF"];
-    [rightCancel addTarget:self action:@selector(swipeleft:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:rightCancel];
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn setTitle:@">" forState:UIControlStateNormal];
+     [rightBtn setTitleColor:[UIColor colorWithHexString:@"#6CC9DF"] forState:UIControlStateNormal];
+    rightBtn.frame = CGRectMake(theApp.window.width-75,0,70,45);
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:30];
+    [rightBtn addTarget:self action:@selector(swipeleft:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:rightBtn];
     
     
     [self setCalendarParameters];
@@ -309,17 +309,20 @@
 - (BOOL)hasRecordDay:(int)day :(int)month :(int)year
 {
     __block BOOL flag = NO;
-    
+    NSString *compareStr = _S(@"%d-%02d-%02d",year,month,day);
     if (self.aryRecords && [self.aryRecords count]>0) {
-        NSDate *drayDay = [NSDate dateWithString:_S(@"%d%02d%02d",year,month,day) Format:@"yyyyMMdd"];
-        
-        [self.aryRecords enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
-           
-            if (abs((int)[drayDay timeIntervalSince1970]/(24*60*60)-[obj intValue])<1) {
-                flag = YES;
-                *stop = YES;
-            }
-        }];
+        if ([self.aryRecords containsString:compareStr]) {
+            return YES;
+        }
+//        NSDate *drayDay = [NSDate dateWithString:_S(@"%d%02d%02d",year,month,day) Format:@"yyyyMMdd"];
+//        
+//        [self.aryRecords enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
+//           
+//            if (abs((int)[drayDay timeIntervalSince1970]/(24*60*60)-[obj intValue])<1) {
+//                flag = YES;
+//                *stop = YES;
+//            }
+//        }];
         
     }
   

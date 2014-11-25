@@ -196,11 +196,12 @@
         }
         
         self.gameDetail.aryGameInfo = self.aryGame;
-        self.gameDetail.dateInterval = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
+
+        self.gameDetail.dateInterval = [[NSDate date] stringDateWithFormat:@"yyyy-MM-dd"];
         self.gameDetail.explosive = [self.gameDetail getExplosiveScore];
         self.gameDetail.endurance = [self.gameDetail getEnduranceScore];
         [AppConfig saveGameDetail:self.gameDetail];
-        [AppConfig setGameRecordDate:[[NSDate date] timeIntervalSince1970]];
+        [AppConfig setGameRecordDate:[[NSDate date] stringDateWithFormat:@"yyyy-MM-dd"]];
         
         
         ///上传游戏记录
@@ -443,7 +444,7 @@
 {
     switch (level) {
         case 1:
-            return 1;//5;
+            return 15;
         case 2:
             return 20;
         case 3:
