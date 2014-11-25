@@ -359,7 +359,7 @@
     if(textField == _ageTextField)
     {
         UIView * view = [[UIView alloc] init];
-        view.frame = CGRectMake(0, ScreenHeight - 216 - 40, ScreenWidth, 40 + 216);
+        view.frame = CGRectMake(0, ScreenHeight - 216 - 40 - 64, ScreenWidth, 40 + 216);
         view.tag = 10086;
         view.backgroundColor = [UIColor whiteColor];
         view.userInteractionEnabled = YES;
@@ -380,7 +380,7 @@
     if(textField == _heightTextField)
     {
         UIView * view = [[UIView alloc] init];
-        view.frame = CGRectMake(0, ScreenHeight - 216 - 40, ScreenWidth, 40 + 216);
+        view.frame = CGRectMake(0, ScreenHeight - 216 - 40 - 64, ScreenWidth, 40 + 216);
         view.tag = 10087;
         view.backgroundColor = [UIColor whiteColor];
         view.userInteractionEnabled = YES;
@@ -399,7 +399,7 @@
     if(textField == _weightTextField)
     {
         UIView * view = [[UIView alloc] init];
-        view.frame = CGRectMake(0, ScreenHeight - 216 - 40, ScreenWidth, 40 + 216);
+        view.frame = CGRectMake(0, ScreenHeight - 216 - 40 - 64, ScreenWidth, 40 + 216);
         view.tag = 10088;
         view.backgroundColor = [UIColor whiteColor];
         view.userInteractionEnabled = YES;
