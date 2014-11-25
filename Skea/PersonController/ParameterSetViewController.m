@@ -8,6 +8,7 @@
 
 #import "ParameterSetViewController.h"
 #import "SCGIFImageView.h"
+#import "ProtolManager.h"
 
 @interface SKAlertView : UIView
 
