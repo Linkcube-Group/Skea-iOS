@@ -367,9 +367,14 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 50, 0, 50, 40);
         [btn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(datePickerBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
+        
+        UIView * line = [[UIView alloc] init];
+        line.frame = CGRectMake(0, 39.5, view.frame.size.width, 0.5);
+        line.backgroundColor = [UIColor grayColor];
+        [view addSubview:line];
         
         _ageDatePicker = [ [ UIDatePicker alloc] initWithFrame:CGRectMake(0,40,ScreenWidth,216)];
         _ageDatePicker.backgroundColor = [UIColor whiteColor];
@@ -388,9 +393,14 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 50, 0, 50, 40);
         [btn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(heightPickerBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
+        
+        UIView * line = [[UIView alloc] init];
+        line.frame = CGRectMake(0, 39.5, view.frame.size.width, 0.5);
+        line.backgroundColor = [UIColor grayColor];
+        [view addSubview:line];
         
         _heightPicker.frame = CGRectMake(0,40,ScreenWidth,216);
         _heightPicker.backgroundColor = [UIColor whiteColor];
@@ -407,9 +417,14 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 50, 0, 50, 40);
         [btn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(weightPickerBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
+        
+        UIView * line = [[UIView alloc] init];
+        line.frame = CGRectMake(0, 39.5, view.frame.size.width, 0.5);
+        line.backgroundColor = [UIColor grayColor];
+        [view addSubview:line];
         
         _weightPicker.frame = CGRectMake(0,40,ScreenWidth,216);
         _weightPicker.backgroundColor = [UIColor whiteColor];
