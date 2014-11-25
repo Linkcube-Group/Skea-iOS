@@ -72,19 +72,32 @@
 @end
 
 @implementation ParameterSetViewController
-
+{
+    UISlider * _slider0;
+    UISlider * _slider1;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea参数调节"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:nil Title:@"保存" Target:self Selector:@selector(save)];
+    
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
-    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 50, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
+    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 50, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 130, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)]];
-    [self.view addSubview:[self createSlidreWithFrame:CGRectMake(0, 180, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(down)]];
+    [self.view addSubview:[self createSlidre1WithFrame:CGRectMake(0, 180, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(down)]];
+}
+
+-(void)save
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:_slider0.value forKey:@"compressLevel"];
+    [[NSUserDefaults standardUserDefaults] setInteger:_slider1.value forKey:@"rotateLevel"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self btBack_DisModal:nil];
 }
 
 -(void)up
@@ -114,27 +127,73 @@
     return imageView;
 }
 
--(UIView *)createSlidreWithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right selector:(SEL)selector
+-(UIView *)createSlidre0WithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right selector:(SEL)selector
 {
     UIView * view = [[UIView alloc] initWithFrame:rect];
     view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
     UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
     
-    UISlider *slider=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
-    slider.backgroundColor = [UIColor clearColor];
+    _slider0=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
+    _slider0.backgroundColor = [UIColor clearColor];
+    _slider0.minimumValue = 0;
+    _slider0.maximumValue = 15;
     
-    [slider setThumbImage:thumbImage forState:UIControlStateHighlighted];
-    [slider setThumbImage:thumbImage forState:UIControlStateNormal];
+    _slider0.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"];
     
-    [slider addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [_slider0 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+    [_slider0 setThumbImage:thumbImage forState:UIControlStateNormal];
     
-    [view addSubview:slider];
+    [_slider0 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [_slider0 addTarget:self action:@selector(slider0Change) forControlEvents:UIControlEventValueChanged];
+    
+    [view addSubview:_slider0];
     
     [view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];
     [view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];
     
     return view;
+}
+
+-(void)slider0Change
+{
+    NSLog(@"%f",_slider0.value);
+    [[ProtolManager shareProtolManager] sendToolCompressLevel:(int)_slider0.value];
+}
+
+-(UIView *)createSlidre1WithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right selector:(SEL)selector
+{
+    UIView * view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+    
+    UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
+    
+    _slider1=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
+    _slider1.backgroundColor = [UIColor clearColor];
+    _slider1.backgroundColor = [UIColor clearColor];
+    _slider1.minimumValue = 0;
+    _slider1.maximumValue = 31;
+    
+    _slider1.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rotateLevel"];
+    
+    [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+    [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+    
+    [_slider1 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [_slider1 addTarget:self action:@selector(slider1Change) forControlEvents:UIControlEventValueChanged];
+    
+    [view addSubview:_slider1];
+    
+    [view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];
+    
+    return view;
+}
+
+-(void)slider1Change
+{
+    NSLog(@"%f",_slider1.value);
+    [[ProtolManager shareProtolManager] sendToolRotateLevel:(int)_slider1.value];
 }
 
 -(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title textAlignment:(NSTextAlignment)textAlignment
