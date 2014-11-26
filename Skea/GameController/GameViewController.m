@@ -269,9 +269,9 @@
             }
             else if (self.playTime<=5 && !getHighed) {
                 ///high
-                if (halfResponse>1 && self.playTime>1) {
+                if (halfResponse>1) {
                     
-                    if (self.playTime<3) {
+                    if (self.playTime<2) {
                         score += 50;
                         getHighed = YES;
                         self.imgStatus.image = IMG(@"text-perfect.png");
@@ -366,7 +366,7 @@
         [self.scrollBg addSubview:imgh];
         
         ///add to ary
-        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-BlankBottom WithProgress:gsecond];
+        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-BlankBottom+4 WithProgress:gsecond];
         DLog(@"--beging:%d",info.beginPoint);
         [self.aryGame addObject:info];
         
