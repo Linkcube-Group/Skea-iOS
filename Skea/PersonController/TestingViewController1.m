@@ -28,6 +28,8 @@
     NSMutableArray * _weightArray;
     NSString * _result;
     NSMutableDictionary * _resultDict;
+    NSInteger _age;
+    NSInteger _score;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
