@@ -19,10 +19,43 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //    self.view.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
+    
+    UIView * navigationView = [[UIView alloc] init];
+    navigationView.frame = CGRectMake(0, 0, ScreenWidth, 64);
+    navigationView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
+    [self.view addSubview:navigationView];
+    
+    UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setBackgroundImage:IMG(@"menu_action_back_white.png") forState:UIControlStateNormal];
+    btn.tag = 200;
+    [btn addTarget:self action:@selector(btBack_DisModal:) forControlEvents:UIControlEventTouchUpInside];
+    btn.titleLabel.font=[Theam currentTheam].navigationBarItemFont;
+    [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
+    [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    btn.frame=CGRectMake(10, 34, 24, 24);
+    
+    //让图片在最右侧对齐
+    CGSize imagesize=IMG(@"back-cross.png").size;
+    imagesize.width=imagesize.width/2;
+    imagesize.height=imagesize.height/2;
+    CGSize btnsize=btn.size;
+    
+    //iOS7下面导航按钮会默认有10px间距
+    UIEdgeInsets insets=UIEdgeInsetsMake((btnsize.height-imagesize.height)/2, btnsize.width-imagesize.width, (btnsize.height-imagesize.height)/2, 0);
+    [btn setImageEdgeInsets:insets];
+    btn.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    
+    if (DeviceSystemSmallerThan(7.0)) {
+        [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    }
+    [navigationView addSubview:btn];
+    
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"测试结果", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 400 - 20 - 40) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
@@ -31,15 +64,15 @@
     
     UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
     AgainButton.frame = CGRectMake(10,self.view.frame.size.height - 64 - 20 - 64,self.view.frame.size.width - 20,44);
-//    AgainButton.layer.borderWidth = 0.5f;
-//    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
+    //    AgainButton.layer.borderWidth = 0.5f;
+    //    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
     [AgainButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
     AgainButton.layer.cornerRadius = 20.f;
     [AgainButton setTitle:NSLocalizedString(@"Re-evaluate", nil) forState:UIControlStateNormal];
     [AgainButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [AgainButton addTarget:self action:@selector(again) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:AgainButton];
-
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -188,13 +221,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

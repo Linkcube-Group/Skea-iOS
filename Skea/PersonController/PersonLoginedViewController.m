@@ -195,8 +195,8 @@
     if(indexPath.section == 1)
     {
         HealthTestViewController * hvc = [[HealthTestViewController alloc] init];
-        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:hvc];
-        [self presentViewController:nvc animated:YES completion:nil];
+//        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:hvc];
+        [self presentViewController:hvc animated:YES completion:nil];
     }
     if(indexPath.row == 0 && indexPath.section == 0)
     {
