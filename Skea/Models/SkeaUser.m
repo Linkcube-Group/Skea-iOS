@@ -35,6 +35,9 @@ static SkeaUser *DefaultManager = nil;
         self.height = [[NSUserDefaults standardUserDefaults] objectForKey:@"height"];
         self.weight = [[NSUserDefaults standardUserDefaults] objectForKey:@"weight"];
         self.nickName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
+        self.score = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
+        self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"level"];
+        self.selectLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectLevel"];
     }
     return self;
 }
@@ -149,6 +152,39 @@ static SkeaUser *DefaultManager = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
+-(void)setScore:(NSInteger)score
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:score forKey:@"score"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSInteger)score
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
+}
+
+-(void)setLevel:(NSInteger)level
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"level"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSInteger)level
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"level"];
+}
+
+-(void)setSelectLevel:(NSInteger)selectLevel
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:selectLevel forKey:@"selectLevel"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(NSInteger)selectLevel
+{
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"selectLevel"];
+}
+
 #pragma mark - NSCoding
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -166,6 +202,10 @@ static SkeaUser *DefaultManager = nil;
         self.height         = [aDecoder decodeObjectForKey:@"height"];
         self.weight         = [aDecoder decodeObjectForKey:@"weight"];
         self.nickName       = [aDecoder decodeObjectForKey:@"nickName"];
+        self.score          = [[aDecoder decodeObjectForKey:@"score"] integerValue];
+        self.level          = [[aDecoder decodeObjectForKey:@"level"] integerValue];
+        self.selectLevel    = [[aDecoder decodeObjectForKey:@"selectLevel"] integerValue];
+        
     }
     return self;
 }
@@ -182,6 +222,9 @@ static SkeaUser *DefaultManager = nil;
     [aCoder encodeObject:self.height forKey:@"height"];
     [aCoder encodeObject:self.weight forKey:@"weight"];
     [aCoder encodeObject:self.nickName forKey:@"nickName"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.score] forKey:@"score"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.level] forKey:@"level"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.selectLevel] forKey:@"selectLevel"];
 }
 
 @end

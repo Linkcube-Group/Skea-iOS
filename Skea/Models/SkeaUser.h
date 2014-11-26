@@ -22,6 +22,10 @@
 @property(nonatomic,strong) NSString * weight;           //体重
 @property(nonatomic,strong) NSString * nickName;         //昵称
 
+@property(nonatomic)        NSInteger score;             //分数
+@property(nonatomic)        NSInteger level;             //计算的等级
+@property(nonatomic)        NSInteger selectLevel;       //自己选择的等级
+
 +(SkeaUser *)defaultUser;
 
 @end
