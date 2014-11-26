@@ -24,7 +24,13 @@
     
     _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0",@"0",@"0",@"0", nil];
     _nameArray = [NSMutableArray arrayWithObjects:@"Level 1",@"Level 2",@"Level 3",@"Level 4",@"Level 5", nil];
-    _recommendArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"1",@"0", nil];
+    _recommendArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0", nil];
+    NSLog(@"%ld",[SkeaUser defaultUser].level);
+    if([SkeaUser defaultUser].level > 0)
+    {
+        [_recommendArray replaceObjectAtIndex:([SkeaUser defaultUser].level - 1) withObject:@"1"];
+        _selectArray = _recommendArray;
+    }
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Exercise Strength"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
@@ -81,6 +87,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _selectArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0", nil];
     [_selectArray replaceObjectAtIndex:indexPath.row withObject:@"1"];
+    [SkeaUser defaultUser].selectLevel = indexPath.row + 1;
     [tableView reloadData];
 }
 

@@ -9,13 +9,16 @@
 #import "HealthTestViewController.h"
 #import "SelectLevelViewController.h"
 #import "TestingViewController1.h"
+#import "SkeaUser.h"
 
 @interface HealthTestViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UIAlertViewDelegate>
 
 @end
 
 @implementation HealthTestViewController
-
+{
+    UITableView * _tableView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -55,12 +58,12 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"测试结果", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    tableView.scrollEnabled = NO;
-    tableView.separatorColor = [UIColor clearColor];
-    [self.view addSubview:tableView];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.scrollEnabled = NO;
+    _tableView.separatorColor = [UIColor clearColor];
+    [self.view addSubview:_tableView];
     
     UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
     AgainButton.frame = CGRectMake(10,self.view.frame.size.height - 64 - 20 - 64,self.view.frame.size.width - 20,44);
@@ -73,6 +76,12 @@
     [AgainButton addTarget:self action:@selector(again) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:AgainButton];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [_tableView reloadData];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -132,10 +141,38 @@
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
         [cell.contentView addSubview:label1];
         
-        UIImageView * imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
-        imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
-        [cell.contentView addSubview:imageView];
+        switch ([SkeaUser defaultUser].level)
+        {
+            case 1:
+            {
+                UIImageView * imageView = [[UIImageView alloc] init];
+                imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
+                imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
+                [cell.contentView addSubview:imageView];
+                break;
+            }
+            case 2:
+            case 3:
+            case 4:
+            {
+                UIImageView * imageView = [[UIImageView alloc] init];
+                imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
+                imageView.image = [UIImage imageNamed:@"risk-factor-medium.png"];
+                [cell.contentView addSubview:imageView];
+                break;
+            }
+            case 5:
+            {
+                UIImageView * imageView = [[UIImageView alloc] init];
+                imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
+                imageView.image = [UIImage imageNamed:@"risk-factor-high.png"];
+                [cell.contentView addSubview:imageView];
+                break;
+            }
+                
+            default:
+                break;
+        }
         
     }
     
@@ -151,7 +188,7 @@
     {
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.text = NSLocalizedString(@"Level 4", nil);
+        cell.textLabel.text = [NSString stringWithFormat:@"Level %ld",[SkeaUser defaultUser].selectLevel?[SkeaUser defaultUser].selectLevel:[SkeaUser defaultUser].level];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     

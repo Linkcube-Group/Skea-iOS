@@ -9,6 +9,7 @@
 #import "TestingViewController1.h"
 #import "SkeaSliderButtonView.h"
 #import "PersonLoginedViewController.h"
+#import "SkeaUser.h"
 
 @interface TestingViewController1 ()<UITableViewDelegate,UITableViewDataSource,SkeaSliderButtonViewDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -34,6 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    _age = 34;
+    _score = 0;
     
     _ageTextField = [[UITextField alloc] init];
     _heightTextField = [[UITextField alloc] init];
@@ -134,6 +138,10 @@
         _ageTextField.inputView = _ageDatePicker;
         _ageTextField.delegate = self;
         _ageTextField.text = [SkeaUser defaultUser].birthday.length?[SkeaUser defaultUser].birthday:@"1980-01-01";
+        if([_ageTextField.text isEqualToString:@"1980-01-01"])
+        {
+            _age = 34;
+        }
         _ageTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_ageTextField];
     }
@@ -292,6 +300,21 @@
     NSString * weight = _weightTextField.text;
     NSString * date = [self stringFromDate:[NSDate date]];
     
+    [self calculateScore];
+    
+    if(_score <= 30)
+        [SkeaUser defaultUser].level = 1;
+    else if (_score <= 60)
+        [SkeaUser defaultUser].level = 2;
+    else if (_score <= 90)
+        [SkeaUser defaultUser].level = 3;
+    else if (_score <= 120)
+        [SkeaUser defaultUser].level = 4;
+    else
+        [SkeaUser defaultUser].level = 5;
+    
+    [SkeaUser defaultUser].selectLevel = 0;
+    
 #if 1
     
     
@@ -441,6 +464,8 @@
         _heightTextField.text = [_heightArray objectAtIndex:row];
     if(pickerView == _weightPicker)
         _weightTextField.text = [_weightArray objectAtIndex:row];
+    
+    [self calculateScore];
 }
 
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
@@ -465,8 +490,10 @@
 -(void)datePickerBtnClick
 {
     _ageTextField.text = [self stringFromDate:_ageDatePicker.date];
+    _age = [self fromDateToAge:_ageDatePicker.date];
     NSLog(@"%@",[self stringFromDate:_ageDatePicker.date]);
     [[self.view viewWithTag:10086] removeFromSuperview];
+    [self calculateScore];
 }
 
 -(void)heightPickerBtnClick
@@ -545,6 +572,71 @@
     
     _result = [_resultDict JSONString];
     
+    [self calculateScore];
+    
+}
+
+-(void)calculateScore
+{
+    _score = 0;
+    NSInteger BMI = [_weightTextField.text floatValue] / [_heightTextField.text floatValue] * [_heightTextField.text floatValue];
+    _score += BMI;
+    ////////////////////////////////////
+    if(_age <= 49)
+        _score+=0;
+    else if (_age <= 54)
+        _score += 3;
+    else if (_age <= 59)
+        _score += 6;
+    else if (_age <= 64)
+        _score += 9;
+    else if (_age <= 69)
+        _score += 13;
+    else if (_age <= 74)
+        _score += 16;
+    else if (_age <= 79)
+        _score += 19;
+    else if (_age <= 84)
+        _score += 22;
+    else
+        _score += 25;
+    ////////////////////////////////////
+    if([[_resultDict objectForKey:@"Seeing/Feeling Bulge"] isEqualToString:@"yes"])
+        _score += 24;
+    if([[_resultDict objectForKey:@"Menopausal Status"] isEqualToString:@"yes"])
+        _score += 15;
+    if([[_resultDict objectForKey:@"Children"] isEqualToString:@"0"])
+        _score += 0;
+    if([[_resultDict objectForKey:@"Children"] isEqualToString:@"1"])
+        _score += 3;
+    if([[_resultDict objectForKey:@"Children"] isEqualToString:@"2"])
+        _score += 19;
+    if([[_resultDict objectForKey:@"Children"] isEqualToString:@"3"])
+        _score += 17;
+    if([[_resultDict objectForKey:@"Smoking"] isEqualToString:@"yes"])
+        _score += 8;
+    if([[_resultDict objectForKey:@"Pelvic Floor Surgery"] isEqualToString:@"yes"])
+        _score += 14;
+    if([[_resultDict objectForKey:@"Current Heavy Work"] isEqualToString:@"yes"])
+        _score += 8;
+    if([[_resultDict objectForKey:@"Pelvic Floor Problems (POP or UI) during Gestation"] isEqualToString:@"yes"])
+        _score += 6;
+    if([[_resultDict objectForKey:@"Mother with POP or UI"] isEqualToString:@"yes"])
+        _score += 12;
+    
+    [SkeaUser defaultUser].score = _score;
+}
+
+//计算年龄
+-(NSInteger)fromDateToAge:(NSDate*)date
+{
+    NSDate *myDate = date;
+    NSDate *nowDate = [NSDate date];
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    unsigned int unitFlags = NSYearCalendarUnit;
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:myDate toDate:nowDate options:0];
+    long year = [comps year];
+    return year;
 }
 
 - (void)didReceiveMemoryWarning {
