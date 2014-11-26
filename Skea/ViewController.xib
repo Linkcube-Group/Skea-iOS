@@ -32,10 +32,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LKP-34-2Ae">
-                    <rect key="frame" x="166" y="92" width="50" height="16"/>
+                    <rect key="frame" x="177" y="93" width="50" height="16"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" red="0.546875" green="0.78823529411764703" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" red="0.54117647058823526" green="0.85098039215686272" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="button-start-shadow.png" id="Oiy-3Y-Xq0">
@@ -105,7 +105,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="level_bg.png" id="Ice-eO-Qzt">
-                    <rect key="frame" x="121" y="92" width="37" height="16"/>
+                    <rect key="frame" x="132" y="92" width="40" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
@@ -119,6 +119,6 @@
         <image name="icon-me.png" width="33" height="33"/>
         <image name="icon-records.png" width="33" height="33"/>
         <image name="lastresult_bg.png" width="136" height="26"/>
-        <image name="level_bg.png" width="37" height="16"/>
+        <image name="level_bg.png" width="40" height="17"/>
     </resources>
 </document>

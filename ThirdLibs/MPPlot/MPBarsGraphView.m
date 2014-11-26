@@ -74,12 +74,12 @@
     
     for (NSInteger i=0; i<points.count; i++) {
         
-        CGFloat height = [[points objectAtIndex:i] floatValue]*(self.height-PADDING*2)+PADDING;
+        CGFloat height = [[points objectAtIndex:i] floatValue]+5;//*(self.height-PADDING*2)+PADDING;
         
         _MPWButton *button = [_MPWButton buttonWithType:UIButtonTypeCustom];
         button.tappableAreaOffset = UIOffsetMake(barWidth/2, self.height);
         [button setBackgroundColor:self.graphColor];
-        button.frame=CGRectMake(barWidth+(barWidth*i+barWidth*i), animated ? self.height : self.height-height, barWidth, animated ? height+20 : height);
+        button.frame=CGRectMake(barWidth+(barWidth*i+barWidth*i), animated ? self.height : self.height-height, barWidth, animated ? height: height);
         
         CAShapeLayer *maskLayer = [CAShapeLayer layer];
         maskLayer.frame = button.bounds;

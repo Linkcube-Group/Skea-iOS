@@ -160,12 +160,12 @@
         if ([self hasRecordDay:(int)i+1 :(int)components.month :(int)components.year]) {
             [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [button setBackgroundColor:[UIColor colorWithHexString:@"#6CC9DF"]];
-            if(i+1 ==_selectedDate && components.month == _selectedMonth && components.year == _selectedYear)
-            {
-                [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            }
+           
         }
-        
+        if(i+1 ==_selectedDate && components.month == _selectedMonth && components.year == _selectedYear)
+        {
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }
         
         [self addSubview:button];
     }

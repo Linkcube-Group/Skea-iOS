@@ -125,7 +125,7 @@
 {
     CGFloat space = (self.frame.size.width)/(points.count+1);
 
-    return CGPointMake(space+(space)*index,self.height-((self.height-PADDING*2)*[[points objectAtIndex:index] floatValue]+PADDING));
+    return CGPointMake(space+(space)*index,[[points objectAtIndex:index] floatValue]);
 }
 
 

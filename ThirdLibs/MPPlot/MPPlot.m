@@ -117,7 +117,8 @@
     //if(max!=min){
         for (NSString *p in values) {
             CGFloat val = [p floatValue];
-            val = ((val-min)/(max-min));
+//            val = ((val-min)/(max-min));
+            val *= chatHeight;
             [pointsArray addObject:@(val)];
         }
 //    }else{

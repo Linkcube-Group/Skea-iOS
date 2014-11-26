@@ -79,7 +79,7 @@
 //    self.gameDetail = [AppConfig getGameDetail:today];
     self.gameDetail = [AppConfig getLastGameDetail];
     ////////////////////////////////////////////////////////////////////
-    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 20, 270, 207-15)];
+    graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 6, 270, chatHeight)];
     graph1.waitToUpdate=YES;
 
     
@@ -88,7 +88,9 @@
     graph1.graphColor=[UIColor orangeColor];
     graph1.detailBackgroundColor=[UIColor orangeColor];
     
-    graph2=[MPPlot plotWithType:MPPlotTypeBars frame:graph1.frame];
+    CGRect rect = graph1.frame;
+    rect.origin.y += 6;
+    graph2=[MPPlot plotWithType:MPPlotTypeBars frame:rect];
     graph2.waitToUpdate=YES;
     graph2.detailView=(UIView <MPDetailView> *)[self customDetailView];
     graph2.graphColor=[UIColor colorWithRed:106/255.0 green:201/255.0 blue:223/255.0 alpha:1];
@@ -113,6 +115,8 @@
     
     
     [self updateDateView];
+
+    
     // Do any additional setup after loading the view from its nib.
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -177,6 +181,7 @@
 
 - (void)updateDateView
 {
+    
     if (self.gameDetail==nil) {
         self.viewHeader.hidden = NO;
         return;
@@ -211,6 +216,7 @@
     NSString *dayStr = @"Today";// [day stringDateWithFormat:@"MM/dd"];
     if (self.gameDetail.dateInterval!=nil && [self.gameDetail.dateInterval length]>5) {
         dayStr = [self.gameDetail.dateInterval substringFromIndex:[self.gameDetail.dateInterval length]-5];
+        dayStr =[dayStr stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
     }
     
     self.lbDate.text = _S(@"%@  Level %d",dayStr,self.gameDetail.level);
@@ -223,15 +229,11 @@
     IMP_BLOCK_SELF(RecordViewController)
     
     [graph1 setAlgorithm:^CGFloat(CGFloat x) {
-//       return rand()%100;
-//        DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100);
-        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]*100;
+        return (1-[[block_self.gameDetail.aryGameInfo objectAtIndex:x] scoreRate]);
         
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     [graph2 setAlgorithm:^CGFloat(CGFloat x) {
-        //return rand()%100;
-//         DLog(@"---%f",[[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100);
-        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0*100;
+        return [[block_self.gameDetail.aryGameInfo objectAtIndex:x] progressTime]/15.0;
     } numberOfPoints:self.gameDetail.aryGameInfo.count];
     
     [graph1 animate];

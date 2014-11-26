@@ -65,4 +65,7 @@ static NSString * const kNotificationConnected = @"kNotificationConnected";
 //断开
 static NSString * const kNotificationDisConnected = @"kNotificationDisConnected";
 
+
+static const int chatHeight = 200;
+
 #endif
