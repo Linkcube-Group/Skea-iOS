@@ -365,8 +365,9 @@
         imgh.image = IMG(_S(@"bar_%ds.png",gsecond));
         [self.scrollBg addSubview:imgh];
         
+        int tempValue = 8;  ///修改这个值
         ///add to ary
-        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-BlankBottom+4 WithProgress:gsecond];
+        GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-BlankBottom+tempValue WithProgress:gsecond];
         DLog(@"--beging:%d",info.beginPoint);
         [self.aryGame addObject:info];
         
