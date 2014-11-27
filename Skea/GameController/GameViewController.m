@@ -61,9 +61,9 @@
 #define TwelfthHeight 480
 #define SepHeight 40
 
-#define TwelfthTotal 429.24
-#define SevenTotal 174.44
-#define TwoTotal 28.14
+#define TwelfthTotal 479.24
+#define SevenTotal 224.44
+#define TwoTotal 78.14
 
 #define BlankTop 9
 #define BlankBottom 26
