@@ -81,9 +81,9 @@
     ////////////////////////////////////////////////////////////////////
     graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 6, 270, chatHeight)];
     graph1.waitToUpdate=YES;
-
     
-    graph1.curved=YES;
+    
+    graph1.curved=NO;
     
     graph1.graphColor=[UIColor orangeColor];
     graph1.detailBackgroundColor=[UIColor orangeColor];
@@ -181,7 +181,6 @@
 
 - (void)updateDateView
 {
-    
     if (self.gameDetail==nil) {
         self.viewHeader.hidden = NO;
         return;
