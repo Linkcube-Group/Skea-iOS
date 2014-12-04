@@ -204,7 +204,7 @@
         InputViewController * ivc = [[InputViewController alloc] init];
         UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:ivc];
         ivc.delegate = self;
-        ivc.nickName = nickname;
+        ivc.nickName = [SkeaUser defaultUser].nickName;
         [self presentViewController:nvc animated:YES completion:nil];
     }
     if(indexPath.section == 2)
