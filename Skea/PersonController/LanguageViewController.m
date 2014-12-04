@@ -26,6 +26,7 @@
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, ScreenWidth, 80) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:tableView];
 }
 
@@ -59,14 +60,18 @@
     }
     if(indexPath.row == 0)
     {
-        cell.textLabel.text = @"简体中文";
+        cell.textLabel.text = @"   简体中文";
         cell.accessoryType = _isEnglish?UITableViewCellAccessoryNone:UITableViewCellAccessoryCheckmark;
     }
     if(indexPath.row == 1)
     {
-        cell.textLabel.text = @"English";
+        cell.textLabel.text = @"   English";
         cell.accessoryType = _isEnglish?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
     }
+    UIView * line = [[UIView alloc] init];
+    line.frame = CGRectMake(40, 39.5, ScreenWidth - 40, 0.5);
+    line.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
+    [cell.contentView addSubview:line];
     return cell;
 }
 

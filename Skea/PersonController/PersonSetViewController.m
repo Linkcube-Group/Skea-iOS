@@ -21,14 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.view.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
     dataArray = [NSArray arrayWithObjects:@"",NSLocalizedString(@"语言", nil),@"",NSLocalizedString(@"版本", nil),NSLocalizedString(@"反馈", nil),NSLocalizedString(@"关于我们", nil), nil];
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"设置", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
     photoImageView = [[UIImageView alloc] init];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 300 - 50) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorColor  = [UIColor clearColor];
@@ -62,7 +62,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    cell.textLabel.text = [dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"    %@",[dataArray objectAtIndex:indexPath.row]];
     if(indexPath.row == 0 || indexPath.row == 2)
     {
         cell.contentView.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
@@ -76,7 +76,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     UIView * line = [[UIView alloc] init];
-    line.frame = CGRectMake(0, indexPath.row?39.5:19.5, ScreenWidth, 0.5);
+    line.frame = CGRectMake(40, indexPath.row?39.5:19.5, ScreenWidth - 40, 0.5);
     line.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
     [cell.contentView addSubview:line];
     return cell;
