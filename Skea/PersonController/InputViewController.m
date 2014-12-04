@@ -28,19 +28,26 @@
     
     
     UIView * wView = [[UIView alloc] init];
-    wView.frame = CGRectMake(0, 110, self.view.frame.size.width, 40);
+    wView.frame = CGRectMake(0, 20, self.view.frame.size.width, 40);
     wView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:wView];
     
     field = [[UITextField alloc] init];
     field.backgroundColor = [UIColor clearColor];
     field.text = self.nickName;
-    field.frame = CGRectMake(20, 110, self.view.frame.size.width - 40, 40);
+    [field becomeFirstResponder];
+    field.frame = CGRectMake(20, 20, self.view.frame.size.width - 40, 40);
     [self.view addSubview:field];
 }
 
 -(void)Done
 {
+    if([field.text isEqualToString:self.nickName])
+    {
+        [self btBack_DisModal:nil];
+        return;
+    }
+    
     NSString *nickName = field.text;
     if (StringIsNullOrEmpty(nickName)) {
         showAlertMessage(@"昵称不能为空");
