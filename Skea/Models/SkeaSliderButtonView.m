@@ -74,8 +74,8 @@
     CGFloat lineWidth = (ScreenWidth - 40 - count * cycleD)/(count - 1);
     
     line = [[UIView alloc] init];
-    line.frame = CGRectMake(20, insert + height1/2.f - 0.25 + label.frame.origin.y + label.frame.size.height, ScreenWidth - 40, 0.5);
-    line.backgroundColor = [UIColor colorWithRed:156/255.f green:157/255.f blue:159/255.f alpha:1.f];
+    line.frame = CGRectMake(20, insert + height1/2.f - 0.25 + label.frame.origin.y + label.frame.size.height - 1.25, ScreenWidth - 40, 2);
+    line.backgroundColor = [UIColor colorWithRed:160/255.f green:160/255.f blue:160/255.f alpha:1.f];
     line.userInteractionEnabled = YES;
     [self addSubview:line];
     
@@ -190,12 +190,14 @@
     {
         [UIView animateWithDuration:0.3 animations:^{
             _bluePointImageView.frame = CGRectMake(-10 + cycleR + 0.25, 0.25 - 10, 20, 20);
+            [line bringSubviewToFront:_bluePointImageView];
         }];
     }
     else if(btn.tag == self.selectedStringsArray.count - 1)
     {
         [UIView animateWithDuration:0.3 animations:^{
             _bluePointImageView.frame = CGRectMake(ScreenWidth - 40 - cycleD -10 + cycleR, 0.25 - 10, 20, 20);
+            [line bringSubviewToFront:_bluePointImageView];
         }];
     }
     else
