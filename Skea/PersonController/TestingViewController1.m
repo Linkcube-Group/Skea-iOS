@@ -63,13 +63,13 @@
     _result = [_resultDict JSONString];
     
     _heightArray = [[NSMutableArray alloc] init];
-    for(int i=150;i<250;i++)
+    for(int i=100;i<240;i++)
     {
         [_heightArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
     
     _weightArray = [[NSMutableArray alloc] init];
-    for(int i=60;i<300;i++)
+    for(int i=30;i<120;i++)
     {
         [_weightArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
@@ -157,7 +157,7 @@
         _heightTextField.textAlignment = NSTextAlignmentRight;
         _heightTextField.inputView = _heightPicker;
         _heightTextField.delegate = self;
-        _heightTextField.text = [SkeaUser defaultUser].height.length?[SkeaUser defaultUser].height:@"180";
+        _heightTextField.text = [SkeaUser defaultUser].height.length?[SkeaUser defaultUser].height:@"160cm";
         _heightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_heightTextField];
     }
@@ -173,7 +173,7 @@
         _weightTextField.textAlignment = NSTextAlignmentRight;
         _weightTextField.inputView = _weightPicker;
         _weightTextField.delegate = self;
-        _weightTextField.text = [SkeaUser defaultUser].weight.length?[SkeaUser defaultUser].weight:@"60";
+        _weightTextField.text = [SkeaUser defaultUser].weight.length?[SkeaUser defaultUser].weight:@"50kg";
         _weightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_weightTextField];
     }
@@ -187,8 +187,8 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Seeing/Feeling Bulge";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"yes",@"no", nil];
-        sview.selectedIndex = 1;
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
         [cell.contentView addSubview:sview];
@@ -223,8 +223,8 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Smoking";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"yes",@"no", nil];
-        sview.selectedIndex = 1;
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
         [cell.contentView addSubview:sview];
@@ -235,8 +235,8 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Pelvic Floor Surgery";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"yes",@"no", nil];
-        sview.selectedIndex = 1;
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
         [cell.contentView addSubview:sview];
@@ -247,8 +247,8 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Current Heavy Work";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"yes",@"no", nil];
-        sview.selectedIndex = 1;
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
         [cell.contentView addSubview:sview];
@@ -259,8 +259,8 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Pelvic Floor Problems (POP or UI) during Gestation";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"yes",@"no", nil];
-        sview.selectedIndex = 1;
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
         [cell.contentView addSubview:sview];
@@ -271,8 +271,8 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Mother with POP or UI";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"yes",@"no", nil];
-        sview.selectedIndex = 1;
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
         [cell.contentView addSubview:sview];
@@ -406,6 +406,7 @@
         _ageDatePicker.backgroundColor = [UIColor whiteColor];
         _ageDatePicker.datePickerMode = UIDatePickerModeDate;
         _ageDatePicker.userInteractionEnabled = YES;
+//        _ageDatePicker.date = [NSDate dateWithString:@"1980-01-01"];
         [view addSubview:_ageDatePicker];
     }
     if(textField == _heightTextField)
@@ -427,7 +428,8 @@
         line.frame = CGRectMake(0, 39.5, view.frame.size.width, 0.5);
         line.backgroundColor = [UIColor grayColor];
         [view addSubview:line];
-        
+        NSString * str = [NSString stringWithFormat:@"%ld",[_heightTextField.text integerValue]];
+        [_heightPicker selectRow:[_heightArray indexOfObject:str] inComponent:0 animated:YES];
         _heightPicker.frame = CGRectMake(0,40,ScreenWidth,216);
         _heightPicker.backgroundColor = [UIColor whiteColor];
         [view addSubview:_heightPicker];
@@ -452,6 +454,8 @@
         line.backgroundColor = [UIColor grayColor];
         [view addSubview:line];
         
+        NSString * str = [NSString stringWithFormat:@"%ld",[_weightTextField.text integerValue]];
+        [_weightPicker selectRow:[_weightArray indexOfObject:str] inComponent:0 animated:YES];
         _weightPicker.frame = CGRectMake(0,40,ScreenWidth,216);
         _weightPicker.backgroundColor = [UIColor whiteColor];
         [view addSubview:_weightPicker];
@@ -461,9 +465,9 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     if(pickerView == _heightPicker)
-        _heightTextField.text = [_heightArray objectAtIndex:row];
+        _heightTextField.text = [NSString stringWithFormat:@"%@cm",[_heightArray objectAtIndex:row]];
     if(pickerView == _weightPicker)
-        _weightTextField.text = [_weightArray objectAtIndex:row];
+        _weightTextField.text = [NSString stringWithFormat:@"%@kg",[_weightArray objectAtIndex:row]];
     
     [self calculateScore];
 }

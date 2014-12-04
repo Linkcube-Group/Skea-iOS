@@ -26,7 +26,7 @@
     
     UIView * navigationView = [[UIView alloc] init];
     navigationView.frame = CGRectMake(0, 0, ScreenWidth, 64);
-    navigationView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
+    navigationView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
     [self.view addSubview:navigationView];
     
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -37,7 +37,7 @@
     [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
     [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    btn.frame=CGRectMake(10, 34, 24, 24);
+    btn.frame=CGRectMake(14, 38, 20, 20);
     
     //让图片在最右侧对齐
     CGSize imagesize=IMG(@"back-cross.png").size;
@@ -66,7 +66,7 @@
     [self.view addSubview:_tableView];
     
     UIButton * AgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    AgainButton.frame = CGRectMake(10,self.view.frame.size.height - 64 - 20 - 64,self.view.frame.size.width - 20,44);
+    AgainButton.frame = CGRectMake(10,self.view.frame.size.height - 64 - 20,self.view.frame.size.width - 20,44);
     //    AgainButton.layer.borderWidth = 0.5f;
     //    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
     [AgainButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
@@ -138,7 +138,8 @@
         label1.textColor = [UIColor whiteColor];
         label1.textAlignment = NSTextAlignmentCenter;
         label1.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
+        cell.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
         [cell.contentView addSubview:label1];
         
         switch ([SkeaUser defaultUser].level)
