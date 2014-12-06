@@ -67,16 +67,9 @@
     self.viewScoreBg.layer.borderWidth = 1;
     self.viewScoreBg.layer.masksToBounds = YES;
     
-//    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Results"];
-//    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-//    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-date.png") Title:nil Target:self Selector:@selector(dateActoin)];
-    
-    
-    
+
     self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight);
-//    NSString *today = _S(@"%.0f",[[NSDate date] timeIntervalSince1970]/(24*60*60));
-    
-//    self.gameDetail = [AppConfig getGameDetail:today];
+
     self.gameDetail = [AppConfig getLastGameDetail];
     ////////////////////////////////////////////////////////////////////
     graph1=[[MPGraphView alloc] initWithFrame:CGRectMake(25, 6, 270, chatHeight)];
@@ -90,6 +83,9 @@
     
     CGRect rect = graph1.frame;
     rect.origin.y += 6;
+    rect.origin.x += 1;
+    rect.size.width -= 2;
+
     graph2=[MPPlot plotWithType:MPPlotTypeBars frame:rect];
     graph2.waitToUpdate=YES;
     graph2.detailView=(UIView <MPDetailView> *)[self customDetailView];
@@ -181,6 +177,7 @@
 
 - (void)updateDateView
 {
+    
     if (self.gameDetail==nil) {
         self.viewHeader.hidden = NO;
         return;
