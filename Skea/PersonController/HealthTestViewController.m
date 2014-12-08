@@ -18,6 +18,7 @@
 @implementation HealthTestViewController
 {
     UITableView * _tableView;
+    UIImageView * _imageView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -153,32 +154,26 @@
         cell.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
         [cell.contentView addSubview:label1];
         
+        _imageView = [[UIImageView alloc] init];
+        _imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
+        [cell.contentView addSubview:_imageView];
         switch ([SkeaUser defaultUser].level)
         {
             case 1:
             {
-                UIImageView * imageView = [[UIImageView alloc] init];
-                imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
-                imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
-                [cell.contentView addSubview:imageView];
+                _imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
                 break;
             }
             case 2:
             case 3:
             case 4:
             {
-                UIImageView * imageView = [[UIImageView alloc] init];
-                imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
-                imageView.image = [UIImage imageNamed:@"risk-factor-medium.png"];
-                [cell.contentView addSubview:imageView];
+                _imageView.image = [UIImage imageNamed:@"risk-factor-medium.png"];
                 break;
             }
             case 5:
             {
-                UIImageView * imageView = [[UIImageView alloc] init];
-                imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
-                imageView.image = [UIImage imageNamed:@"risk-factor-high.png"];
-                [cell.contentView addSubview:imageView];
+                _imageView.image = [UIImage imageNamed:@"risk-factor-high.png"];
                 break;
             }
                 
