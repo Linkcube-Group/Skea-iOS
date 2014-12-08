@@ -32,7 +32,7 @@
     UIButton *btn=[UIButton buttonWithType:UIButtonTypeCustom];
     [btn setBackgroundImage:IMG(@"menu_action_back_white.png") forState:UIControlStateNormal];
     btn.tag = 200;
-    [btn addTarget:self action:@selector(btBack_DisModal:) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     btn.titleLabel.font=[Theam currentTheam].navigationBarItemFont;
     [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
     [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
@@ -56,7 +56,7 @@
     [navigationView addSubview:btn];
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"测试结果", nil)];
-    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+//    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(back)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40) style:UITableViewStylePlain];
     _tableView.delegate = self;
@@ -76,6 +76,17 @@
     [AgainButton addTarget:self action:@selector(again) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:AgainButton];
     
+}
+
+-(void)back
+{
+//    if(self.isRegister)
+//    {
+//        AppDelegate * delegate = [[AppDelegate alloc] init];
+//        [delegate reloadApp];
+//        return;
+//    }
+    [self btBack_DisModal:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated

@@ -10,4 +10,6 @@
 
 @interface HealthTestViewController : UIViewController
 
+@property(nonatomic) BOOL isRegister;
+
 @end

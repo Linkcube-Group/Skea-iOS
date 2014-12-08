@@ -10,6 +10,7 @@
 #import "SkeaSliderButtonView.h"
 #import "PersonLoginedViewController.h"
 #import "SkeaUser.h"
+#import "HealthTestViewController.h"
 
 @interface TestingViewController1 ()<UITableViewDelegate,UITableViewDataSource,SkeaSliderButtonViewDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
@@ -75,7 +76,8 @@
     }
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Risk Evaluation"];
-    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    if(!self._isRegisterPush)
+        self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 40) style:UITableViewStylePlain];
     tableView.delegate = self;
@@ -331,9 +333,10 @@
         [SkeaUser defaultUser].height = _heightTextField.text;
         if(self._isRegisterPush)
         {
-            PersonLoginedViewController * pvc = [[PersonLoginedViewController alloc] init];
-            UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
-            [block_self presentViewController:nvc animated:YES completion:nil];
+            HealthTestViewController * pvc = [[HealthTestViewController alloc] init];
+            pvc.isRegister = YES;
+//            UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:pvc];
+            [block_self presentViewController:pvc animated:YES completion:nil];
         }
         else
         {

@@ -22,6 +22,8 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
+-(void)reloadApp;
+
 
 @end
 

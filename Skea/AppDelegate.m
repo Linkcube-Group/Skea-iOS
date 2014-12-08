@@ -48,6 +48,13 @@
     return YES;
 }
 
+-(void)reloadApp
+{
+    self.viewController = [[ViewController alloc] init];
+    UINavigationController *nav = [[NavigationController alloc] initWithRootViewController:self.viewController];
+    [self.window setRootViewController:nav];
+}
+
 - (void)loadReveal
 {
 #ifdef DEBUG_REVEL
