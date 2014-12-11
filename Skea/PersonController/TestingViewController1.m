@@ -53,14 +53,14 @@
     _weightPicker.dataSource = self;
     
     _resultDict = [[NSMutableDictionary alloc] init];
-    [_resultDict setObject:@"no" forKey:@"Seeing/Feeling Bulge"];
-    [_resultDict setObject:@"no" forKey:@"Menopausal Status"];
+    [_resultDict setObject:@"NO" forKey:@"Seeing/Feeling Bulge"];
+    [_resultDict setObject:@"NO" forKey:@"Menopausal Status"];
     [_resultDict setObject:@"0" forKey:@"Children"];
-    [_resultDict setObject:@"no" forKey:@"Smoking"];
-    [_resultDict setObject:@"no" forKey:@"Pelvic Floor Surgery"];
-    [_resultDict setObject:@"no" forKey:@"Current Heavy Work"];
-    [_resultDict setObject:@"no" forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
-    [_resultDict setObject:@"no" forKey:@"Mother with POP or UI"];
+    [_resultDict setObject:@"NO" forKey:@"Smoking"];
+    [_resultDict setObject:@"NO" forKey:@"Pelvic Floor Surgery"];
+    [_resultDict setObject:@"NO" forKey:@"Current Heavy Work"];
+    [_resultDict setObject:@"NO" forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
+    [_resultDict setObject:@"NO" forKey:@"Mother with POP or UI"];
     _result = [_resultDict JSONString];
     
     _heightArray = [[NSMutableArray alloc] init];
@@ -189,7 +189,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Seeing/Feeling Bulge";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -201,7 +201,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Menopausal Status";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"(Pre) menopausal",@"Postmenopausal", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -225,7 +225,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Smoking";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -237,7 +237,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Pelvic Floor Surgery";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -249,7 +249,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Current Heavy Work";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -261,7 +261,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Pelvic Floor Problems (POP or UI) during Gestation";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -273,7 +273,7 @@
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
         sview.title = @"Mother with POP or UI";
-        sview.selectedStringsArray = [NSArray arrayWithObjects:@"no",@"yes", nil];
+        sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
         sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
@@ -544,12 +544,12 @@
     NSLog(@"第%ld行，第%ld个按钮",tag,index);
     if(tag == 6)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Seeing/Feeling Bulge"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Seeing/Feeling Bulge"];
     }
     
     if(tag == 7)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Menopausal Status"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Menopausal Status"];
     }
     
     if(tag == 8)
@@ -559,27 +559,27 @@
     
     if(tag == 9)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Smoking"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Smoking"];
     }
     
     if(tag == 10)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Pelvic Floor Surgery"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Pelvic Floor Surgery"];
     }
     
     if(tag == 11)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Current Heavy Work"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Current Heavy Work"];
     }
     
     if(tag == 12)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
     }
     
     if(tag == 13)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"no":@"yes"] forKey:@"Mother with POP or UI"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Mother with POP or UI"];
     }
     
     _result = [_resultDict JSONString];
@@ -613,9 +613,9 @@
     else
         _score += 25;
     ////////////////////////////////////
-    if([[_resultDict objectForKey:@"Seeing/Feeling Bulge"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Seeing/Feeling Bulge"] isEqualToString:@"YES"])
         _score += 24;
-    if([[_resultDict objectForKey:@"Menopausal Status"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Menopausal Status"] isEqualToString:@"YES"])
         _score += 15;
     if([[_resultDict objectForKey:@"Children"] isEqualToString:@"0"])
         _score += 0;
@@ -625,18 +625,19 @@
         _score += 19;
     if([[_resultDict objectForKey:@"Children"] isEqualToString:@"3"])
         _score += 17;
-    if([[_resultDict objectForKey:@"Smoking"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Smoking"] isEqualToString:@"YES"])
         _score += 8;
-    if([[_resultDict objectForKey:@"Pelvic Floor Surgery"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Pelvic Floor Surgery"] isEqualToString:@"YES"])
         _score += 14;
-    if([[_resultDict objectForKey:@"Current Heavy Work"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Current Heavy Work"] isEqualToString:@"YES"])
         _score += 8;
-    if([[_resultDict objectForKey:@"Pelvic Floor Problems (POP or UI) during Gestation"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Pelvic Floor Problems (POP or UI) during Gestation"] isEqualToString:@"YES"])
         _score += 6;
-    if([[_resultDict objectForKey:@"Mother with POP or UI"] isEqualToString:@"yes"])
+    if([[_resultDict objectForKey:@"Mother with POP or UI"] isEqualToString:@"YES"])
         _score += 12;
     
     [SkeaUser defaultUser].score = _score;
+    NSLog(@"分数---->%ld",[SkeaUser defaultUser].score);
 }
 
 //计算年龄
