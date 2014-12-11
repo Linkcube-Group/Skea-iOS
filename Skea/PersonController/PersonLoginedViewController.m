@@ -100,7 +100,7 @@
     if(!cell)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.backgroundColor = [UIColor whiteColor];

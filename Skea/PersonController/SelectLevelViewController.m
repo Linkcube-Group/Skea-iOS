@@ -31,6 +31,11 @@
         [_recommendArray replaceObjectAtIndex:([SkeaUser defaultUser].level - 1) withObject:@"1"];
         _selectArray = _recommendArray;
     }
+    if([SkeaUser defaultUser].selectLevel>0)
+    {
+        _selectArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
+        [_selectArray replaceObjectAtIndex:([SkeaUser defaultUser].selectLevel - 1) withObject:@"1"];
+    }
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Exercise Strength"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
@@ -85,7 +90,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    _selectArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0", nil];
+    _selectArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
     [_selectArray replaceObjectAtIndex:indexPath.row withObject:@"1"];
     [SkeaUser defaultUser].selectLevel = indexPath.row + 1;
     [AppConfig setGameLevel:(int)indexPath.row + 1];
