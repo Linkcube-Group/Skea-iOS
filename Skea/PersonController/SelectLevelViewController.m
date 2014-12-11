@@ -22,9 +22,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0",@"0",@"0",@"0", nil];
-    _nameArray = [NSMutableArray arrayWithObjects:@"Level 1",@"Level 2",@"Level 3",@"Level 4",@"Level 5", nil];
-    _recommendArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0", nil];
+    _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0",@"0",@"0", nil];
+    _nameArray = [NSMutableArray arrayWithObjects:@"Level 1",@"Level 2",@"Level 3",@"Level 4", nil];
+    _recommendArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
     NSLog(@"%ld",[SkeaUser defaultUser].level);
     if([SkeaUser defaultUser].level > 0)
     {
@@ -35,14 +35,13 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Exercise Strength"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 260 - 64) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 260 - 64 - 40) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.scrollEnabled = NO;
     [self.view addSubview:tableView];
     [tableView reloadData];
 }
-
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -51,7 +50,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 4;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
