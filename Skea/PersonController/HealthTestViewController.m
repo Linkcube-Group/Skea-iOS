@@ -19,12 +19,13 @@
 {
     UITableView * _tableView;
     UIImageView * _imageView;
+    NSArray * _sugArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //    self.view.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
-    
+    _sugArray = @[@"您的盆底肌并无太大风险，请继续保持！",@"您的盆地肌基本健康，不过依然建议您多多锻炼。",@"您的盆底肌需要多多锻炼哦，建议您选择Level3锻炼等级，坚持锻炼哦！",@"您的盆底肌健康面临着很大风险，请遵医嘱进行盆底肌锻炼，每天至少30分钟。"];
     UIView * navigationView = [[UIView alloc] init];
     navigationView.frame = CGRectMake(0, 0, ScreenWidth, 64);
     navigationView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
@@ -204,7 +205,8 @@
         cell.contentView.backgroundColor = [UIColor whiteColor];
         UILabel * label = [[UILabel alloc] init];
         label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 80);
-        label.text = @"UILabel * textlabel = [[UILabel allocinitWithFrame:CGRectMake(0, 0, 80, 80)];textlabel.backgroundColor = [UIColor clearColor];textlabel.text = ;textlabel.textColor = [UIColor blueColor];textlabel.textAlignment = NSTextAlignmentCenter;textlabel.font = [UIFont boldSystemFontOfSize:28.f];[view addSubview:textlabel];";
+//        label.text = @"UILabel * textlabel = [[UILabel allocinitWithFrame:CGRectMake(0, 0, 80, 80)];textlabel.backgroundColor = [UIColor clearColor];textlabel.text = ;textlabel.textColor = [UIColor blueColor];textlabel.textAlignment = NSTextAlignmentCenter;textlabel.font = [UIFont boldSystemFontOfSize:28.f];[view addSubview:textlabel];";
+        label.text = [SkeaUser defaultUser].level>0?[_sugArray objectAtIndex:[SkeaUser defaultUser].level - 1]:[_sugArray firstObject];
         label.font = [UIFont systemFontOfSize:12.f];
         label.numberOfLines = 10;
         [cell.contentView addSubview:label];
