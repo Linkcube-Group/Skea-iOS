@@ -88,6 +88,7 @@
     _selectArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0", nil];
     [_selectArray replaceObjectAtIndex:indexPath.row withObject:@"1"];
     [SkeaUser defaultUser].selectLevel = indexPath.row + 1;
+    [AppConfig setGameLevel:(int)indexPath.row + 1];
     [tableView reloadData];
 }
 
