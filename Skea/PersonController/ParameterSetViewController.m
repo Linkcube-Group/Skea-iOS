@@ -164,7 +164,7 @@
 -(void)slider0Change
 {
     NSLog(@"%f",_slider0.value);
-    [[ProtolManager shareProtolManager] sendToolCompressLevel:(int)(_slider0.value>9?9:_slider0.value)];
+    [[ProtolManager shareProtolManager] sendToolCompressLevel:_slider0.value];
 }
 
 -(UIView *)createSlidre1WithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right selector:(SEL)selector

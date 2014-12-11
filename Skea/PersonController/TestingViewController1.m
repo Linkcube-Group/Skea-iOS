@@ -409,6 +409,11 @@
         _ageDatePicker.backgroundColor = [UIColor whiteColor];
         _ageDatePicker.datePickerMode = UIDatePickerModeDate;
         _ageDatePicker.userInteractionEnabled = YES;
+        NSDateFormatter *formatter_minDate = [[NSDateFormatter alloc] init];
+        [formatter_minDate setDateFormat:@"yyyy-MM-dd"];
+        NSDate *minDate = [formatter_minDate dateFromString:@"2010-01-01"];
+        [_ageDatePicker setMinimumDate:minDate];
+        [_ageDatePicker setMaximumDate:[NSDate date]];
 //        _ageDatePicker.date = [NSDate dateWithString:@"1980-01-01"];
         [view addSubview:_ageDatePicker];
     }
