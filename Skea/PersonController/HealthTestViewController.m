@@ -166,12 +166,11 @@
             }
             case 2:
             case 3:
-            case 4:
             {
                 _imageView.image = [UIImage imageNamed:@"risk-factor-medium.png"];
                 break;
             }
-            case 5:
+            case 4:
             {
                 _imageView.image = [UIImage imageNamed:@"risk-factor-high.png"];
                 break;

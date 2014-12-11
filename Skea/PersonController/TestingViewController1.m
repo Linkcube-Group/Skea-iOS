@@ -304,16 +304,15 @@
     
     [self calculateScore];
     
-    if(_score <= 30)
+    if(_score <= 60)
         [SkeaUser defaultUser].level = 1;
-    else if (_score <= 60)
-        [SkeaUser defaultUser].level = 2;
     else if (_score <= 90)
-        [SkeaUser defaultUser].level = 3;
+        [SkeaUser defaultUser].level = 2;
     else if (_score <= 120)
-        [SkeaUser defaultUser].level = 4;
+        [SkeaUser defaultUser].level = 3;
     else
-        [SkeaUser defaultUser].level = 5;
+        [SkeaUser defaultUser].level = 4;
+
     
     [SkeaUser defaultUser].selectLevel = 0;
     
@@ -544,12 +543,12 @@
     NSLog(@"第%ld行，第%ld个按钮",tag,index);
     if(tag == 6)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Seeing/Feeling Bulge"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Seeing/Feeling Bulge"];
     }
     
     if(tag == 7)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Menopausal Status"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Menopausal Status"];
     }
     
     if(tag == 8)
@@ -559,27 +558,27 @@
     
     if(tag == 9)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Smoking"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Smoking"];
     }
     
     if(tag == 10)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Pelvic Floor Surgery"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Pelvic Floor Surgery"];
     }
     
     if(tag == 11)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Current Heavy Work"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Current Heavy Work"];
     }
     
     if(tag == 12)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Pelvic Floor Problems (POP or UI) during Gestation"];
     }
     
     if(tag == 13)
     {
-        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"NO":@"YES"] forKey:@"Mother with POP or UI"];
+        [_resultDict setObject:[NSString stringWithFormat:@"%@",index?@"YES":@"NO"] forKey:@"Mother with POP or UI"];
     }
     
     _result = [_resultDict JSONString];
