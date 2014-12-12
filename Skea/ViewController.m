@@ -33,7 +33,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDisConnectBL:) name:kNotificationDisConnected object:nil];
     if([SkeaUser defaultUser].isLogin)
     {
-        IMP_BLOCK_SELF(LoginViewController);
+        IMP_BLOCK_SELF(ViewController);
         [[BaseEngine sharedEngine] RunRequest:[@{@"email":[SkeaUser defaultUser].email} mutableCopy] path:SK_LAST_QUS completionHandler:^(id responseObject) {
         } errorHandler:^(NSError *error) {
         } finishHandler:^(id responseObject) {
