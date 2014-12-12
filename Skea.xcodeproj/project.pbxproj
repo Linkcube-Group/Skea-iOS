@@ -232,6 +232,10 @@
 		26F35D7A1A1D10E50074D56D /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26F35D781A1D10E50074D56D /* 1.gif */; };
 		CDCBD7761A3A9BDE00E84A14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7781A3A9BDE00E84A14 /* Localizable.strings */; };
 		CDCBD77C1A3A9CEF00E84A14 /* SkeaLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */; };
+		CDCBD7821A3AAE3B00E84A14 /* level1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD77E1A3AAE3B00E84A14 /* level1@2x.png */; };
+		CDCBD7831A3AAE3B00E84A14 /* level2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */; };
+		CDCBD7841A3AAE3B00E84A14 /* level3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */; };
+		CDCBD7851A3AAE3B00E84A14 /* level4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -603,6 +607,10 @@
 		CDCBD77A1A3A9CEF00E84A14 /* SkeaLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeaLanguage.h; sourceTree = "<group>"; };
 		CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkeaLanguage.m; sourceTree = "<group>"; };
 		CDCBD77D1A3A9DFB00E84A14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CDCBD77E1A3AAE3B00E84A14 /* level1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level1@2x.png"; sourceTree = "<group>"; };
+		CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level2@2x.png"; sourceTree = "<group>"; };
+		CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level3@2x.png"; sourceTree = "<group>"; };
+		CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level4@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -797,6 +805,10 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDCBD77E1A3AAE3B00E84A14 /* level1@2x.png */,
+				CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */,
+				CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */,
+				CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */,
 				032DE8711A1F466C00FE0949 /* bg_title2@2x.png */,
 				032DE8721A1F466C00FE0949 /* text-cool@2x.png */,
 				03096A8A1A1A2A51009FFF88 /* record_icon@2x.png */,
@@ -1360,6 +1372,7 @@
 				0388859D19F158B900372178 /* button-date@2x.png in Resources */,
 				0388859F19F158B900372178 /* button-pause@2x.png in Resources */,
 				0312888519E43A940073C83B /* PersonViewController.xib in Resources */,
+				CDCBD7851A3AAE3B00E84A14 /* level4@2x.png in Resources */,
 				038885A519F158B900372178 /* hexagon@2x.png in Resources */,
 				038885B219F158B900372178 /* risk-factor-medium@2x.png in Resources */,
 				03096A8B1A1A2A51009FFF88 /* record_icon@2x.png in Resources */,
@@ -1369,6 +1382,7 @@
 				2677CEB319FB738F0068454F /* blueArrow.png in Resources */,
 				03E532DE19DA7D470064762E /* ic_common_droparrow2.png in Resources */,
 				038885A719F158B900372178 /* icon-email@2x.png in Resources */,
+				CDCBD7831A3AAE3B00E84A14 /* level2@2x.png in Resources */,
 				0388859C19F158B900372178 /* button-cyan@2x.png in Resources */,
 				0388859319F158B900372178 /* bar_12s@2x.png in Resources */,
 				038885BD19F158B900372178 /* star@2x.png in Resources */,
@@ -1421,7 +1435,9 @@
 				038885A819F158B900372178 /* icon-info@2x.png in Resources */,
 				038885AE19F158B900372178 /* laser-inactive@2x.png in Resources */,
 				264B5AB21A17543A00643DAD /* menu_action_back_white@2x.png in Resources */,
+				CDCBD7841A3AAE3B00E84A14 /* level3@2x.png in Resources */,
 				038885BE19F158B900372178 /* text-miss@2x.png in Resources */,
+				CDCBD7821A3AAE3B00E84A14 /* level1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
