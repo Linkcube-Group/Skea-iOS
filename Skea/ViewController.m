@@ -14,6 +14,7 @@
 #import "RecordViewController.h"
 #import "PersonLoginedViewController.h"
 #import "SkeaUser.h"
+#import "TestingViewController1.h"
 
 @interface ViewController ()
 
@@ -30,9 +31,58 @@
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didConnectBL:) name:kNotificationConnected object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDisConnectBL:) name:kNotificationDisConnected object:nil];
+    if([SkeaUser defaultUser].isLogin)
+    {
+        IMP_BLOCK_SELF(LoginViewController);
+        [[BaseEngine sharedEngine] RunRequest:[@{@"email":[SkeaUser defaultUser].email} mutableCopy] path:SK_LAST_QUS completionHandler:^(id responseObject) {
+        } errorHandler:^(NSError *error) {
+        } finishHandler:^(id responseObject) {
+            if (responseObject!=nil) {
+                int statusCode = [[responseObject objectForKey:@"status"] intValue];
+                if (statusCode>100) {
+                    NSString *errMsg = @"服务器错误";
+                    switch (statusCode) {
+                        case 101:
+                            errMsg = @"参数错误";
+                            break;
+                        case 102:
+                            errMsg = @"该用户已被注册";
+                            break;
+                        case 103:
+                            errMsg = @"用户名或密码错误";
+                            break;
+                        case 104:
+                        {
+                            errMsg = @"结果未找到";
+                            TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
+                            tvc._isRegisterPush = YES;
+                            UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+                            [block_self presentViewController:nvc animated:YES completion:nil];
+                        }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }];
+    }
     // Do any additional setup after loading the view, typically from a nib.
 }
+/*
+ 问卷结---->{
+ info =     {
+ birthday = "1980-01-01";
+ date = "2014-12-12";
+ height = 103cm;
+ result = "{\"Mother w";
+ username = "yy16@qq.com";
+ weight = 32kg;
+ };
+ status = 100;
+ }
 
+ */
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
