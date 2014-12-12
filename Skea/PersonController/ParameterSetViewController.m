@@ -55,6 +55,7 @@
         [button setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
         button.backgroundColor = [UIColor whiteColor];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
         button.layer.cornerRadius = 10.f;
         [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
