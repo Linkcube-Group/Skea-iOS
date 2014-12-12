@@ -26,6 +26,7 @@
 #import "ProtolManager.h"
 #import "bleCentralManager.h"
 #import "BleCommand.h"
+#import "SkeaLanguage.h"
 
 #endif
 
