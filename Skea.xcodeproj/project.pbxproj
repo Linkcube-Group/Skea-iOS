@@ -599,7 +599,6 @@
 		26F35D751A1D07920074D56D /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
 		26F35D761A1D07920074D56D /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
 		26F35D781A1D10E50074D56D /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
-		CDCBD7771A3A9BDE00E84A14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CDCBD7791A3A9C0000E84A14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CDCBD77A1A3A9CEF00E84A14 /* SkeaLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeaLanguage.h; sourceTree = "<group>"; };
 		CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkeaLanguage.m; sourceTree = "<group>"; };
@@ -1572,7 +1571,6 @@
 		CDCBD7781A3A9BDE00E84A14 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CDCBD7771A3A9BDE00E84A14 /* Base */,
 				CDCBD7791A3A9C0000E84A14 /* zh-Hans */,
 				CDCBD77D1A3A9DFB00E84A14 /* en */,
 			);
