@@ -236,6 +236,7 @@
 		CDCBD7831A3AAE3B00E84A14 /* level2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */; };
 		CDCBD7841A3AAE3B00E84A14 /* level3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */; };
 		CDCBD7851A3AAE3B00E84A14 /* level4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */; };
+		CDCBD7871A3AB18900E84A14 /* loginButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7861A3AB18900E84A14 /* loginButtonBg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -611,6 +612,7 @@
 		CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level2@2x.png"; sourceTree = "<group>"; };
 		CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level3@2x.png"; sourceTree = "<group>"; };
 		CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level4@2x.png"; sourceTree = "<group>"; };
+		CDCBD7861A3AB18900E84A14 /* loginButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginButtonBg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -805,6 +807,7 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CDCBD7861A3AB18900E84A14 /* loginButtonBg@2x.png */,
 				CDCBD77E1A3AAE3B00E84A14 /* level1@2x.png */,
 				CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */,
 				CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */,
@@ -1384,6 +1387,7 @@
 				038885A719F158B900372178 /* icon-email@2x.png in Resources */,
 				CDCBD7831A3AAE3B00E84A14 /* level2@2x.png in Resources */,
 				0388859C19F158B900372178 /* button-cyan@2x.png in Resources */,
+				CDCBD7871A3AB18900E84A14 /* loginButtonBg@2x.png in Resources */,
 				0388859319F158B900372178 /* bar_12s@2x.png in Resources */,
 				038885BD19F158B900372178 /* star@2x.png in Resources */,
 				0312888819E43B8B0073C83B /* ViewController.xib in Resources */,
