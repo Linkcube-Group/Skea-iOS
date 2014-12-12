@@ -37,6 +37,10 @@
 		033EAC601A09FEFD007807A0 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 033EAC5F1A09FEFD007807A0 /* chart@2x.png */; };
 		034F64B919FF0EC300054B16 /* SkeaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 034F64B819FF0EC300054B16 /* SkeaUser.m */; };
 		034F64C019FF269C00054B16 /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 034F64BF19FF269C00054B16 /* CalendarView.m */; };
+		037758791A3AED5D000D4A72 /* gamelevel1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037758751A3AED5D000D4A72 /* gamelevel1@2x.png */; };
+		0377587A1A3AED5D000D4A72 /* gamelevel2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037758761A3AED5D000D4A72 /* gamelevel2@2x.png */; };
+		0377587B1A3AED5D000D4A72 /* gamelevel3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037758771A3AED5D000D4A72 /* gamelevel3@2x.png */; };
+		0377587C1A3AED5D000D4A72 /* gamelevel4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 037758781A3AED5D000D4A72 /* gamelevel4@2x.png */; };
 		0388859119F158B900372178 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856019F158B900372178 /* arrow@2x.png */; };
 		0388859219F158B900372178 /* back-cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856119F158B900372178 /* back-cross@2x.png */; };
 		0388859319F158B900372178 /* bar_12s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0388856219F158B900372178 /* bar_12s@2x.png */; };
@@ -284,6 +288,10 @@
 		034F64BA19FF167200054B16 /* BleCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BleCommand.h; sourceTree = "<group>"; };
 		034F64BE19FF269C00054B16 /* CalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarView.h; sourceTree = "<group>"; };
 		034F64BF19FF269C00054B16 /* CalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
+		037758751A3AED5D000D4A72 /* gamelevel1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelevel1@2x.png"; sourceTree = "<group>"; };
+		037758761A3AED5D000D4A72 /* gamelevel2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelevel2@2x.png"; sourceTree = "<group>"; };
+		037758771A3AED5D000D4A72 /* gamelevel3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelevel3@2x.png"; sourceTree = "<group>"; };
+		037758781A3AED5D000D4A72 /* gamelevel4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gamelevel4@2x.png"; sourceTree = "<group>"; };
 		0388856019F158B900372178 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow@2x.png"; sourceTree = "<group>"; };
 		0388856119F158B900372178 /* back-cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-cross@2x.png"; sourceTree = "<group>"; };
 		0388856219F158B900372178 /* bar_12s@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_12s@2x.png"; sourceTree = "<group>"; };
@@ -807,6 +815,10 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				037758751A3AED5D000D4A72 /* gamelevel1@2x.png */,
+				037758761A3AED5D000D4A72 /* gamelevel2@2x.png */,
+				037758771A3AED5D000D4A72 /* gamelevel3@2x.png */,
+				037758781A3AED5D000D4A72 /* gamelevel4@2x.png */,
 				CDCBD7861A3AB18900E84A14 /* loginButtonBg@2x.png */,
 				CDCBD77E1A3AAE3B00E84A14 /* level1@2x.png */,
 				CDCBD77F1A3AAE3B00E84A14 /* level2@2x.png */,
@@ -1360,6 +1372,7 @@
 				032DE8741A1F466C00FE0949 /* text-cool@2x.png in Resources */,
 				038885BF19F158B900372178 /* text-perfect@2x.png in Resources */,
 				0388859E19F158B900372178 /* button-gray@2x.png in Resources */,
+				0377587C1A3AED5D000D4A72 /* gamelevel4@2x.png in Resources */,
 				038885AA19F158B900372178 /* icon-records@2x.png in Resources */,
 				03E531FF19DA7D320064762E /* bg_title@2x.png in Resources */,
 				0312887B19E43A1D0073C83B /* SignViewController.xib in Resources */,
@@ -1390,6 +1403,7 @@
 				CDCBD7871A3AB18900E84A14 /* loginButtonBg@2x.png in Resources */,
 				0388859319F158B900372178 /* bar_12s@2x.png in Resources */,
 				038885BD19F158B900372178 /* star@2x.png in Resources */,
+				0377587A1A3AED5D000D4A72 /* gamelevel2@2x.png in Resources */,
 				0312888819E43B8B0073C83B /* ViewController.xib in Resources */,
 				038885B019F158B900372178 /* risk-factor-high@2x.png in Resources */,
 				03E5320019DA7D320064762E /* menu@2x.png in Resources */,
@@ -1410,6 +1424,7 @@
 				038885C119F158B900372178 /* user-portrait@2x.png in Resources */,
 				038885B819F158B900372178 /* selection-unchecked@2x.png in Resources */,
 				038885A419F158B900372178 /* game-background@2x.png in Resources */,
+				0377587B1A3AED5D000D4A72 /* gamelevel3@2x.png in Resources */,
 				2677CEB419FB738F0068454F /* blueArrow@2x.png in Resources */,
 				038885AC19F158B900372178 /* icon-settings@2x.png in Resources */,
 				038885B419F158B900372178 /* scroll-bar@2x.png in Resources */,
@@ -1424,6 +1439,7 @@
 				038885BA19F158B900372178 /* settings-configure-skea@2x.png in Resources */,
 				2677CEB919FB738F0068454F /* whiteArrow@2x.png in Resources */,
 				0312514E19F9CE4500245659 /* bar_7@2x.png in Resources */,
+				037758791A3AED5D000D4A72 /* gamelevel1@2x.png in Resources */,
 				0312514F19F9CE4500245659 /* bar_7s@2x.png in Resources */,
 				0388859219F158B900372178 /* back-cross@2x.png in Resources */,
 				0388859A19F158B900372178 /* bluetooth-disconnected@2x.png in Resources */,

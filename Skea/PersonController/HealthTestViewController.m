@@ -39,7 +39,7 @@
     [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
     [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    btn.frame=CGRectMake(14, 38, 20, 20);
+    btn.frame=CGRectMake(16, 32, 20, 20);
     
     //让图片在最右侧对齐
     CGSize imagesize=IMG(@"back-cross.png").size;

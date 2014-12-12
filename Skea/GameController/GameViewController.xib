@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GameViewController">
             <connections>
+                <outlet property="imgLevel" destination="Fbf-wH-avN" id="5yW-RN-gIr"/>
                 <outlet property="imgLine" destination="pNe-2s-mAb" id="QDx-oG-GBw"/>
                 <outlet property="imgStatus" destination="AXe-fW-u2G" id="9qu-k5-gIE"/>
                 <outlet property="lbScore" destination="vGS-Se-Ddp" id="Mpv-pj-GiX"/>
@@ -82,11 +83,16 @@
                     <rect key="frame" x="15" y="370" width="100" height="51"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                 </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gamelevel1.png" id="Fbf-wH-avN">
+                    <rect key="frame" x="241" y="30" width="63" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
         </view>
     </objects>
     <resources>
+        <image name="gamelevel1.png" width="63" height="17"/>
         <image name="hexagon.png" width="76" height="88"/>
         <image name="laser-inactive.png" width="320" height="21"/>
         <image name="text-perfect.png" width="101" height="51"/>

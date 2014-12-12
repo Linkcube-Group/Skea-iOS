@@ -50,6 +50,8 @@
 
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollBg;
 
+@property (strong,nonatomic) IBOutlet UIImageView *imgLevel;
+
 @property (strong,nonatomic) GameInfoList *aryGame;
 
 @property (strong,nonatomic) GameDetail *gameDetail;
@@ -93,6 +95,7 @@
     ///mark
     self.gameDetail.level = level;
     
+    self.imgLevel.image = IMG(_S(@"gamelevel%d",level));
     
     
     self.playTime = 0;
