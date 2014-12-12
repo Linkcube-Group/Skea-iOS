@@ -122,14 +122,14 @@
 {
     NSString * cellIdentifier = [NSString stringWithFormat:@"cell_%ld",(long)indexPath.row];
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(!cell)
+    if(!cell || 1)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        cell.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    cell.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    cell.accessoryType = UITableViewCellAccessoryNone;
     if(indexPath.row == 0)
     {
         UILabel * label = [[UILabel alloc] init];
