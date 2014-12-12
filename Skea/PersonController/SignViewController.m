@@ -226,6 +226,7 @@
         regButton = [UIButton buttonWithType:UIButtonTypeCustom];
         regButton.frame = CGRectMake(8, 50, self.view.frame.size.width - 16, 44);
         [regButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+        [regButton setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
         regButton.layer.cornerRadius = 15.f;
         [regButton setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
         [regButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -237,6 +238,7 @@
         
         [loginButton setTitle:NSLocalizedString(@"登陆", nil) forState:UIControlStateNormal];
         [loginButton setBackgroundImage:[UIImage imageNamed:@"button-gray.png"] forState:UIControlStateNormal];
+        [loginButton setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
         [loginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:loginButton];

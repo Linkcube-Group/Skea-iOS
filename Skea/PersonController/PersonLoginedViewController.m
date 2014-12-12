@@ -48,6 +48,7 @@
     [LogoutButton setTitle:NSLocalizedString(@"退出登录", nil) forState:UIControlStateNormal];
     [LogoutButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [LogoutButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+    [LogoutButton setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
     [LogoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:LogoutButton];
 }

@@ -215,6 +215,7 @@
 //        loginButtn.backgroundColor = [UIColor colorWithRed:220/255.f green:239/255.f blue:244/255.f alpha:1.f];
 //        [loginButtn setImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
         [loginButtn setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+        [loginButtn setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
 //        loginButtn.layer.borderWidth = 0.5;
 //        loginButtn.layer.borderColor = [UIColor colorWithRed:103/255.f green:201/255 blue:224/255.f alpha:1.f].CGColor;
         loginButtn.layer.cornerRadius = 15.f;
@@ -229,6 +230,7 @@
 //        regButton.layer.borderColor = [UIColor blackColor].CGColor;
 //        regButton.layer.cornerRadius = 22.f;
         [regButton setBackgroundImage:[UIImage imageNamed:@"button-gray.png"] forState:UIControlStateNormal];
+        [regButton setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
         [regButton setTitle:NSLocalizedString(@"注册", nil) forState:UIControlStateNormal];
         [regButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [regButton addTarget:self action:@selector(registerButtonClick) forControlEvents:UIControlEventTouchUpInside];
