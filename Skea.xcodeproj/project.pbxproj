@@ -603,6 +603,7 @@
 		CDCBD7791A3A9C0000E84A14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CDCBD77A1A3A9CEF00E84A14 /* SkeaLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeaLanguage.h; sourceTree = "<group>"; };
 		CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkeaLanguage.m; sourceTree = "<group>"; };
+		CDCBD77D1A3A9DFB00E84A14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1573,6 +1574,7 @@
 			children = (
 				CDCBD7771A3A9BDE00E84A14 /* Base */,
 				CDCBD7791A3A9C0000E84A14 /* zh-Hans */,
+				CDCBD77D1A3A9DFB00E84A14 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
