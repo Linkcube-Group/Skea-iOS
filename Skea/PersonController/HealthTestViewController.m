@@ -158,28 +158,7 @@
         _imageView = [[UIImageView alloc] init];
         _imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
         [cell.contentView addSubview:_imageView];
-        switch ([SkeaUser defaultUser].level)
-        {
-            case 1:
-            {
-                _imageView.image = [UIImage imageNamed:@"risk-factor-low.png"];
-                break;
-            }
-            case 2:
-            case 3:
-            {
-                _imageView.image = [UIImage imageNamed:@"risk-factor-medium.png"];
-                break;
-            }
-            case 4:
-            {
-                _imageView.image = [UIImage imageNamed:@"risk-factor-high.png"];
-                break;
-            }
-                
-            default:
-                break;
-        }
+        _imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"level%ld",[SkeaUser defaultUser].level]];
         
     }
     
