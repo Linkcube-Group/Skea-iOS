@@ -82,12 +82,12 @@
 
 -(void)back
 {
-//    if(self.isRegister)
-//    {
-//        AppDelegate * delegate = [[AppDelegate alloc] init];
-//        [delegate reloadApp];
-//        return;
-//    }
+    if(self.isRegister)
+    {
+        AppDelegate *delegate=[[UIApplication sharedApplication] delegate];
+        [delegate reloadApp];
+        return;
+    }
     [self btBack_DisModal:nil];
 }
 
