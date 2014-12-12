@@ -22,6 +22,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [SkeaLanguage defaultCenter];
     [self loadReveal];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     ///初始化bl
