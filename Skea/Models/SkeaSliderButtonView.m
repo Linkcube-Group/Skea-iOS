@@ -80,7 +80,7 @@
     [self addSubview:line];
     
     UIImageView * leftPoint = [[UIImageView alloc] init];
-    leftPoint.frame = CGRectMake(0, 0.25 - cycleR, cycleD, cycleD);
+    leftPoint.frame = CGRectMake(0 - 2, 0.25 - cycleR, cycleD, cycleD);
     leftPoint.image = [UIImage imageNamed:@"xiaoyuanquan.png"];
     [line addSubview:leftPoint];
     leftPoint.userInteractionEnabled = YES;
@@ -91,7 +91,7 @@
     }
     
     UIImageView * rightPoint = [[UIImageView alloc] init];
-    rightPoint.frame = CGRectMake(ScreenWidth - 40 - cycleD, 0.25 - cycleR, cycleD, cycleD);
+    rightPoint.frame = CGRectMake(ScreenWidth - 40 - cycleD + 2, 0.25 - cycleR, cycleD, cycleD);
     rightPoint.userInteractionEnabled = YES;
     rightPoint.image = [UIImage imageNamed:@"xiaoyuanquan.png"];
     [line addSubview:rightPoint];
@@ -119,7 +119,7 @@
             btn.backgroundColor = [UIColor clearColor];
             btn.tag = i+1;
             [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-            btn.frame = CGRectMake(imageView.frame.origin.x + 10 + cycleR, insert +height0 + insert + height1/2 - 10, 20, 20);
+            btn.frame = CGRectMake(imageView.frame.origin.x - 20 + cycleR, insert +height0 + insert + height1/2 - 20, 40, 40);
             [self addSubview:btn];
         }
     }
@@ -128,14 +128,14 @@
     btn0.backgroundColor = [UIColor clearColor];
     btn0.tag = 0;
     [btn0 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn0.frame = CGRectMake(20 + cycleR - 10 ,insert +height0 + insert + height1/2 - 10, 20, 20);
+    btn0.frame = CGRectMake(20 + cycleR - 20 ,insert +height0 + insert + height1/2 - 20, 40, 40);
     [self addSubview:btn0];
     
     UIButton * btnn = [UIButton buttonWithType:UIButtonTypeCustom];
     btnn.backgroundColor = [UIColor clearColor];
     btnn.tag = count - 1;
     [btnn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btnn.frame = CGRectMake(self.frame.size.width - 20 - cycleR - 10, insert +height0 + insert + height1/2 - 10, 20, 20);
+    btnn.frame = CGRectMake(self.frame.size.width - 20 - cycleR - 20, insert +height0 + insert + height1/2 - 20, 40, 40);
     [self addSubview:btnn];
     
     // insert+height0+insert+height1
