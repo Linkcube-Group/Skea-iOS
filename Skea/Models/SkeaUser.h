@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    SpeedTypeConstant = 0,   //恒速
+    SpeedTypeChange = 1      //变速
+}SpeedType;
+
 @interface SkeaUser : NSObject<NSCoding>
 
 @property(nonatomic,strong) NSString * email;            //邮箱
@@ -25,6 +30,8 @@
 @property(nonatomic)        NSInteger score;             //分数
 @property(nonatomic)        NSInteger level;             //计算的等级
 @property(nonatomic)        NSInteger selectLevel;       //自己选择的等级
+
+@property(nonatomic)        SpeedType speedType;         //恒速变速
 
 +(SkeaUser *)defaultUser;
 

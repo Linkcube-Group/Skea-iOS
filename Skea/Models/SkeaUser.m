@@ -25,21 +25,33 @@ static SkeaUser *DefaultManager = nil;
 {
     if(self = [super init])
     {
-        self.email = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
-        self.password = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
-        self.userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
-        self.isLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
-        self.autoLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"autoLogin"];
-        self.saveUser = [[NSUserDefaults standardUserDefaults] boolForKey:@"saveUser"];
-        self.birthday = [[NSUserDefaults standardUserDefaults] objectForKey:@"birthday"];
-        self.height = [[NSUserDefaults standardUserDefaults] objectForKey:@"height"];
-        self.weight = [[NSUserDefaults standardUserDefaults] objectForKey:@"weight"];
-        self.nickName = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
-        self.score = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
-        self.level = [[NSUserDefaults standardUserDefaults] integerForKey:@"level"];
-        self.selectLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectLevel"];
+        self.email        = [[NSUserDefaults standardUserDefaults] objectForKey:@"email"];
+        self.password     = [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+        self.userId       = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+        self.isLogin      = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
+        self.autoLogin    = [[NSUserDefaults standardUserDefaults] boolForKey:@"autoLogin"];
+        self.saveUser     = [[NSUserDefaults standardUserDefaults] boolForKey:@"saveUser"];
+        self.birthday     = [[NSUserDefaults standardUserDefaults] objectForKey:@"birthday"];
+        self.height       = [[NSUserDefaults standardUserDefaults] objectForKey:@"height"];
+        self.weight       = [[NSUserDefaults standardUserDefaults] objectForKey:@"weight"];
+        self.nickName     = [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"];
+        self.score        = [[NSUserDefaults standardUserDefaults] integerForKey:@"score"];
+        self.level        = [[NSUserDefaults standardUserDefaults] integerForKey:@"level"];
+        self.selectLevel  = [[NSUserDefaults standardUserDefaults] integerForKey:@"selectLevel"];
+        self.speedType    = ((SpeedType)[[NSUserDefaults standardUserDefaults] integerForKey:@"speedType"]);
     }
     return self;
+}
+
+-(void)setSpeedType:(SpeedType)speedType
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:speedType forKey:@"speedType"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(SpeedType)speedType
+{
+    return ((SpeedType)[[NSUserDefaults standardUserDefaults] integerForKey:@"speedType"]);
 }
 
 -(void)setEmail:(NSString *)email
@@ -205,6 +217,7 @@ static SkeaUser *DefaultManager = nil;
         self.score          = [[aDecoder decodeObjectForKey:@"score"] integerValue];
         self.level          = [[aDecoder decodeObjectForKey:@"level"] integerValue];
         self.selectLevel    = [[aDecoder decodeObjectForKey:@"selectLevel"] integerValue];
+        self.speedType      = ((SpeedType)[[aDecoder decodeObjectForKey:@"speedType"] integerValue]);
         
     }
     return self;
@@ -212,19 +225,20 @@ static SkeaUser *DefaultManager = nil;
 
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.email                             forKey:@"email"];
-    [aCoder encodeObject:self.password                          forKey:@"password"];
-    [aCoder encodeObject:self.userId                            forKey:@"userid"];
-    [aCoder encodeObject:[NSNumber numberWithBool:self.isLogin] forKey:@"islogin"];
-    [aCoder encodeObject:[NSNumber numberWithBool:self.autoLogin] forKey:@"autoLogin"];
-    [aCoder encodeObject:[NSNumber numberWithBool:self.saveUser] forKey:@"saveUser"];
-    [aCoder encodeObject:self.birthday forKey:@"birthday"];
-    [aCoder encodeObject:self.height forKey:@"height"];
-    [aCoder encodeObject:self.weight forKey:@"weight"];
-    [aCoder encodeObject:self.nickName forKey:@"nickName"];
-    [aCoder encodeObject:[NSNumber numberWithInteger:self.score] forKey:@"score"];
-    [aCoder encodeObject:[NSNumber numberWithInteger:self.level] forKey:@"level"];
-    [aCoder encodeObject:[NSNumber numberWithInteger:self.selectLevel] forKey:@"selectLevel"];
+    [aCoder encodeObject:self.email                                       forKey:@"email"];
+    [aCoder encodeObject:self.password                                    forKey:@"password"];
+    [aCoder encodeObject:self.userId                                      forKey:@"userid"];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.isLogin]           forKey:@"islogin"];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.autoLogin]         forKey:@"autoLogin"];
+    [aCoder encodeObject:[NSNumber numberWithBool:self.saveUser]          forKey:@"saveUser"];
+    [aCoder encodeObject:self.birthday                                    forKey:@"birthday"];
+    [aCoder encodeObject:self.height                                      forKey:@"height"];
+    [aCoder encodeObject:self.weight                                      forKey:@"weight"];
+    [aCoder encodeObject:self.nickName                                    forKey:@"nickName"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.score]          forKey:@"score"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.level]          forKey:@"level"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.selectLevel]    forKey:@"selectLevel"];
+    [aCoder encodeObject:[NSNumber numberWithInteger:self.speedType]      forKey:@"speedType"];
 }
 
 @end
