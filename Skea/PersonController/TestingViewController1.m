@@ -384,6 +384,9 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [[self.view viewWithTag:10086] removeFromSuperview];
+    [[self.view viewWithTag:10087] removeFromSuperview];
+    [[self.view viewWithTag:10088] removeFromSuperview];
     if(textField == _ageTextField)
     {
         UIView * view = [[UIView alloc] init];
@@ -395,7 +398,8 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 50, 0, 50, 40);
         [btn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(datePickerBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
         
@@ -410,9 +414,10 @@
         _ageDatePicker.userInteractionEnabled = YES;
         NSDateFormatter *formatter_minDate = [[NSDateFormatter alloc] init];
         [formatter_minDate setDateFormat:@"yyyy-MM-dd"];
-        NSDate *minDate = [formatter_minDate dateFromString:@"2010-01-01"];
+        NSDate *minDate = [formatter_minDate dateFromString:@"1940-01-01"];
         [_ageDatePicker setMinimumDate:minDate];
         [_ageDatePicker setMaximumDate:[NSDate date]];
+        [_ageDatePicker setDate:[formatter_minDate dateFromString:@"1980-01-01"]];
 //        _ageDatePicker.date = [NSDate dateWithString:@"1980-01-01"];
         [view addSubview:_ageDatePicker];
     }
@@ -427,7 +432,8 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 50, 0, 50, 40);
         [btn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(heightPickerBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
         
@@ -452,7 +458,8 @@
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(ScreenWidth - 50, 0, 50, 40);
         [btn setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(weightPickerBtnClick) forControlEvents:UIControlEventTouchUpInside];
         [view addSubview:btn];
         
