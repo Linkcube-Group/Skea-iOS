@@ -203,6 +203,16 @@
     [[ProtolManager shareProtolManager] sendToolRotateLevel:(int)_slider1.value];
 }
 
+-(void)enableSlider1
+{
+    
+}
+
+-(void)disableSlider1
+{
+    
+}
+
 -(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title textAlignment:(NSTextAlignment)textAlignment
 {
     UILabel * label = [[UILabel alloc] init];
