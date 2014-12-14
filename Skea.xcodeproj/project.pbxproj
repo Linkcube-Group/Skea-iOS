@@ -234,6 +234,7 @@
 		26A6F9461A13DB4000712594 /* SelectLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9451A13DB4000712594 /* SelectLevelViewController.m */; };
 		26F35D771A1D07920074D56D /* LanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F35D761A1D07920074D56D /* LanguageViewController.m */; };
 		26F35D7A1A1D10E50074D56D /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 26F35D781A1D10E50074D56D /* 1.gif */; };
+		CD86BB1B1A3D67B1001776E7 /* graycycle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD86BB1A1A3D67B1001776E7 /* graycycle@2x.png */; };
 		CDCBD7761A3A9BDE00E84A14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7781A3A9BDE00E84A14 /* Localizable.strings */; };
 		CDCBD77C1A3A9CEF00E84A14 /* SkeaLanguage.m in Sources */ = {isa = PBXBuildFile; fileRef = CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */; };
 		CDCBD7821A3AAE3B00E84A14 /* level1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD77E1A3AAE3B00E84A14 /* level1@2x.png */; };
@@ -612,6 +613,7 @@
 		26F35D751A1D07920074D56D /* LanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageViewController.h; sourceTree = "<group>"; };
 		26F35D761A1D07920074D56D /* LanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageViewController.m; sourceTree = "<group>"; };
 		26F35D781A1D10E50074D56D /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
+		CD86BB1A1A3D67B1001776E7 /* graycycle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graycycle@2x.png"; sourceTree = "<group>"; };
 		CDCBD7791A3A9C0000E84A14 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		CDCBD77A1A3A9CEF00E84A14 /* SkeaLanguage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkeaLanguage.h; sourceTree = "<group>"; };
 		CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkeaLanguage.m; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD86BB1A1A3D67B1001776E7 /* graycycle@2x.png */,
 				037758751A3AED5D000D4A72 /* gamelevel1@2x.png */,
 				037758761A3AED5D000D4A72 /* gamelevel2@2x.png */,
 				037758771A3AED5D000D4A72 /* gamelevel3@2x.png */,
@@ -1424,6 +1427,7 @@
 				038885C119F158B900372178 /* user-portrait@2x.png in Resources */,
 				038885B819F158B900372178 /* selection-unchecked@2x.png in Resources */,
 				038885A419F158B900372178 /* game-background@2x.png in Resources */,
+				CD86BB1B1A3D67B1001776E7 /* graycycle@2x.png in Resources */,
 				0377587B1A3AED5D000D4A72 /* gamelevel3@2x.png in Resources */,
 				2677CEB419FB738F0068454F /* blueArrow@2x.png in Resources */,
 				038885AC19F158B900372178 /* icon-settings@2x.png in Resources */,
