@@ -80,6 +80,7 @@
     UISlider * _slider1;
     SKAlertView * alertView0;
     SKAlertView * alertView1;
+    UILabel * _speedLabel;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -93,8 +94,64 @@
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
     [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 50, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
     
-    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 130, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)]];
+    UIView * sView1 = [self createTitleViewWithFrame:CGRectMake(0, 130, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)];
+    sView1.userInteractionEnabled = YES;
+    [self.view addSubview:sView1];
     [self.view addSubview:[self createSlidre1WithFrame:CGRectMake(0, 180, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(down)]];
+    _speedLabel = [[UILabel alloc] init];
+    _speedLabel.frame = CGRectMake(self.view.frame.size.width - 100 - 60, 10, 60, 30);
+    _speedLabel.backgroundColor = [UIColor clearColor];
+    _speedLabel.textAlignment = NSTextAlignmentRight;
+    _speedLabel.font = [UIFont systemFontOfSize:14.f];
+    _speedLabel.textColor = [UIColor grayColor];
+    _speedLabel.text = [SkeaUser defaultUser].speedType == SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
+    [sView1 addSubview:_speedLabel];
+    UISwitch * speedSwitch = [[UISwitch alloc] init];
+    speedSwitch.frame = CGRectMake(self.view.frame.size.width - 80, 10, 80, 30);
+    speedSwitch.onTintColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1];
+    speedSwitch.tintColor = [UIColor grayColor];
+    speedSwitch.on = [SkeaUser defaultUser].speedType != SpeedTypeConstant;
+    [speedSwitch addTarget:self action:@selector(speedChange:) forControlEvents:UIControlEventValueChanged];
+    [sView1 addSubview:speedSwitch];
+    
+    
+    
+}
+
+-(void)speedChange:(UISwitch *)speedSwitch
+{
+    NSLog(@"%d",speedSwitch.on);
+    if(speedSwitch.on)
+    {
+        [SkeaUser defaultUser].speedType = SpeedTypeChange;
+        [self enableSlider1];
+        UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+    }
+    else
+    {
+        [SkeaUser defaultUser].speedType = SpeedTypeConstant;
+        [self disableSlider1];
+        UIImage *thumbImage = [UIImage imageNamed:@"graycycle.png"];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+    }
+    
+}
+
+-(void)enableSlider1
+{
+    _slider1.enabled = YES;
+    [_slider1 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
+}
+
+-(void)disableSlider1
+{
+    _slider1.enabled = NO;
+    _slider1.value = 16;
+    [_slider1 setMinimumTrackTintColor:[UIColor grayColor]];
+    
 }
 
 -(void)save
@@ -173,24 +230,37 @@
     UIView * view = [[UIView alloc] initWithFrame:rect];
     view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
-    UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
     
     _slider1=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
     _slider1.backgroundColor = [UIColor clearColor];
     _slider1.backgroundColor = [UIColor clearColor];
     _slider1.minimumValue = 0;
     _slider1.maximumValue = 31;
-    [_slider1 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
+    if([SkeaUser defaultUser].speedType == SpeedTypeConstant)
+    {
+        [_slider1 setMinimumTrackTintColor:[UIColor grayColor]];
+        UIImage *thumbImage = [UIImage imageNamed:@"graycycle.png"];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+    }
+    else
+    {
+        [_slider1 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
+        UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+        [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+    }
     _slider1.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rotateLevel"];
     
-    [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
-    [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
     
     [_slider1 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     [_slider1 addTarget:self action:@selector(slider1Change) forControlEvents:UIControlEventValueChanged];
     
     [view addSubview:_slider1];
-    
+    if([SkeaUser defaultUser].speedType == SpeedTypeConstant)
+        [self disableSlider1];
+    else
+        [self enableSlider1];
     [view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];
     [view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];
     
@@ -201,16 +271,6 @@
 {
     NSLog(@"%f",_slider1.value);
     [[ProtolManager shareProtolManager] sendToolRotateLevel:(int)_slider1.value];
-}
-
--(void)enableSlider1
-{
-    
-}
-
--(void)disableSlider1
-{
-    
 }
 
 -(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title textAlignment:(NSTextAlignment)textAlignment
