@@ -10,6 +10,9 @@
 #import "SCGIFImageView.h"
 #import "ProtolManager.h"
 
+///电机变速
+#define AppGearbox @"2504FF0A00000032"
+
 @interface SKAlertView : UIView
 
 -(id)initWithFrame:(CGRect)rect content:(NSString *)content gifImageName:(NSString *)gifImageName;
@@ -78,6 +81,7 @@
 {
     UISlider * _slider0;
     UISlider * _slider1;
+    UISlider * _slider2;
     SKAlertView * alertView0;
     SKAlertView * alertView1;
     UILabel * _speedLabel;
@@ -114,6 +118,9 @@
     [speedSwitch addTarget:self action:@selector(speedChange:) forControlEvents:UIControlEventValueChanged];
     [sView1 addSubview:speedSwitch];
     
+    [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 260, self.view.frame.size.width, 50) title:NSLocalizedString(@"游戏自震动强度", nil)]];
+    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 310, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(up)]];
+    
     
     
 }
@@ -128,6 +135,7 @@
         UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+        [[bleCentralManager shareManager] sendCommand:AppGearbox];
     }
     else
     {
@@ -137,7 +145,7 @@
         [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
     }
-    
+    _speedLabel.text = [SkeaUser defaultUser].speedType == SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
 }
 
 -(void)enableSlider1
@@ -271,6 +279,40 @@
 {
     NSLog(@"%f",_slider1.value);
     [[ProtolManager shareProtolManager] sendToolRotateLevel:(int)_slider1.value];
+}
+
+-(UIView *)createSlidre2WithFrame:(CGRect)rect liftTitle:(NSString *)lift rightTitle:(NSString *)right selector:(SEL)selector
+{
+    UIView * view = [[UIView alloc] initWithFrame:rect];
+    view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
+    
+    UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
+    
+    _slider2=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
+    _slider2.backgroundColor = [UIColor clearColor];
+    _slider2.minimumValue = 0;
+    _slider2.maximumValue = 31;
+    [_slider2 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
+    _slider2.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"];
+    
+    [_slider2 setThumbImage:thumbImage forState:UIControlStateHighlighted];
+    [_slider2 setThumbImage:thumbImage forState:UIControlStateNormal];
+    
+    [_slider2 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
+    [_slider2 addTarget:self action:@selector(slider2Change) forControlEvents:UIControlEventValueChanged];
+    
+    [view addSubview:_slider2];
+    
+    [view addSubview:[self createLabelWithFrame:CGRectMake(20, 40, 80, 40) title:lift textAlignment:NSTextAlignmentLeft]];
+    [view addSubview:[self createLabelWithFrame:CGRectMake(view.frame.size.width - 20 - 80, 40, 80, 40) title:right textAlignment:NSTextAlignmentRight]];
+    
+    return view;
+}
+
+-(void)slider2Change
+{
+    NSLog(@"%f",_slider2.value);
+    [[ProtolManager shareProtolManager] sendToolCompressLevel:_slider0.value];
 }
 
 -(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title textAlignment:(NSTextAlignment)textAlignment
