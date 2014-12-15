@@ -93,4 +93,20 @@
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"userEmail"];
 }
+
++ (void)setGameRotate:(int)level
+{
+    [[NSUserDefaults standardUserDefaults] setInteger:level forKey:@"gameRotate"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
++ (int)getGameRotate
+{
+    int level = (int)[[NSUserDefaults standardUserDefaults] integerForKey:@"gameRotate"];
+    if (level<1 || level>32) {
+        level = 8;
+    }
+    
+    return level;
+    
+}
 @end

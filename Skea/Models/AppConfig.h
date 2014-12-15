@@ -27,4 +27,7 @@
 
 + (void)setUserEmail:(NSString *)email;
 + (NSString *)getUserEmail;
+
++ (void)setGameRotate:(int)level;
++ (int)getGameRotate;
 @end
