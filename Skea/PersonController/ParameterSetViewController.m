@@ -29,8 +29,8 @@
         self.layer.cornerRadius = 10.f;
         self.userInteractionEnabled = YES;
         self.backgroundColor = [UIColor whiteColor];
-//        self.layer.shadowOffset = CGSizeMake(0, 2);
-//        self.layer.shadowOpacity = 0.80;
+        //        self.layer.shadowOffset = CGSizeMake(0, 2);
+        //        self.layer.shadowOpacity = 0.80;
         self.layer.borderWidth = 0.6;
         self.layer.borderColor = [UIColor grayColor].CGColor;
         
@@ -91,7 +91,7 @@
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea参数调节"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-//    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:nil Title:@"保存" Target:self Selector:@selector(save)];
+    //    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:nil Title:@"保存" Target:self Selector:@selector(save)];
     
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
@@ -119,7 +119,7 @@
     [sView1 addSubview:speedSwitch];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 260, self.view.frame.size.width, 50) title:NSLocalizedString(@"游戏自震动强度", nil)]];
-    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 310, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:@selector(up)]];
+    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 310, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:nil]];
     
     
     
@@ -167,7 +167,7 @@
     [[NSUserDefaults standardUserDefaults] setInteger:_slider0.value forKey:@"compressLevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:_slider1.value forKey:@"rotateLevel"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-//    [self btBack_DisModal:nil];
+    //    [self btBack_DisModal:nil];
 }
 
 -(void)up
@@ -217,7 +217,7 @@
     [_slider0 setThumbImage:thumbImage forState:UIControlStateNormal];
     
     [_slider0 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [_slider0 addTarget:self action:@selector(slider0Change) forControlEvents:UIControlEventValueChanged];
+    [_slider0 addTarget:self action:@selector(slider0Change) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:_slider0];
     
@@ -262,7 +262,7 @@
     
     
     [_slider1 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [_slider1 addTarget:self action:@selector(slider1Change) forControlEvents:UIControlEventValueChanged];
+    [_slider1 addTarget:self action:@selector(slider1Change) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:_slider1];
     if([SkeaUser defaultUser].speedType == SpeedTypeConstant)
@@ -298,8 +298,7 @@
     [_slider2 setThumbImage:thumbImage forState:UIControlStateHighlighted];
     [_slider2 setThumbImage:thumbImage forState:UIControlStateNormal];
     
-    [_slider2 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
-    [_slider2 addTarget:self action:@selector(slider2Change) forControlEvents:UIControlEventValueChanged];
+    [_slider2 addTarget:self action:@selector(slider2Change) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:_slider2];
     
@@ -311,8 +310,7 @@
 
 -(void)slider2Change
 {
-    NSLog(@"%f",_slider2.value);
-    [[ProtolManager shareProtolManager] sendToolCompressLevel:_slider0.value];
+    [AppConfig setGameRotate:_slider2.value];
 }
 
 -(UILabel *)createLabelWithFrame:(CGRect)rect title:(NSString *)title textAlignment:(NSTextAlignment)textAlignment
@@ -334,13 +332,13 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
