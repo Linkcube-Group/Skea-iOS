@@ -169,6 +169,7 @@
 {
     [[NSUserDefaults standardUserDefaults] setInteger:_slider0.value forKey:@"compressLevel"];
     [[NSUserDefaults standardUserDefaults] setInteger:_slider1.value forKey:@"rotateLevel"];
+    [[NSUserDefaults standardUserDefaults] setInteger:_slider2.value forKey:@"selfLevel"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     //    [self btBack_DisModal:nil];
 }
@@ -214,7 +215,7 @@
     _slider0.minimumValue = 0;
     _slider0.maximumValue = 15;
     [_slider0 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
-    _slider0.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"];
+    _slider0.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"]>0?[[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"]:3;
     
     [_slider0 setThumbImage:thumbImage forState:UIControlStateHighlighted];
     [_slider0 setThumbImage:thumbImage forState:UIControlStateNormal];
@@ -296,7 +297,7 @@
     _slider2.minimumValue = 0;
     _slider2.maximumValue = 31;
     [_slider2 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
-    _slider2.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"];
+    _slider2.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"selfLevel"]>0?[[NSUserDefaults standardUserDefaults] integerForKey:@"selfLevel"]:10;
     
     [_slider2 setThumbImage:thumbImage forState:UIControlStateHighlighted];
     [_slider2 setThumbImage:thumbImage forState:UIControlStateNormal];
