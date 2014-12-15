@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-    SpeedTypeConstant = 0,   //恒速
-    SpeedTypeChange = 1      //变速
+    SpeedTypeChange = 0,      //变速
+    SpeedTypeConstant = 1     //恒速
 }SpeedType;
 
 @interface SkeaUser : NSObject<NSCoding>
