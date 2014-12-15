@@ -108,18 +108,18 @@
     _speedLabel.textAlignment = NSTextAlignmentRight;
     _speedLabel.font = [UIFont systemFontOfSize:14.f];
     _speedLabel.textColor = [UIColor grayColor];
-    _speedLabel.text = [SkeaUser defaultUser].speedType == SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
+    _speedLabel.text = [SkeaUser defaultUser].speedType != SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
     [sView1 addSubview:_speedLabel];
     UISwitch * speedSwitch = [[UISwitch alloc] init];
     speedSwitch.frame = CGRectMake(self.view.frame.size.width - 80, 10, 80, 30);
     speedSwitch.onTintColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1];
     speedSwitch.tintColor = [UIColor grayColor];
-    speedSwitch.on = [SkeaUser defaultUser].speedType != SpeedTypeConstant;
+    speedSwitch.on = [SkeaUser defaultUser].speedType == SpeedTypeConstant;
     [speedSwitch addTarget:self action:@selector(speedChange:) forControlEvents:UIControlEventValueChanged];
     [sView1 addSubview:speedSwitch];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 260, self.view.frame.size.width, 50) title:NSLocalizedString(@"游戏自震动强度", nil)]];
-    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 310, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:nil]];
+    [self.view addSubview:[self createSlidre2WithFrame:CGRectMake(0, 310, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:nil]];
     
     
     
@@ -130,33 +130,36 @@
     NSLog(@"%d",speedSwitch.on);
     if(speedSwitch.on)
     {
-        [SkeaUser defaultUser].speedType = SpeedTypeChange;
+        [SkeaUser defaultUser].speedType = SpeedTypeConstant;
         [self enableSlider1];
         UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
-        [[bleCentralManager shareManager] sendCommand:AppGearbox];
+        [[ProtolManager shareProtolManager] sendToolRotateLevel:(int)_slider1.value];
     }
     else
     {
-        [SkeaUser defaultUser].speedType = SpeedTypeConstant;
+        [SkeaUser defaultUser].speedType = SpeedTypeChange;
         [self disableSlider1];
         UIImage *thumbImage = [UIImage imageNamed:@"graycycle.png"];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
+        [[bleCentralManager shareManager] sendCommand:AppGearbox];
     }
     _speedLabel.text = [SkeaUser defaultUser].speedType == SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
 }
 
 -(void)enableSlider1
 {
-    _slider1.enabled = YES;
+//    _slider1.enabled = YES;
+    _slider1.userInteractionEnabled = YES;
     [_slider1 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
 }
 
 -(void)disableSlider1
 {
-    _slider1.enabled = NO;
+//    _slider1.enabled = NO;
+    _slider1.userInteractionEnabled = NO;
     _slider1.value = 16;
     [_slider1 setMinimumTrackTintColor:[UIColor grayColor]];
     
@@ -244,7 +247,7 @@
     _slider1.backgroundColor = [UIColor clearColor];
     _slider1.minimumValue = 0;
     _slider1.maximumValue = 31;
-    if([SkeaUser defaultUser].speedType == SpeedTypeConstant)
+    if([SkeaUser defaultUser].speedType == SpeedTypeChange)
     {
         [_slider1 setMinimumTrackTintColor:[UIColor grayColor]];
         UIImage *thumbImage = [UIImage imageNamed:@"graycycle.png"];
@@ -265,7 +268,7 @@
     [_slider1 addTarget:self action:@selector(slider1Change) forControlEvents:UIControlEventTouchUpInside];
     
     [view addSubview:_slider1];
-    if([SkeaUser defaultUser].speedType == SpeedTypeConstant)
+    if([SkeaUser defaultUser].speedType == SpeedTypeChange)
         [self disableSlider1];
     else
         [self enableSlider1];
