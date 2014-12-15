@@ -160,7 +160,7 @@
 {
 //    _slider1.enabled = NO;
     _slider1.userInteractionEnabled = NO;
-    _slider1.value = 16;
+//    _slider1.value = 16;
     [_slider1 setMinimumTrackTintColor:[UIColor grayColor]];
     
 }
