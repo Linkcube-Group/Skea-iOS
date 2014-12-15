@@ -527,21 +527,36 @@
 #pragma mark BL
 - (void)sendBeginToBL:(int)length
 {
-    switch (length) {
-        case 2:
-            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:0]];
-            break;
-        case 7:
-            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:1]];
-            break;
-        case 12:
-            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:2]];
-            break;
-        default:
-            break;
-    }
+    NSString *crc = [self ten2six:([self six2ten:@"25"]+[self six2ten:@"02"]+length+[AppConfig getGameRotate])];
+    NSString *cmd = _S(@"25020%@08000000%@",[self ten2six:length],crc);
+    
+    [[bleCentralManager shareManager] sendCommand:cmd];
+    
+//    switch (length) {
+//        case 2:
+//            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:0]];
+//            break;
+//        case 7:
+//            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:1]];
+//            break;
+//        case 12:
+//            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:2]];
+//            break;
+//        default:
+//            break;
+//    }
     
 }
+
+- (NSString *)ten2six:(int)num
+{
+    return [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%1x",num]];
+}
+- (int)six2ten:(NSString *)six
+{
+    return (int)strtoul([six UTF8String],0,16);
+}
+
 
 - (void)didDisConnectBL:(NSNotification *)notify
 {
