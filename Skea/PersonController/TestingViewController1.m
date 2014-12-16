@@ -326,6 +326,8 @@
     ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
     [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"birthday":birthday,@"height":height,@"weight":weight,@"date":date,@"result":_result} mutableCopy] path:SK_SAVE_QUS completionHandler:^(id responseObject) {
         ///请求成功
+        NSLog(@"上传参数%@ %@ %@ %@ %@ %@",email,birthday,height,weight,date,_result);
+        NSLog(@"上传结果%@",responseObject);
         showCustomAlertMessage(@"提交成功");
         [SkeaUser defaultUser].birthday = _ageTextField.text;
         [SkeaUser defaultUser].weight = _weightTextField.text;
