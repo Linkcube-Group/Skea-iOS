@@ -306,6 +306,16 @@
             
         }];
         
+        ///////////////////////////////////////////
+        
+        [[BaseEngine sharedEngine] RunRequest:[@{@"email":email} mutableCopy] path:SK_LAST_QUS completionHandler:^(id responseObject) {
+            NSLog(@"哈哈哈哈哈哈------->%@",responseObject);
+            
+        } errorHandler:^(NSError *error) {
+        } finishHandler:^(id responseObject) {
+        }];
+        ///////////////////////////////////////////
+        
         showIndicator(NO, nil);
         [block_self btBack_DisModal:nil];
         
