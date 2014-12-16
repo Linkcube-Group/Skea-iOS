@@ -20,12 +20,18 @@
 
 @property (strong,nonatomic) IBOutlet UILabel *lbLevel;
 @property (strong,nonatomic) IBOutlet UILabel *lbResult;
+
+@property (strong,nonatomic) IBOutlet UIImageView *imgCenter;
+@property (strong,nonatomic) IBOutlet UIButton *btnCenter;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.imgCenter.originY = ScreenHeight/2-self.imgCenter.height/2;
+    self.btnCenter.originY = self.imgCenter.originY;
+    
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"请连接Skea"];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
@@ -91,16 +97,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.lbLevel.text = _S(@"Level %d",[AppConfig getGameLevel]);
+    self.lbLevel.text = _S(@"%d",[AppConfig getGameLevel]);
     GameDetail *detail = [AppConfig getLastGameDetail];
     
     
     
     if (detail) {
-        self.lbResult.text = _S(@"Last Result:%d%%",(int)((detail.factScore*1.0/detail.heighScore)*100));
+        self.lbResult.text = _S(@"%d%%",(int)((detail.factScore*1.0/detail.heighScore)*100));
     }
     else{
-        self.lbResult.text = nil;
+        self.lbResult.text = @"0%";
     }
     
 }
@@ -109,7 +115,6 @@
 #pragma mark Action
 - (void)connectAction:(id)sender
 {
-    
     int count = (int)[bleCentralManager shareManager].blePeripheralArray.count;
     if (count>1) {
         CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:@"选择玩具" cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
