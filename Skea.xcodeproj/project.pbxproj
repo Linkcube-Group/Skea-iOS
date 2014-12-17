@@ -229,6 +229,7 @@
 		2677CEB719FB738F0068454F /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAE19FB738F0068454F /* grayArrow@2x.png */; };
 		2677CEB819FB738F0068454F /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEAF19FB738F0068454F /* whiteArrow.png */; };
 		2677CEB919FB738F0068454F /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677CEB019FB738F0068454F /* whiteArrow@2x.png */; };
+		268673D21A41E21F000CD9DC /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 268673D11A41E21F000CD9DC /* SevenSwitch.m */; };
 		26A6F9401A13B06E00712594 /* icon-me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26A6F93F1A13B06E00712594 /* icon-me@2x.png */; };
 		26A6F9431A13BE8D00712594 /* BuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9421A13BE8D00712594 /* BuyViewController.m */; };
 		26A6F9461A13DB4000712594 /* SelectLevelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26A6F9451A13DB4000712594 /* SelectLevelViewController.m */; };
@@ -605,6 +606,8 @@
 		2677CEAE19FB738F0068454F /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		2677CEAF19FB738F0068454F /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		2677CEB019FB738F0068454F /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		268673D01A41E21F000CD9DC /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
+		268673D11A41E21F000CD9DC /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
 		26A6F93F1A13B06E00712594 /* icon-me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-me@2x.png"; sourceTree = "<group>"; };
 		26A6F9411A13BE8D00712594 /* BuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyViewController.h; sourceTree = "<group>"; };
 		26A6F9421A13BE8D00712594 /* BuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyViewController.m; sourceTree = "<group>"; };
@@ -1022,6 +1025,8 @@
 			children = (
 				CDCBD77A1A3A9CEF00E84A14 /* SkeaLanguage.h */,
 				CDCBD77B1A3A9CEF00E84A14 /* SkeaLanguage.m */,
+				268673D01A41E21F000CD9DC /* SevenSwitch.h */,
+				268673D11A41E21F000CD9DC /* SevenSwitch.m */,
 				034F64B719FF0EC300054B16 /* SkeaUser.h */,
 				034F64B819FF0EC300054B16 /* SkeaUser.m */,
 				264B5AAA1A1728D900643DAD /* SkeaSliderButtonView.h */,
@@ -1538,6 +1543,7 @@
 				03E0643C1A00D0B60070DF48 /* UIBezierPath+curved.m in Sources */,
 				03E532E719DA7D470064762E /* UIExpandingTextView.m in Sources */,
 				03E532B419DA7D470064762E /* MenuView.m in Sources */,
+				268673D21A41E21F000CD9DC /* SevenSwitch.m in Sources */,
 				264B5AA31A17145200643DAD /* CXAlertView.m in Sources */,
 				03E532B719DA7D470064762E /* AppConfig.mm in Sources */,
 				03E532D919DA7D470064762E /* NSNotificationCenter+Extension.m in Sources */,
