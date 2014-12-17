@@ -309,8 +309,7 @@
         ///////////////////////////////////////////
         
         [[BaseEngine sharedEngine] RunRequest:[@{@"email":email} mutableCopy] path:SK_LAST_QUS completionHandler:^(id responseObject) {
-            NSLog(@"哈哈哈哈哈哈------->%@",responseObject);
-            
+            [SkeaUser defaultUser].score = [[[responseObject objectForKey:@"info"] objectForKey:@"score"] integerValue];
         } errorHandler:^(NSError *error) {
         } finishHandler:^(id responseObject) {
         }];

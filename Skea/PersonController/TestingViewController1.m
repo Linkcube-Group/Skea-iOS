@@ -324,10 +324,8 @@
     showIndicator(YES, @"正在加载中");  ///弹一个正在加载的菊花
     ///path 在URL.h里面找对就的宏
     ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
-    [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"birthday":birthday,@"height":height,@"weight":weight,@"date":date,@"result":_result} mutableCopy] path:SK_SAVE_QUS completionHandler:^(id responseObject) {
+    [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"birthday":birthday,@"height":height,@"weight":weight,@"date":date,@"result":_result,@"score":[NSString stringWithFormat:@"%ld",_score]} mutableCopy] path:SK_SAVE_QUS completionHandler:^(id responseObject) {
         ///请求成功
-        NSLog(@"上传参数%@ %@ %@ %@ %@ %@",email,birthday,height,weight,date,_result);
-        NSLog(@"上传结果%@",responseObject);
         showCustomAlertMessage(@"提交成功");
         [SkeaUser defaultUser].birthday = _ageTextField.text;
         [SkeaUser defaultUser].weight = _weightTextField.text;
