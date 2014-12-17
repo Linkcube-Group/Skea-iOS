@@ -114,7 +114,7 @@
     if(indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4)
         return 40.f;
     if(indexPath.row == 2)
-        return 80.f;
+        return 50.f;
     return 100.f;
 }
 
@@ -190,7 +190,7 @@
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 80);
+        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 50);
 //        label.text = @"UILabel * textlabel = [[UILabel allocinitWithFrame:CGRectMake(0, 0, 80, 80)];textlabel.backgroundColor = [UIColor clearColor];textlabel.text = ;textlabel.textColor = [UIColor blueColor];textlabel.textAlignment = NSTextAlignmentCenter;textlabel.font = [UIFont boldSystemFontOfSize:28.f];[view addSubview:textlabel];";
         label.text = [SkeaUser defaultUser].level>0?[_sugArray objectAtIndex:[SkeaUser defaultUser].level - 1]:[_sugArray firstObject];
         label.font = [UIFont systemFontOfSize:12.f];

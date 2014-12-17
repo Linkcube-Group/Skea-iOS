@@ -32,7 +32,7 @@
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     photoImageView = [[UIImageView alloc] init];
-    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, self.view.frame.size.height - 206 - 44 - 20) style:UITableViewStylePlain];
+    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 299) style:UITableViewStylePlain];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     _mainTableView.scrollEnabled = NO;
