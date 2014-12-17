@@ -316,6 +316,13 @@
         [SkeaUser defaultUser].userId = @"";
         [SkeaUser defaultUser].saveUser = YES;
         
+        [SkeaUser defaultUser].speedType = SpeedTypeConstant;
+        
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"compressLevel"];
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"rotateLevel"];
+        [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"selfLevel"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
 //        [block_self btBack_DisModal:nil];
         TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
         tvc._isRegisterPush = YES;

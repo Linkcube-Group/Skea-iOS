@@ -148,12 +148,6 @@
     [SkeaUser defaultUser].score = 0;
     [SkeaUser defaultUser].level = 0;
     [SkeaUser defaultUser].selectLevel = 0;
-    [SkeaUser defaultUser].speedType = SpeedTypeConstant;
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"compressLevel"];
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"rotateLevel"];
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"selfLevel"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self btBack_DisModal:nil];
 }
