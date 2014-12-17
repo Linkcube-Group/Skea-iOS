@@ -108,7 +108,7 @@
     _speedLabel.textAlignment = NSTextAlignmentRight;
     _speedLabel.font = [UIFont systemFontOfSize:14.f];
     _speedLabel.textColor = [UIColor grayColor];
-    _speedLabel.text = [SkeaUser defaultUser].speedType != SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
+    _speedLabel.text = [SkeaUser defaultUser].speedType == SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
     [sView1 addSubview:_speedLabel];
     UISwitch * speedSwitch = [[UISwitch alloc] init];
     speedSwitch.frame = CGRectMake(self.view.frame.size.width - 80, 10, 80, 30);
@@ -130,6 +130,7 @@
     NSLog(@"%d",speedSwitch.on);
     if(speedSwitch.on)
     {
+        //恒速可调节
         [SkeaUser defaultUser].speedType = SpeedTypeConstant;
         [self enableSlider1];
         UIImage *thumbImage = [UIImage imageNamed:@"scroll-bar-selection.png"];
@@ -139,6 +140,7 @@
     }
     else
     {
+        //变速不可调节
         [SkeaUser defaultUser].speedType = SpeedTypeChange;
         [self disableSlider1];
         UIImage *thumbImage = [UIImage imageNamed:@"graycycle.png"];
@@ -262,7 +264,7 @@
         [_slider1 setThumbImage:thumbImage forState:UIControlStateHighlighted];
         [_slider1 setThumbImage:thumbImage forState:UIControlStateNormal];
     }
-    _slider1.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rotateLevel"];
+    _slider1.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"rotateLevel"]>0?[[NSUserDefaults standardUserDefaults] integerForKey:@"rotateLevel"]:16;
     
     
     [_slider1 addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
