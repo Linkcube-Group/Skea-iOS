@@ -310,6 +310,14 @@
         
         [[BaseEngine sharedEngine] RunRequest:[@{@"email":email} mutableCopy] path:SK_LAST_QUS completionHandler:^(id responseObject) {
             [SkeaUser defaultUser].score = [[[responseObject objectForKey:@"info"] objectForKey:@"score"] integerValue];
+            if([SkeaUser defaultUser].score <= 60)
+                [SkeaUser defaultUser].level = 1;
+            else if ([SkeaUser defaultUser].score <= 90)
+                [SkeaUser defaultUser].level = 2;
+            else if ([SkeaUser defaultUser].score <= 120)
+                [SkeaUser defaultUser].level = 3;
+            else
+                [SkeaUser defaultUser].level = 4;
         } errorHandler:^(NSError *error) {
         } finishHandler:^(id responseObject) {
         }];

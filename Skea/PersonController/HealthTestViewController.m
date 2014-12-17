@@ -158,7 +158,14 @@
         _imageView = [[UIImageView alloc] init];
         _imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
         [cell.contentView addSubview:_imageView];
-        _imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"level%ld",[SkeaUser defaultUser].level]];
+        if([SkeaUser defaultUser].level != 0)
+        {
+            _imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"level%ld",[SkeaUser defaultUser].level]];
+        }
+        else
+        {
+            _imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"level%d",1]];
+        }
         
     }
     
