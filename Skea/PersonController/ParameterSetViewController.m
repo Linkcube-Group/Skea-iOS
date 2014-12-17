@@ -9,6 +9,7 @@
 #import "ParameterSetViewController.h"
 #import "SCGIFImageView.h"
 #import "ProtolManager.h"
+#import "SevenSwitch.h"
 
 ///电机变速
 #define AppGearbox @"2504FF0A00000032"
@@ -110,10 +111,12 @@
     _speedLabel.textColor = [UIColor grayColor];
     _speedLabel.text = [SkeaUser defaultUser].speedType == SpeedTypeConstant?NSLocalizedString(@"恒速", nil):NSLocalizedString(@"变速", nil);
     [sView1 addSubview:_speedLabel];
-    UISwitch * speedSwitch = [[UISwitch alloc] init];
-    speedSwitch.frame = CGRectMake(self.view.frame.size.width - 80, 10, 80, 30);
-    speedSwitch.onTintColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1];
-    speedSwitch.tintColor = [UIColor grayColor];
+    SevenSwitch * speedSwitch = [[SevenSwitch alloc] init];
+    speedSwitch.frame = CGRectMake(self.view.frame.size.width - 80, 10, 60, 30);
+    speedSwitch.inactiveColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1];
+    speedSwitch.onColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1];
+    speedSwitch.borderColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1];
+    speedSwitch.shadowColor = [UIColor clearColor];
     speedSwitch.on = [SkeaUser defaultUser].speedType == SpeedTypeConstant;
     [speedSwitch addTarget:self action:@selector(speedChange:) forControlEvents:UIControlEventValueChanged];
     [sView1 addSubview:speedSwitch];
