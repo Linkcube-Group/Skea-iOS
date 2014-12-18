@@ -30,6 +30,9 @@
 ///保存记录
 #define SK_SAVE_RECORD              @"saveRecord"
 
+///找回密码
+#define SK_FIND_PASSWORD            @"findPassword"
+
 
 
 
