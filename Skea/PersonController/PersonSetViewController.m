@@ -8,6 +8,7 @@
 
 #import "PersonSetViewController.h"
 #import "LanguageViewController.h"
+#import "AboutViewController.h"
 
 @interface PersonSetViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -22,7 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
-    dataArray = [NSArray arrayWithObjects:@"",NSLocalizedString(@"语言", nil),@"",NSLocalizedString(@"版本", nil),NSLocalizedString(@"反馈", nil),NSLocalizedString(@"关于我们", nil), nil];
+    dataArray = [NSArray arrayWithObjects:@"",NSLocalizedString(@"语言", nil),@"",NSLocalizedString(@"更新软件", nil),NSLocalizedString(@"联系我们", nil),NSLocalizedString(@"关于我们", nil), nil];
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"设置", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
@@ -95,6 +96,18 @@
     {
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil message:@"已是最新版本" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alertView show];
+    }
+    //联系我们
+    if(indexPath.row == 4)
+    {
+        
+    }
+    //关于我们
+    if(indexPath.row == 5)
+    {
+        AboutViewController * lvc = [[AboutViewController alloc] init];
+        UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
+        [self presentViewController:nvc animated:YES completion:nil];
     }
 }
 
