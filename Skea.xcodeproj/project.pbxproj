@@ -203,6 +203,9 @@
 		261639AB19FCB7EF007496BF /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A719FCB7EF007496BF /* SKViewController.m */; };
 		261639AE19FCB82E007496BF /* UIImage+SKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639AD19FCB82E007496BF /* UIImage+SKCategory.m */; };
 		2647BA5C1A43263F00D749AE /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2647BA5B1A43263F00D749AE /* ForgetPasswordViewController.m */; };
+		2647BA931A432E4400D749AE /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2647BA921A432E4400D749AE /* AboutViewController.m */; };
+		2647BA961A432F3300D749AE /* logo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2647BA941A432F3300D749AE /* logo1@2x.png */; };
+		2647BA971A432F3300D749AE /* logo2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2647BA951A432F3300D749AE /* logo2@2x.png */; };
 		264B5AA01A17145200643DAD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B5A921A17145200643DAD /* CXAlertBackgroundWindow.m */; };
 		264B5AA11A17145200643DAD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B5A941A17145200643DAD /* CXAlertButtonContainerView.m */; };
 		264B5AA21A17145200643DAD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B5A961A17145200643DAD /* CXAlertButtonItem.m */; };
@@ -565,6 +568,10 @@
 		261639AD19FCB82E007496BF /* UIImage+SKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SKCategory.m"; sourceTree = "<group>"; };
 		2647BA5A1A43263F00D749AE /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		2647BA5B1A43263F00D749AE /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		2647BA911A432E4400D749AE /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		2647BA921A432E4400D749AE /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		2647BA941A432F3300D749AE /* logo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo1@2x.png"; sourceTree = "<group>"; };
+		2647BA951A432F3300D749AE /* logo2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo2@2x.png"; sourceTree = "<group>"; };
 		264B5A911A17145200643DAD /* CXAlertBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertBackgroundWindow.h; sourceTree = "<group>"; };
 		264B5A921A17145200643DAD /* CXAlertBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertBackgroundWindow.m; sourceTree = "<group>"; };
 		264B5A931A17145200643DAD /* CXAlertButtonContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonContainerView.h; sourceTree = "<group>"; };
@@ -701,6 +708,8 @@
 				26A6F9421A13BE8D00712594 /* BuyViewController.m */,
 				2671F5881A02278600E0B780 /* PersonSetViewController.h */,
 				2671F5891A02278600E0B780 /* PersonSetViewController.m */,
+				2647BA911A432E4400D749AE /* AboutViewController.h */,
+				2647BA921A432E4400D749AE /* AboutViewController.m */,
 				26F35D751A1D07920074D56D /* LanguageViewController.h */,
 				26F35D761A1D07920074D56D /* LanguageViewController.m */,
 				2671F58B1A0227D900E0B780 /* HealthTestViewController.h */,
@@ -825,6 +834,8 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2647BA941A432F3300D749AE /* logo1@2x.png */,
+				2647BA951A432F3300D749AE /* logo2@2x.png */,
 				CD86BB1A1A3D67B1001776E7 /* graycycle@2x.png */,
 				037758751A3AED5D000D4A72 /* gamelevel1@2x.png */,
 				037758761A3AED5D000D4A72 /* gamelevel2@2x.png */,
@@ -1377,6 +1388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2647BA971A432F3300D749AE /* logo2@2x.png in Resources */,
 				CDCBD7761A3A9BDE00E84A14 /* Localizable.strings in Resources */,
 				0312889719E43C120073C83B /* GameViewController.xib in Resources */,
 				2677CEB119FB738F0068454F /* blackArrow.png in Resources */,
@@ -1388,6 +1400,7 @@
 				0377587C1A3AED5D000D4A72 /* gamelevel4@2x.png in Resources */,
 				038885AA19F158B900372178 /* icon-records@2x.png in Resources */,
 				03E531FF19DA7D320064762E /* bg_title@2x.png in Resources */,
+				2647BA961A432F3300D749AE /* logo1@2x.png in Resources */,
 				0312887B19E43A1D0073C83B /* SignViewController.xib in Resources */,
 				038885BB19F158B900372178 /* settings-evaluate-risk@2x.png in Resources */,
 				038885AF19F158B900372178 /* logo@2x.png in Resources */,
@@ -1590,6 +1603,7 @@
 				2671F5901A02324700E0B780 /* ParameterSetViewController.m in Sources */,
 				03E532EA19DA7D470064762E /* UILabel+Extension.m in Sources */,
 				03E532D419DA7D470064762E /* NSArray+Extension.m in Sources */,
+				2647BA931A432E4400D749AE /* AboutViewController.m in Sources */,
 				03E5321F19DA7D320064762E /* UIView+WebCacheOperation.m in Sources */,
 				03E532BC19DA7D470064762E /* ModelBase.m in Sources */,
 				264B5AA41A17145200643DAD /* CXAlertViewController.m in Sources */,
