@@ -15,10 +15,18 @@
 @implementation LanguageViewController
 {
     BOOL _isEnglish;
+    NSMutableArray * _selectArray;
+    NSMutableArray * _nameArray;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    if([SkeaLanguage defaultCenter].languageType == SkeaLanguageTypeEN)
+        _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0", nil];
+    else
+        _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0", nil];
+    _nameArray = [NSMutableArray arrayWithObjects:@"   简体中文",@"   English", nil];
+    
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"语言", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:nil Title:NSLocalizedString(@"保存", nil) Target:nil Selector:@selector(Done)];
@@ -58,16 +66,15 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    if(indexPath.row == 0)
+    if([[_selectArray objectAtIndex:indexPath.row] integerValue] == 1)
     {
-        cell.textLabel.text = @"   简体中文";
-        cell.accessoryType = _isEnglish?UITableViewCellAccessoryNone:UITableViewCellAccessoryCheckmark;
+        cell.imageView.image = [UIImage imageNamed:@"selection-checked-small.png"];
     }
-    if(indexPath.row == 1)
+    else
     {
-        cell.textLabel.text = @"   English";
-        cell.accessoryType = _isEnglish?UITableViewCellAccessoryCheckmark:UITableViewCellAccessoryNone;
+        cell.imageView.image = [UIImage imageNamed:@"selection-unchecked-small.png"];
     }
+    cell.textLabel.text = [_nameArray objectAtIndex:indexPath.row];
     UIView * line = [[UIView alloc] init];
     line.frame = CGRectMake(40, 39.5, ScreenWidth - 40, 0.5);
     line.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
@@ -81,10 +88,12 @@
     if(indexPath.row == 1)
     {
         _isEnglish = YES;
+        _selectArray = [NSMutableArray arrayWithObjects:@"0",@"1", nil];
     }
     else
     {
         _isEnglish = NO;
+        _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0", nil];
     }
     [tableView reloadData];
 }
