@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "SignViewController.h"
 #import "SkeaUser.h"
+#import "ForgetPasswordViewController.h"
 
 @interface LoginViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
@@ -383,6 +384,9 @@
 -(void)forgetPassword
 {
     NSLog(@"忘记密码");
+    ForgetPasswordViewController * svc = [[ForgetPasswordViewController alloc] init];
+    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:svc];
+    [self presentViewController:nvc animated:YES completion:nil];
 }
 
 
