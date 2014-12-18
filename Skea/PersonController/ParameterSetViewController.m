@@ -217,8 +217,8 @@
     
     _slider0=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
     _slider0.backgroundColor = [UIColor clearColor];
-    _slider0.minimumValue = 0;
-    _slider0.maximumValue = 15;
+    _slider0.minimumValue = 1;
+    _slider0.maximumValue = 16;
     [_slider0 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
     _slider0.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"]>0?[[NSUserDefaults standardUserDefaults] integerForKey:@"compressLevel"]:3;
     
@@ -251,8 +251,8 @@
     _slider1=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
     _slider1.backgroundColor = [UIColor clearColor];
     _slider1.backgroundColor = [UIColor clearColor];
-    _slider1.minimumValue = 0;
-    _slider1.maximumValue = 31;
+    _slider1.minimumValue = 1;
+    _slider1.maximumValue = 32;
     if([SkeaUser defaultUser].speedType == SpeedTypeChange)
     {
         [_slider1 setMinimumTrackTintColor:[UIColor grayColor]];
@@ -299,8 +299,8 @@
     
     _slider2=[[UISlider alloc]initWithFrame:CGRectMake(20, 10, view.frame.size.width - 40, 30)];
     _slider2.backgroundColor = [UIColor clearColor];
-    _slider2.minimumValue = 0;
-    _slider2.maximumValue = 31;
+    _slider2.minimumValue = 1;
+    _slider2.maximumValue = 32;
     [_slider2 setMinimumTrackTintColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1]];
     _slider2.value = [[NSUserDefaults standardUserDefaults] integerForKey:@"selfLevel"]>0?[[NSUserDefaults standardUserDefaults] integerForKey:@"selfLevel"]:10;
     
