@@ -159,7 +159,7 @@
         _heightTextField.textAlignment = NSTextAlignmentRight;
         _heightTextField.inputView = _heightPicker;
         _heightTextField.delegate = self;
-        _heightTextField.text = [SkeaUser defaultUser].height.length?[SkeaUser defaultUser].height:@"160cm";
+        _heightTextField.text = ![[SkeaUser defaultUser].height isEqualToString:@"0"]?[SkeaUser defaultUser].height:@"160cm";
         _heightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_heightTextField];
     }
@@ -175,7 +175,7 @@
         _weightTextField.textAlignment = NSTextAlignmentRight;
         _weightTextField.inputView = _weightPicker;
         _weightTextField.delegate = self;
-        _weightTextField.text = [SkeaUser defaultUser].weight.length?[SkeaUser defaultUser].weight:@"50kg";
+        _weightTextField.text = ![[SkeaUser defaultUser].weight isEqualToString:@"0"]?[SkeaUser defaultUser].weight:@"50kg";
         _weightTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [cell.contentView addSubview:_weightTextField];
     }
