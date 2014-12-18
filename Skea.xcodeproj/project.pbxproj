@@ -202,6 +202,7 @@
 		261639AA19FCB7EF007496BF /* SKTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A519FCB7EF007496BF /* SKTableViewController.m */; };
 		261639AB19FCB7EF007496BF /* SKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639A719FCB7EF007496BF /* SKViewController.m */; };
 		261639AE19FCB82E007496BF /* UIImage+SKCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 261639AD19FCB82E007496BF /* UIImage+SKCategory.m */; };
+		2647BA5C1A43263F00D749AE /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2647BA5B1A43263F00D749AE /* ForgetPasswordViewController.m */; };
 		264B5AA01A17145200643DAD /* CXAlertBackgroundWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B5A921A17145200643DAD /* CXAlertBackgroundWindow.m */; };
 		264B5AA11A17145200643DAD /* CXAlertButtonContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B5A941A17145200643DAD /* CXAlertButtonContainerView.m */; };
 		264B5AA21A17145200643DAD /* CXAlertButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 264B5A961A17145200643DAD /* CXAlertButtonItem.m */; };
@@ -562,6 +563,8 @@
 		261639A719FCB7EF007496BF /* SKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKViewController.m; sourceTree = "<group>"; };
 		261639AC19FCB82E007496BF /* UIImage+SKCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SKCategory.h"; sourceTree = "<group>"; };
 		261639AD19FCB82E007496BF /* UIImage+SKCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SKCategory.m"; sourceTree = "<group>"; };
+		2647BA5A1A43263F00D749AE /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		2647BA5B1A43263F00D749AE /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		264B5A911A17145200643DAD /* CXAlertBackgroundWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertBackgroundWindow.h; sourceTree = "<group>"; };
 		264B5A921A17145200643DAD /* CXAlertBackgroundWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXAlertBackgroundWindow.m; sourceTree = "<group>"; };
 		264B5A931A17145200643DAD /* CXAlertButtonContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXAlertButtonContainerView.h; sourceTree = "<group>"; };
@@ -679,6 +682,8 @@
 				0312888319E43A940073C83B /* PersonViewController.xib */,
 				0312887219E43A0B0073C83B /* LoginViewController.h */,
 				0312887319E43A0B0073C83B /* LoginViewController.m */,
+				2647BA5A1A43263F00D749AE /* ForgetPasswordViewController.h */,
+				2647BA5B1A43263F00D749AE /* ForgetPasswordViewController.m */,
 				0312887419E43A0B0073C83B /* LoginViewController.xib */,
 				0312887719E43A1D0073C83B /* SignViewController.h */,
 				0312887819E43A1D0073C83B /* SignViewController.m */,
@@ -1563,6 +1568,7 @@
 				03E5321B19DA7D320064762E /* UIImage+MultiFormat.m in Sources */,
 				03E532E619DA7D470064762E /* UIImage+Extension.m in Sources */,
 				264B5AAC1A1728D900643DAD /* SkeaSliderButtonView.m in Sources */,
+				2647BA5C1A43263F00D749AE /* ForgetPasswordViewController.m in Sources */,
 				03E5320D19DA7D320064762E /* UIScrollView+MJRefresh.m in Sources */,
 				03E532D619DA7D470064762E /* NSData+Extension.m in Sources */,
 				03E532CB19DA7D470064762E /* DDASLLogger.m in Sources */,
