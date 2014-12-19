@@ -246,8 +246,11 @@
             getHighed = NO;
         }
         
-        [self sendBeginToBL:[[self.aryGame objectAtIndex:currentIndex] progressTime]];
+       
         
+    }
+    else if(self.playTime==1){
+         [self sendBeginToBL:[[self.aryGame objectAtIndex:currentIndex] progressTime]];
     }
     oldResponse = halfResponse;
     DLog(@"----%d",halfResponse);
