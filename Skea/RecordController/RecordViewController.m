@@ -68,7 +68,7 @@
     self.viewScoreBg.layer.masksToBounds = YES;
     
 
-    self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight);
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth, ScreenHeight+100);
 
     self.gameDetail = [AppConfig getLastGameDetail];
     ////////////////////////////////////////////////////////////////////

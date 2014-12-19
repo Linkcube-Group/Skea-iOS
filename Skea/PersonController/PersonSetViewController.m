@@ -9,6 +9,7 @@
 #import "PersonSetViewController.h"
 #import "LanguageViewController.h"
 #import "AboutViewController.h"
+#import "UMFeedback.h"
 
 @interface PersonSetViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -100,7 +101,9 @@
     //联系我们
     if(indexPath.row == 4)
     {
-        
+        //
+        [[UMFeedback sharedInstance] setTitleColor:[UIColor whiteColor]];
+        [self presentViewController:[UMFeedback feedbackModalViewController] animated:YES completion:nil];
     }
     //关于我们
     if(indexPath.row == 5)

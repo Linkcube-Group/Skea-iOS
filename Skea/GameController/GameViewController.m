@@ -528,7 +528,7 @@
 - (void)sendBeginToBL:(int)length
 {
     NSString *crc = [self ten2six:([self six2ten:@"25"]+[self six2ten:@"02"]+length+[AppConfig getGameRotate])];
-    NSString *cmd = _S(@"25020%@08000000%@",[self ten2six:length],crc);
+    NSString *cmd = _S(@"2502%@%@000000%@",[self ten2six:length],[self ten2six:[AppConfig getGameRotate]],crc);
     
     [[bleCentralManager shareManager] sendCommand:cmd];
     
@@ -550,7 +550,7 @@
 
 - (NSString *)ten2six:(int)num
 {
-    return [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%1x",num]];
+    return [NSString stringWithFormat:@"%@",[[NSString alloc] initWithFormat:@"%02x",num]];
 }
 - (int)six2ten:(NSString *)six
 {

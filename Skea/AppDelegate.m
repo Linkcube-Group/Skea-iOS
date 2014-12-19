@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NavigationController.h"
+#import "UMFeedback.h"
 
 #ifdef DEBUG_REVEL
 #import <dlfcn.h>
@@ -22,6 +23,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [UMFeedback setAppkey:kUmengAppKey];
+    [MobClick startWithAppkey:kUmengAppKey];
+    
     [SkeaLanguage defaultCenter];
     [self loadReveal];
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
