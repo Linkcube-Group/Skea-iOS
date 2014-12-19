@@ -319,6 +319,7 @@
 
 -(void)slider2Change
 {
+    [self save];
     [AppConfig setGameRotate:_slider2.value];
 }
 
