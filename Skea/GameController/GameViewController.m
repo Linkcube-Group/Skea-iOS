@@ -249,7 +249,7 @@
        
         
     }
-    else if(self.playTime==1){
+    else if(self.playTime==2){
          [self sendBeginToBL:[[self.aryGame objectAtIndex:currentIndex] progressTime]];
     }
     oldResponse = halfResponse;
