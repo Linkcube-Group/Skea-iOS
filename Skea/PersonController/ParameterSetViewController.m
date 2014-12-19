@@ -12,7 +12,7 @@
 #import "SevenSwitch.h"
 
 ///电机变速
-#define AppGearbox @"2504FF0A00000032"
+#define AppGearbox @"2504ff0a00000032"
 
 @interface SKAlertView : UIView
 
