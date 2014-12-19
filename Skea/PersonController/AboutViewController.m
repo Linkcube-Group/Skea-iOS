@@ -39,8 +39,8 @@
     label.font = [UIFont systemFontOfSize:16.f];
     label.textAlignment = NSTextAlignmentCenter;
     NSDictionary* infoDict =[[NSBundle mainBundle] infoDictionary];
-    NSString* versionNum =[infoDict objectForKey:@"CFBundleVersion"];
-    label.text = [NSString stringWithFormat:@"Ver %@",versionNum];
+    float versionNum =[[infoDict objectForKey:@"CFBundleVersion"] floatValue];
+    label.text = [NSString stringWithFormat:@"Ver %.1f",versionNum];
     [self.view addSubview:label];
     
 }
