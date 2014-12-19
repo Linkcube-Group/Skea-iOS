@@ -286,7 +286,6 @@
 #pragma mark SendAction
 - (void)sendCommand:(NSString *)command
 {
-    showCustomAlertMessage(command);
     [self.connectedBLE sendHexCommand:command];
 }
 @end

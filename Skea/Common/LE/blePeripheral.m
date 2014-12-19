@@ -324,7 +324,6 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     if (hexString==nil || [hexString length]!=16) {
         return;
     }
-    showAlertMessage(hexString);
     int j=0;
     Byte bytes[8];  ///3ds key的Byte 数组， 128位
     for(int i=0;i<[hexString length];i++)
@@ -357,7 +356,6 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     }
     NSData *newData = [[NSData alloc] initWithBytes:bytes length:8];
     
-    showAlertMessage(_S(@"%@",newData));
      [self writeValue:_activePeripheral characteristic:_Send20BytesDataCharateristic data:newData];
 }
 
