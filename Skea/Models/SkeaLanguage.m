@@ -46,7 +46,6 @@ static SkeaLanguage *defaultManagerInstance = nil;
 - (NSString *)myNSLocalizedString:(NSString *)key Comment:(NSString *)comment
 {
     NSBundle* bundle = [NSBundle bundleWithPath:[NSString stringWithFormat:@"%@/zh-Hans.lproj",[[NSBundle mainBundle] bundlePath]]];
-    NSLog(@"%d",self.languageType);
     if (self.languageType == SkeaLanguageTypeZH) {
         bundle = [NSBundle bundleWithPath:[NSString stringWithFormat:@"%@/zh-Hans.lproj",[[NSBundle mainBundle] bundlePath]]];
     }

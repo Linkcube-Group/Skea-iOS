@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PersonSetViewController : UIViewController
+@interface PersonSetViewController : BaseViewController
 
 @end

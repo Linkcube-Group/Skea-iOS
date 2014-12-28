@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if([SkeaLanguage defaultCenter].languageType == SkeaLanguageTypeEN)
-        _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0", nil];
+        _selectArray = [NSMutableArray arrayWithObjects:@"0",@"1", nil];
     else
         _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0", nil];
     _nameArray = [NSMutableArray arrayWithObjects:@"   简体中文",@"   English", nil];

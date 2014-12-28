@@ -10,6 +10,7 @@
 #import "LanguageViewController.h"
 #import "AboutViewController.h"
 #import "UMFeedback.h"
+#import "SkeaLanguage.h"
 
 @interface PersonSetViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -95,7 +96,7 @@
     }
     if(indexPath.row == 3)
     {
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil message:@"已是最新版本" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil message:@"已是最新版本" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }
     //联系我们
