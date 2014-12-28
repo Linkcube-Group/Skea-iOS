@@ -29,7 +29,13 @@
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"语言", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
-    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:nil Title:NSLocalizedString(@"保存", nil) Target:nil Selector:@selector(Done)];
+//    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:nil Title:NSLocalizedString(@"保存", nil) Target:nil Selector:@selector(Done)];
+    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn setTitle:NSLocalizedString(@"保存", nil) forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(Done) forControlEvents:UIControlEventTouchUpInside];
+    rightBtn.frame = CGRectMake([UIScreen mainScreen].bounds.size.width - 50, 0, 50, 55);
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.navigationController.navigationBar addSubview:rightBtn];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 30, ScreenWidth, 80) style:UITableViewStylePlain];
     tableView.delegate = self;
@@ -40,7 +46,9 @@
 
 -(void)Done
 {
-    [self btBack_DisModal:nil];
+    [SkeaLanguage defaultCenter].languageType = _isEnglish?SkeaLanguageTypeEN:SkeaLanguageTypeZH;
+    AppDelegate *delegate=[[UIApplication sharedApplication] delegate];
+    [delegate reloadApp];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
