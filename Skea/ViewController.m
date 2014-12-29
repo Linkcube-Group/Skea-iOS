@@ -32,7 +32,7 @@
     self.imgCenter.originY = ScreenHeight/2-self.imgCenter.height/2;
     self.btnCenter.originY = self.imgCenter.originY;
     
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"请连接Skea"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"请连接Skea", nil)];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didConnectBL:) name:kNotificationConnected object:nil];
@@ -117,7 +117,7 @@
 {
     int count = (int)[bleCentralManager shareManager].blePeripheralArray.count;
     if (count>1) {
-        CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:@"选择玩具" cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
+        CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:NSLocalizedString(@"选择玩具",nil) cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
             if (btnIndex<count) {
                 blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:btnIndex];
                 [[bleCentralManager shareManager] connectPeripheral:blItem.activePeripheral];
@@ -139,7 +139,7 @@
         
     }
     else{
-        showCustomAlertMessage(@"请打开Skea");
+        showCustomAlertMessage(NSLocalizedString(@"请打开Skea",nil));
     }
     
 }
@@ -208,13 +208,13 @@
     if (dict) {
         blePeripheral *cp = [dict objectForKey:@"bl"];
         self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-connected.png") Title:nil Target:self Selector:@selector(connectAction:)];
-        self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea"];
+        self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"Skea已连接",nil)];
     }
 }
 
 - (void)didDisConnectBL:(NSNotification *)notify
 {
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"请连接Skea"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"请连接Skea",nil)];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
 }
 

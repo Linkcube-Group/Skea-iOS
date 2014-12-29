@@ -7,11 +7,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordViewController">
             <connections>
                 <outlet property="imgChartBg" destination="l5s-eF-i0C" id="MZ7-eL-gh4"/>
+                <outlet property="lbCorrectRate" destination="Zh2-by-QUl" id="CBF-m8-ygK"/>
                 <outlet property="lbDate" destination="FMY-yf-8on" id="gtw-gF-FI0"/>
+                <outlet property="lbDuration" destination="86W-59-g7R" id="CgC-ID-6bV"/>
+                <outlet property="lbFenShu" destination="JcM-Ov-ib7" id="Hmq-3Z-Elr"/>
+                <outlet property="lbForceTitle" destination="82u-62-dny" id="o0P-dC-pRI"/>
+                <outlet property="lbLastMsg" destination="lP3-Me-nar" id="fZG-ys-YwJ"/>
+                <outlet property="lbNumMessage" destination="hzG-Kt-K45" id="4xu-dK-Drv"/>
+                <outlet property="lbPerTitle" destination="sE3-sG-hSL" id="lDu-do-VGa"/>
                 <outlet property="lbPersistStatus" destination="TJm-px-aGY" id="xIW-oP-JVE"/>
                 <outlet property="lbRate" destination="9D5-Mv-7DK" id="mX8-rt-L6W"/>
                 <outlet property="lbScore" destination="5RB-D2-CZH" id="lMf-IM-oaq"/>
+                <outlet property="lbShiChang" destination="EIQ-I2-gcI" id="8gK-G2-kuM"/>
+                <outlet property="lbSuccessRate" destination="Qhx-V0-hOV" id="t6R-eD-dCU"/>
                 <outlet property="lbTime" destination="2RL-tH-XdM" id="BtT-yv-Gz1"/>
+                <outlet property="lbTitle" destination="eAI-mw-95J" id="p78-7y-v09"/>
                 <outlet property="lbTotalStatus" destination="UDp-tY-O88" id="pik-7p-IES"/>
                 <outlet property="lbforceStatus" destination="o5J-yI-PkU" id="4Wz-K4-qHq"/>
                 <outlet property="scrollView" destination="YHe-xG-XdB" id="LHt-Ws-uYX"/>
@@ -194,7 +204,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时长(s)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="86W-59-g7R">
-                            <rect key="frame" x="45" y="270" width="42" height="21"/>
+                            <rect key="frame" x="45" y="270" width="104" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,7 +218,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="盆底肌收缩次数" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hzG-Kt-K45">
-                            <rect key="frame" x="87" y="519" width="135" height="21"/>
+                            <rect key="frame" x="20" y="519" width="280" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.546875" green="0.78823529410000004" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>

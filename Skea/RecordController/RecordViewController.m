@@ -39,6 +39,17 @@
 @property (strong,nonatomic) IBOutlet UILabel *lbRate;
 
 @property (strong,nonatomic) IBOutlet UIView *viewHeader;
+
+@property (strong,nonatomic) IBOutlet UILabel *lbLastMsg;
+@property (strong,nonatomic) IBOutlet UILabel *lbDuration;
+@property (strong,nonatomic) IBOutlet UILabel *lbSuccessRate;
+@property (strong,nonatomic) IBOutlet UILabel *lbFenShu;
+@property (strong,nonatomic) IBOutlet UILabel *lbShiChang;
+@property (strong,nonatomic) IBOutlet UILabel *lbNumMessage;
+@property (strong,nonatomic) IBOutlet UILabel *lbCorrectRate;
+@property (strong,nonatomic) IBOutlet UILabel *lbTitle;
+@property (strong,nonatomic) IBOutlet UILabel *lbForceTitle;
+@property (strong,nonatomic) IBOutlet UILabel *lbPerTitle;
 @end
 
 @implementation RecordViewController
@@ -60,8 +71,16 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     self.navigationController.navigationBar.hidden = YES;
-    
-    
+    self.lbForceTitle.text = NSLocalizedString(@"爆发力", nil);
+    self.lbPerTitle.text = NSLocalizedString(@"持久力", nil);
+    self.lbTitle.text = NSLocalizedString(@"成绩", nil);
+    self.lbLastMsg.text = NSLocalizedString(@"请至少做一组测试", nil);
+    self.lbDuration.text = NSLocalizedString(@"时长(s)", nil);
+    self.lbSuccessRate.text = NSLocalizedString(@"成功率(%)", nil);
+    self.lbFenShu.text = NSLocalizedString(@"分数:", nil);
+    self.lbShiChang.text = NSLocalizedString(@"时长:", nil);
+    self.lbNumMessage.text = NSLocalizedString(@"盆底肌收缩次数", nil);
+    self.lbCorrectRate.text = NSLocalizedString(@"正确率", nil);
     self.viewScoreBg.layer.cornerRadius = 55;
     self.viewScoreBg.layer.borderColor = [[UIColor whiteColor] CGColor];
     self.viewScoreBg.layer.borderWidth = 1;
@@ -158,7 +177,7 @@
     
     self.gameDetail = [AppConfig getGameDetail:day];
     if (self.gameDetail==nil) {
-        showCustomAlertMessage(@"当前日期没有训练记录");
+        showCustomAlertMessage(NSLocalizedString(@"当前日期没有训练记录",nil));
         return;
     }
     
@@ -216,9 +235,9 @@
     }
     
     self.lbDate.text = _S(@"%@  Level %d",dayStr,self.gameDetail.level);
-    self.lbTotalStatus.text = [self.gameDetail getStandard];
-    self.lbforceStatus.text = [self.gameDetail getExplosive];
-    self.lbPersistStatus.text = [self.gameDetail getEndurance];
+    self.lbTotalStatus.text = NSLocalizedString([self.gameDetail getStandard],nil);
+    self.lbforceStatus.text = NSLocalizedString([self.gameDetail getExplosive],nil);
+    self.lbPersistStatus.text = NSLocalizedString([self.gameDetail getEndurance],nil);
     self.lbScore.text = _S(@"%d",self.gameDetail.factScore);
     self.lbTime.text = [self getGameTime:self.gameDetail.exerciseTime];
     

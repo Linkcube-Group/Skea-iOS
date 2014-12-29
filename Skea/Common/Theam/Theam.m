@@ -77,6 +77,7 @@
 	label.backgroundColor=[UIColor clearColor];
 	label.textColor=[UIColor lightGrayColor];
 	label.text=title;
+    label.adjustsFontSizeToFitWidth = YES;
     label.font=[UIFont CustomFontGBKSize:17];
     label.textAlignment=NSTextAlignmentCenter;
     [label SetCustomFontGBKSize:20];

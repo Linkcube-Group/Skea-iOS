@@ -17,15 +17,15 @@
 {
     float rate = self.factScore*1.0/self.heighScore;
     if (rate>0.95) {
-        return @"Brilliant!";
+        return @"真棒!";
     }
     else if (rate>0.8){
-        return @"Good!";
+        return @"优异!";
     }
     else if (rate>0.4){
-        return @"Fair";
+        return @"普通";
     }
-    return @"Weak";
+    return @"虚弱";
     
 }
 
@@ -50,15 +50,15 @@
     
     float rate = [self getExplosiveScore];
     if (rate>0.95) {
-        return @"Brilliant!";
+        return @"真棒!";
     }
     else if (rate>0.8){
-        return @"Good!";
+        return @"优异!";
     }
     else if (rate>0.4){
-        return @"Fair";
+        return @"普通";
     }
-    return @"Weak";
+    return @"虚弱";
 }
 
 
@@ -82,14 +82,14 @@
     float rate = [self getEnduranceScore];
     
     if (rate>0.95) {
-        return @"Brilliant!";
+        return @"真棒!";
     }
     else if (rate>0.8){
-        return @"Good!";
+        return @"优异!";
     }
     else if (rate>0.4){
-        return @"Fair";
+        return @"普通";
     }
-    return @"Weak";
+    return @"虚弱";
 }
 @end

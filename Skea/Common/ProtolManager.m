@@ -128,7 +128,7 @@
         }
         
     } errorHandler:^(NSError *error) {
-        showCustomAlertMessage(@"同步记录失败");
+        showCustomAlertMessage(@"Sync Failed");
     } finishHandler:^(id responseObject) {
        
     }];

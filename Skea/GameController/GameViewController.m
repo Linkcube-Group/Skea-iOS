@@ -139,14 +139,14 @@
 {
     [self stopGame];
     IMP_BLOCK_SELF(GameViewController)
-    CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"是否继续游戏？" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+    CTAlertView *alert = [[CTAlertView alloc] initWithTitle:NSLocalizedString(@"是否继续游戏？",nil) message:nil DelegateBlock:^(UIAlertView *alert, int index) {
         if (index==0) {
             [block_self btBack_DisModal:nil];
         }
         else{
             [block_self beginGame];
         }
-    } cancelButtonTitle:@"退出游戏" otherButtonTitles:@"回到游戏"];
+    } cancelButtonTitle:NSLocalizedString(@"取消",nil) otherButtonTitles:NSLocalizedString(@"确定", nil)];
     
     [alert show];
 }
@@ -211,7 +211,7 @@
         [[ProtolManager shareProtolManager] sendGameData:self.gameDetail];
         
         IMP_BLOCK_SELF(GameViewController)
-        CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"本次锻炼结束，可查看锻炼结果" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+        CTAlertView *alert = [[CTAlertView alloc] initWithTitle:NSLocalizedString(@"本次锻炼结束，可查看锻炼结果",nil) message:nil DelegateBlock:^(UIAlertView *alert, int index) {
             if (index==0) {
                 [block_self backAction:nil];
             }
@@ -223,7 +223,7 @@
             }
             
             
-        } cancelButtonTitle:@"取消" otherButtonTitles:@"确定"];
+        } cancelButtonTitle:NSLocalizedString(@"取消",nil) otherButtonTitles:NSLocalizedString(@"确定",nil)];
         [alert show];
         return;
     }
