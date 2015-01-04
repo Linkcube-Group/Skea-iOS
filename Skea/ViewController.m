@@ -23,6 +23,13 @@
 
 @property (strong,nonatomic) IBOutlet UIImageView *imgCenter;
 @property (strong,nonatomic) IBOutlet UIButton *btnCenter;
+
+@property (strong,nonatomic) IBOutlet UIImageView *imgLastResult;
+@property (strong,nonatomic) IBOutlet UIImageView *imgLevel;
+
+@property (strong,nonatomic) IBOutlet UILabel *lbInfo;
+@property (strong,nonatomic) IBOutlet UILabel *lbRecord;
+@property (strong,nonatomic) IBOutlet UILabel *lbMe;
 @end
 
 @implementation ViewController
@@ -31,6 +38,11 @@
     [super viewDidLoad];
     self.imgCenter.originY = ScreenHeight/2-self.imgCenter.height/2;
     self.btnCenter.originY = self.imgCenter.originY;
+    
+    
+    self.lbInfo.text = NSLocalizedString(@"说明", nil);
+    self.lbRecord.text = NSLocalizedString(@"记录", nil);
+    self.lbMe.text = NSLocalizedString(@"我", nil);
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"请连接Skea", nil)];
     self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-disconnected.png") Title:nil Target:self Selector:@selector(connectAction:)];
@@ -97,6 +109,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.imgLastResult.image = IMG(NSLocalizedString(@"lastresult_bg_ch.png",nil));
+    self.imgLevel.image = IMG(NSLocalizedString(@"level_bg_ch.png",nil));
     self.lbLevel.text = _S(@"%d",[AppConfig getGameLevel]);
     GameDetail *detail = [AppConfig getLastGameDetail];
     
@@ -129,7 +143,7 @@
             blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:i];
             [sheet addButtonWithTitle:blItem.nameString];
         }
-        [sheet addButtonWithTitle:@"Cancel"];
+        [sheet addButtonWithTitle:NSLocalizedString(@"取消",nil)];
         [sheet setDestructiveButtonIndex:count];
         [sheet showInView:self.view];
     }

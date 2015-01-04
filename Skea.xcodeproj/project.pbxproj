@@ -31,6 +31,8 @@
 		0312889219E43BFE0073C83B /* RecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312889019E43BFE0073C83B /* RecordViewController.xib */; };
 		0312889619E43C120073C83B /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312889419E43C120073C83B /* GameViewController.m */; };
 		0312889719E43C120073C83B /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312889519E43C120073C83B /* GameViewController.xib */; };
+		0322CC4C1A58F358001C2536 /* lastresult_bg_ch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0322CC4A1A58F358001C2536 /* lastresult_bg_ch@2x.png */; };
+		0322CC4D1A58F358001C2536 /* level_bg_ch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0322CC4B1A58F358001C2536 /* level_bg_ch@2x.png */; };
 		032DE8731A1F466C00FE0949 /* bg_title2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032DE8711A1F466C00FE0949 /* bg_title2@2x.png */; };
 		032DE8741A1F466C00FE0949 /* text-cool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 032DE8721A1F466C00FE0949 /* text-cool@2x.png */; };
 		032F07561A43F2BA006778E3 /* UMFeedbackLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 032F07511A43F2BA006778E3 /* UMFeedbackLocalizable.strings */; };
@@ -286,6 +288,8 @@
 		0312889319E43C120073C83B /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		0312889419E43C120073C83B /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		0312889519E43C120073C83B /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		0322CC4A1A58F358001C2536 /* lastresult_bg_ch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lastresult_bg_ch@2x.png"; sourceTree = "<group>"; };
+		0322CC4B1A58F358001C2536 /* level_bg_ch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level_bg_ch@2x.png"; sourceTree = "<group>"; };
 		032DE8711A1F466C00FE0949 /* bg_title2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_title2@2x.png"; sourceTree = "<group>"; };
 		032DE8721A1F466C00FE0949 /* text-cool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-cool@2x.png"; sourceTree = "<group>"; };
 		032F07521A43F2BA006778E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/UMFeedbackLocalizable.strings; sourceTree = "<group>"; };
@@ -851,6 +855,8 @@
 		03E531BB19DA7D320064762E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0322CC4A1A58F358001C2536 /* lastresult_bg_ch@2x.png */,
+				0322CC4B1A58F358001C2536 /* level_bg_ch@2x.png */,
 				2647BA941A432F3300D749AE /* logo1@2x.png */,
 				2647BA951A432F3300D749AE /* logo2@2x.png */,
 				CD86BB1A1A3D67B1001776E7 /* graycycle@2x.png */,
@@ -1455,6 +1461,7 @@
 				038885B619F158B900372178 /* selection-checked@2x.png in Resources */,
 				264B5AAE1A17413900643DAD /* xiaoyuanquan@2x.png in Resources */,
 				03096A881A1A23D3009FFF88 /* level_bg@2x.png in Resources */,
+				0322CC4D1A58F358001C2536 /* level_bg_ch@2x.png in Resources */,
 				03E5330219DA7F250064762E /* Default-568h@2x.png in Resources */,
 				038885A619F158B900372178 /* icon-duration@2x.png in Resources */,
 				039B927019DA7AC500292529 /* Images.xcassets in Resources */,
@@ -1468,6 +1475,7 @@
 				038885B319F158B900372178 /* scroll-bar-selection@2x.png in Resources */,
 				038885C119F158B900372178 /* user-portrait@2x.png in Resources */,
 				038885B819F158B900372178 /* selection-unchecked@2x.png in Resources */,
+				0322CC4C1A58F358001C2536 /* lastresult_bg_ch@2x.png in Resources */,
 				038885A419F158B900372178 /* game-background@2x.png in Resources */,
 				CD86BB1B1A3D67B1001776E7 /* graycycle@2x.png in Resources */,
 				0377587B1A3AED5D000D4A72 /* gamelevel3@2x.png in Resources */,
