@@ -10,6 +10,8 @@
 
 @interface InfoViewController ()
 
+@property (strong,nonatomic) IBOutlet UIScrollView  *scrollView;
+@property (strong,nonatomic) IBOutlet UIImageView *imgView;
 @end
 
 @implementation InfoViewController
@@ -29,6 +31,12 @@
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Skea Help"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
+    
+    self.scrollView.height -= 45;
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth, 2320);
+    self.imgView.height = 2419;
+    self.imgView.originY = -70;
+    self.imgView.image = IMG(NSLocalizedString(@"info_ch.png", nil));
     // Do any additional setup after loading the view from its nib.
 }
 
