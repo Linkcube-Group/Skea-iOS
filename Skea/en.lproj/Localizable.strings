@@ -5,7 +5,17 @@
  Created by youku on 14/12/12.
  Copyright (c) 2014年 com.dlnu.*. All rights reserved.
  */
-
+"请输入邮箱"="Email";
+"请输入密码"="Password";
+"再次输入密码"="Password";
+"记住用户名和密码"="Save me";
+"忘记密码?"="Forget pwd?";
+"登陆"="Login";
+"注册"="register";
+"同意"="Agreen";
+"Skea用户协议"="Skea Licence";
+"找回密码"="Find pwd";
+"点击“找回密码”按钮，系统将会把您的密码发送到您注册邮箱。"="Click the button,you will receive an email about your password.";
 "请连接Skea"="Pls Connect Skea";
 "请打开Skea" = "Please Open Skea";
 "选择玩具" = "Select Tools";
