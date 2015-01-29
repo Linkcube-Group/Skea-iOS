@@ -97,7 +97,7 @@
     UILabel *titleText = [[UILabel alloc]initWithFrame:CGRectMake(0,5, self.bounds.size.width, 40)];
     titleText.textAlignment = NSTextAlignmentCenter;
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"MMMM yyyy"];
+    [format setDateFormat:@"yyyy-MM"];
     NSString *dateString = [[format stringFromDate:self.calendarDate] uppercaseString];
     [titleText setText:dateString];
     [titleText setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15.0f]];

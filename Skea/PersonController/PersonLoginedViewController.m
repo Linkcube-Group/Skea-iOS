@@ -32,7 +32,7 @@
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
     photoImageView = [[UIImageView alloc] init];
-    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 299) style:UITableViewStylePlain];
+    _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 299-40) style:UITableViewStylePlain];
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
     _mainTableView.scrollEnabled = NO;
@@ -66,8 +66,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 2)
-        return 2;
+//    if(section == 2)
+//        return 2;
     return 1;
 }
 
@@ -124,11 +124,11 @@
             cell.imageView.image = [UIImage imageNamed:@"settings-configure-skea.png"];
             cell.textLabel.text = NSLocalizedString(@"Skea参数调节", nil);
         }
-        if(indexPath.row == 1)
-        {
-            cell.imageView.image = [UIImage imageNamed:@"settings-buy-skea.png"];
-            cell.textLabel.text = NSLocalizedString(@"购买Skea产品", nil);
-        }
+//        if(indexPath.row == 1)
+//        {
+//            cell.imageView.image = [UIImage imageNamed:@"settings-buy-skea.png"];
+//            cell.textLabel.text = NSLocalizedString(@"购买Skea产品", nil);
+//        }
     }
     if(indexPath.section == 3)
     {

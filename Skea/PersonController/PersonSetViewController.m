@@ -25,13 +25,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1.f];
-    dataArray = [NSArray arrayWithObjects:@"",NSLocalizedString(@"语言", nil),@"",NSLocalizedString(@"更新软件", nil),NSLocalizedString(@"联系我们", nil),NSLocalizedString(@"关于我们", nil), nil];
+    dataArray = [NSArray arrayWithObjects:@"",NSLocalizedString(@"语言", nil),@"",NSLocalizedString(@"更新软件", nil),NSLocalizedString(@"关于我们", nil), nil];
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"设置", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
 //    self.view.backgroundColor = [UIColor whiteColor];
     photoImageView = [[UIImageView alloc] init];
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 220) style:UITableViewStylePlain];
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 220-40) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorColor  = [UIColor clearColor];
@@ -47,7 +47,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 5;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,15 +99,15 @@
         UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:nil message:@"已是最新版本" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     }
-    //联系我们
-    if(indexPath.row == 4)
-    {
-        //
-        [[UMFeedback sharedInstance] setTitleColor:[UIColor whiteColor]];
-        [self presentViewController:[UMFeedback feedbackModalViewController] animated:YES completion:nil];
-    }
+//    //联系我们
+//    if(indexPath.row == 4)
+//    {
+//        //
+//        [[UMFeedback sharedInstance] setTitleColor:[UIColor whiteColor]];
+//        [self presentViewController:[UMFeedback feedbackModalViewController] animated:YES completion:nil];
+//    }
     //关于我们
-    if(indexPath.row == 5)
+    if(indexPath.row == 4)
     {
         AboutViewController * lvc = [[AboutViewController alloc] init];
         UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:lvc];
