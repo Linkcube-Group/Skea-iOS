@@ -86,8 +86,9 @@
 "练习强度"="Exercise Intensity";
 "推荐"="Recommended";
 "压力敏感度"="Pressure Sensitivity";
-"不敏感"="Less sensitive";
-"反馈震动强度"="Feedback Vib Intensity";
+"不敏感"="Less";
+"敏感"="More";
+"反馈震动强度"="Feedback Vib";
 "恒速"="Constant";
 "变速"="Varying";
 "弱"="Weeker";
