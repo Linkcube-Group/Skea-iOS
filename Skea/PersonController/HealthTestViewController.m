@@ -25,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //    self.view.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
-    _sugArray = @[@"您的盆底肌并无太大风险，请继续保持！",@"您的盆地肌基本健康，不过依然建议您多多锻炼。",@"您的盆底肌需要多多锻炼哦，建议您选择Level3锻炼等级，坚持锻炼哦！",@"您的盆底肌健康面临着很大风险，请遵医嘱进行盆底肌锻炼，每天至少30分钟。"];
+    _sugArray = @[NSLocalizedString(@"恭喜您，您的盆底肌面临的健康防线较低。不过，多做凯格尔运动仍然能进一步增强您的盆底健康！", nil),NSLocalizedString(@"您的盆底肌面临的健康风险一般，经常做凯格尔运动，会增强您的盆底健康。",nil),NSLocalizedString(@"您的盆底肌健康面临着很大风险，需要多多做凯格尔运动，能有效增进盆底健康哦，坚持每天锻炼吧！",nil),NSLocalizedString(@"您的盆底肌健康面临着很大风险，建议每天进行30分钟的凯格尔锻炼来增强盆底健康。建议咨询医生以获得更多的专业建议。",nil)];
     UIView * navigationView = [[UIView alloc] init];
     navigationView.frame = CGRectMake(0, 0, ScreenWidth, 64);
     navigationView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
