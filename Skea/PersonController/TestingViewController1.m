@@ -75,7 +75,7 @@
         [_weightArray addObject:[NSString stringWithFormat:@"%d",i]];
     }
     
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Risk Evaluation"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"风险评估", nil)];
     if(!self._isRegisterPush)
         self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
@@ -118,14 +118,14 @@
     }
     if(indexPath.row == 0)
     {
-        cell.textLabel.text = @"Please fill in the questionnaire in order that we can evaluate the health risk of your pelvic floor muscle.";
+        cell.textLabel.text = NSLocalizedString(@"请填写问卷以帮助评估您的盆底肌的健康风险", nil);
         [cell.textLabel setTextColor:[UIColor colorWithRed:139/255.f green:220/255.f blue:222/255.f alpha:1.f]];
         cell.textLabel.numberOfLines = 4;
         cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     }
     if(indexPath.row == 1)
     {
-        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:@"Basic information"]];
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:NSLocalizedString(@"基本信息", nil)]];
     }
     if(indexPath.row == 2)
     {
