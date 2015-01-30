@@ -73,7 +73,7 @@
     //    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
     [AgainButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
     AgainButton.layer.cornerRadius = 20.f;
-    [AgainButton setTitle:NSLocalizedString(@"Re-evaluate", nil) forState:UIControlStateNormal];
+    [AgainButton setTitle:NSLocalizedString(@"重新测试", nil) forState:UIControlStateNormal];
     [AgainButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [AgainButton addTarget:self action:@selector(again) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:AgainButton];
@@ -136,24 +136,24 @@
         label.frame = CGRectMake(20, 50, 150, 20);
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:14.f];
-        label.text = @"Pelvic floor muscle";
+        label.text = NSLocalizedString(@"盆底肌健康风险", nil);
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.numberOfLines = 2;
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
         [cell.contentView addSubview:label];
         
-        UILabel * label1 = [[UILabel alloc] init];
-        label1.frame = CGRectMake(20, label.frame.origin.y + label.frame.size.height, 150, 20);
-        label1.backgroundColor = [UIColor clearColor];
-        label1.font = [UIFont systemFontOfSize:14.f];
-        label1.text = @"Risk Factor";
-        label1.textColor = [UIColor whiteColor];
-        label1.textAlignment = NSTextAlignmentCenter;
-        label1.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
-        cell.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
-        [cell.contentView addSubview:label1];
+//        UILabel * label1 = [[UILabel alloc] init];
+//        label1.frame = CGRectMake(20, label.frame.origin.y + label.frame.size.height, 150, 20);
+//        label1.backgroundColor = [UIColor clearColor];
+//        label1.font = [UIFont systemFontOfSize:14.f];
+//        label1.text = @"Risk Factor";
+//        label1.textColor = [UIColor whiteColor];
+//        label1.textAlignment = NSTextAlignmentCenter;
+//        label1.numberOfLines = 2;
+//        cell.contentView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
+//        cell.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
+//        [cell.contentView addSubview:label1];
         
         _imageView = [[UIImageView alloc] init];
         _imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
