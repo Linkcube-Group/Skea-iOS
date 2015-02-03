@@ -181,18 +181,18 @@
     }
     if(indexPath.row == 5)
     {
-        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:@"Health information"]];
+        [cell.contentView addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40.f) title:NSLocalizedString(@"健康信息", nil)]];
     }
     if(indexPath.row == 6)
     {
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Seeing/Feeling Bulge";
+        sview.title = NSLocalizedString(@"看到或感到阴道有肿物脱出", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"看到或感到阴道有肿物脱出，是评估盆底健康的重要相关信息", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 7)
@@ -200,11 +200,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Menopausal Status";
+        sview.title = NSLocalizedString(@"目前绝经状态", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"目前绝经状态，是评估盆底健康的重要相关信息", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 8)
@@ -212,11 +212,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Children";
+        sview.title = NSLocalizedString(@"生育数量", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"0",@"1",@"2",@">=3", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"生育孩子的数量，是评估盆底健康的重要相关信息", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 9)
@@ -224,11 +224,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Smoking";
+        sview.title = NSLocalizedString(@"是否吸烟", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"是否吸烟，是评估盆底健康的重要相关信息", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 10)
@@ -236,11 +236,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Pelvic Floor Surgery";
+        sview.title = NSLocalizedString(@"是否经历过盆底手术", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"是否经历过盆底手术，是评估盆底健康的重要相关信息", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 11)
@@ -248,11 +248,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Current Heavy Work";
+        sview.title = NSLocalizedString(@"目前从事重体力劳动", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"是否目前从事重体力劳动，是评估盆底健康的重要相关信息", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 12)
@@ -260,11 +260,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Pelvic Floor Problems (POP or UI) during Gestation";
+        sview.title = NSLocalizedString(@"孕期有过盆底疾病", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"是否在孕期有过盆底疾病？例如盆底器官脱垂或尿失禁", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 13)
@@ -272,11 +272,11 @@
         SkeaSliderButtonView * sview = [[SkeaSliderButtonView alloc] init];
         sview.frame = CGRectMake(0, 0, self.view.frame.size.width, 135);
         sview.tager = indexPath.row;
-        sview.title = @"Mother with POP or UI";
+        sview.title = NSLocalizedString(@"母亲有过盆底疾病", nil);
         sview.selectedStringsArray = [NSArray arrayWithObjects:@"NO",@"YES", nil];
         sview.selectedIndex = 0;
         sview.delegate = self;
-        sview.notice = @"Sexual activity is a key variable related to the risk factor of pelvic floor muscle dysfunction.";
+        sview.notice = NSLocalizedString(@"您的母亲是否有或有过盆底器官脱垂或尿失禁", nil);
         [cell.contentView addSubview:sview];
     }
     if(indexPath.row == 14)
@@ -284,7 +284,7 @@
         UIButton * submitButtn = [UIButton buttonWithType:UIButtonTypeCustom];
         submitButtn.frame = CGRectMake(8, 30, self.view.frame.size.width - 16, 44);
         [submitButtn setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
-        [submitButtn setTitle:NSLocalizedString(@"Submit", nil) forState:UIControlStateNormal];
+        [submitButtn setTitle:NSLocalizedString(@"提交", nil) forState:UIControlStateNormal];
         [submitButtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [submitButtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
         [cell.contentView addSubview:submitButtn];
