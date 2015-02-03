@@ -37,7 +37,7 @@
         [_selectArray replaceObjectAtIndex:([SkeaUser defaultUser].selectLevel - 1) withObject:@"1"];
     }
     
-    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Exercise Strength"];
+    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"练习强度", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 260 - 64 - 40) style:UITableViewStylePlain];
@@ -83,7 +83,7 @@
     {
         cell.imageView.image = [UIImage imageNamed:@"selection-unchecked-small.png"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[_nameArray objectAtIndex:indexPath.row],[[_recommendArray objectAtIndex:indexPath.row]integerValue]?@"(Recommended)":@""];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",[_nameArray objectAtIndex:indexPath.row],[[_recommendArray objectAtIndex:indexPath.row]integerValue]?NSLocalizedString(@"(推荐)", nil):@""];
     return cell;
 }
 

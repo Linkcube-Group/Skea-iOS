@@ -182,14 +182,14 @@
 -(void)up
 {
     
-    alertView0  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 300) content:NSLocalizedString(@"把Skea放入体内,用力积压,Skea会有反馈震动哦,如果觉得反馈震动太强,请降低震动强度,如果觉得用力太弱,请增加震动强度", nil) gifImageName:@"1.gif"];
+    alertView0  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 300) content:NSLocalizedString(@"Skea放入体内,用力积压,Skea会有反馈震动哦。如果Skea始终无反馈，请增加压力敏感度，如用力较轻达不到锻炼目的，请降低压力敏感度。", nil) gifImageName:@"1.gif"];
     [self.view addSubview:alertView0];
     [self save];
 }
 
 -(void)down
 {
-    alertView1  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 300) content:NSLocalizedString(@"把Skea放入体内,用力积压,Skea会有反馈震动哦,如果觉得反馈震动太强,请降低震动强度,如果觉得用力太弱,请增加震动强度", nil) gifImageName:@"1.gif"];
+    alertView1  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 300) content:NSLocalizedString(@"把Skea放入体内,用力积压,Skea会有反馈震动哦。震动反馈可以调节。", nil) gifImageName:@"1.gif"];
     [self.view addSubview:alertView1];
     [self save];
 }
