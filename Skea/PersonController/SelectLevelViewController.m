@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view.
     
     _selectArray = [NSMutableArray arrayWithObjects:@"1",@"0",@"0",@"0", nil];
-    _nameArray = [NSMutableArray arrayWithObjects:@"Level 1",@"Level 2",@"Level 3",@"Level 4", nil];
+    _nameArray = [NSMutableArray arrayWithObjects:NSLocalizedString(@"等级 1", nil),NSLocalizedString(@"等级 2", nil),NSLocalizedString(@"等级 3", nil),NSLocalizedString(@"等级 4", nil), nil];
     _recommendArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
     NSLog(@"%ld",[SkeaUser defaultUser].level);
     if([SkeaUser defaultUser].level > 0)

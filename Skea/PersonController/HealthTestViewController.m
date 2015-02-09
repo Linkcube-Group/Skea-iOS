@@ -181,7 +181,8 @@
     {
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        cell.textLabel.text = [NSString stringWithFormat:@"Level %ld",[SkeaUser defaultUser].selectLevel?[SkeaUser defaultUser].selectLevel:[SkeaUser defaultUser].level];
+        
+        cell.textLabel.text = _S(@"%@%@",NSLocalizedString(@"等级", nil),[NSString stringWithFormat:@" %ld",[SkeaUser defaultUser].selectLevel?[SkeaUser defaultUser].selectLevel:[SkeaUser defaultUser].level]);
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
