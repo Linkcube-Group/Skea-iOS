@@ -130,12 +130,12 @@
     if(indexPath.row == 2)
     {
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(10, 5, 60, 30);
+        label.frame = CGRectMake(10, 5, 100, 30);
         label.backgroundColor = [UIColor clearColor];
         label.text = NSLocalizedString(@"生日", nil);
         [cell.contentView addSubview:label];
         
-        _ageTextField.frame = CGRectMake(10 + 60, 5, ScreenWidth - 10 - 60 - 10, 30);
+        _ageTextField.frame = CGRectMake(10 + 100, 5, ScreenWidth - 10 - 100 - 10, 30);
         _ageTextField.textAlignment = NSTextAlignmentRight;
         _ageTextField.inputView = _ageDatePicker;
         _ageTextField.delegate = self;
@@ -150,12 +150,12 @@
     if(indexPath.row == 3)
     {
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(10, 5, 60, 30);
+        label.frame = CGRectMake(10, 5, 100, 30);
         label.backgroundColor = [UIColor clearColor];
         label.text = NSLocalizedString(@"身高", nil);
         [cell.contentView addSubview:label];
         
-        _heightTextField.frame = CGRectMake(10 + 60, 5, ScreenWidth - 10 - 60 - 10, 30);
+        _heightTextField.frame = CGRectMake(10 + 100, 5, ScreenWidth - 10 - 100 - 10, 30);
         _heightTextField.textAlignment = NSTextAlignmentRight;
         _heightTextField.inputView = _heightPicker;
         _heightTextField.delegate = self;
@@ -166,12 +166,12 @@
     if(indexPath.row == 4)
     {
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(10, 5, 60, 30);
+        label.frame = CGRectMake(10, 5, 100, 30);
         label.backgroundColor = [UIColor clearColor];
         label.text = NSLocalizedString(@"体重", nil);
         [cell.contentView addSubview:label];
         
-        _weightTextField.frame = CGRectMake(10 + 60, 5, ScreenWidth - 10 - 60 - 10, 30);
+        _weightTextField.frame = CGRectMake(10 + 100, 5, ScreenWidth - 10 - 100 - 10, 30);
         _weightTextField.textAlignment = NSTextAlignmentRight;
         _weightTextField.inputView = _weightPicker;
         _weightTextField.delegate = self;
