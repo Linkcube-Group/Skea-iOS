@@ -60,7 +60,7 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"测试结果", nil)];
 //    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(back)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40 - 30) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40 - 10) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.scrollEnabled = NO;
@@ -114,7 +114,7 @@
     if(indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4)
         return 40.f;
     if(indexPath.row == 2)
-        return 50.f;
+        return 70.f;
     return 100.f;
 }
 
@@ -133,7 +133,7 @@
     if(indexPath.row == 0)
     {
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 50, 150, 20);
+        label.frame = CGRectMake(20, 50, 150, 40);
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont systemFontOfSize:14.f];
         label.text = NSLocalizedString(@"盆底肌健康风险", nil);
@@ -191,7 +191,7 @@
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 50);
+        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 70);
 //        label.text = @"UILabel * textlabel = [[UILabel allocinitWithFrame:CGRectMake(0, 0, 80, 80)];textlabel.backgroundColor = [UIColor clearColor];textlabel.text = ;textlabel.textColor = [UIColor blueColor];textlabel.textAlignment = NSTextAlignmentCenter;textlabel.font = [UIFont boldSystemFontOfSize:28.f];[view addSubview:textlabel];";
         label.text = [SkeaUser defaultUser].level>0?[_sugArray objectAtIndex:[SkeaUser defaultUser].level - 1]:[_sugArray firstObject];
         label.font = [UIFont systemFontOfSize:12.f];
