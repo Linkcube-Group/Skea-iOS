@@ -81,7 +81,7 @@
 "孕期有过盆底疾病"="Pelvic Problems during Gestation";
 "是否在孕期有过盆底疾病？例如盆底器官脱垂或尿失禁"="Experienced any pelvic floor problems during pregnancy? E.g. Pelvic Organ Prolapse or Urinary Incontinence";
 "母亲有过盆底疾病"="Mother with POP or UI";
-"您的母亲是否有或有过盆底器官脱垂或尿失禁？"="Does/did your mother have Pelvic Organ Prolapse or Urinary Incontinence?";
+"您的母亲是否有或有过盆底器官脱垂或尿失禁"="Does/did your mother have Pelvic Organ Prolapse or Urinary Incontinence?";
 "提交"="Submit";
 "练习强度"="Exercise Intensity";
 "推荐"="Recommended";
@@ -104,7 +104,14 @@
 "level_bg_ch.png"= "level_bg.png";
 "info_ch.png" = "info.png";
 
-@"把Skea放入体内,用力积压,Skea会有反馈震动哦,如果觉得反馈震动太强,请降低震动强度,如果觉得用力太弱,请增加震动强度"="";
+"Skea放入体内,用力挤压,Skea会有反馈震动哦。如果Skea始终无反馈，请增加压力敏感度，如用力较轻达不到锻炼目的，请降低压力敏感度。"="Insert Skea inside body and squeeze, Skea will vibrate as feedback. If Skea does not vibrate, please increase pressure sensitivity setting; if Skea is too sensitive, please decrease sensitivity setting.";
+"把Skea放入体内,用力挤压,Skea会有反馈震动哦。震动反馈可以调节。"="Insert Skea inside body and squeeze, Skea will vibrate as feedback. Vibration intensity can be adjusted.";
 
+"(推荐)"="Recommend";
+"等级"="Level";
+"等级 1"="Level 1";
+"等级 2"="Level 2";
+"等级 3"="Level 3";
+"等级 4"="Level 4";
 
 
