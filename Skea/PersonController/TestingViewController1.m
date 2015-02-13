@@ -441,7 +441,7 @@
         line.frame = CGRectMake(0, 39.5, view.frame.size.width, 0.5);
         line.backgroundColor = [UIColor grayColor];
         [view addSubview:line];
-        NSString * str = [NSString stringWithFormat:@"%ld",[_heightTextField.text integerValue]];
+        NSString * str = [NSString stringWithFormat:@"%ld",[[[_heightTextField.text componentsSeparatedByString:@"cm"] objectAtIndex:0] integerValue]];
         [_heightPicker selectRow:[_heightArray indexOfObject:str] inComponent:0 animated:YES];
         _heightPicker.frame = CGRectMake(0,40,ScreenWidth,216);
         _heightPicker.backgroundColor = [UIColor whiteColor];
@@ -468,7 +468,7 @@
         line.backgroundColor = [UIColor grayColor];
         [view addSubview:line];
         
-        NSString * str = [NSString stringWithFormat:@"%ld",[_weightTextField.text integerValue]];
+        NSString * str = [NSString stringWithFormat:@"%ld",[[[_weightTextField.text componentsSeparatedByString:@"kg"] objectAtIndex:0] integerValue]];
         [_weightPicker selectRow:[_weightArray indexOfObject:str] inComponent:0 animated:YES];
         _weightPicker.frame = CGRectMake(0,40,ScreenWidth,216);
         _weightPicker.backgroundColor = [UIColor whiteColor];
