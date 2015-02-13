@@ -489,8 +489,8 @@
 -(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     if(pickerView == _heightPicker)
-        return [_heightArray objectAtIndex:row];
-    return [_weightArray objectAtIndex:row];
+        return _S(@"%dcm",[[_heightArray objectAtIndex:row] intValue]);
+    return _S(@"%dkg",[[_weightArray objectAtIndex:row] intValue]);
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
