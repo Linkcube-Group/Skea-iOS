@@ -14,7 +14,7 @@
 
 ///打印日志，发布时关闭
 //TODO: app store delete
-#define DEBUG_REVEL 1
+//#define DEBUG_REVEL 1
 
 
 ///宏提速NSCoding
@@ -41,13 +41,13 @@
 
 
 /// 友盟配置
-static NSString * const kUmengAppKey = @"534e71a056240b8f2c0095c0";
+static NSString * const kUmengAppKey = @"54e03a57fd98c5b2790007e6";
 /**
  *  微信
  */
 static NSString * const kWeiXinAppKey = @"wx9e569a13d211567d";
 ///新浪微博
-static NSString * const kSinaRedirectURL = @"http://www.bosszhipin.com";
+static NSString * const kSinaRedirectURL = @"http://www.bosszhipim";
 static NSString * const kSinaAppKey  = @"1054079396";
 static NSString * const kSinaAppSecret = @"c894fa362e62dbd4cf7063951830adf9";
 
