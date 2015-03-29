@@ -15,7 +15,7 @@
 		0312514F19F9CE4500245659 /* bar_7s@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0312514D19F9CE4500245659 /* bar_7s@2x.png */; };
 		0312886C19E4352C0073C83B /* bleCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886919E4352C0073C83B /* bleCentralManager.m */; };
 		0312886D19E4352C0073C83B /* blePeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312886B19E4352C0073C83B /* blePeripheral.m */; };
-		0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0312886E19E435360073C83B /* CoreBluetooth.framework */; };
+		0312886F19E435360073C83B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0312886E19E435360073C83B /* CoreBluetooth.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0312887519E43A0B0073C83B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312887319E43A0B0073C83B /* LoginViewController.m */; };
 		0312887619E43A0B0073C83B /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0312887419E43A0B0073C83B /* LoginViewController.xib */; };
 		0312887A19E43A1D0073C83B /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0312887819E43A1D0073C83B /* SignViewController.m */; };
@@ -1391,6 +1391,7 @@
 				TargetAttributes = {
 					039B925B19DA7AC500292529 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 5V7B72YD84;
 					};
 				};
 			};
@@ -1707,8 +1708,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1729,6 +1730,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1749,8 +1751,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1763,6 +1765,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1773,8 +1776,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zhenjia Wang (5V7B72YD84)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zhenjia Wang (5V7B72YD84)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
@@ -1787,7 +1790,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMengFeedback_SDK_2.0.2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04eaaaf8-f368-443e-909d-b6c168b6c7a2";
+				PROVISIONING_PROFILE = "15a7ec87-af3e-43ff-90d3-ce2cb938a156";
 			};
 			name = Debug;
 		};
@@ -1796,8 +1799,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zhenjia Wang (5V7B72YD84)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zhenjia Wang (5V7B72YD84)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "Skea/Skea-Prefix.pch";
 				INFOPLIST_FILE = Skea/Info.plist;
@@ -1810,7 +1813,7 @@
 					"$(PROJECT_DIR)/ThirdLibs/UMengFeedback_SDK_2.0.2",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "04eaaaf8-f368-443e-909d-b6c168b6c7a2";
+				PROVISIONING_PROFILE = "15a7ec87-af3e-43ff-90d3-ce2cb938a156";
 			};
 			name = Release;
 		};

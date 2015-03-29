@@ -19,7 +19,7 @@
 ///将图片转向调整为向上
 - (UIImage *)fixOrientation;
 
-///以ScaleToFit方式压缩图片
+///以ScaleToFit方式压缩图片 test
 - (UIImage *)compressedImageWithSize:(CGSize)compressedSize;
 
 @end
