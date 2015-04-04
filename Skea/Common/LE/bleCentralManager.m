@@ -10,7 +10,7 @@
 
 @implementation bleCentralManager
 
-#define SKEA_NAME @"skea"
+#define SKEA_NAME @"Skea"
 
 #pragma mark -
 #pragma mark Init
@@ -205,8 +205,19 @@
             // 添加到新的Peripheral
             blePeripheral *bp = [[blePeripheral alloc]init];
             bp.activePeripheral = peripheral;
-            [_blePeripheralArray addObject:bp];
+            if ([bp.nameString isEqualToString:@"Skea"] || [bp.nameString isEqualToString:@"linkcube"]) {
+                [_blePeripheralArray addObject:bp];
+            }
         }
+ 
+        
+       // blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:i];
+        //if([blItem.nameString isEqualToString:@"Skea"] || [blItem.nameString isEqualToString:@"linkcube"]){
+
+        
+        
+        
+        
         
         // 更新状态
         _currentCentralManagerState = bleCentralDelegateStateDiscoverPeripheral;
@@ -254,7 +265,9 @@
     if (_blePeripheralArray.count > 0) {
         for (NSUInteger idx=0; idx<_blePeripheralArray.count; idx++) {
             blePeripheral *bp = [_blePeripheralArray objectAtIndex:idx];
-            if ([peripheral isEqual:bp.activePeripheral] || [peripheral.name isEqualToString:SKEA_NAME]) {
+            //if ([peripheral isEqual:bp.activePeripheral] || [peripheral.name isEqualToString:SKEA_NAME]) {
+            if ([peripheral isEqual:bp.activePeripheral]) {
+
                 checkout = YES;
                 break;
             }

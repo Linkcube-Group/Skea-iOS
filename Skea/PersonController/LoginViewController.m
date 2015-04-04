@@ -38,7 +38,7 @@
 //    self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:nil];
 //    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"back-cross.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
     
-    NSLog(@"%@",[SkeaUser defaultUser].isLogin?@"登录了":@"未登录");
+//    NSLog(@"%@",[SkeaUser defaultUser].isLogin?@"登录了":@"未登录");
     
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
@@ -50,7 +50,7 @@
     [btn setTitleColor:[Theam currentTheam].navigationBarItemTitleColor forState:UIControlStateNormal];
     [btn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    btn.frame=CGRectMake(10, 34, 24, 24);
+    btn.frame=CGRectMake(16, 32, 20, 20);
     
     //让图片在最右侧对齐
     CGSize imagesize=IMG(@"back-cross.png").size;
@@ -176,7 +176,6 @@
     {
         NSString * str0 = NSLocalizedString(@"记住用户名和密码", nil);
         CGSize size0 = [str0 sizeWithFont:[UIFont systemFontOfSize:13.f]];
-        
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.frame = CGRectMake(25, 10, 20, 20);
         if(![SkeaUser defaultUser].saveUser)
@@ -265,28 +264,28 @@
 
 -(void)login
 {
-    NSLog(@"登陆");
+//    NSLog(@"登陆");
 //    [self btBack_DisModal:nil];
     NSString *email = _emailTextField.text;
     if (StringIsNullOrEmpty(email)) {
-        showAlertMessage(@"邮箱不能为空");
+        showAlertMessage(NSLocalizedString(@"邮箱不能为空", nil));
         return;
     }
     NSString *pwd = _passwordTextField.text;
     if (StringIsNullOrEmpty(pwd)) {
-        showAlertMessage(@"密码不能为空");
+        showAlertMessage(NSLocalizedString(@"密码不能为空", nil));
         return;
     }
     
     IMP_BLOCK_SELF(LoginViewController) //作为一个self的弱引用,在block里面调用
     
-    showIndicator(YES, @"正在加载中");  ///弹一个正在加载的菊花
+    showIndicator(YES, NSLocalizedString(@"正在加载中", nil));  ///弹一个正在加载的菊花
     ///path 在URL.h里面找对就的宏
     ///[@{@"email":email,@"password":pwd} mutableCopy] 这是一个要post内容的可扩展字面
     [[BaseEngine sharedEngine] RunRequest:[@{@"email":email,@"password":pwd} mutableCopy] path:SK_LOGIN completionHandler:^(id responseObject) {
         ///请求成功
         [AppConfig setUserEmail:email];
-        showCustomAlertMessage(@"登录成功");
+        showCustomAlertMessage(NSLocalizedString(@"登陆成功", nil));
         [SkeaUser defaultUser].email = _emailTextField.text;
         [SkeaUser defaultUser].password = _passwordTextField.text;
         [SkeaUser defaultUser].isLogin = YES;
@@ -329,7 +328,7 @@
         
     } errorHandler:^(NSError *error) {
         ///网络失败
-        showAlertMessage(@"网络不给力");
+        showCustomAlertMessage(NSLocalizedString(@"无法连接网络", nil));
         showIndicator(NO, nil);
     } finishHandler:^(id responseObject) {
         ///请求结束，如果请求返回的status不为100，判断如下
@@ -337,19 +336,19 @@
         if (responseObject!=nil) {
             int statusCode = [[responseObject objectForKey:@"status"] intValue];
             if (statusCode>100) {
-                NSString *errMsg = @"服务器错误";
+                NSString *errMsg = NSLocalizedString(@"服务器错误", nil);
                 switch (statusCode) {
                     case 101:
-                        errMsg = @"参数错误";
+                        errMsg = NSLocalizedString(@"参数错误", nil);
                         break;
                     case 102:
-                        errMsg = @"该用户已被注册";
+                        errMsg = NSLocalizedString(@"该用户名已被注册", nil);
                         break;
                     case 103:
-                        errMsg = @"用户名或密码错误";
+                        errMsg = NSLocalizedString(@"用户名或密码错误", nil);
                         break;
                     case 104:
-                        errMsg = @"结果未找到";
+                        errMsg = NSLocalizedString(@"结果未找到", nil);
                         break;
                     default:
                         break;
@@ -363,7 +362,7 @@
 
 -(void)registerButtonClick
 {
-    NSLog(@"注册");
+ //   NSLog(@"注册");
     SignViewController * svc = [[SignViewController alloc] init];
 //    UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:svc];
     [self presentViewController:svc animated:YES completion:nil];
@@ -383,7 +382,7 @@
 
 -(void)forgetPassword
 {
-    NSLog(@"忘记密码");
+//    NSLog(@"忘记密码");
     ForgetPasswordViewController * svc = [[ForgetPasswordViewController alloc] init];
     UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:svc];
     [self presentViewController:nvc animated:YES completion:nil];

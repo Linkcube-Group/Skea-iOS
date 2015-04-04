@@ -150,6 +150,7 @@ static CXAlertView *__cx_alert_current_view;
     messageLabel.textColor = [UIColor blackColor];
     messageLabel.numberOfLines = 0;
     messageLabel.text = message;
+    [messageLabel setTextAlignment:NSTextAlignmentLeft];
     messageLabel.frame = CGRectMake( self.vericalPadding, 0, self.containerWidth - self.vericalPadding*2, [self heightWithText:message font:messageLabel.font]);
     
 #if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_6_0
@@ -748,17 +749,27 @@ static CXAlertView *__cx_alert_current_view;
 	UIImage *highlightedImage = nil;
 	switch (type) {
 		case CXAlertViewButtonTypeCancel:
-			[button setTitleColor:self.cancelButtonColor forState:UIControlStateNormal];
-            [button setTitleColor:[self.cancelButtonColor colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+			//[button setTitleColor:self.cancelButtonColor forState:UIControlStateNormal];
+            //[button setTitleColor:[self.cancelButtonColor colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+            
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
+            
 			break;
 		case CXAlertViewButtonTypeCustom:
-            [button setTitleColor:self.customButtonColor forState:UIControlStateNormal];
-            [button setTitleColor:[self.customButtonColor colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+            //[button setTitleColor:self.customButtonColor forState:UIControlStateNormal];
+            //[button setTitleColor:[self.customButtonColor colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+            
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
 			break;
 		case CXAlertViewButtonTypeDefault:
 		default:
-			[button setTitleColor:self.buttonColor forState:UIControlStateNormal];
-            [button setTitleColor:[self.buttonColor colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+			//[button setTitleColor:self.buttonColor forState:UIControlStateNormal];
+            //[button setTitleColor:[self.buttonColor colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
+            
 			break;
 	}
 	CGFloat hInset = floorf(normalImage.size.width / 2);
@@ -962,8 +973,10 @@ static CXAlertView *__cx_alert_current_view;
 -(void)setColor:(UIColor *)color toButtonsOfType:(CXAlertViewButtonType)type {
     for (CXAlertButtonItem *button in _buttons) {
         if (button.type == type) {
-            [button setTitleColor:color forState:UIControlStateNormal];
-            [button setTitleColor:[color colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+            //[button setTitleColor:color forState:UIControlStateNormal];
+            //[button setTitleColor:[color colorWithAlphaComponent:0.8] forState:UIControlStateHighlighted];
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
         }
     }
 }

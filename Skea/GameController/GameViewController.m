@@ -8,6 +8,8 @@
 
 #import "GameViewController.h"
 #import "RecordViewController.h"
+#import "SCGIFImageView.h"
+
 
 @interface GameViewController ()
 {
@@ -28,6 +30,10 @@
     
     int  totalTime;
     int  passTime;
+    
+    UIView *pauseBackground;
+    UIView *roundrectAlert;
+
 }
 
 @property (nonatomic) BOOL isFinish;
@@ -38,6 +44,7 @@
 @property (nonatomic) int sevenNum;
 @property (nonatomic) int twelfthNum;
 
+//@property (strong, nonatomic) IBOutlet UIImageView *pauseBackgroud;
 @property (strong,nonatomic) NSTimer *timerGame;
 
 @property (strong,nonatomic) IBOutlet UILabel *lbTime;
@@ -62,6 +69,7 @@
 #define SevenHeight 280
 #define TwelfthHeight 480
 #define SepHeight 40
+
 
 #define TwelfthTotal 479.24
 #define SevenTotal 224.44
@@ -94,10 +102,21 @@
     
     ///mark
     self.gameDetail.level = level;
-    
     self.imgLevel.image = IMG(_S(@"gamelevel%d",level));
     
+    [self creatRoundRectAlert:NSLocalizedString(@"Skea使用小贴士:\n    请将Skea如上图恰当的放入体内，并收缩盆底肌，进行挤压锻炼动作，累计正确挤压1秒钟后，将自动启动游戏!", nil) gifImageName:@"1.gif"];
     
+    pauseBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    pauseBackground.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
+    pauseBackground.alpha = 0.0;
+    
+    [self.navigationController.view addSubview:pauseBackground];
+    [self.navigationController.view addSubview:roundrectAlert];
+    
+    pauseBackground.hidden = YES;
+    roundrectAlert.hidden = YES;
+    
+
     self.playTime = 0;
     halfResponse = 0;
     self.twoNum = [self getLevelNum:level];
@@ -112,28 +131,96 @@
     
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:@"Game"];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin)];
+    
+    
+    //[self.navigationController.view addSubview:self.pauseBackgroud];
+
     //    self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"button-pause.png") Title:nil Target:self Selector:@selector(pauseActoin)];
     // Do any additional setup after loading the view from its nib.
     [self.view.layer setContents:(id)[IMG(@"game-background.png") CGImage]];
     nCBUpdataShowStringBuffer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didDisConnectBL:) name:kNotificationDisConnected object:nil];
-    [self setupGameView];
-    self.imgStatus.image = nil;
-    [self beginGame];
     
+    [self setupGameView];
+/*
+    self.imgStatus.image = nil;
     IMP_BLOCK_SELF(GameViewController)
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
         block_self.scrollView.hidden = NO;
     });
+ */
+    [self firstBeginGame];
+    
 }
+
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
     if (self.isFinish) {
         [self dismissViewControllerAnimated:NO completion:nil];
     }
 }
+
+- (void)pauseGameForPractice
+{
+  
+    
+    [self stopGame];
+    
+    pauseBackground.hidden = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        pauseBackground.alpha = 0.8;
+    }];
+    
+    roundrectAlert.hidden = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        roundrectAlert.alpha = 1.0;
+    }];
+    
+
+    if (passTime == 5){
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(stopPractice)
+                                                     name:@"CBUpdataShowStringBuffer" object:nil];
+    }
+    
+}
+
+- (void)stopPractice
+{
+    if (halfResponse ==40) //stop practice when receive 50 BT framework
+    {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            pauseBackground.alpha = 0.0;
+        }];
+        [UIView animateWithDuration:0.3 animations:^{
+            roundrectAlert.alpha = 0.0;
+        }];
+        //[pauseBackground removeFromSuperview];
+        //[roundrectAlert removeFromSuperview];
+
+        [self beginGame];
+    }
+}
+
+- (void)dismissPauseState
+{
+    [UIView animateWithDuration:0.5 animations:^{
+        pauseBackground.alpha = 0.0;
+    }];
+    [UIView animateWithDuration:0.5 animations:^{
+        roundrectAlert.alpha = 0.0;
+    }];
+    [pauseBackground removeFromSuperview];
+    [roundrectAlert removeFromSuperview];
+    
+    [self beginGame];
+}
+
+
 
 - (void)pauseActoin
 {
@@ -146,7 +233,7 @@
         else{
             [block_self beginGame];
         }
-    } cancelButtonTitle:NSLocalizedString(@"取消",nil) otherButtonTitles:NSLocalizedString(@"确定", nil)];
+    } cancelButtonTitle:NSLocalizedString(@"退出游戏",nil) otherButtonTitles:NSLocalizedString(@"确定", nil)];
     
     [alert show];
 }
@@ -166,6 +253,23 @@
 
 #pragma mark -
 #pragma mark Game Op
+
+- (void)firstBeginGame
+{
+    
+    self.imgStatus.image = nil;
+    IMP_BLOCK_SELF(GameViewController)
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+        block_self.scrollView.hidden = NO;
+    });
+    
+    if (self.timerGame && [self.timerGame isValid]) {
+        [self.timerGame invalidate];
+    }
+    self.timerGame = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(gameUpdate:) userInfo:nil repeats:YES];
+    
+}
+
 - (void)beginGame
 {
     if (self.timerGame && [self.timerGame isValid]) {
@@ -186,16 +290,14 @@
 {
     if (totalTime-passTime/10<0) {
         self.lbTime.text = @"0";
+        halfResponse = 0;
         [self stopGame];
-        if (currentIndex<self.aryGame.count && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
-            
-            int tempScore = [self getGameScore:currentIndex];
-            score += tempScore;
-            [[self.aryGame objectAtIndex:currentIndex] setScoreRate:[self getGameScoreRate:currentIndex WithScore:tempScore]];
-            
+        //if (currentIndex==self.aryGame.count && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
+        if (currentIndex+1==self.aryGame.count ){
             self.gameDetail.factScore = score;
             [[self.aryGame objectAtIndex:currentIndex] setIsCaled:YES];
             self.lbScore.text = _S(@"%d",score);
+            //NSLog(@"the last label score = %@",self.lbScore.text);
         }
         
         self.gameDetail.aryGameInfo = self.aryGame;
@@ -211,7 +313,7 @@
         [[ProtolManager shareProtolManager] sendGameData:self.gameDetail];
         
         IMP_BLOCK_SELF(GameViewController)
-        CTAlertView *alert = [[CTAlertView alloc] initWithTitle:NSLocalizedString(@"本次锻炼结束，可查看锻炼结果",nil) message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+        CTAlertView *alert = [[CTAlertView alloc] initWithTitle:NSLocalizedString(@"本次锻炼结束, 查看锻炼结果?",nil) message:nil DelegateBlock:^(UIAlertView *alert, int index) {
             if (index==0) {
                 [block_self backAction:nil];
             }
@@ -230,11 +332,17 @@
     
     passTime++;
     
+    if (passTime == 5) { //留下充足时间加载游戏，再进入practice状态
+        [self pauseGameForPractice];
+    }
+    
+    if (passTime == 7) { //释放两个提示视图
+        [pauseBackground removeFromSuperview];
+        [roundrectAlert removeFromSuperview];
+    }
     
     self.lbTime.text = [self getGameTime:totalTime-passTime/10];
-    
-    
-    
+
     if ((int)[self.aryGame count]<=currentIndex) {
         return;
     }
@@ -246,45 +354,48 @@
             getHighed = NO;
         }
         
-       
-        
     }
     else if(self.playTime==2){
          [self sendBeginToBL:[[self.aryGame objectAtIndex:currentIndex] progressTime]];
     }
     oldResponse = halfResponse;
-    DLog(@"----%d",halfResponse);
+    //DLog(@"----%d,%d",halfResponse,currentIndex); //把收到的蓝牙数据打印出来
 
-    if (halfResponse>0) {
+    if (halfResponse>1) {
         [self showAnimationStar];
         self.imgLine.image = IMG(@"laser-active.png");
     }
     else{
         self.imgLine.image = IMG(@"laser-inactive.png");
     }
-    if (currentIndex>=0 && currentIndex<self.aryGame.count) {
+    
+    
+    if (currentIndex>=0 && currentIndex<self.aryGame.count)
+    {
         self.playTime +=1;
-        if (self.playTime/10<=[[self.aryGame objectAtIndex:currentIndex] progressTime]) {
+        if (self.playTime/10<=[[self.aryGame objectAtIndex:currentIndex] progressTime])
+        {
             if (self.playTime%5==0) {
                 ///info.ary add object
                 if (currentIndex>=0) {
                     [[[self.aryGame objectAtIndex:currentIndex] halfScroes] addObject:_S(@"%d",halfResponse)];
-                    
+                    //NSLog(@"----playTime:%d------halfResponse:%d",self.playTime,halfResponse);
                 }
                 halfResponse = 0;
-            }
-            else if (self.playTime<=5 && !getHighed) {
+            } else if (self.playTime<9 && !getHighed) {
                 ///high
                 if (halfResponse>1) {
                     
-                    if (self.playTime<2) {
+                    if (self.playTime<7 && self.playTime >4) {
                         score += 50;
+                        [[self.aryGame objectAtIndex:currentIndex] setBonusPoint:50];
                         getHighed = YES;
                         self.imgStatus.image = IMG(@"text-perfect.png");
                     }
                     else{
                         getHighed = YES;
                         score += 20;
+                        [[self.aryGame objectAtIndex:currentIndex] setBonusPoint:20];
                         self.imgStatus.image = IMG(@"text-cool.png");
                     }
                     
@@ -295,34 +406,45 @@
                     }];
                     
                     self.lbScore.text = _S(@"%d",score);
+                    //NSLog(@"bonus score = %@",self.lbScore.text);
                 }
-                
+            }else if (self.playTime >= 9 && self.playTime<10&& !getHighed){
+                self.imgStatus.image = IMG(@"text-miss.png");
+                self.imgStatus.alpha = 1;
+                IMP_BLOCK_SELF(GameViewController)
+                [UIView animateWithDuration:2 animations:^{
+                    block_self.imgStatus.alpha =0;
+                }];
             }
-            
         }
-        else if (currentIndex>1 && [[self.aryGame objectAtIndex:currentIndex-1] isCaled]==NO){
-            
-            int tempScore = [self getGameScore:currentIndex-1];
+        //else if (currentIndex>1 && [[self.aryGame objectAtIndex:currentIndex-1] isCaled]==NO){
+        else if (currentIndex>=0 && [[self.aryGame objectAtIndex:currentIndex] isCaled]==NO){
+    
+            int tempScore = [self getGameScore:currentIndex];
             score += tempScore;
-            [[self.aryGame objectAtIndex:currentIndex-1] setScoreRate:[self getGameScoreRate:currentIndex-1 WithScore:tempScore]];
-            
-            
+            [[self.aryGame objectAtIndex:currentIndex] setScoreRate:[self getGameScoreRate:currentIndex WithScore:tempScore]];
             self.lbScore.text = _S(@"%d",score);
-            [[self.aryGame objectAtIndex:currentIndex-1] setIsCaled:YES];
+            //GameInfo *infotesttest = [self.aryGame objectAtIndex:currentIndex];
+            //NSLog(@"--currentIndex%d--the former%ds--labelscor=%d--Bonus=%d--ScoreRate=%f",currentIndex,infotesttest.progressTime, tempScore,infotesttest.bonusPoint,[self getGameScoreRate:currentIndex WithScore:tempScore]);
+
+            [[self.aryGame objectAtIndex:currentIndex] setIsCaled:YES];
+            
+            
+            if (self.playTime%5==0) {
+                halfResponse = 0;
+            }
         }
     }
     else{
         halfResponse = 0;
+
     }
     
-    
-    
-    
+    if(self.playTime%5==0){
+        halfResponse = 0;
+    }
     
     totalLength -= 4;
-    
-    
-    
     
     [self.scrollView setContentOffset:CGPointMake(0.0, totalLength) animated:YES];
     [self.scrollBg setContentOffset:CGPointMake(0.0, totalLength) animated:YES];
@@ -335,13 +457,9 @@
     int bottom = 40*3; //3s
     int topleft = ScreenHeight;
     
-    
-    
     int contentY = self.twoNum*(TwoHeight+SepHeight);
     contentY += self.sevenNum*(SevenHeight+2*SepHeight);
     contentY += self.twelfthNum*(TwelfthHeight+3*SepHeight);
-    
-    
     
     totalLength = contentY+bottom+topleft;
     totalLength = totalLength+(totalLength%4);
@@ -356,7 +474,6 @@
     
     self.scrollView.contentSize = CGSizeMake(80, totalLength);
     self.scrollBg.contentSize = CGSizeMake(80, totalLength);
-    
     
     totalLength -= bottom;
     int gsecond = [self getGameSecond];
@@ -374,7 +491,7 @@
         int tempValue = 8;  ///修改这个值
         ///add to ary
         GameInfo *info = [[GameInfo alloc] initGameInfo:img.originY+img.height-BlankBottom+tempValue WithProgress:gsecond];
-        DLog(@"--beging:%d",info.beginPoint);
+        //DLog(@"--beging:%d",info.beginPoint);
         [self.aryGame addObject:info];
         
         gsecond = [self getGameSecond];
@@ -477,23 +594,25 @@
 #pragma mark BlueTooth
 - (int)getGameScore:(int)index
 {
-    int tempScore = 0;
+    int tempScore = 0.00;
     GameInfo *info = [self.aryGame objectAtIndex:index];
-    float serial = 0.0;
-    for (int i=0; i<info.halfScroes.count; i++) {
+    float serial = 0.00;
+    for (int i=1; i<info.halfScroes.count; i++) {
         if ([[info.halfScroes objectAtIndex:i] intValue]>=15) {
-            serial += 0.5;
+            serial += 0.50;
         }
         else{
-            if (serial>0) {
+            if (serial>0.00) {
                 tempScore += 2.17*serial*serial+9.73*serial;
             }
-            serial = 0.0;
+            serial = 0.00;
         }
     }
-    if (serial>0) {
+    if (serial>0.00) {
         tempScore += 2.17*serial*serial+9.73*serial;
     }
+    
+    tempScore += info.bonusPoint;
     
     return tempScore;
 }
@@ -535,20 +654,6 @@
     
     [[bleCentralManager shareManager] sendCommand:cmd];
     
-//    switch (length) {
-//        case 2:
-//            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:0]];
-//            break;
-//        case 7:
-//            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:1]];
-//            break;
-//        case 12:
-//            [[bleCentralManager shareManager] sendCommand:[AppBeginLevels objectAtIndex:2]];
-//            break;
-//        default:
-//            break;
-//    }
-    
 }
 
 - (NSString *)ten2six:(int)num
@@ -565,11 +670,11 @@
 {
     [self stopGame];
     IMP_BLOCK_SELF(GameViewController)
-    CTAlertView *alert = [[CTAlertView alloc] initWithTitle:@"蓝牙已断开,无法继续游戏" message:nil DelegateBlock:^(UIAlertView *alert, int index) {
+    CTAlertView *alert = [[CTAlertView alloc] initWithTitle:NSLocalizedString(@"Skea断开连接,请确认蓝牙已正确连接",nil) message:nil DelegateBlock:^(UIAlertView *alert, int index) {
         
         [block_self btBack_DisModal:nil];
         
-    } cancelButtonTitle:@"退出游戏" otherButtonTitles:nil];
+    } cancelButtonTitle:NSLocalizedString(@"退出游戏",nil) otherButtonTitles:nil];
     
     [alert show];
 }
@@ -583,6 +688,8 @@
         //        if (StringNotNullAndEmpty(value)) {
         halfResponse++;
         //        }
+        //NSLog(@"--In CBU, halfResponse:%d",halfResponse);
+
     }
 }
 
@@ -609,6 +716,49 @@
     
 }
 
+
+
+
+-(void)creatRoundRectAlert:(NSString *)content gifImageName:(NSString *)gifImageName {
+    
+    roundrectAlert = [[UIView alloc] initWithFrame:CGRectMake(30, 114, [UIScreen mainScreen].bounds.size.width - 60, 320)];
+    roundrectAlert.layer.cornerRadius = 10.f;
+    roundrectAlert.userInteractionEnabled = YES;
+    roundrectAlert.backgroundColor = [UIColor whiteColor];
+    roundrectAlert.alpha = 0.0;
+    [self.view addSubview:roundrectAlert];
+    
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:gifImageName ofType:nil];
+    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath];
+    gifImageView.backgroundColor = [UIColor clearColor];
+    gifImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 260)/2.f, 0 , 200, 200);
+    [roundrectAlert addSubview:gifImageView];
+    
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = CGRectMake(15, 180,[UIScreen mainScreen].bounds.size.width - 90, 110);
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines = 10;
+    label.text = content;
+    label.font = [UIFont systemFontOfSize:11.f];
+    label.textColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f];
+    [roundrectAlert addSubview:label];
+    
+    UIView * line = [[UIView alloc] init];
+    line.frame = CGRectMake(0, 279.5,[UIScreen mainScreen].bounds.size.width - 60, 0.5);
+    line.backgroundColor = [UIColor grayColor];
+    [roundrectAlert addSubview:line];
+   
+    UIButton * dissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dissButton.frame = CGRectMake(00, 280, [UIScreen mainScreen].bounds.size.width - 60, 40);
+    [dissButton setTitle:NSLocalizedString(@"跳过锻炼环节", nil) forState:UIControlStateNormal];
+    dissButton.backgroundColor = [UIColor clearColor];
+    [dissButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [dissButton setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
+    dissButton.layer.cornerRadius = 10.f;
+    [dissButton addTarget:self action:@selector(dismissPauseState) forControlEvents:UIControlEventTouchUpInside];
+    [roundrectAlert addSubview:dissButton];
+    
+}
 
 - (void)viewDidDisappear:(BOOL)animated
 {

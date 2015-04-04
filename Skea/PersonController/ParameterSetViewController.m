@@ -14,55 +14,78 @@
 ///电机变速
 #define AppGearbox @"2504ff0a00000032"
 
+/*
 @interface SKAlertView : UIView
 
--(id)initWithFrame:(CGRect)rect content:(NSString *)content gifImageName:(NSString *)gifImageName;
+
+-(id)initWithFrame:(NSString *)content gifImageName:(NSString *)gifImageName;
+//UIView *viewFloat;
 
 @end
 
 @implementation SKAlertView
 
--(id)initWithFrame:(CGRect)rect content:(NSString *)content gifImageName:(NSString *)gifImageName
+-(id)initWithFrame:(NSString *)content gifImageName:(NSString *)gifImageName
 {
     if(self = [super init])
     {
-        self.frame = rect;
-        self.layer.cornerRadius = 10.f;
-        self.userInteractionEnabled = YES;
-        self.backgroundColor = [UIColor whiteColor];
-        //        self.layer.shadowOffset = CGSizeMake(0, 2);
-        //        self.layer.shadowOpacity = 0.80;
-        self.layer.borderWidth = 0.6;
-        self.layer.borderColor = [UIColor grayColor].CGColor;
+//        if (isIOS7) {
+  //          self.edgesForExtendedLayout = UIRectEdgeNone;
+    //    }
+        UIView *blackBackground;
+        
+        blackBackground = [[UIView alloc] initWithFrame:theApp.window.bounds];
+        blackBackground.backgroundColor = [UIColor blackColor];
+        blackBackground.alpha = 0;
+        blackBackground.hidden = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            blackBackground.alpha = 0.8;
+        }];
+        [self addSubview:blackBackground];
+        
+        UIView *roundrectAlert = [[UIView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 320)];
+        roundrectAlert.layer.cornerRadius = 10.f;
+        roundrectAlert.userInteractionEnabled = YES;
+        roundrectAlert.backgroundColor = [UIColor whiteColor];
+        [self addSubview:roundrectAlert];
+        //roundrectAlert.layer.shadowOffset = CGSizeMake(0, 2);
+        //roundrectAlert.layer.shadowOpacity = 0.80;
+        //roundrectAlert.layer.borderWidth = 0.6;
+        //roundrectAlert.layer.borderColor = [UIColor grayColor].CGColor;
         
         NSString* filePath = [[NSBundle mainBundle] pathForResource:gifImageName ofType:nil];
         SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath];
         gifImageView.backgroundColor = [UIColor clearColor];
-        gifImageView.frame = CGRectMake((self.frame.size.width - 200)/2.f, 0 , 200, 200);
+        gifImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 200)/2.f, 50 , 200, 200);
         [self addSubview:gifImageView];
         
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(10, 200, self.frame.size.width - 20, 60);
+        label.frame = CGRectMake(40, 250,[UIScreen mainScreen].bounds.size.width - 80, 80);
         label.backgroundColor = [UIColor clearColor];
         label.numberOfLines = 10;
         label.text = content;
-        label.font = [UIFont systemFontOfSize:12.f];
+        label.font = [UIFont systemFontOfSize:11.f];
+        label.textColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f];
         [self addSubview:label];
         
         UIView * line = [[UIView alloc] init];
-        line.frame = CGRectMake(0, 259.5, self.frame.size.width, 0.5);
-        line.backgroundColor = [UIColor colorWithWhite:0.32 alpha:1.f];
+        line.frame = CGRectMake(30, 329.5,[UIScreen mainScreen].bounds.size.width - 60, 0.5);
+        line.backgroundColor = [UIColor grayColor];
         [self addSubview:line];
         
-        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0, 260, [UIScreen mainScreen].bounds.size.width - 60, 40);
-        [button setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
-        button.backgroundColor = [UIColor whiteColor];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
-        button.layer.cornerRadius = 10.f;
-        [button addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:button];
+        UIButton * dissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        dissButton.frame = CGRectMake(30, 330, [UIScreen mainScreen].bounds.size.width - 60, 40);
+        [dissButton setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
+        dissButton.backgroundColor = [UIColor blueColor];
+        [dissButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [dissButton setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
+        dissButton.layer.cornerRadius = 10.f;
+        [dissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:dissButton];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeAlert)];
+        [self addGestureRecognizer:tap];
+        
     }
     return self;
 }
@@ -72,9 +95,20 @@
     [self removeFromSuperview];
 }
 
+-(void)closeAlert
+{
+    self.hidden = YES;
+    
+}
+
+
 @end
+ 
+*/
+ 
 
 @interface ParameterSetViewController ()
+
 
 @end
 
@@ -83,12 +117,16 @@
     UISlider * _slider0;
     UISlider * _slider1;
     UISlider * _slider2;
-    SKAlertView * alertView0;
-    SKAlertView * alertView1;
+   // UIView * alertView0;
+   // UIView * alertView1;
     UILabel * _speedLabel;
+    UIView *blackBackgroundAlert;
+    UIView *roundrectAlert;
+
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"Skea参数调节", nil)];
     self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(btBack_DisModal:)];
@@ -97,7 +135,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
     
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50) title:NSLocalizedString(@"压力敏感度", nil)]];
-    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 50, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"不敏感", nil) rightTitle:NSLocalizedString(@"敏感", nil) selector:@selector(up)]];
+    [self.view addSubview:[self createSlidre0WithFrame:CGRectMake(0, 50, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"敏感", nil) rightTitle:NSLocalizedString(@"不敏感", nil) selector:@selector(up)]];
     
     UIView * sView1 = [self createTitleViewWithFrame:CGRectMake(0, 130, self.view.frame.size.width, 50) title:NSLocalizedString(@"反馈震动强度", nil)];
     sView1.userInteractionEnabled = YES;
@@ -124,9 +162,73 @@
     [self.view addSubview:[self createTitleViewWithFrame:CGRectMake(0, 260, self.view.frame.size.width, 50) title:NSLocalizedString(@"游戏自震动强度", nil)]];
     [self.view addSubview:[self createSlidre2WithFrame:CGRectMake(0, 310, self.view.frame.size.width, 80) liftTitle:NSLocalizedString(@"弱", nil) rightTitle:NSLocalizedString(@"强", nil) selector:nil]];
     
+}
+
+
+
+-(void)initWithFrame:(NSString *)content gifImageName:(NSString *)gifImageName {
+
+    if (isIOS7) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
+    blackBackgroundAlert = [[UIView alloc] initWithFrame:theApp.window.bounds];
+    blackBackgroundAlert.backgroundColor = [UIColor blackColor];
+    blackBackgroundAlert.alpha = 0;
+    blackBackgroundAlert.hidden = NO;
+    [UIView animateWithDuration:0.3 animations:^{
+        blackBackgroundAlert.alpha = 0.8;
+    }];
+    [self.view addSubview:blackBackgroundAlert];
+    
+    roundrectAlert = [[UIView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 320)];
+    roundrectAlert.layer.cornerRadius = 10.f;
+    roundrectAlert.userInteractionEnabled = YES;
+    roundrectAlert.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:roundrectAlert];
+    //roundrectAlert.layer.shadowOffset = CGSizeMake(0, 2);
+    //roundrectAlert.layer.shadowOpacity = 0.80;
+    //roundrectAlert.layer.borderWidth = 0.6;
+    //roundrectAlert.layer.borderColor = [UIColor grayColor].CGColor;
+    
+    NSString* filePath = [[NSBundle mainBundle] pathForResource:gifImageName ofType:nil];
+    SCGIFImageView* gifImageView = [[SCGIFImageView alloc] initWithGIFFile:filePath];
+    gifImageView.backgroundColor = [UIColor clearColor];
+    gifImageView.frame = CGRectMake(([UIScreen mainScreen].bounds.size.width - 260)/2.f, 0 , 200, 200);
+    [roundrectAlert addSubview:gifImageView];
+    
+    UILabel * label = [[UILabel alloc] init];
+    label.frame = CGRectMake(15, 200,[UIScreen mainScreen].bounds.size.width - 80, 80);
+    label.backgroundColor = [UIColor clearColor];
+    label.numberOfLines = 10;
+    label.text = content;
+    label.font = [UIFont systemFontOfSize:11.f];
+    label.textColor = [UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f];
+    [roundrectAlert addSubview:label];
+    
+    UIView * line = [[UIView alloc] init];
+    line.frame = CGRectMake(0, 279.5,[UIScreen mainScreen].bounds.size.width - 60, 0.5);
+    line.backgroundColor = [UIColor grayColor];
+    [roundrectAlert addSubview:line];
+    
+    UIButton * dissButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    dissButton.frame = CGRectMake(00, 280, [UIScreen mainScreen].bounds.size.width - 60, 40);
+    [dissButton setTitle:NSLocalizedString(@"确定", nil) forState:UIControlStateNormal];
+    dissButton.backgroundColor = [UIColor clearColor];
+    [dissButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [dissButton setTitleColor:[UIColor colorWithRed:107/255.f green:201/255.f blue:222/255.f alpha:1.f] forState:UIControlStateHighlighted];
+    dissButton.layer.cornerRadius = 10.f;
+    [dissButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [roundrectAlert addSubview:dissButton];
     
 }
+
+-(void)dismiss
+{
+    blackBackgroundAlert.hidden = YES;
+    roundrectAlert.hidden = YES;
+}
+
 
 -(void)speedChange:(UISwitch *)speedSwitch
 {
@@ -181,18 +283,16 @@
 
 -(void)up
 {
-    
-    alertView0  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 300) content:NSLocalizedString(@"Skea放入体内,用力挤压,Skea会有反馈震动哦。如果Skea始终无反馈，请增加压力敏感度，如用力较轻达不到锻炼目的，请降低压力敏感度。", nil) gifImageName:@"1.gif"];
-    [self.view addSubview:alertView0];
+    [self initWithFrame:NSLocalizedString(@"Skea放入体内,用力挤压,Skea会有反馈震动哦。如果Skea始终无反馈，请增加压力敏感度，如用力较轻达不到锻炼目的，请降低压力敏感度。", nil) gifImageName:@"1.gif"];
     [self save];
 }
 
 -(void)down
 {
-    alertView1  = [[SKAlertView alloc] initWithFrame:CGRectMake(30, 50, [UIScreen mainScreen].bounds.size.width - 60, 300) content:NSLocalizedString(@"把Skea放入体内,用力挤压,Skea会有反馈震动哦。震动反馈可以调节。", nil) gifImageName:@"1.gif"];
-    [self.view addSubview:alertView1];
+    [self initWithFrame:NSLocalizedString(@"把Skea放入体内,用力挤压,Skea会有反馈震动哦。震动反馈可以调节。", nil) gifImageName:@"1.gif"];
     [self save];
 }
+
 
 -(UIImageView *)createTitleViewWithFrame:(CGRect)rect title:(NSString *)title
 {
@@ -340,15 +440,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

@@ -253,6 +253,8 @@
 		CDCBD7841A3AAE3B00E84A14 /* level3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */; };
 		CDCBD7851A3AAE3B00E84A14 /* level4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */; };
 		CDCBD7871A3AB18900E84A14 /* loginButtonBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDCBD7861A3AB18900E84A14 /* loginButtonBg@2x.png */; };
+		F807F7631ACD845900F1FED3 /* record_icon_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F807F7611ACD845900F1FED3 /* record_icon_blue@2x.png */; };
+		F807F7641ACD845900F1FED3 /* record_icon_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F807F7621ACD845900F1FED3 /* record_icon_orange@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -650,6 +652,8 @@
 		CDCBD7801A3AAE3B00E84A14 /* level3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level3@2x.png"; sourceTree = "<group>"; };
 		CDCBD7811A3AAE3B00E84A14 /* level4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "level4@2x.png"; sourceTree = "<group>"; };
 		CDCBD7861A3AB18900E84A14 /* loginButtonBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginButtonBg@2x.png"; sourceTree = "<group>"; };
+		F807F7611ACD845900F1FED3 /* record_icon_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_icon_blue@2x.png"; sourceTree = "<group>"; };
+		F807F7621ACD845900F1FED3 /* record_icon_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "record_icon_orange@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -936,6 +940,8 @@
 				0388859019F158B900372178 /* user-portrait@2x.png */,
 				03E531BC19DA7D320064762E /* bg_title@2x.png */,
 				03E531BD19DA7D320064762E /* menu@2x.png */,
+				F807F7611ACD845900F1FED3 /* record_icon_blue@2x.png */,
+				F807F7621ACD845900F1FED3 /* record_icon_orange@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1427,6 +1433,7 @@
 				038885A019F158B900372178 /* button-start-shadow@2x.png in Resources */,
 				032DE8741A1F466C00FE0949 /* text-cool@2x.png in Resources */,
 				038885BF19F158B900372178 /* text-perfect@2x.png in Resources */,
+				F807F7641ACD845900F1FED3 /* record_icon_orange@2x.png in Resources */,
 				0388859E19F158B900372178 /* button-gray@2x.png in Resources */,
 				0377587C1A3AED5D000D4A72 /* gamelevel4@2x.png in Resources */,
 				038885AA19F158B900372178 /* icon-records@2x.png in Resources */,
@@ -1478,6 +1485,7 @@
 				03E5320719DA7D320064762E /* MJRefresh.bundle in Resources */,
 				03096A891A1A23D3009FFF88 /* lastresult_bg@2x.png in Resources */,
 				0312889219E43BFE0073C83B /* RecordViewController.xib in Resources */,
+				F807F7631ACD845900F1FED3 /* record_icon_blue@2x.png in Resources */,
 				032DE8731A1F466C00FE0949 /* bg_title2@2x.png in Resources */,
 				038885B319F158B900372178 /* scroll-bar-selection@2x.png in Resources */,
 				038885C119F158B900372178 /* user-portrait@2x.png in Resources */,
@@ -1710,7 +1718,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhenjia Wang (9YP7S6S4P5)";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;

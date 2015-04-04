@@ -286,6 +286,7 @@
         UIButton * submitButtn = [UIButton buttonWithType:UIButtonTypeCustom];
         submitButtn.frame = CGRectMake(8, 30, self.view.frame.size.width - 16, 44);
         [submitButtn setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+        [submitButtn setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
         [submitButtn setTitle:NSLocalizedString(@"提交", nil) forState:UIControlStateNormal];
         [submitButtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [submitButtn addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];

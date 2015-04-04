@@ -44,7 +44,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 -(void)setActivePeripheral:(CBPeripheral *)AP{
     _activePeripheral = AP;
     NSString *aname = [[NSString alloc]initWithFormat:@"%@",_activePeripheral.name];
-    NSLog(@"aname:%@",aname);
+    //NSLog(@"aname:%@",aname);
     if (![aname isEqualToString:@"(null)"]) {
         _nameString = aname;
     }
@@ -54,7 +54,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     NSString *auuid = [[NSString alloc]initWithFormat:@"%@", _activePeripheral.UUID];
     if (auuid.length >= 36) {
         _uuidString = [auuid substringWithRange:NSMakeRange(auuid.length-36, 36)];
-        NSLog(@"uuidString:%@",_uuidString);
+        //NSLog(@"uuidString:%@",_uuidString);
     }
 }
 
@@ -134,7 +134,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
                 nPeripheralStateChange
                 for (CBService *services in peripheral.services)
                 {
-                    NSLog(@"发现服务UUID: %@\r\n", services.UUID);
+                    //NSLog(@"发现服务UUID: %@\r\n", services.UUID);
                     //================== TransmitMoudel =====================// FFE0
                     if ([[services UUID] isEqual:[CBUUID UUIDWithString:kReceiveDataServiceUUID]])
                     {
@@ -187,7 +187,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
             {
                 for (characteristic in characteristics)
                 {
-                    NSLog(@"发现特值UUID: %@\n", [characteristic UUID]);
+                    //NSLog(@"发现特值UUID: %@\n", [characteristic UUID]);
                     if ([[characteristic UUID] isEqual:[CBUUID UUIDWithString:kSend20BytesDataCharateristicUUID]])
                     {
                         _Send20BytesDataCharateristic = characteristic;
@@ -209,7 +209,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
 
 - (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
     
-     NSLog(@"发现特值UUID: %@\n ERROR=%@", [characteristic UUID],error);
+     //NSLog(@"发现特值UUID: %@\n ERROR=%@", [characteristic UUID],error);
     
     if (error==nil) {
         //调用下面的方法后 会调用到代理的- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
@@ -249,7 +249,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
-            NSLog(@"成功写数据到特征值: %@ 数据:%@\n", characteristic.UUID, data);
+            //NSLog(@"成功写数据到特征值: %@ 数据:%@\n", characteristic.UUID, data);
             [peripheral writeValue:data forCharacteristic:characteristic type:CBCharacteristicWriteWithResponse];
         }
     }
@@ -260,7 +260,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
-            NSLog(@"成功从特征值:%@ 读数据\n", characteristic);
+           // NSLog(@"成功从特征值:%@ 读数据\n", characteristic);
             [peripheral readValueForCharacteristic:characteristic];
         }
     }
@@ -271,7 +271,7 @@ NSString *kSend20BytesDataCharateristicUUID             = @"49535343-8841-43F4-A
     if ([peripheral isEqual:_activePeripheral] && [peripheral state]==CBPeripheralStateConnected)
     {
         if (characteristic != nil) {
-            NSLog(@"成功发通知到特征值: %@\n", characteristic);
+            //NSLog(@"成功发通知到特征值: %@\n", characteristic);
             [peripheral setNotifyValue:state forCharacteristic:characteristic];
         }
     }

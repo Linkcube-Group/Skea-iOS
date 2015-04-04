@@ -60,12 +60,12 @@ NSString * const kProtocolHelperLocalizedDescription = @"网络连接错误";
     
     
     [op addCompletionHandler:^(MKNetworkOperation *completedOperation) {
-        DLog(@"MKNET URL=%@",completedOperation.url);
+        //DLog(@"MKNET URL=%@",completedOperation.url);
         
         NSString *response = [completedOperation responseString];
         
         id reDict = [response objectFromJSONString];
-        DLog(@"MKNET RESPONSE=%@",reDict);
+        //DLog(@"MKNET RESPONSE=%@",reDict);
         int statusCode = -1;
         
         if (reDict) {

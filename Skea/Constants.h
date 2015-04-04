@@ -65,6 +65,9 @@ static NSString * const kNotificationConnected = @"kNotificationConnected";
 //断开
 static NSString * const kNotificationDisConnected = @"kNotificationDisConnected";
 
+static NSString * const firstBeginGameFlag = @"firstBeginGameFlag";
+
+
 
 static const int chatHeight = 200;
 

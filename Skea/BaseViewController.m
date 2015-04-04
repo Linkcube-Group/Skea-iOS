@@ -70,7 +70,7 @@
 
 - (void)dealloc
 {
-    DLog(@"Controller dealloc = %@",NSStringFromClass([self class]));
+    //DLog(@"Controller dealloc = %@",NSStringFromClass([self class]));
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self cacelAllRequest];
     showIndicator(NO, nil);

@@ -20,6 +20,7 @@
 
 @property (strong,nonatomic) IBOutlet UILabel *lbLevel;
 @property (strong,nonatomic) IBOutlet UILabel *lbResult;
+@property (strong, nonatomic) IBOutlet UILabel *lbLevelNotic;
 
 @property (strong,nonatomic) IBOutlet UIImageView *imgCenter;
 @property (strong,nonatomic) IBOutlet UIButton *btnCenter;
@@ -36,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.imgCenter.originY = ScreenHeight/2-self.imgCenter.height/2;
+    self.imgCenter.originY = ScreenHeight/2-self.imgCenter.height/2-32;
     self.btnCenter.originY = self.imgCenter.originY;
     
     
@@ -58,20 +59,20 @@
             if (responseObject!=nil) {
                 int statusCode = [[responseObject objectForKey:@"status"] intValue];
                 if (statusCode>100) {
-                    NSString *errMsg = @"服务器错误";
+                    NSString *errMsg = NSLocalizedString(@"服务器错误", nil);
                     switch (statusCode) {
                         case 101:
-                            errMsg = @"参数错误";
+                            errMsg = NSLocalizedString(@"参数错误", nil);
                             break;
                         case 102:
-                            errMsg = @"该用户已被注册";
+                            errMsg = NSLocalizedString(@"该用户名已被注册", nil);
                             break;
                         case 103:
-                            errMsg = @"用户名或密码错误";
+                            errMsg = NSLocalizedString(@"用户名或密码错误", nil);
                             break;
                         case 104:
                         {
-                            errMsg = @"结果未找到";
+                            errMsg = NSLocalizedString(@"结果未找到", nil);
                             TestingViewController1 * tvc = [[TestingViewController1 alloc] init];
                             tvc._isRegisterPush = YES;
                             UINavigationController * nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
@@ -111,7 +112,26 @@
     [super viewWillAppear:animated];
     self.imgLastResult.image = IMG(NSLocalizedString(@"lastresult_bg_ch.png",nil));
     self.imgLevel.image = IMG(NSLocalizedString(@"level_bg_ch.png",nil));
-    self.lbLevel.text = _S(@"%d",[AppConfig getGameLevel]);
+    self.lbLevelNotic.text = NSLocalizedString(@"游戏难度:", nil);
+    NSInteger lbLevelTemp = [AppConfig getGameLevel];
+    switch (lbLevelTemp) {
+        case 1:
+            self.lbLevel.text = NSLocalizedString(@" 简单", nil);
+            break;
+        case 2:
+            self.lbLevel.text = NSLocalizedString(@" 普通", nil);
+            break;
+        case 3:
+            self.lbLevel.text = NSLocalizedString(@" 困难", nil);
+            break;
+        case 4:
+            self.lbLevel.text = NSLocalizedString(@" 超难", nil);
+            break;
+        default:
+            self.lbLevel.text = NSLocalizedString(@" 简单", nil);
+            break;
+    }
+    //self.lbLevel.text = _S(@"%d",[AppConfig getGameLevel]);
     GameDetail *detail = [AppConfig getLastGameDetail];
     
     
@@ -131,7 +151,7 @@
 {
     int count = (int)[bleCentralManager shareManager].blePeripheralArray.count;
     if (count>1) {
-        CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:NSLocalizedString(@"选择玩具",nil) cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
+        CTActionSheet *sheet = [[CTActionSheet alloc] initWithTitle:NSLocalizedString(@"请选择Skea:",nil) cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil HandleBlock:^(int btnIndex) {
             if (btnIndex<count) {
                 blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:btnIndex];
                 [[bleCentralManager shareManager] connectPeripheral:blItem.activePeripheral];
@@ -141,7 +161,9 @@
         
         for (int i=0; i<count; i++) {
             blePeripheral *blItem = [[bleCentralManager shareManager].blePeripheralArray objectAtIndex:i];
-            [sheet addButtonWithTitle:blItem.nameString];
+            //if([blItem.nameString isEqualToString:@"Skea"] || [blItem.nameString isEqualToString:@"linkcube"]){
+                [sheet addButtonWithTitle:blItem.nameString];
+           // }
         }
         [sheet addButtonWithTitle:NSLocalizedString(@"取消",nil)];
         [sheet setDestructiveButtonIndex:count];
@@ -220,7 +242,7 @@
 {
     NSDictionary *dict = [notify userInfo];
     if (dict) {
-        blePeripheral *cp = [dict objectForKey:@"bl"];
+       // blePeripheral *cp = [dict objectForKey:@"bl"];
         self.navigationItem.rightBarButtonItem = [[Theam currentTheam] navigationBarRightButtonItemWithImage:IMG(@"bluetooth-connected.png") Title:nil Target:self Selector:@selector(connectAction:)];
         self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"Skea已连接",nil)];
     }

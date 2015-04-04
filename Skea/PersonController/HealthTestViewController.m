@@ -41,7 +41,9 @@
     [btn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     btn.frame=CGRectMake(16, 32, 20, 20);
     
+    /*  really don't understand!!!!!!!!!
     //让图片在最右侧对齐
+    
     CGSize imagesize=IMG(@"back-cross.png").size;
     imagesize.width=imagesize.width/2;
     imagesize.height=imagesize.height/2;
@@ -51,7 +53,9 @@
     UIEdgeInsets insets=UIEdgeInsetsMake((btnsize.height-imagesize.height)/2, btnsize.width-imagesize.width, (btnsize.height-imagesize.height)/2, 0);
     [btn setImageEdgeInsets:insets];
     btn.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    
+    */
+     
+     
     if (DeviceSystemSmallerThan(7.0)) {
         [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
     }
@@ -60,10 +64,14 @@
     self.navigationItem.titleView = [[Theam currentTheam] navigationTitleViewWithTitle:NSLocalizedString(@"测试结果", nil)];
 //    self.navigationItem.leftBarButtonItem = [[Theam currentTheam] navigationBarLeftButtonItemWithImage:IMG(@"menu_action_back_white.png") Title:nil Target:self Selector:@selector(back)];
     self.view.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 400 - 20 - 40 - 10) style:UITableViewStylePlain];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, 415 - 20 - 40 - 10) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.scrollEnabled = NO;
+    
+    _tableView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
+    
     _tableView.separatorColor = [UIColor clearColor];
     [self.view addSubview:_tableView];
     
@@ -72,6 +80,8 @@
     //    AgainButton.layer.borderWidth = 0.5f;
     //    AgainButton.layer.borderColor = [UIColor blackColor].CGColor;
     [AgainButton setBackgroundImage:[UIImage imageNamed:@"button-cyan.png"] forState:UIControlStateNormal];
+    [AgainButton setBackgroundImage:[UIImage imageNamed:@"loginButtonBg.png"] forState:UIControlStateHighlighted];
+
     AgainButton.layer.cornerRadius = 20.f;
     [AgainButton setTitle:NSLocalizedString(@"重新测试", nil) forState:UIControlStateNormal];
     [AgainButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -114,7 +124,7 @@
     if(indexPath.row == 1 || indexPath.row == 3 || indexPath.row == 4)
         return 40.f;
     if(indexPath.row == 2)
-        return 70.f;
+        return 85.f;
     return 100.f;
 }
 
@@ -125,7 +135,7 @@
     if(!cell || 1)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
         cell.contentView.backgroundColor = [UIColor colorWithRed:249/255.f green:249/255.f blue:249/255.f alpha:1.f];
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -140,8 +150,9 @@
         label.textColor = [UIColor whiteColor];
         label.textAlignment = NSTextAlignmentCenter;
         label.numberOfLines = 2;
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.f];
+        cell.contentView.backgroundColor = [UIColor colorWithRed:59/255.f green:60/255.f blue:65/255.f alpha:1.f];
         [cell.contentView addSubview:label];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         
 //        UILabel * label1 = [[UILabel alloc] init];
 //        label1.frame = CGRectMake(20, label.frame.origin.y + label.frame.size.height, 150, 20);
@@ -158,6 +169,7 @@
         _imageView = [[UIImageView alloc] init];
         _imageView.frame = CGRectMake(self.view.frame.size.width - 80 - 10 - 30, 20, 100, 100);
         [cell.contentView addSubview:_imageView];
+        
         if([SkeaUser defaultUser].level != 0)
         {
             _imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"level%ld",[SkeaUser defaultUser].level]];
@@ -181,9 +193,26 @@
     {
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
-        
-        cell.textLabel.text = _S(@"%@%@",NSLocalizedString(@"等级", nil),[NSString stringWithFormat:@" %ld",[SkeaUser defaultUser].selectLevel?[SkeaUser defaultUser].selectLevel:[SkeaUser defaultUser].level]);
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSInteger tempLevel = [SkeaUser defaultUser].selectLevel ? [SkeaUser defaultUser].selectLevel : [SkeaUser defaultUser].level;
+        switch (tempLevel) {
+            case 1:
+                cell.textLabel.text = NSLocalizedString(@" 简单",nil);
+                break;
+            case 2:
+                cell.textLabel.text = NSLocalizedString(@" 普通",nil);
+                break;
+            case 3:
+                cell.textLabel.text = NSLocalizedString(@" 困难",nil);
+                break;
+            case 4:
+                cell.textLabel.text = NSLocalizedString(@" 超难",nil);
+                break;
+            default:
+                cell.textLabel.text = NSLocalizedString(@" 简单",nil);
+                break;
+        }
+        //cell.textLabel.text = _S(@"%@%@",NSLocalizedString(@"等级", nil),[NSString stringWithFormat:@" %ld",[SkeaUser defaultUser].selectLevel?[SkeaUser defaultUser].selectLevel:[SkeaUser defaultUser].level]);
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     if(indexPath.row == 2)
@@ -191,14 +220,13 @@
         cell.backgroundColor = [UIColor whiteColor];
         cell.contentView.backgroundColor = [UIColor whiteColor];
         UILabel * label = [[UILabel alloc] init];
-        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 70);
+        label.frame = CGRectMake(20, 0, self.view.frame.size.width - 20 - 20, 85);
 //        label.text = @"UILabel * textlabel = [[UILabel allocinitWithFrame:CGRectMake(0, 0, 80, 80)];textlabel.backgroundColor = [UIColor clearColor];textlabel.text = ;textlabel.textColor = [UIColor blueColor];textlabel.textAlignment = NSTextAlignmentCenter;textlabel.font = [UIFont boldSystemFontOfSize:28.f];[view addSubview:textlabel];";
         label.text = [SkeaUser defaultUser].level>0?[_sugArray objectAtIndex:[SkeaUser defaultUser].level - 1]:[_sugArray firstObject];
         label.font = [UIFont systemFontOfSize:12.f];
         label.numberOfLines = 10;
         [cell.contentView addSubview:label];
-        
-        cell.contentView.backgroundColor = [UIColor whiteColor];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     }
     return cell;
 }

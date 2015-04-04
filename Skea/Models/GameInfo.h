@@ -22,6 +22,7 @@
 @property (nonatomic) float scoreRate;
 
 @property (nonatomic) BOOL isCaled;//是否被计算过
+@property (nonatomic) int bonusPoint;
 
 - (id)initGameInfo:(int)point WithProgress:(int)length;
 @end

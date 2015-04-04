@@ -78,7 +78,7 @@
     self.lbDuration.text = NSLocalizedString(@"时长(s)", nil);
     self.lbSuccessRate.text = NSLocalizedString(@"成功率(%)", nil);
     self.lbFenShu.text = NSLocalizedString(@"分数:", nil);
-    self.lbShiChang.text = NSLocalizedString(@"时长:", nil);
+    self.lbShiChang.text = NSLocalizedString(@"运动时长:", nil);
     self.lbNumMessage.text = NSLocalizedString(@"盆底肌收缩次数", nil);
     self.lbCorrectRate.text = NSLocalizedString(@"正确率", nil);
     self.viewScoreBg.layer.cornerRadius = 55;
@@ -121,11 +121,13 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeCalendaer)];
     [viewFloat addGestureRecognizer:tap];
     
-    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(0, (ScreenHeight-320)/2, 320, 310)];
+    _sampleView= [[CalendarView alloc]initWithFrame:CGRectMake(5, (ScreenHeight-320)/2, 310, 310)];
+
     _sampleView.delegate = self;
     [_sampleView setBackgroundColor:[UIColor whiteColor]];
     _sampleView.calendarDate = [NSDate date];
     [self.view addSubview:_sampleView];
+   // _sampleView.layer.cornerRadius = 10;
     _sampleView.hidden = YES;
     
     

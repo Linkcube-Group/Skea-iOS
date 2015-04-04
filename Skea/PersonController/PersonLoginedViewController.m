@@ -154,7 +154,7 @@
 
 -(void)photoSelect
 {
-    NSLog(@"选择投降");
+    //NSLog(@"选择投降");
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.delegate = self;
